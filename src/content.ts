@@ -1,0 +1,1 @@
+export default "arsch botz palotz";
