@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "moduleResolution": "node",
-    "lib": ["es2015", "dom"]
-  }
-}
