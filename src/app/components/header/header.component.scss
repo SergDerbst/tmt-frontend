@@ -1,0 +1,35 @@
+@import "../../../styles";
+
+header {
+  background-color: $grey-dark;
+  border-bottom: 3px solid $red-blood;
+}
+
+.tmt-header-item {
+  padding: 10px 0 0 20px;
+}
+
+.tmt-logo {
+  color: $red-blood;
+  font-size: 2.0em;
+  font-style: italic;
+  font-weight: bold;
+
+  img {
+    width: 300px;
+  }
+}
+
+.tmt-navbar {
+  border-top: solid 1px $grey-gloomy;
+  padding-left: 10px;
+
+  a {
+    color: $blue-sky;
+  }
+
+  a.tmt-navbar-item {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

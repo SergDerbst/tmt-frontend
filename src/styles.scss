@@ -1,0 +1,17 @@
+// color scheme
+$blue-sky: #a4b2c0;
+$golden-orange: #ffcf84;
+$golden-yellow: #fff8ad;
+$red-blood: #971114;
+
+$grey-bright: #f2f2f2;
+$grey-gloomy: #e2e2e2;
+$grey-dark: #282828;
+
+body {
+  background-color: $grey-gloomy;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+
+  //override user agent styles
+  margin: 0;
+}
