@@ -1,0 +1,65 @@
+@import "../../../styles";
+
+.tmt-form-container {
+  text-align: center;
+  border: 1px solid $grey-dark;
+  border-radius: 5px;
+  vertical-align: middle;
+
+  .tmt-form {
+    display: inline-table;
+    width: 100%;
+
+    .tmt-form-title {
+      display: table-caption;
+      background-color: $grey-dark;
+      color: $blue-sky;
+      text-align: center;
+      padding: 5px 0;
+    }
+
+    .tmt-form-property {
+      display: table-row;
+
+      .tmt-form-property-item {
+        display: table-cell;
+        padding: 5px;
+
+        label {
+          color: $grey-dark;
+        }
+      }
+    }
+
+    .tmt-form-separator {
+      display: table-row;
+      min-height: 1em;
+    }
+
+    .tmt-form-button-container {
+      display: table-row;
+
+      .tmt-form-button {
+        display: table-cell;
+        padding: 5px;
+
+        button {
+          padding: 5px 50px;
+        }
+      }
+    }
+
+    .tmt-form-xtra-container {
+      display: table-row;
+
+      .tmt-form-xtra-item {
+        display: table-cell;
+        padding: 5px;
+
+        a {
+          font-size: small;
+        }
+      }
+    }
+  }
+}

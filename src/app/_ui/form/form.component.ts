@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormElementService } from './elements/form.element.service';
 
 @Component({
   selector: 'tmt-form',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+  @Input() formConfig: any;
+  caption: string;
+  elements: FormGroup;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private fElementService: FormElementService) {
   }
 
+  ngOnInit(): void {
+    this.caption = this.formConfig.caption;
+    this.elements = this.fElementService.formGroup(this.formConfig.elements);
+    console.log(this.elements);
+  }
+
+  onSubmit() {
+    console.log('uga baluga');
+  }
 }

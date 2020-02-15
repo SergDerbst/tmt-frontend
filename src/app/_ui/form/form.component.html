@@ -1,1 +1,31 @@
-<p>form works!</p>
+<div class="tmt-form-container">
+    <form class="tmt-form" [formGroup]="elements" (ngSubmit)="onSubmit()">
+      <div class="tmt-form-title">{{ caption }}</div>
+      <div class="tmt-form-separator">&nbsp;</div>
+      <div *ngFor="let control of elements.controls | keyvalue" class="tmt-form-property">
+        <div class="tmt-form-property-item tmt-txt-right">
+          <label>{{ control.value.label }}</label>
+        </div>
+        <div class="tmt-form-property-item tmt-txt-left">
+          <input [type]="control.value.type" [formControlName]="control.key" required>
+        </div>
+      </div>
+      <div class="tmt-form-separator">&nbsp;</div>
+      <!--div class="tmt-form-button-container">
+        <div class="tmt-form-button tmt-txt-right">
+          <button type="submit" [disabled]="!loginForm.valid">Login</button>
+        </div>
+        <div class="tmt-form-button tmt-txt-left">
+          <button type="button">Cancel</button>
+        </div>
+      </div>
+      <div class="tmt-form-xtra-container">
+        <div class="tmt-form-xtra-item tmt-txt-right">
+          <a href="/auth/forgotten">Forgot Password?</a>
+        </div>
+        <div class="tmt-form-xtra-item tmt-txt-left">
+          <a href="/auth/register">Register</a>
+        </div>
+      </div-->
+    </form>
+  </div>
