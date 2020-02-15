@@ -1,0 +1,46 @@
+* {
+  border: 0 none;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+body {
+  background-color: $grey-darkest;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  margin: 0;
+}
+
+a {
+  color: $blue-sky;
+  text-decoration: none;
+
+  &:hover {
+    color: $red-blood;
+  }
+}
+
+button {
+  background-color: $grey-dark;
+  color: $blue-sky;
+  padding: 5px;
+  cursor: pointer;
+
+  &:disabled {
+    color: $grey-neutral;
+    cursor: not-allowed;
+
+    &:hover {
+      color: $grey-neutral;
+    }
+  }
+
+  &:hover {
+    color: $red-blood;
+  }
+}

@@ -1,44 +1,6 @@
 @import "./styles/colors";
+@import "./styles/elements";
 @import "./styles/variables";
-
-* {
-  border: 0 none;
-  font-family: inherit;
-  font-size: 100%;
-  font-style: inherit;
-  font-weight: inherit;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-  vertical-align: baseline;
-}
-
-body {
-  background-color: $grey-darkest;
-  font-family: "Trebuchet MS", Verdana, sans-serif;
-
-  //override user agent styles
-  margin: 0;
-}
-
-a {
-  color: $blue-sky;
-  text-decoration: none;
-
-  :hover {
-    color: $red-blood;
-  }
-}
-
-button {
-  background-color: $grey-dark;
-  padding: 5px;
-  color: $blue-sky;
-
-  :hover {
-    color: $red-blood;
-  }
-}
 
 .tmt-main-container {
   display: flex;
@@ -48,4 +10,16 @@ button {
   @media (min-width: $break-large) {
     margin: 0 auto;
   }
+}
+
+.tmt-txt-left {
+  text-align: left;
+}
+
+.tmt-txt-right {
+  text-align: right;
+}
+
+.tmt-txt-center {
+  text-align: center;
 }

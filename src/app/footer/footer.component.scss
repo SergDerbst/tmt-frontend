@@ -1,7 +1,7 @@
 @import "../../styles";
 
 footer {
-  background-color: $grey-dark;
+  background-color: $grey-darkest;
   color: $blue-sky;
 
   .tmt-footer-container {
@@ -9,6 +9,7 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     max-width: 1080px;
+    min-height: 120px;
 
     @media (min-width: $break-large) {
       margin: 0 auto;
