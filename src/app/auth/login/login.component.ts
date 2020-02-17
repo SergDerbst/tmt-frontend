@@ -32,16 +32,20 @@ export class LoginComponent implements OnInit {
         key: 'login',
         label: 'Login',
         validate: true,
-        order: 3
+        order: 3,
+        type: 'submit',
+        orientation: 'left'
       }),
       new FormElementButton({
         key: 'cancel',
         label: 'Cancel',
         validate: false,
-        order: 4
+        order: 4,
+        type: 'button',
+        orientation: 'right'
       })
     ],
-    xtras: [
+    links: [
       new FormElementLink({
         key: 'forgotten',
         label: 'Forgot Password?',

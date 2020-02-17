@@ -6,6 +6,9 @@ export class FormElementBase<T> {
     order: number;
     controlType: string;
     type: string;
+    orientation: string;
+    validate: boolean;
+    href: string;
     options: { key: string, value: string }[];
 
     constructor(options: {
@@ -15,7 +18,10 @@ export class FormElementBase<T> {
         required?: boolean,
         order?: number,
         controlType?: string,
-        type?: string
+        type?: string,
+        orientation?: string,
+        validate?: boolean,
+        href?: string
     } = {}) {
         this.value = options.value;
         this.key = options.key || '';
@@ -24,5 +30,8 @@ export class FormElementBase<T> {
         this.order = options.order === undefined ? 1 : options.order;
         this.controlType = options.controlType || '';
         this.type = options.type || '';
+        this.orientation = options.orientation;
+        this.validate = options.validate;
+        this.href = options.href;
     }
 }
