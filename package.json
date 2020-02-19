@@ -22,11 +22,13 @@
     "@fortawesome/angular-fontawesome": "^0.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@immortaldev/country-list": "0.0.1",
     "@ngx-translate/core": "^12.1.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "core-js": "^3.6.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "typescript": "^3.7.5",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -37,7 +39,6 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "ts-node": "~8.6.2",
-    "tslint": "~6.0.0",
-    "typescript": "~3.7.5"
+    "tslint": "~6.0.0"
   }
 }

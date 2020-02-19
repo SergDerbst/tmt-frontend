@@ -1,34 +1,50 @@
 <div class="tmt-form-container">
-    <form class="tmt-form" [formGroup]="elements" (ngSubmit)="onSubmit()">
-      <div class="tmt-form-title">{{ caption }}</div>
+  <form class="tmt-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="tmt-form-title" [innerHtml]="form['id'] + '.form.caption' | translate"></div>
+    <div *ngFor="let group of form.controls | keyvalue:designatedOrder"
+         [formGroupName]="group.key"
+         class="tmt-form-group">
       <div class="tmt-form-separator">&nbsp;</div>
-      <div *ngFor="let control of elements.controls | keyvalue:designatedOrder" class="tmt-form-property">
-        <div class="tmt-form-property-item tmt-txt-right">
-          <label>{{ control.value.label }}</label>
+      <div *ngIf="group.value.captionVisible"
+           class="tmt-form-separator tmt-form-group-separator">
+        <span [innerHtml]="form['id'] + '.form.group.caption.' + group.key | translate"></span>
+      </div>
+      <div *ngFor="let control of group.value.controls | keyvalue:designatedOrder" class="tmt-form-property">
+        <div class="tmt-form-property-label">
+          <label [innerHtml]="form['id'] + '.form.control.' + control.key | translate"></label>
         </div>
-        <div class="tmt-form-property-item tmt-txt-left">
-          <input [type]="control.value.type" [formControlName]="control.key" required>
+        <div class="tmt-form-property-control">
+          <input [type]="control.value.type"
+                 [formControlName]="control.key"
+                 [tabindex]="control.value.order"
+                 required>
         </div>
       </div>
-      <div class="tmt-form-separator">&nbsp;</div>
-      <div class="tmt-form-button-container">
-        <div *ngFor="let button of buttons | keyvalue:designatedOrder"
-             class="tmt-form-button"
-             [className]="button.value.orientation === 'left' ? 'tmt-txt-right' : 'tmt-txt-left'">
-          <button *ngIf="button.value.validate"
-                  [type]="button.value.type"
-                  [disabled]="!elements.valid">{{ button.value.label }}</button>
-          <button *ngIf="!button.value.validate"
-                  [type]="button.value.type">{{ button.value.label }}</button>
-        </div>
+    </div>
+    <div class="tmt-form-separator">&nbsp;</div>
+    <div class="tmt-form-button-container">
+      <div *ngFor="let button of form['buttons'] | keyvalue:designatedOrder"
+           class="tmt-form-button"
+           [className]="button.value.orientation === 'left' ? 'tmt-txt-right' : 'tmt-txt-left'">
+        <button *ngIf="button.value.validate"
+                [type]="button.value.type"
+                [disabled]="!form.valid"
+                [tabindex]="button.value.order"
+                [innerHtml]="form['id'] + '.form.button.' + button.value.key | translate"></button>
+        <button *ngIf="!button.value.validate"
+                [type]="button.value.type"
+                [tabindex]="button.value.order"
+                [innerHtml]="form['id'] + '.form.button.' + button.value.key | translate"></button>
       </div>
-      <div class="tmt-form-xtra-container">
-        <div class="tmt-form-xtra-item tmt-txt-right">
-          <a href="/auth/forgotten">Forgot Password?</a>
-        </div>
-        <div class="tmt-form-xtra-item tmt-txt-left">
-          <a href="/auth/register">Register</a>
-        </div>
+    </div>
+    <div class="tmt-form-xtra-container">
+      <div *ngFor="let link of form['links'] | keyvalue:designatedOrder"
+           class="tmt-form-xtra-item"
+           [className]="link.value.orientation === 'left' ? 'tmt-txt-right' : 'tmt-txt-left'">
+        <a [href]="link.value.href"
+           [tabindex]="link.value.order"
+           [innerHtml]="form['id'] + '.form.link.' + link.value.key | translate"></a>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>

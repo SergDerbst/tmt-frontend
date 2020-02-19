@@ -7,41 +7,79 @@
   vertical-align: middle;
 
   .tmt-form {
-    display: inline-table;
+    display: inline-grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+            "title title"
+            "group group"
+            "control control"
+            "button button"
+            "xtra xtra"
+  ;
     width: 100%;
 
     .tmt-form-title {
-      display: table-caption;
+      grid-area: title;
       background-color: $grey-dark;
       color: $blue-sky;
       text-align: center;
       padding: 5px 0;
     }
 
-    .tmt-form-property {
-      display: table-row;
+    .tmt-form-group {
+      grid-area: group;
+      padding-top: 5px;
 
-      .tmt-form-property-item {
-        display: table-cell;
-        padding: 5px;
+      .tmt-form-separator {
+        grid-area: group;
+        min-height: 1em;
+        font-size: small;
+        color: $blue-sky;
+        text-align: center;
 
-        label {
-          color: $grey-dark;
+        &.tmt-form-group-separator {
+        }
+
+        span {
+          background: $grey-bright;
         }
       }
-    }
 
-    .tmt-form-separator {
-      display: table-row;
-      min-height: 1em;
+      .tmt-form-property {
+        grid-area: control;
+        display: table;
+        width: 100%;
+
+        .tmt-form-property-label {
+          display: table-cell;
+          padding: 5px;
+          width: 50%;
+          text-align: right;
+
+          label {
+            color: $grey-dark;
+          }
+        }
+
+        .tmt-form-property-control {
+          display: table-cell;
+          padding: 5px;
+          width: 50%;
+          text-align: left;
+        }
+      }
+
     }
 
     .tmt-form-button-container {
-      display: table-row;
+      grid-area: button;
+      display: table;
+      width: 100%;
 
       .tmt-form-button {
         display: table-cell;
         padding: 5px;
+        width: 50%;
 
         button {
           padding: 5px 50px;
@@ -50,14 +88,21 @@
     }
 
     .tmt-form-xtra-container {
-      display: table-row;
+      grid-area: xtra;
+      display: table;
+      width: 100%;
 
       .tmt-form-xtra-item {
         display: table-cell;
         padding: 5px;
+        width: 50%;
 
         a {
           font-size: small;
+
+          :focus {
+            border: 1px solid $red-blood;
+          }
         }
       }
     }

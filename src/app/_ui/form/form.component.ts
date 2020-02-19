@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
-import { FormElementService } from './elements/form.element.service';
+import { FormService } from './elements/form.service';
 import { SortService } from '../../_utils/sort/sort.service';
+import { FormConfig } from "./form.config";
 
 @Component({
   selector: 'tmt-form',
@@ -10,24 +12,23 @@ import { SortService } from '../../_utils/sort/sort.service';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Input() formConfig: any;
+  @Input() formConfig: FormConfig;
   caption: string;
-  elements: FormGroup;
-  buttons: any;
-  links: any;
+  form: FormGroup;
 
   constructor(
-      private fElementService: FormElementService, 
-      private sortService: SortService) {
+    private formService: FormService,
+    private sortService: SortService,
+    public translate: TranslateService
+  ) {
+    translate.addLangs(['de', 'en']);
+    translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {
-    this.caption = this.formConfig.caption;
-    this.elements = this.fElementService.formGroup(this.formConfig.elements);
-    this.buttons = this.fElementService.buttons(this.formConfig.buttons);
-    this.links = this.fElementService.links(this.formConfig.links);
+    this.form = this.formService.assemble(this.formConfig);
   }
-  
+
   designatedOrder = this.sortService.designatedOrder;
 
   onSubmit() {

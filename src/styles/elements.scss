@@ -23,6 +23,10 @@ a {
   &:hover {
     color: $red-blood;
   }
+
+  &:focus {
+    color: $red-blood;
+  }
 }
 
 button {
@@ -41,6 +45,10 @@ button {
   }
 
   &:hover {
+    color: $red-blood;
+  }
+
+  &:focus {
     color: $red-blood;
   }
 }

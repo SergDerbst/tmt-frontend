@@ -1,0 +1,10 @@
+{
+  "auth.login.form.button.cancel": "Abbrechen",
+  "auth.login.form.button.login": "Einloggen",
+  "auth.login.form.caption": "Loggen Sie sich ein:",
+  "auth.login.form.control.username": "Benutzername",
+  "auth.login.form.control.password": "Passwort",
+  "auth.login.form.group.caption.credentials": "Zugangsdaten",
+  "auth.login.form.link.forgotten": "Passwort vergessen?",
+  "auth.login.form.link.register": "Registrieren"
+}

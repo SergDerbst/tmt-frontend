@@ -21,7 +21,8 @@ export class FormElementBase<T> {
         type?: string,
         orientation?: string,
         validate?: boolean,
-        href?: string
+        href?: string,
+        options?: { key: string, value: string}[]
     } = {}) {
         this.value = options.value;
         this.key = options.key || '';
