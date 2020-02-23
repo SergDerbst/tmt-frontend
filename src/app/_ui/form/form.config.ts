@@ -5,6 +5,7 @@ import { FormElementLink } from "./elements/form.element.link";
 export class FormConfig {
     id: string;
     text: string;
+    markRequired: boolean;
     groups: {
         caption: string,
         captionVisible: boolean,
@@ -16,6 +17,7 @@ export class FormConfig {
     constructor(formConfig: {
         id: string,
         text?: string,
+        markRequired?: boolean,
         groups?: {
             caption: string,
             captionVisible: boolean,
@@ -25,6 +27,8 @@ export class FormConfig {
         links?: FormElementLink[]
     }) {
         this.id = formConfig.id;
+        this.text = formConfig.text;
+        this.markRequired = formConfig.markRequired;
         this.groups = formConfig.groups;
         this.buttons = formConfig.buttons;
         this.links = formConfig.links;

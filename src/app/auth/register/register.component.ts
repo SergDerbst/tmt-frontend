@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Sex, Title } from '../../_data/_enums';
+import { CountryDataService } from '../../_ui/form/services/country.data.service';
 import { FormElementButton } from '../../_ui/form/elements/form.element.button';
 import { FormElementInputText } from "../../_ui/form/elements/form.element.input.text";
 import { FormElementInputPassword } from "../../_ui/form/elements/form.element.input.password";
-import { FormElementLink } from "../../_ui/form/elements/form.element.link";
+import { FormElementInputEmail } from "../../_ui/form/elements/form.element.input.email";
+import { FormElementInputAutocomplete } from '../../_ui/form/elements/form.element.input.autocomplete';
+import { FormElementInputSelect } from '../../_ui/form/elements/form.element.input.select';
 import { FormConfig } from "../../_ui/form/form.config";
-import {FormElementInputEmail} from "../../_ui/form/elements/form.element.input.email";
 
 @Component({
   selector: 'tmt-register',
@@ -15,37 +18,55 @@ import {FormElementInputEmail} from "../../_ui/form/elements/form.element.input.
 export class RegisterComponent implements OnInit {
   formConfig: FormConfig;
 
-  constructor() {}
+  constructor(private countryDataService: CountryDataService) {}
 
   ngOnInit(): void {
     this.formConfig = new FormConfig({
-      id: 'register',
+      id: 'auth.register',
       text: 'massive.register',
+      markRequired: true,
       groups: [
-        { //Full Name & Email
-          caption: 'name.email',
+        { //Personal Data
+          caption: 'personal.data',
           captionVisible: true,
           elements: [
-            new FormElementInputText({
-              key: '1stname',
+            new FormElementInputSelect<Title, string>({
+              key: 'title',
               required: true,
               order: 1
-            }),
+            }, [
+              { key: Title.Mr, value: Title.Mr },
+              { key: Title.Ms, value: Title.Ms },
+            ]),
             new FormElementInputText({
-              key: '2ndname',
+              key: 'first.name',
               required: true,
               order: 2
             }),
-            new FormElementInputEmail({
-              key: 'email',
-              required: true,
+            new FormElementInputText({
+              key: 'middle.name',
+              required: false,
               order: 3
             }),
-            new FormElementInputEmail({
-              key: 'email.confirm',
+            new FormElementInputText({
+              key: 'last.name',
               required: true,
               order: 4
             }),
+            new FormElementInputText({
+              key: 'birthday',
+              required: true,
+              order: 5
+            }),
+            new FormElementInputSelect<Sex, string>({
+              key: 'sex',
+              required: false,
+              order: 6
+            }, [
+              { key: Sex.Male, value: Sex.Male },
+              { key: Sex.Female, value: Sex.Female },
+              { key: Sex.Other, value: Sex.Other }
+            ])
           ]
         },
         { //User Credentials
@@ -55,49 +76,64 @@ export class RegisterComponent implements OnInit {
             new FormElementInputText({
               key: 'username',
               required: true,
-              order: 5
+              order: 1
             }),
             new FormElementInputPassword({
               key: 'password',
               required: true,
-              order: 6
+              order: 2
             }),
             new FormElementInputPassword({
               key: 'password.confirm',
               required: true,
-              order: 7
-            })
+              order: 3
+            }),
+            new FormElementInputEmail({
+              key: 'email',
+              required: true,
+              order: 4
+            }),
+            new FormElementInputEmail({
+              key: 'email.confirm',
+              required: true,
+              order: 5
+            }),
           ]
         },
         { //Adress
-          caption: 'adress',
+          caption: 'address',
           captionVisible: true,
           elements: [
             new FormElementInputText({
               key: 'street1',
               required: true,
-              order: 8
+              order: 1
             }),
             new FormElementInputText({
               key: 'street2',
-              required: true,
-              order: 9
+              required: false,
+              order: 2
             }),
             new FormElementInputText({
               key: 'city',
               required: true,
-              order: 10
+              order: 3
             }),
             new FormElementInputText({
               key: 'state',
               required: true,
-              order: 11
+              order: 4
             }),
             new FormElementInputText({
               key: 'postal',
               required: true,
-              order: 12
+              order: 5
             }),
+            new FormElementInputAutocomplete({
+              key: 'country',
+              required: true,
+              order: 6
+            }, this.countryDataService)
           ]
         }
       ],
@@ -114,20 +150,6 @@ export class RegisterComponent implements OnInit {
           validate: false,
           order: 4,
           type: 'button',
-          orientation: 'right'
-        })
-      ],
-      links: [
-        new FormElementLink({
-          key: 'forgotten',
-          href: 'auth/forgotten',
-          order: 5,
-          orientation: 'left'
-        }),
-        new FormElementLink({
-          key: 'register',
-          href: 'auth/register',
-          order: 6,
           orientation: 'right'
         })
       ]

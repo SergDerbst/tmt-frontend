@@ -9,7 +9,6 @@ export class FormElementBase<T> {
     orientation: string;
     validate: boolean;
     href: string;
-    options: { key: string, value: string }[];
 
     constructor(options: {
         value?: T,
@@ -22,7 +21,8 @@ export class FormElementBase<T> {
         orientation?: string,
         validate?: boolean,
         href?: string,
-        options?: { key: string, value: string}[]
+        fetch?: () => any;
+        currentSelect?: number;
     } = {}) {
         this.value = options.value;
         this.key = options.key || '';

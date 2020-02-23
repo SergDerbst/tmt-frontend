@@ -22,7 +22,6 @@
     "@fortawesome/angular-fontawesome": "^0.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "@immortaldev/country-list": "0.0.1",
     "@ngx-translate/core": "^12.1.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "core-js": "^3.6.4",

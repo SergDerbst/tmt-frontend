@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FormService } from './elements/form.service';
+import { FormService } from './services/form.service';
 import { SortService } from '../../_utils/sort/sort.service';
 import { FormConfig } from "./form.config";
 

@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.formConfig = new FormConfig({
       id: 'auth.login',
+      markRequired: false,
       groups: [
         { //User Credentials
           caption: 'credentials',

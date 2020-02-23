@@ -7,15 +7,8 @@
   vertical-align: middle;
 
   .tmt-form {
-    display: inline-grid;
-    grid-template-columns: 50% 50%;
-    grid-template-areas:
-            "title title"
-            "group group"
-            "control control"
-            "button button"
-            "xtra xtra"
-  ;
+    display: inline-flex;
+    flex-direction: column;
     width: 100%;
 
     .tmt-form-title {
@@ -27,11 +20,9 @@
     }
 
     .tmt-form-group {
-      grid-area: group;
       padding-top: 5px;
 
       .tmt-form-separator {
-        grid-area: group;
         min-height: 1em;
         font-size: small;
         color: $blue-sky;
@@ -46,7 +37,6 @@
       }
 
       .tmt-form-property {
-        grid-area: control;
         display: table;
         width: 100%;
 
@@ -57,6 +47,10 @@
           text-align: right;
 
           label {
+            .tmt-form-control-required {
+              color: $red-blood;
+            }
+
             color: $grey-dark;
           }
         }
@@ -66,13 +60,40 @@
           padding: 5px;
           width: 50%;
           text-align: left;
+
+          input {
+            min-width: 50%;
+          }
+
+          select {
+            min-width: 25%;
+          }
+
+          ul {
+            list-style-type: none;
+            position: absolute;
+            z-index: 1;
+            margin-top: 5px;
+            padding: 5px 0;
+            background-color: $grey-dark;
+            border-radius: 5px;
+
+            li {
+              padding: 0 5px;
+              color: $blue-sky;
+
+              &.tmt-selected {
+                background-color: $grey-neutral;
+                color: $blue-sky;
+              }
+            }
+          }
         }
       }
 
     }
 
     .tmt-form-button-container {
-      grid-area: button;
       display: table;
       width: 100%;
 
@@ -88,7 +109,6 @@
     }
 
     .tmt-form-xtra-container {
-      grid-area: xtra;
       display: table;
       width: 100%;
 

@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { } from '@immortaldev/country-list';
 
 import { FormComponent } from './form/form.component';
-import { FormService } from './form/elements/form.service';
-import { CountrySelectComponent } from './form/elements/country.select/country.select.component';
+import { FormService } from './form/services/form.service';
+import { CountryDataService } from './form/services/country.data.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     TranslateModule.forChild({
       loader: {
@@ -25,14 +25,14 @@ import { CountrySelectComponent } from './form/elements/country.select/country.s
     })
   ],
   declarations: [
-    FormComponent,
-    CountrySelectComponent
+    FormComponent
   ],
   exports: [
     FormComponent
   ],
   providers: [
-    FormService
+    FormService,
+    CountryDataService
   ]
 })
 export class UiModule {}
