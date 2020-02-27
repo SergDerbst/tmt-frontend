@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormElementBase } from '../elements/form.element.base';
 import { FormConfig } from "../form.config";
 
@@ -7,7 +7,7 @@ import { FormConfig } from "../form.config";
 export class FormService {
     constructor(private fb: FormBuilder) {}
 
-    assemble(config: FormConfig) {
+    assemble(config: FormConfig):FormGroup {
         let group = this.fb.group(this.formElements(config.groups));
         group['id'] = config.id;
         group['text'] = config.text;
@@ -17,11 +17,11 @@ export class FormService {
         return group;
     }
 
-    private xtraElements(controlElements: FormElementBase<string>[]) {
+    private xtraElements(xtraElements: FormElementBase<string>[]) {
         let group: any[] = [];
-        if (controlElements !== undefined) {
-            for (var i = 0, len = controlElements.length; i < len; i++) {
-                group[controlElements[i].key] = controlElements[i];
+        if (xtraElements !== undefined) {
+            for (let i = 0, len = xtraElements.length; i < len; i++) {
+                group[xtraElements[i].key] = xtraElements[i];
             }
         }
         return group;
@@ -34,7 +34,7 @@ export class FormService {
                         }[]) {
         let elements = {};
         if (groups !== undefined) {
-            for (var i = 0, len = groups.length; i < len; i++) {
+            for (let i = 0, len = groups.length; i < len; i++) {
                 elements[groups[i].caption] = this.formControlGroup(groups[i].elements);
                 elements[groups[i].caption].captionVisible = groups[i].captionVisible;
                 elements[groups[i].caption].order = i;
@@ -46,14 +46,14 @@ export class FormService {
     private formControlGroup(elements: FormElementBase<string>[]) {
         let group: any = {};
         if (elements !== undefined) {
-            for (var i = 0, len = elements.length; i < len; i++) {
+            for (let i = 0, len = elements.length; i < len; i++) {
                 group[elements[i].key] = elements[i].required ?
                     new FormControl(elements[i].value || '', Validators.required) :
                     new FormControl(elements[i].value || '');
-                group[elements[i].key].label = elements[i].label;
                 group[elements[i].key].type = elements[i].type;
                 group[elements[i].key].order = elements[i].order;
                 group[elements[i].key].required = elements[i].required;
+                
                 group[elements[i].key].items = elements[i]['items'];
                 group[elements[i].key].data = elements[i]['data'];
                 group[elements[i].key].fetchSelect = elements[i]['fetchSelect'];

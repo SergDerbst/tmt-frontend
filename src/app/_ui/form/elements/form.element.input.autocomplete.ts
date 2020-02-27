@@ -32,17 +32,18 @@ export class FormElementInputAutocomplete extends FormElementBase<string> {
   }
 
   private handleKeyboardEvent(event: KeyboardEvent) {
-    if (this.isTextKey(event.keyCode)) {
+    let keyCode = event.code ? +event.code : +event.keyCode;
+    if (this.isTextKey(keyCode)) {
       this.fetchData(event.target['value']);
     }
     else {
-      if (this.isArrowDownKey(event.keyCode)) {
+      if (this.isArrowDownKey(keyCode)) {
         event.target['value'] = this.increaseSelection();
       }
-      else if (this.isArrowUpKey(event.keyCode)) {
+      else if (this.isArrowUpKey(keyCode)) {
         event.target['value'] = this.decreaseSelection();
       }
-      else if (this.isEnterKey(event.keyCode)) {
+      else if (this.isEnterKey(keyCode)) {
         if (event.target['value'] === this.data.options[this.selection.current].value) {
           this.unselect();
         }
