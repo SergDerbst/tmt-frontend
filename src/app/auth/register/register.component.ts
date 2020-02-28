@@ -6,6 +6,7 @@ import { FormElementButton } from '../../_ui/form/elements/form.element.button';
 import { FormElementInputText } from "../../_ui/form/elements/form.element.input.text";
 import { FormElementInputPassword } from "../../_ui/form/elements/form.element.input.password";
 import { FormElementInputEmail } from "../../_ui/form/elements/form.element.input.email";
+import { FormElementInputDate } from "../../_ui/form/elements/form.element.input.date";
 import { FormElementInputAutocomplete } from '../../_ui/form/elements/form.element.input.autocomplete';
 import { FormElementInputSelect } from '../../_ui/form/elements/form.element.input.select';
 import { FormConfig } from "../../_ui/form/form.config";
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
               required: true,
               order: 4
             }),
-            new FormElementInputText({
+            new FormElementInputDate({
               key: 'birthday',
               required: true,
               order: 5
@@ -139,7 +140,7 @@ export class RegisterComponent implements OnInit {
       ],
       buttons: [
         new FormElementButton({
-          key: 'login',
+          key: 'register',
           validate: true,
           order: 3,
           type: 'submit',
