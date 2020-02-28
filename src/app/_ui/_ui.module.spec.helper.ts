@@ -1,6 +1,6 @@
-import { FormElementBase } from "./form/elements/form.element.base";
-import { FormElementLink } from "./form/elements/form.element.link";
-import { FormElementButton } from "./form/elements/form.element.button";
+import { FormElementBase } from "./form/_elements/form.element.base";
+import { FormElementLink } from "./form/_elements/form.element.link";
+import { FormElementButton } from "./form/_elements/form.element.button";
 import { FormConfig } from "./form/form.config";
 
 export function createFormConfig(config: {

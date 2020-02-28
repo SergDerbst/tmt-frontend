@@ -3,9 +3,9 @@ import { RegisterComponent } from "./register.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormComponent } from "../../_ui/form/form.component";
 import { TranslateModule } from "@ngx-translate/core";
-import { CountryDataService } from "../../_ui/form/services/country.data.service";
+import { CountryDataService } from "../../_ui/form/_services/country.data.service";
 import { mockProvider } from "@ngneat/spectator/jest";
-import { FormService } from "../../_ui/form/services/form.service";
+import { FormService } from "../../_ui/form/_services/form.service";
 import { FormComponentSpecHelper } from '../../_ui/form/form.component.spec.helper';
 
 describe('RegisterComponent', () => {
@@ -478,7 +478,7 @@ describe('RegisterComponent', () => {
 		});
 	});
 	
-	describe('xtra elements', () => {
+	describe('xtra _elements', () => {
 		let xtraContainer: Element;
 		let xtraItems: NodeListOf<Element>;
 		
@@ -487,7 +487,7 @@ describe('RegisterComponent', () => {
 			xtraItems = specHelper.select.xtraControlContainers(xtraContainer);
 		});
 		
-		it('should have no xtra elements', () => {
+		it('should have no xtra _elements', () => {
 			expect(xtraItems.length).toBe(0);
 		});
 	});
@@ -509,7 +509,7 @@ describe('RegisterComponent', () => {
 			expect(buttons[0]).toHaveAttribute('disabled');
 			expect(buttons[0]).toHaveAttribute('type', 'submit');
 			expect(buttons[0]).toHaveText('auth.register.form.button.register');
-			//text orientation of inline elements is contrary to their visible position due to table cell display
+			//text orientation of inline _elements is contrary to their visible position due to table cell display
 			expect(buttons[0].parentElement).toHaveClass('tmt-txt-right');
 		});
 		
@@ -517,7 +517,7 @@ describe('RegisterComponent', () => {
 			expect(buttons[1]).not.toHaveAttribute('disabled');
 			expect(buttons[1]).toHaveAttribute('type', 'button');
 			expect(buttons[1]).toHaveText('auth.register.form.button.cancel');
-			//text orientation of inline elements is contrary to their visible position due to table cell display
+			//text orientation of inline _elements is contrary to their visible position due to table cell display
 			expect(buttons[1].parentElement).toHaveClass('tmt-txt-left');
 		});
 	});

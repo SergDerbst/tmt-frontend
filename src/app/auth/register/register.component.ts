@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Sex, Title } from '../../_data/_enums';
-import { CountryDataService } from '../../_ui/form/services/country.data.service';
-import { FormElementButton } from '../../_ui/form/elements/form.element.button';
-import { FormElementInputText } from "../../_ui/form/elements/form.element.input.text";
-import { FormElementInputPassword } from "../../_ui/form/elements/form.element.input.password";
-import { FormElementInputEmail } from "../../_ui/form/elements/form.element.input.email";
-import { FormElementInputDate } from "../../_ui/form/elements/form.element.input.date";
-import { FormElementInputAutocomplete } from '../../_ui/form/elements/form.element.input.autocomplete';
-import { FormElementInputSelect } from '../../_ui/form/elements/form.element.input.select';
+import { CountryDataService } from '../../_ui/form/_services/country.data.service';
+import { FormElementButton } from '../../_ui/form/_elements/form.element.button';
+import { FormElementInputText } from "../../_ui/form/_elements/form.element.input.text";
+import { FormElementInputPassword } from "../../_ui/form/_elements/form.element.input.password";
+import { FormElementInputEmail } from "../../_ui/form/_elements/form.element.input.email";
+import { FormElementInputDate } from "../../_ui/form/_elements/form.element.input.date";
+import { FormElementInputAutocomplete } from '../../_ui/form/_elements/form.element.input.autocomplete';
+import { FormElementInputSelect } from '../../_ui/form/_elements/form.element.input.select';
 import { FormConfig } from "../../_ui/form/form.config";
+import { AuthFormSubmitService } from "../_services/auth.form.submit.service";
 
 @Component({
   selector: 'tmt-register',
@@ -19,13 +20,16 @@ import { FormConfig } from "../../_ui/form/form.config";
 export class RegisterComponent implements OnInit {
   formConfig: FormConfig;
 
-  constructor(private countryDataService: CountryDataService) {}
+  constructor(
+    private countryDataService: CountryDataService,
+    private authFormSubmitService: AuthFormSubmitService) {}
 
   ngOnInit(): void {
     this.formConfig = new FormConfig({
       id: 'auth.register',
       text: 'massive.register',
       markRequired: true,
+      submitService: this.authFormSubmitService,
       groups: [
         { //Personal Data
           caption: 'personal.data',
@@ -61,7 +65,7 @@ export class RegisterComponent implements OnInit {
             }),
             new FormElementInputSelect<Sex, string>({
               key: 'sex',
-              required: false,
+              required: true,
               order: 6
             }, [
               { key: Sex.Male, value: Sex.Male },
@@ -142,14 +146,14 @@ export class RegisterComponent implements OnInit {
         new FormElementButton({
           key: 'register',
           validate: true,
-          order: 3,
+          order: 1,
           type: 'submit',
           orientation: 'left'
         }),
         new FormElementButton({
           key: 'cancel',
           validate: false,
-          order: 4,
+          order: 2,
           type: 'button',
           orientation: 'right'
         })

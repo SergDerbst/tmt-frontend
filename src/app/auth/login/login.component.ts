@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormElementButton } from '../../_ui/form/elements/form.element.button';
-import { FormElementInputText } from "../../_ui/form/elements/form.element.input.text";
-import { FormElementInputPassword } from "../../_ui/form/elements/form.element.input.password";
-import { FormElementLink } from "../../_ui/form/elements/form.element.link";
+import { FormElementButton } from '../../_ui/form/_elements/form.element.button';
+import { FormElementInputText } from "../../_ui/form/_elements/form.element.input.text";
+import { FormElementInputPassword } from "../../_ui/form/_elements/form.element.input.password";
+import { FormElementLink } from "../../_ui/form/_elements/form.element.link";
 import { FormConfig } from "../../_ui/form/form.config";
+import { AuthFormSubmitService } from "../_services/auth.form.submit.service";
 
 @Component({
   selector: 'tmt-login',
@@ -14,12 +15,13 @@ import { FormConfig } from "../../_ui/form/form.config";
 export class LoginComponent implements OnInit {
   formConfig: FormConfig;
 
-  constructor() {}
+  constructor(private authFormSubmitService: AuthFormSubmitService) {}
 
   ngOnInit(): void {
     this.formConfig = new FormConfig({
       id: 'auth.login',
       markRequired: true,
+      submitService: this.authFormSubmitService,
       groups: [
         { //User Credentials
           caption: 'credentials',

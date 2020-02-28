@@ -36,6 +36,7 @@
           <select *ngIf="control.value.type === 'select'">
             <option *ngFor="let item of control.value.items"
                     [value]="item.value"
+                    [selected]="item.value == control.value.value"
                     [innerHtml]="form['id'] + '.form.control.' + control.key + '.' + item.value | translate"></option>
           </select>
           <input *ngIf="control.value.type !== 'select' &&

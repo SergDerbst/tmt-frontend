@@ -9,7 +9,7 @@
   "auth.login.form.link.register": "Registrieren"
 
   "auth.register.form.button.cancel": "Abbrechen",
-  "auth.register.form.button.login": "Registrieren",
+  "auth.register.form.button.register": "Registrieren",
   "auth.register.form.caption": "Registrieren:",
   "auth.register.form.group.caption.personal.data": "Persönliche Daten",
   "auth.register.form.control.title": "Anrede",

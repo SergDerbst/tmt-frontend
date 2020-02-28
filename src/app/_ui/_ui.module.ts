@@ -7,8 +7,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { FormComponent } from './form/form.component';
-import { FormService } from './form/services/form.service';
-import { CountryDataService } from './form/services/country.data.service';
+import { FormService } from './form/_services/form.service';
+import { CountryDataService } from './form/_services/country.data.service';
 
 @NgModule({
   imports: [

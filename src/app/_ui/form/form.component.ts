@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FormService } from './services/form.service';
+import { FormService } from './_services/form.service';
 import { SortService } from '../../_utils/sort/sort.service';
 import { FormConfig } from "./form.config";
 
@@ -32,6 +32,16 @@ export class FormComponent implements OnInit {
   designatedOrder = this.sortService.designatedOrder;
 
   onSubmit() {
-    console.log('uga baluga');
+    this.formConfig.submitService.submit(this.form.value);
+  }
+  
+  private formValidationErrors(p?:any) {
+    let group = p ? p : this.form.controls;
+    Object.keys(group).forEach(key => {
+      let control = group[key];
+      if(control['controls']) {
+        this.formValidationErrors(control['controls']);
+      }
+    });
   }
 }

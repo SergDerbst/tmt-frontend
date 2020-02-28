@@ -4,7 +4,7 @@ import { FormComponentSpecHelper } from "../../_ui/form/form.component.spec.help
 import { FormComponent } from "../../_ui/form/form.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
-import { FormService } from "../../_ui/form/services/form.service";
+import { FormService } from "../../_ui/form/_services/form.service";
 
 describe('LoginComponent', () => {
 	let specHelper = new FormComponentSpecHelper();
@@ -95,7 +95,7 @@ describe('LoginComponent', () => {
 		});
 	});
 	
-	describe('xtra elements', () => {
+	describe('xtra _elements', () => {
 		let xtraContainer: Element;
 		let xtraLinks: NodeListOf<Element>;
 		
@@ -104,7 +104,7 @@ describe('LoginComponent', () => {
 			xtraLinks = specHelper.select.xtraLinks(xtraContainer);
 		});
 		
-		it('should have two xtra elements', () => {
+		it('should have two xtra _elements', () => {
 			expect(xtraLinks.length).toBe(2);
 		});
 		

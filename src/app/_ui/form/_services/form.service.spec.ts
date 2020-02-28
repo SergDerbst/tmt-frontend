@@ -3,11 +3,11 @@ import { FormService } from './form.service';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { createFormConfig } from '../../_ui.module.spec.helper';
-import { FormElementInputText } from "../elements/form.element.input.text";
-import { FormElementInputEmail } from "../elements/form.element.input.email";
-import { FormElementInputPassword } from "../elements/form.element.input.password";
-import { FormElementInputSelect } from "../elements/form.element.input.select";
-import { FormElementInputAutocomplete } from "../elements/form.element.input.autocomplete";
+import { FormElementInputText } from "../_elements/form.element.input.text";
+import { FormElementInputEmail } from "../_elements/form.element.input.email";
+import { FormElementInputPassword } from "../_elements/form.element.input.password";
+import { FormElementInputSelect } from "../_elements/form.element.input.select";
+import { FormElementInputAutocomplete } from "../_elements/form.element.input.autocomplete";
 import {CountryDataService} from "./country.data.service";
 import {createHttpFactory} from "@ngneat/spectator/jest";
 
@@ -25,16 +25,17 @@ describe('FormService', () => {
 	
 	beforeEach(() => formServiceSpectator = createFormService());
 	
-	describe('FormGroup with main properties and basic elements', () => {
+	describe('FormGroup with main properties and basic _elements', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({})));
 		
-		it('should create FormGroup with main properties', () => {
+		it('should create FormGroup with main properties and submit service', () => {
 			expect(form['id']).toBeDefined();
 			expect(form['id']).toBe('id');
 			expect(form['text']).toBeDefined();
 			expect(form['text']).toBe('text');
 			expect(form['markRequired']).toBeDefined();
 			expect(form['markRequired']).toBe(true);
+			expect(form['submitService']).toBe('arsch');
 		});
 	
 		it('should create element groups as FormGroup controls', () => {
@@ -115,7 +116,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input text elements', () => {
+	describe('FormGroup with input text _elements', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputText({
@@ -146,7 +147,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input email elements', () => {
+	describe('FormGroup with input email _elements', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputEmail({
@@ -177,7 +178,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input password elements', () => {
+	describe('FormGroup with input password _elements', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputPassword({
