@@ -1,0 +1,6 @@
+<select>
+  <option *ngFor="let item of control['config']['select'].items"
+          [value]="item.value"
+          [selected]="item.value == control.value.value"
+          [innerHtml]="formId + '.form.control.' + controlId + '.' + item.value | translate"></option>
+</select>

@@ -1,0 +1,5 @@
+<label>
+  <span *ngIf="showRequired && config['validation']['required']"
+        class="tmt-form-control-required">*&nbsp;</span>
+  <span [innerHtml]="formId + '.form.control.' + controlId | translate"></span>
+</label>

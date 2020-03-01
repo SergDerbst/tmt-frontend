@@ -4,7 +4,7 @@ import { FormComponentSpecHelper } from "../../_ui/form/form.component.spec.help
 import { FormComponent } from "../../_ui/form/form.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
-import { FormService } from "../../_ui/form/_services/form.service";
+import { FormAssemblyService } from "../../_ui/form/services/form.assembly.service";
 
 describe('LoginComponent', () => {
 	let specHelper = new FormComponentSpecHelper();
@@ -19,7 +19,7 @@ describe('LoginComponent', () => {
 			TranslateModule.forRoot()
 		],
 		providers: [
-			FormService
+			FormAssemblyService
 		]
 	});
 	
@@ -56,7 +56,7 @@ describe('LoginComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[0]);
-				control = specHelper.select.groupControl(groupControls[0], 'input[ng-reflect-name="username"]');
+				control = specHelper.select.groupControl(groupControls[0], 'input.generic[ng-reflect-name="username"]');
 			});
 			
 			it('should be labeled for required property username', () => {
@@ -67,7 +67,7 @@ describe('LoginComponent', () => {
 				expect(spans[1]).toHaveText('auth.login.form.control.username');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -78,7 +78,7 @@ describe('LoginComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[1]);
-				control = specHelper.select.groupControl(groupControls[1], 'input[ng-reflect-name="password"]');
+				control = specHelper.select.groupControl(groupControls[1], 'input.generic[ng-reflect-name="password"]');
 			});
 			
 			it('should be labeled for required property password', () => {
@@ -89,13 +89,13 @@ describe('LoginComponent', () => {
 				expect(spans[1]).toHaveText('auth.login.form.control.password');
 			});
 			
-			it('should be password input', () => {
+			it('should be password input.generic', () => {
 				expect(control).toHaveAttribute('type', 'password');
 			});
 		});
 	});
 	
-	describe('xtra _elements', () => {
+	describe('xtra components', () => {
 		let xtraContainer: Element;
 		let xtraLinks: NodeListOf<Element>;
 		
@@ -104,7 +104,7 @@ describe('LoginComponent', () => {
 			xtraLinks = specHelper.select.xtraLinks(xtraContainer);
 		});
 		
-		it('should have two xtra _elements', () => {
+		it('should have two xtra components', () => {
 			expect(xtraLinks.length).toBe(2);
 		});
 		

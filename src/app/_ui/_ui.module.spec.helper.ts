@@ -1,17 +1,17 @@
-import { FormElementBase } from "./form/_elements/form.element.base";
-import { FormElementLink } from "./form/_elements/form.element.link";
-import { FormElementButton } from "./form/_elements/form.element.button";
-import { FormConfig } from "./form/form.config";
+import { FormElementBase } from "./form/elements/form.element.base";
+import { FormElementLink } from "./form/elements/form.element.link";
+import { FormElementButton } from "./form/elements/form.element.button";
+import { FormComponentConfig } from "./form/config/form.component.config";
 
 export function createFormConfig(config: {
 			elements?: FormElementBase<any>[],
 			links?: FormElementLink[],
 			buttons?: FormElementButton[]
-		}):FormConfig {
-	let baseConfig = new FormConfig({
+		}):FormComponentConfig {
+	let baseConfig = new FormComponentConfig({
 		id: 'id',
 		text: 'text',
-		markRequired: true,
+		showRequired: true,
 		groups: [
 			{
 				caption: 'caption.visible',

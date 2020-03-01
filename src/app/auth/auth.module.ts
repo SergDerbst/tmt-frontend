@@ -8,7 +8,6 @@ import { UtilsModule } from '../_utils/_utils.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthFormSubmitService } from "./_services/auth.form.submit.service";
 
 
 @NgModule({
@@ -23,8 +22,6 @@ import { AuthFormSubmitService } from "./_services/auth.form.submit.service";
     LoginComponent,
     RegisterComponent
   ],
-  providers: [
-    AuthFormSubmitService
-  ]
+  providers: []
 })
 export class AuthModule { }

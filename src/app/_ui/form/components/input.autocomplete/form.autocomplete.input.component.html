@@ -1,0 +1,15 @@
+<input *ngIf="control['config'].type === 'autocomplete'"
+       [type]="control['config'].type"
+       [formControl]="control"
+       [tabindex]="control['config'].order"
+       (keyup)="control['config'].fetchSelect($event)"
+       required>
+<ul *ngIf="control['config'].type === 'autocomplete'"
+    [className]="control['config'].autocomplete.data.options.length > 0 ? 'tmt-display-block' : 'tmt-display-none'">
+  <li *ngFor="let option of control['config'].autocomplete.data.options; let i = index"
+      [className]="control['config'].autocomplete.selection.current === i ? 'tmt-selected' : ''"
+      (mouseover)="control['config'].autocomplete.fetchSelect($event, i, control.value)"
+      (click)="control['config'].autocomplete.fetchSelect($event)">
+    <span>{{ option.value }}</span>
+  </li>
+</ul>

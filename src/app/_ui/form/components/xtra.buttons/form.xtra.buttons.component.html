@@ -1,0 +1,13 @@
+<div *ngFor="let button of buttons | keyvalue:designatedOrder"
+     class="tmt-form-button"
+     [className]="button.value.orientation === 'left' ? 'tmt-txt-right' : 'tmt-txt-left'">
+  <button *ngIf="button.value.validate"
+          [type]="button.value.type"
+          [disabled]="!form.valid"
+          [tabindex]="button.value.order"
+          [innerHtml]="form['config'].id + '.form.button.' + button.value.key | translate"></button>
+  <button *ngIf="!button.value.validate"
+          [type]="button.value.type"
+          [tabindex]="button.value.order"
+          [innerHtml]="form['config'].id + '.form.button.' + button.value.key | translate"></button>
+</div>

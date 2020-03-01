@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FormService } from './_services/form.service';
+import { FormAssemblyService } from './services/form.assembly.service';
+import { FormComponentConfig } from "./config/form.component.config";
 import { SortService } from '../../_utils/sort/sort.service';
-import { FormConfig } from "./form.config";
 
 @Component({
   selector: 'tmt-form',
@@ -12,12 +12,12 @@ import { FormConfig } from "./form.config";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Input() formConfig: FormConfig;
+  @Input() formConfig: FormComponentConfig;
   caption: string;
   form: FormGroup;
 
   constructor(
-    private formService: FormService,
+    private formService: FormAssemblyService,
     private sortService: SortService,
     public translate: TranslateService
   ) {
@@ -29,19 +29,9 @@ export class FormComponent implements OnInit {
     this.form = this.formService.assemble(this.formConfig);
   }
 
-  designatedOrder = this.sortService.designatedOrder;
-
   onSubmit() {
-    this.formConfig.submitService.submit(this.form.value);
+    this.formConfig.config.submitService.submit(this.form.value, this.formConfig.config.submitTarget);
   }
   
-  private formValidationErrors(p?:any) {
-    let group = p ? p : this.form.controls;
-    Object.keys(group).forEach(key => {
-      let control = group[key];
-      if(control['controls']) {
-        this.formValidationErrors(control['controls']);
-      }
-    });
-  }
+  designatedOrder = this.sortService.designatedOrder
 }

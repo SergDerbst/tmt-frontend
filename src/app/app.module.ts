@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
+import { AppConfigService } from "./app.config.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,19 @@ import { MainComponent } from './main/main.component';
       }
     })
   ],
-  providers: [],
+  providers: [
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [AppConfigService],
+      useFactory: (appConfigService: AppConfigService) => {
+        return () => {
+          return appConfigService.loadConfig();
+        }
+      }
+    }
+  ],
   bootstrap: [
     AppComponent
   ]

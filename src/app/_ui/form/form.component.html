@@ -1,78 +1,41 @@
 <div class="tmt-form-container">
   <form class="tmt-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="tmt-form-title" [innerHtml]="form['id'] + '.form.caption' | translate"></div>
+    <div class="tmt-form-title" [innerHtml]="form['config'].id + '.form.caption' | translate"></div>
     <div *ngFor="let group of form.controls | keyvalue:designatedOrder"
          [formGroupName]="group.key"
          class="tmt-form-group">
       <div class="tmt-form-separator">&nbsp;</div>
-      <div *ngIf="group.value.captionVisible"
+      <div *ngIf="group.value.config.captionVisible"
            class="tmt-form-separator tmt-form-group-separator">
-        <span [innerHtml]="form['id'] + '.form.group.caption.' + group.key | translate"></span>
+        <span [innerHtml]="form['config'].id + '.form.group.caption.' + group.key | translate"></span>
       </div>
       <div *ngFor="let control of group.value.controls | keyvalue:designatedOrder" class="tmt-form-property">
         <div class="tmt-form-property-label">
-          <label>
-            <span *ngIf="form['markRequired'] && control.value.required"
-                  class="tmt-form-control-required">*&nbsp;</span>
-            <span [innerHtml]="form['id'] + '.form.control.' + control.key | translate"></span>
-          </label>
+          <tmt-form-label [formId]="form['config'].id"
+                          [controlId]="control.key"
+                          [showRequired]="form['config']['showRequired']"
+                          [config]="control.value.config"></tmt-form-label>
         </div>
         <div class="tmt-form-property-control">
-          <input *ngIf="control.value.type === 'autocomplete'"
-                 [type]="control.value.type"
-                 [formControlName]="control.key"
-                 [tabindex]="control.value.order"
-                 (keyup)="control.value.fetchSelect($event)"
-                 required>
-          <ul *ngIf="control.value.type === 'autocomplete'"
-              [className]="control.value.data.options.length > 0 ? 'tmt-display-block' : 'tmt-display-none'">
-            <li *ngFor="let option of control.value.data.options; let i = index"
-                [className]="control.value.selection.current === i ? 'tmt-selected' : ''"
-                (mouseover)="control.value.fetchSelect($event, i, control.value)"
-                (click)="control.value.fetchSelect($event)">
-              <span>{{ option.value }}</span>
-            </li>
-          </ul>
-          <select *ngIf="control.value.type === 'select'">
-            <option *ngFor="let item of control.value.items"
-                    [value]="item.value"
-                    [selected]="item.value == control.value.value"
-                    [innerHtml]="form['id'] + '.form.control.' + control.key + '.' + item.value | translate"></option>
-          </select>
-          <input *ngIf="control.value.type !== 'select' &&
-                        control.value.type !== 'autocomplete'"
-                 [type]="control.value.type"
-                 [formControlName]="control.key"
-                 [tabindex]="control.value.order"
-                 required>
+          <tmt-form-autocomplete-input *ngIf="control.value.config.type === 'autocomplete'"
+                                       [control]="control.value"></tmt-form-autocomplete-input>
+          <tmt-form-select *ngIf="control.value.config.type === 'select'"
+                           [formId]="form['config'].id"
+                           [controlId]="control.key"
+                           [control]="control.value"></tmt-form-select>
+          <tmt-form-generic-input *ngIf="control.value.config.type !== 'autocomplete' &&
+                                         control.value.config.type !== 'select'"
+                                  [control]="control.value"></tmt-form-generic-input>
         </div>
       </div>
     </div>
     <div class="tmt-form-xtra-container">
-      <div *ngFor="let link of form['links'] | keyvalue:designatedOrder"
-           class="tmt-form-xtra-item"
-           [className]="link.value.orientation === 'left' ? 'tmt-txt-right' : 'tmt-txt-left'">
-        <a [href]="link.value.href"
-           [tabindex]="link.value.order"
-           [innerHtml]="form['id'] + '.form.link.' + link.value.key | translate"></a>
-      </div>
-      <div *ngIf="form['links'].length === 0"
-           class="tmt-form-separator">&nbsp;</div>
+      <tmt-form-xtra-links [formId]="form['config'].id"
+                           [links]="form['links']"></tmt-form-xtra-links>
     </div>
     <div class="tmt-form-button-container">
-      <div *ngFor="let button of form['buttons'] | keyvalue:designatedOrder"
-           class="tmt-form-button"
-           [className]="button.value.orientation === 'left' ? 'tmt-txt-right' : 'tmt-txt-left'">
-        <button *ngIf="button.value.validate"
-                [type]="button.value.type"
-                [disabled]="!form.valid"
-                [tabindex]="button.value.order"
-                [innerHtml]="form['id'] + '.form.button.' + button.value.key | translate"></button>
-        <button *ngIf="!button.value.validate"
-                [type]="button.value.type"
-                [tabindex]="button.value.order"
-                [innerHtml]="form['id'] + '.form.button.' + button.value.key | translate"></button>
-      </div>
+      <tmt-form-xtra-buttons [form]="form"
+                             [buttons]="form['buttons']"></tmt-form-xtra-buttons>
     </div>
     <div class="tmt-form-separator">&nbsp;</div>
   </form>

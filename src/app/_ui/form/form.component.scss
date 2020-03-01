@@ -45,14 +45,6 @@
           padding: 5px;
           width: 50%;
           text-align: right;
-
-          label {
-            .tmt-form-control-required {
-              color: $red-blood;
-            }
-
-            color: $grey-dark;
-          }
         }
 
         .tmt-form-property-control {
@@ -60,71 +52,18 @@
           padding: 5px;
           width: 50%;
           text-align: left;
-
-          input {
-            min-width: 50%;
-          }
-
-          select {
-            min-width: 25%;
-          }
-
-          ul {
-            list-style-type: none;
-            position: absolute;
-            z-index: 1;
-            margin-top: 5px;
-            padding: 5px 0;
-            background-color: $grey-dark;
-            border-radius: 5px;
-
-            li {
-              padding: 0 5px;
-              color: $blue-sky;
-
-              &.tmt-selected {
-                background-color: $grey-neutral;
-                color: $blue-sky;
-              }
-            }
-          }
         }
       }
-
     }
 
     .tmt-form-button-container {
       display: table;
       width: 100%;
-
-      .tmt-form-button {
-        display: table-cell;
-        padding: 5px;
-        width: 50%;
-
-        button {
-          padding: 5px 50px;
-        }
-      }
     }
 
     .tmt-form-xtra-container {
       display: table;
       width: 100%;
-
-      .tmt-form-xtra-item {
-        display: table-cell;
-        padding: 5px;
-        width: 50%;
-
-        a {
-          font-size: small;
-
-          :focus {
-            border: 1px solid $red-blood;
-          }
-        }
-      }
     }
   }
 }

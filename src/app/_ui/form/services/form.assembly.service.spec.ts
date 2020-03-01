@@ -1,22 +1,22 @@
 import {createServiceFactory, SpectatorHttp, SpectatorService} from '@ngneat/spectator';
-import { FormService } from './form.service';
+import {FormAssemblyService} from './form.assembly.service';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { createFormConfig } from '../../_ui.module.spec.helper';
-import { FormElementInputText } from "../_elements/form.element.input.text";
-import { FormElementInputEmail } from "../_elements/form.element.input.email";
-import { FormElementInputPassword } from "../_elements/form.element.input.password";
-import { FormElementInputSelect } from "../_elements/form.element.input.select";
-import { FormElementInputAutocomplete } from "../_elements/form.element.input.autocomplete";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {createFormConfig} from '../../_ui.module.spec.helper';
+import {FormElementInputText} from "../elements/form.element.input.text";
+import {FormElementInputEmail} from "../elements/form.element.input.email";
+import {FormElementInputPassword} from "../elements/form.element.input.password";
+import {FormElementInputSelect} from "../elements/form.element.input.select";
+import {FormElementInputAutocomplete} from "../elements/form.element.input.autocomplete";
 import {CountryDataService} from "./country.data.service";
 import {createHttpFactory} from "@ngneat/spectator/jest";
 
 describe('FormService', () => {
 	let countryDataServiceSpectator: SpectatorHttp<CountryDataService>;
 	const createHttp = createHttpFactory(CountryDataService);
-	let formServiceSpectator: SpectatorService<FormService>;
+	let formServiceSpectator: SpectatorService<FormAssemblyService>;
 	const createFormService = createServiceFactory({
-		service: FormService,
+		service: FormAssemblyService,
 		providers: [
 			FormBuilder
 		]
@@ -25,7 +25,7 @@ describe('FormService', () => {
 	
 	beforeEach(() => formServiceSpectator = createFormService());
 	
-	describe('FormGroup with main properties and basic _elements', () => {
+	describe('FormGroup with main properties and basic components', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({})));
 		
 		it('should create FormGroup with main properties and submit service', () => {
@@ -33,8 +33,8 @@ describe('FormService', () => {
 			expect(form['id']).toBe('id');
 			expect(form['text']).toBeDefined();
 			expect(form['text']).toBe('text');
-			expect(form['markRequired']).toBeDefined();
-			expect(form['markRequired']).toBe(true);
+			expect(form['showRequired']).toBeDefined();
+			expect(form['showRequired']).toBe(true);
 			expect(form['submitService']).toBe('arsch');
 		});
 	
@@ -116,7 +116,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input text _elements', () => {
+	describe('FormGroup with input.generic text components', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputText({
@@ -132,14 +132,14 @@ describe('FormService', () => {
 			]
 		})));
 		
-		it('should create one group with a required input text element', () => {
+		it('should create one group with a required input.generic text element', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['required.text']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['required.text'].type).toBe('text');
 			expect(form.controls['caption.visible']['controls']['required.text'].required).toBe(true);
 		});
 		
-		it('should create one group with a not required input text element', () => {
+		it('should create one group with a not required input.generic text element', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['not.required.text']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['not.required.text'].type).toBe('text');
@@ -147,7 +147,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input email _elements', () => {
+	describe('FormGroup with input.generic email components', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputEmail({
@@ -163,14 +163,14 @@ describe('FormService', () => {
 			]
 		})));
 		
-		it('should create one group with a required input email element', () => {
+		it('should create one group with a required input.generic email element', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['required.email']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['required.email'].type).toBe('email');
 			expect(form.controls['caption.visible']['controls']['required.email'].required).toBe(true);
 		});
 		
-		it('should create one group with a not required input email element', () => {
+		it('should create one group with a not required input.generic email element', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['not.required.email']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['not.required.email'].type).toBe('email');
@@ -178,7 +178,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input password _elements', () => {
+	describe('FormGroup with input.generic password components', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputPassword({
@@ -194,14 +194,14 @@ describe('FormService', () => {
 			]
 		})));
 		
-		it('should create one group with a required input password element', () => {
+		it('should create one group with a required input.generic password element', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['required.password']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['required.password'].type).toBe('password');
 			expect(form.controls['caption.visible']['controls']['required.password'].required).toBe(true);
 		});
 		
-		it('should create one group with a not required input password element', () => {
+		it('should create one group with a not required input.generic password element', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['not.required.password']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['not.required.password'].type).toBe('password');
@@ -209,7 +209,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input select element', () => {
+	describe('FormGroup with input.generic select element', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputSelect<string, string>({
@@ -223,7 +223,7 @@ describe('FormService', () => {
 			]
 		})));
 		
-		it('should create one group with an input select element with select options', () => {
+		it('should create one group with an input.generic select element with select options', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['select']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['select'].type).toBe('select');
@@ -237,7 +237,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input autocomplete element', () => {
+	describe('FormGroup with input.generic autocomplete element', () => {
 		
 		beforeEach(() => {
 			countryDataServiceSpectator = createHttp();
@@ -253,7 +253,7 @@ describe('FormService', () => {
 			}));
 		});
 		
-		it('should create one group with an input autocomplete element', () => {
+		it('should create one group with an input.generic autocomplete element', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['autocomplete']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['autocomplete'].order).toBe(666);

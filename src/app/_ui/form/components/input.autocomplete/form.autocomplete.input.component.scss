@@ -1,0 +1,25 @@
+@import "../../../../../styles.scss";
+
+input {
+  min-width: 50%;
+}
+
+ul {
+  list-style-type: none;
+  position: absolute;
+  z-index: 1;
+  margin-top: 5px;
+  padding: 5px 0;
+  background-color: $grey-dark;
+  border-radius: 5px;
+
+  li {
+    padding: 0 5px;
+    color: $blue-sky;
+
+    &.tmt-selected {
+      background-color: $grey-neutral;
+      color: $blue-sky;
+    }
+  }
+}

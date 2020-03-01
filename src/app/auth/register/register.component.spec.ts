@@ -3,9 +3,9 @@ import { RegisterComponent } from "./register.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormComponent } from "../../_ui/form/form.component";
 import { TranslateModule } from "@ngx-translate/core";
-import { CountryDataService } from "../../_ui/form/_services/country.data.service";
+import { CountryDataService } from "../../_ui/form/services/country.data.service";
 import { mockProvider } from "@ngneat/spectator/jest";
-import { FormService } from "../../_ui/form/_services/form.service";
+import { FormAssemblyService } from "../../_ui/form/services/form.assembly.service";
 import { FormComponentSpecHelper } from '../../_ui/form/form.component.spec.helper';
 
 describe('RegisterComponent', () => {
@@ -21,7 +21,7 @@ describe('RegisterComponent', () => {
 			TranslateModule.forRoot()
 		],
 		providers: [
-			FormService,
+			FormAssemblyService,
 			mockProvider(CountryDataService)
 		]
 	});
@@ -84,7 +84,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[1]);
-				control = specHelper.select.groupControl(groupControls[1], 'input[ng-reflect-name="first.name"]');
+				control = specHelper.select.groupControl(groupControls[1], 'input.generic[ng-reflect-name="first.name"]');
 			});
 			
 			it('should be labeled for required property first name', () => {
@@ -95,7 +95,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.first.name');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -106,7 +106,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[2]);
-				control = specHelper.select.groupControl(groupControls[2], 'input[ng-reflect-name="middle.name"]');
+				control = specHelper.select.groupControl(groupControls[2], 'input.generic[ng-reflect-name="middle.name"]');
 			});
 			
 			it('should be labeled for not required property middle name', () => {
@@ -116,7 +116,7 @@ describe('RegisterComponent', () => {
 				expect(spans[0]).toHaveText('auth.register.form.control.middle.name');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -127,7 +127,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[3]);
-				control = specHelper.select.groupControl(groupControls[3], 'input[ng-reflect-name="last.name"]');
+				control = specHelper.select.groupControl(groupControls[3], 'input.generic[ng-reflect-name="last.name"]');
 			});
 			
 			it('should be labeled for required property last name', () => {
@@ -138,7 +138,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.last.name');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -149,7 +149,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[4]);
-				control = specHelper.select.groupControl(groupControls[4], 'input[ng-reflect-name="birthday"]');
+				control = specHelper.select.groupControl(groupControls[4], 'input.generic[ng-reflect-name="birthday"]');
 			});
 			
 			it('should be labeled for required property birthday', () => {
@@ -160,7 +160,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.birthday');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'date');
 			});
 		});
@@ -217,7 +217,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[0]);
-				control = specHelper.select.groupControl(groupControls[0], 'input[ng-reflect-name="username"]');
+				control = specHelper.select.groupControl(groupControls[0], 'input.generic[ng-reflect-name="username"]');
 			});
 			
 			it('should be labeled for required property username', () => {
@@ -228,7 +228,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.username');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -239,7 +239,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[1]);
-				control = specHelper.select.groupControl(groupControls[1], 'input[ng-reflect-name="password"]');
+				control = specHelper.select.groupControl(groupControls[1], 'input.generic[ng-reflect-name="password"]');
 			});
 			
 			it('should be labeled for required property password', () => {
@@ -250,7 +250,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.password');
 			});
 			
-			it('should be password input', () => {
+			it('should be password input.generic', () => {
 				expect(control).toHaveAttribute('type', 'password');
 			});
 		});
@@ -261,7 +261,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[2]);
-				control = specHelper.select.groupControl(groupControls[2], 'input[ng-reflect-name="password.confirm"]');
+				control = specHelper.select.groupControl(groupControls[2], 'input.generic[ng-reflect-name="password.confirm"]');
 			});
 			
 			it('should be labeled for required property confirm password', () => {
@@ -272,7 +272,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.password.confirm');
 			});
 			
-			it('should be password input', () => {
+			it('should be password input.generic', () => {
 				expect(control).toHaveAttribute('type', 'password');
 			});
 		});
@@ -283,7 +283,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[3]);
-				control = specHelper.select.groupControl(groupControls[3], 'input[ng-reflect-name="email"]');
+				control = specHelper.select.groupControl(groupControls[3], 'input.generic[ng-reflect-name="email"]');
 			});
 			
 			it('should be labeled for required property email', () => {
@@ -294,7 +294,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.email');
 			});
 			
-			it('should be email input', () => {
+			it('should be email input.generic', () => {
 				expect(control).toHaveAttribute('type', 'email');
 			});
 		});
@@ -305,7 +305,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[4]);
-				control = specHelper.select.groupControl(groupControls[4], 'input[ng-reflect-name="email.confirm"]');
+				control = specHelper.select.groupControl(groupControls[4], 'input.generic[ng-reflect-name="email.confirm"]');
 			});
 			
 			it('should be labeled for required property confirm email', () => {
@@ -316,7 +316,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.email.confirm');
 			});
 			
-			it('should be email input', () => {
+			it('should be email input.generic', () => {
 				expect(control).toHaveAttribute('type', 'email');
 			});
 		});
@@ -348,7 +348,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[0]);
-				control = specHelper.select.groupControl(groupControls[0], 'input[ng-reflect-name="street1"]');
+				control = specHelper.select.groupControl(groupControls[0], 'input.generic[ng-reflect-name="street1"]');
 			});
 			
 			it('should be labeled for required property street address 01', () => {
@@ -359,7 +359,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.street1');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -370,7 +370,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[1]);
-				control = specHelper.select.groupControl(groupControls[1], 'input[ng-reflect-name="street2"]');
+				control = specHelper.select.groupControl(groupControls[1], 'input.generic[ng-reflect-name="street2"]');
 			});
 			
 			it('should be labeled for not required property street address 02', () => {
@@ -380,7 +380,7 @@ describe('RegisterComponent', () => {
 				expect(spans[0]).toHaveText('auth.register.form.control.street2');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -391,7 +391,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[2]);
-				control = specHelper.select.groupControl(groupControls[2], 'input[ng-reflect-name="city"]');
+				control = specHelper.select.groupControl(groupControls[2], 'input.generic[ng-reflect-name="city"]');
 			});
 			
 			it('should be labeled for required property city', () => {
@@ -402,7 +402,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.city');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -413,7 +413,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[3]);
-				control = specHelper.select.groupControl(groupControls[3], 'input[ng-reflect-name="state"]');
+				control = specHelper.select.groupControl(groupControls[3], 'input.generic[ng-reflect-name="state"]');
 			});
 			
 			it('should be labeled for required property state', () => {
@@ -424,7 +424,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.state');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -435,7 +435,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[4]);
-				control = specHelper.select.groupControl(groupControls[4], 'input[ng-reflect-name="postal"]');
+				control = specHelper.select.groupControl(groupControls[4], 'input.generic[ng-reflect-name="postal"]');
 			});
 			
 			it('should be labeled for required property zip / postal code', () => {
@@ -446,7 +446,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.postal');
 			});
 			
-			it('should be text input', () => {
+			it('should be text input.generic', () => {
 				expect(control).toHaveAttribute('type', 'text');
 			});
 		});
@@ -458,7 +458,7 @@ describe('RegisterComponent', () => {
 			
 			beforeEach(() => {
 				label = specHelper.select.groupControlLabel(groupControls[5]);
-				control = specHelper.select.groupControl(groupControls[5], 'input[ng-reflect-name="country"]');
+				control = specHelper.select.groupControl(groupControls[5], 'input.generic[ng-reflect-name="country"]');
 				list = groupControls[5].querySelector('ul');
 			});
 			
@@ -470,7 +470,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.country');
 			});
 			//full functionality of the autocomplete will be tested in integration tests
-			it('should be autocomplete input with hidden empty options list', () => {
+			it('should be autocomplete input.generic with hidden empty options list', () => {
 				expect(control).toHaveAttribute('type', 'autocomplete');
 				expect(list).toHaveClass('tmt-display-none');
 				expect(list.querySelectorAll('li').length).toBe(0);
@@ -478,7 +478,7 @@ describe('RegisterComponent', () => {
 		});
 	});
 	
-	describe('xtra _elements', () => {
+	describe('xtra components', () => {
 		let xtraContainer: Element;
 		let xtraItems: NodeListOf<Element>;
 		
@@ -487,7 +487,7 @@ describe('RegisterComponent', () => {
 			xtraItems = specHelper.select.xtraControlContainers(xtraContainer);
 		});
 		
-		it('should have no xtra _elements', () => {
+		it('should have no xtra components', () => {
 			expect(xtraItems.length).toBe(0);
 		});
 	});
@@ -509,7 +509,7 @@ describe('RegisterComponent', () => {
 			expect(buttons[0]).toHaveAttribute('disabled');
 			expect(buttons[0]).toHaveAttribute('type', 'submit');
 			expect(buttons[0]).toHaveText('auth.register.form.button.register');
-			//text orientation of inline _elements is contrary to their visible position due to table cell display
+			//text orientation of inline components is contrary to their visible position due to table cell display
 			expect(buttons[0].parentElement).toHaveClass('tmt-txt-right');
 		});
 		
@@ -517,7 +517,7 @@ describe('RegisterComponent', () => {
 			expect(buttons[1]).not.toHaveAttribute('disabled');
 			expect(buttons[1]).toHaveAttribute('type', 'button');
 			expect(buttons[1]).toHaveText('auth.register.form.button.cancel');
-			//text orientation of inline _elements is contrary to their visible position due to table cell display
+			//text orientation of inline components is contrary to their visible position due to table cell display
 			expect(buttons[1].parentElement).toHaveClass('tmt-txt-left');
 		});
 	});

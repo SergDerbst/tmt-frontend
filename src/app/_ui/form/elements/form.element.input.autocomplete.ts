@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-import { DataService } from '../_services/data.service';
+import { DataService } from '../services/data.service';
 import { FormElementBase } from './form.element.base';
 
 export class FormElementInputAutocomplete extends FormElementBase<string> {
