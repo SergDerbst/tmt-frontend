@@ -1,6 +1,21 @@
-<select>
+<!--select>
   <option *ngFor="let item of control['config']['select'].items"
           [value]="item.value"
-          [selected]="item.value == control.value.value"
+          [selected]="item.value == control.value"
           [innerHtml]="formId + '.form.control.' + controlId + '.' + item.value | translate"></option>
-</select>
+</select-->
+<div class="tmt-select-box">
+  <span [innerHtml]="formId + '.form.control.' + controlId + '.' + control.value | translate"></span>
+  <a (click)="toggleList()">
+    <fa-icon *ngIf="showList"
+             [icon]="faCaretDown"></fa-icon>
+    <fa-icon *ngIf="!showList"
+             [icon]="faCaretLeft"></fa-icon>
+  </a>
+</div>
+<ul *ngIf="showList">
+  <li *ngFor="let item of control['config']['select'].items; let i = index"
+      (click)="select(i)"
+      [className]="item.value === control.value ? 'tmt-selected' : ''"
+      [innerHtml]="formId + '.form.control.' + controlId + '.' + item.value | translate"></li>
+</ul>

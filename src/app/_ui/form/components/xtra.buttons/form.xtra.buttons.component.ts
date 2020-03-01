@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {FormGroup} from "@angular/forms";
-
-import {SortService} from "../../../../_utils/sort/sort.service";
 import {FormElementButton} from "../../elements/form.element.button";
+import {FormGroup} from "@angular/forms";
+import {SortService} from "../../../../_utils/sort/sort.service";
 
 @Component({
 	selector: 'tmt-form-xtra-buttons',
@@ -10,8 +9,8 @@ import {FormElementButton} from "../../elements/form.element.button";
 	styleUrls: ['./form.xtra.buttons.component.scss']
 })
 export class FormXtraButtonsComponent implements OnInit {
-	@Input() form: FormGroup;
 	@Input() buttons: FormElementButton[];
+	@Input() form: FormGroup;
 	
 	constructor(private sortService: SortService) {}
 	

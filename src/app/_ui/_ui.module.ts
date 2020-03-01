@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
@@ -21,6 +22,7 @@ import {FormXtraButtonsComponent} from "./form/components/xtra.buttons/form.xtra
   imports: [
     CommonModule,
     FormsModule,
+    FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
     TranslateModule.forChild({
@@ -41,12 +43,18 @@ import {FormXtraButtonsComponent} from "./form/components/xtra.buttons/form.xtra
     FormXtraLinksComponent
   ],
   exports: [
-    FormComponent
+    FormComponent,
+    FormAutocompleteInputComponent,
+    FormGenericInputComponent,
+    FormLabelComponent,
+    FormSelectComponent,
+    FormXtraButtonsComponent,
+    FormXtraLinksComponent
   ],
   providers: [
-    CountryDataService,
     FormAssemblyService,
-    FormSubmitService
+    FormSubmitService,
+    CountryDataService
   ]
 })
 export class UiModule {}
