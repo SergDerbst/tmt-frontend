@@ -5,6 +5,10 @@ export enum Sex {
 }
 
 export enum Title {
-	Mr = 'mister',
-	Ms = 'misses'
+	Mr = 'male',
+	Ms = 'female'
+}
+
+export enum Direction {
+	Left, Right, Up, Down
 }

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormElementButton } from '../../_ui/form/elements/form.element.button';
-import { FormElementInputText } from "../../_ui/form/elements/form.element.input.text";
-import { FormElementInputPassword } from "../../_ui/form/elements/form.element.input.password";
-import { FormElementLink } from "../../_ui/form/elements/form.element.link";
-import { FormComponentConfig } from "../../_ui/form/config/form.component.config";
 import { FormSubmitService } from "../../_ui/form/services/form.submit.service";
-import { FormControlGroupConfig } from "../../_ui/form/config/form.control.group.config";
+import {FormConfig} from "../../_ui/form/config/form.config";
 
 @Component({
   selector: 'tmt-login',
@@ -14,17 +9,17 @@ import { FormControlGroupConfig } from "../../_ui/form/config/form.control.group
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  formConfig: FormComponentConfig;
+  formConfig: FormConfig;
 
   constructor(private formSubmitService: FormSubmitService) {}
 
   ngOnInit(): void {
-    this.formConfig = new FormComponentConfig({
+  /*  this.formConfig = new FormComponentConfig({
       config: {
         id: 'auth.login',
         showRequired: true,
         submitService: this.formSubmitService,
-        submitTarget: '/auth/register',
+        submitUrl: '/auth/register',
       },
       groups: [
         this.loginCredentials()
@@ -32,10 +27,11 @@ export class LoginComponent implements OnInit {
       buttons: this.submitCancelButtons(),
       links: this.forgotPasswordRegisterLinks()
     });
+   */
   }
-  
+  /*
   private loginCredentials() {
-    return new FormControlGroupConfig({
+    return new FormGroupConfig({
       caption: 'credentials',
       captionVisible: true,
       elements: [
@@ -88,4 +84,5 @@ export class LoginComponent implements OnInit {
       })
     ];
   }
+   */
 }

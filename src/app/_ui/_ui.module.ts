@@ -9,7 +9,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 import {FormComponent} from './form/form.component';
 import {FormAssemblyService} from './form/services/form.assembly.service';
-import {CountryDataService} from './form/services/country.data.service';
+import {CountryDataService} from './form/services/data/country.data.service';
 import {FormSubmitService} from "./form/services/form.submit.service";
 import {FormLabelComponent} from "./form/components/label/form.label.component";
 import {FormSelectComponent} from "./form/components/select/form.select.component";
@@ -17,6 +17,8 @@ import {FormGenericInputComponent} from "./form/components/input.generic/form.ge
 import {FormAutocompleteInputComponent} from "./form/components/input.autocomplete/form.autocomplete.input.component";
 import {FormXtraLinksComponent} from "./form/components/xtra.links/form.xtra.links.component";
 import {FormXtraButtonsComponent} from "./form/components/xtra.buttons/form.xtra.buttons.component";
+import {FormValidationMessagesComponent} from "./form/components/validation.messages.ts/form.validation.messages.component";
+import {FormElementFocusService} from "./form/services/form.element.focus.service";
 
 @NgModule({
   imports: [
@@ -40,7 +42,8 @@ import {FormXtraButtonsComponent} from "./form/components/xtra.buttons/form.xtra
     FormLabelComponent,
     FormSelectComponent,
     FormXtraButtonsComponent,
-    FormXtraLinksComponent
+    FormXtraLinksComponent,
+    FormValidationMessagesComponent
   ],
   exports: [
     FormComponent,
@@ -49,10 +52,12 @@ import {FormXtraButtonsComponent} from "./form/components/xtra.buttons/form.xtra
     FormLabelComponent,
     FormSelectComponent,
     FormXtraButtonsComponent,
-    FormXtraLinksComponent
+    FormXtraLinksComponent,
+    FormValidationMessagesComponent
   ],
   providers: [
     FormAssemblyService,
+    FormElementFocusService,
     FormSubmitService,
     CountryDataService
   ]

@@ -1,3 +1,8 @@
-<input [type]="control['config'].type"
+<input [type]="controlConfig.type"
        [formControl]="control"
-       [tabindex]="control['config'].order">
+       [className]="controlConfig.isValidating && control.errors ? 'tmt-invalid' : ''"
+       [tabindex]="controlConfig.tabIndex"
+       #focusElement>
+<tmt-validation-msg [formConfig]="formConfig"
+                    [controlConfig]="controlConfig"
+                    [control]="control"></tmt-validation-msg>

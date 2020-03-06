@@ -13,8 +13,8 @@
   "auth.register.form.caption": "Registrieren:",
   "auth.register.form.group.caption.personal.data": "Persönliche Daten",
   "auth.register.form.control.title": "Anrede",
-  "auth.register.form.control.title.mister": "Herr",
-  "auth.register.form.control.title.misses": "Frau",
+  "auth.register.form.control.title.male": "Herr",
+  "auth.register.form.control.title.female": "Frau",
   "auth.register.form.control.first.name": "Vorname",
   "auth.register.form.control.middle.name": "Weitere Vornamen",
   "auth.register.form.control.last.name": "Nachname",
@@ -35,5 +35,7 @@
   "auth.register.form.control.city": "Stadt",
   "auth.register.form.control.state": "Bundesland / Kanton",
   "auth.register.form.control.postal": "Postleitzahl",
-  "auth.register.form.control.country": "Land"
+  "auth.register.form.control.country": "Land",
+
+  "form.validation.message.field.required": " ist ein Pflichtfeld."
 }

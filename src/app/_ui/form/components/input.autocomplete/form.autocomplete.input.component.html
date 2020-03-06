@@ -1,15 +1,19 @@
-<input *ngIf="control['config'].type === 'autocomplete'"
-       [type]="control['config'].type"
+<input *ngIf="controlConfig.type === 'autocomplete'"
+       [type]="controlConfig.type"
        [formControl]="control"
-       [tabindex]="control['config'].order"
-       (keyup)="control['config'].fetchSelect($event)"
-       required>
-<ul *ngIf="control['config'].type === 'autocomplete'"
-    [className]="control['config'].autocomplete.data.options.length > 0 ? 'tmt-display-block' : 'tmt-display-none'">
-  <li *ngFor="let option of control['config'].autocomplete.data.options; let i = index"
-      [className]="control['config'].autocomplete.selection.current === i ? 'tmt-selected' : ''"
-      (mouseover)="control['config'].autocomplete.fetchSelect($event, i, control.value)"
-      (click)="control['config'].autocomplete.fetchSelect($event)">
+       [className]="controlConfig.shouldValidate() && control.errors != null ? 'tmt-invalid' : ''"
+       [tabindex]="controlConfig.tabIndex"
+       (keyup)="fetchSelect($event)"
+       #focusElement>
+<ul *ngIf="controlConfig.type === 'autocomplete'"
+    [className]="controlConfig['data'].options.length > 0 ? 'tmt-display-block' : 'tmt-display-none'">
+  <li *ngFor="let option of controlConfig['data'].options; let i = index"
+      [className]="controlConfig['selection']['current'] == i ? 'tmt-selected' : ''"
+      (mouseover)="fetchSelect($event, i, control.value)"
+      (click)="fetchSelect($event)">
     <span>{{ option.value }}</span>
   </li>
 </ul>
+<tmt-validation-msg [formConfig]="formConfig"
+                    [controlConfig]="controlConfig"
+                    [control]="control"></tmt-validation-msg>

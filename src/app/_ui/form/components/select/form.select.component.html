@@ -1,21 +1,26 @@
-<!--select>
-  <option *ngFor="let item of control['config']['select'].items"
-          [value]="item.value"
-          [selected]="item.value == control.value"
-          [innerHtml]="formId + '.form.control.' + controlId + '.' + item.value | translate"></option>
-</select-->
-<div class="tmt-select-box">
-  <span [innerHtml]="formId + '.form.control.' + controlId + '.' + control.value | translate"></span>
-  <a (click)="toggleList()">
+<a class="tmt-select-box"
+     [className]="controlConfig.isValidating && control.errors != null ? 'tmt-invalid' : ''"
+     (click)="toggleList()"
+     (keyup)="anchorKeyUp($event)"
+     (focus)="toggleFocus()"
+     (blur)="anchorBlur()"
+     [tabindex]="controlConfig.tabIndex"
+     #focusElement>
+    <span class="tmt-value"
+          [innerHtml]="formConfig.id + '.form.control.' + controlConfig.key + '.' + control.value | translate"></span>
+    <span class="tmt-toggle">
     <fa-icon *ngIf="showList"
              [icon]="faCaretDown"></fa-icon>
     <fa-icon *ngIf="!showList"
              [icon]="faCaretLeft"></fa-icon>
-  </a>
-</div>
+    </span>
+</a>
 <ul *ngIf="showList">
-  <li *ngFor="let item of control['config']['select'].items; let i = index"
+  <li *ngFor="let item of controlConfig['data']['options']; let i = index"
       (click)="select(i)"
-      [className]="item.value === control.value ? 'tmt-selected' : ''"
-      [innerHtml]="formId + '.form.control.' + controlId + '.' + item.value | translate"></li>
+      [ngClass]="{'tmt-selected' : item.value === control.value, 'tmt-hovered': item.value === controlConfig['selection']['current']}"
+      [innerHtml]="formConfig.id + '.form.control.' + controlConfig.key + '.' + item.value | translate"></li>
 </ul>
+<tmt-validation-msg [formConfig]="formConfig"
+                    [controlConfig]="controlConfig"
+                    [control]="control"></tmt-validation-msg>

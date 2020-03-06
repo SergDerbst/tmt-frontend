@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Sex, Title } from '../../_data/_enums';
-import { CountryDataService } from '../../_ui/form/services/country.data.service';
-import { FormElementButton } from '../../_ui/form/elements/form.element.button';
-import { FormElementInputText } from "../../_ui/form/elements/form.element.input.text";
-import { FormElementInputPassword } from "../../_ui/form/elements/form.element.input.password";
-import { FormElementInputEmail } from "../../_ui/form/elements/form.element.input.email";
-import { FormElementInputDate } from "../../_ui/form/elements/form.element.input.date";
-import { FormElementInputAutocomplete } from '../../_ui/form/elements/form.element.input.autocomplete';
-import { FormElementInputSelect } from '../../_ui/form/elements/form.element.input.select';
-import { FormComponentConfig } from "../../_ui/form/config/form.component.config";
-import { FormControlGroupConfig } from '../../_ui/form/config/form.control.group.config';
-import { FormSubmitService } from "../../_ui/form/services/form.submit.service";
-import { required } from "../../_ui/form/config/form.control.validation.config";
+import {Direction, Sex, Title} from '../../_data/_enums';
+import {CountryDataService} from '../../_ui/form/services/data/country.data.service';
+import {FormGroupConfig} from '../../_ui/form/config/form.group.config';
+import {FormSubmitService} from "../../_ui/form/services/form.submit.service";
+import {FormConfig} from "../../_ui/form/config/form.config";
+import {FormControlSelectInputConfig} from "../../_ui/form/config/controls/impl/form.control.select.input.config";
+import {FormControlGenericInputConfig} from "../../_ui/form/config/controls/impl/form.control.generic.input.config";
+import {FormControlAutocompleteInputConfig} from "../../_ui/form/config/controls/impl/form.control.autocomplete.input.config";
+import {FormXtraButtonConfig} from "../../_ui/form/config/xtras/impl/form.xtra.button.config";
+import {FormControlValidationMap} from "../../_ui/form/config/controls/validation/form.control.validation.map";
 
 @Component({
   selector: 'tmt-register',
@@ -20,194 +17,196 @@ import { required } from "../../_ui/form/config/form.control.validation.config";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  formConfig: FormComponentConfig;
+  formConfig: FormConfig;
 
   constructor(
     private countryDataService: CountryDataService,
     private formSubmitService: FormSubmitService) {}
 
   ngOnInit(): void {
-    this.formConfig = new FormComponentConfig({
-      config: {
-        id: 'auth.register',
-        showRequired: true,
-        submitService: this.formSubmitService,
-        submitTarget: '/auth/register',
-      },
+    this.formConfig = new FormConfig({
+      id: 'auth.register',
+      showRequired: true,
+      submitService: this.formSubmitService,
+      submitTarget: '/auth/register',
       groups: [
         this.personalDataGroup(),
         this.userCredentialsGroup(),
         this.addressGroup()
       ],
-      buttons: this.submitCancelButtons()
+      buttons: this.submitCancelButtons(),
+      links: []
     });
   }
   
-  private personalDataGroup() {
-    return new FormControlGroupConfig({
+  private personalDataGroup():FormGroupConfig {
+    let group = new FormGroupConfig({
       caption: 'personal.data',
       captionVisible: true,
-      elements: [
-        new FormElementInputSelect<Title, string>({
-          key: 'title',
-          order: 1,
-          validators: [
-            required()
-          ],
-        }, [
-          {key: Title.Mr, value: Title.Mr},
-          {key: Title.Ms, value: Title.Ms},
-        ]),
-        new FormElementInputText({
-          key: 'first.name',
-          order: 2,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputText({
-          key: 'middle.name',
-          order: 3,
-          validators: [],
-        }),
-        new FormElementInputText({
-          key: 'last.name',
-          order: 4,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputDate({
-          key: 'birthday',
-          order: 5,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputSelect<Sex, string>({
-          key: 'sex',
-          order: 6,
-          validators: [
-            required()
-          ],
-        }, [
-          {key: Sex.Male, value: Sex.Male},
-          {key: Sex.Female, value: Sex.Female},
-          {key: Sex.Other, value: Sex.Other}
-        ])
-      ]
+      controls: [],
+      order: 0
     });
-  }
+    group.controls.push(
+      new FormControlSelectInputConfig<Title>({
+        type: 'select',
+        key: 'title',
+        validation: this.validation('title').setRequired(),
+        data: {
+          options: [
+            { key: 'male', value: Title.Mr},
+            { key: 'female', value: Title.Ms}
+          ]
+        },
+        selection: { current: Title.Mr, index: 0 },
+        order: 0
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'first.name',
+        validation: this.validation('first.name').setRequired(),
+        order: 1
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'middle.name',
+        validation: this.validation('middle.name'),
+        order: 2
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'last.name',
+        validation: this.validation('last.name').setRequired(),
+        order: 3
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'birthday',
+        validation: this.validation('birthday').setRequired(),
+        order: 4
+      }),
+      new FormControlSelectInputConfig<Sex>({
+        type: 'select',
+        key: 'sex',
+        validation: this.validation('sex').setRequired(),
+        order: 5,
+        data: {
+          options: [
+            { key: 'male', value: Sex.Male},
+            { key: 'female', value: Sex.Female},
+            { key: 'other', value: Sex.Other}
+          ]
+        },
+        selection: { current: Title.Mr, index: 1 },
+      })
+    );
+    return group;
+  };
   
-  private userCredentialsGroup() {
-    return new FormControlGroupConfig({ //User Credentials
+  private userCredentialsGroup():FormGroupConfig {
+    let group = new FormGroupConfig({
       caption: 'credentials',
       captionVisible: true,
-      elements: [
-        new FormElementInputText({
-          key: 'username',
-          order: 1,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputPassword({
-          key: 'password',
-          order: 2,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputPassword({
-          key: 'password.confirm',
-          order: 3,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputEmail({
-          key: 'email',
-          order: 4,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputEmail({
-          key: 'email.confirm',
-          order: 5,
-          validators: [
-            required()
-          ],
-        }),
-      ]
+      controls: [],
+      order: 1
     });
+    group.controls.push(
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'username',
+        validation: this.validation('username').setRequired(),
+        order: 0
+      }),
+      new FormControlGenericInputConfig({
+        type: 'password',
+        key: 'password',
+        validation: this.validation('password').setRequired(),
+        order: 1
+      }),
+      new FormControlGenericInputConfig({
+        type: 'password',
+        key: 'password.confirm',
+        validation: this.validation('password.confirm').setRequired(),
+        order: 2
+      }),
+      new FormControlGenericInputConfig({
+        type: 'email',
+        key: 'email',
+        validation: this.validation('email').setRequired(),
+        order: 3
+      }),
+      new FormControlGenericInputConfig({
+        type: 'email',
+        key: 'email.confirm',
+        validation: this.validation('email.confirm').setRequired(),
+        order: 4
+      })
+    );
+    return group;
   }
   
-  private addressGroup() {
-    return new FormControlGroupConfig({ //Adress
+  private addressGroup():FormGroupConfig {
+    let group = new FormGroupConfig({
       caption: 'address',
       captionVisible: true,
-      elements: [
-        new FormElementInputText({
-          key: 'street1',
-          order: 1,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputText({
-          key: 'street2',
-          order: 2,
-          validators: [],
-        }),
-        new FormElementInputText({
-          key: 'city',
-          order: 3,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputText({
-          key: 'state',
-          order: 4,
-          validators: [
-            required()
-          ],
-        }),
-        new FormElementInputText({
-          key: 'postal',
-          order: 5,
-          validators: [
-            required()
-            ],
-        }),
-        new FormElementInputAutocomplete({
-          key: 'country',
-          order: 6,
-          validators: [
-            required()
-          ],
-        }, this.countryDataService)
-      ]
+      controls: [],
+      order: 3
     });
+    group.controls.push(
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'street1',
+        validation: this.validation('street1').setRequired(),
+        order: 0
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'street2',
+        validation: this.validation('street2'),
+        order: 1
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'city',
+        validation: this.validation('city').setRequired(),
+        order: 2
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'state',
+        validation: this.validation('state').setRequired(),
+        order: 3
+      }),
+      new FormControlAutocompleteInputConfig<string>({
+        type: 'autocomplete',
+        key: 'country',
+        validation: this.validation('country').setRequired(),
+        data: { options: [] },
+        selection: { current: '', index: -1 },
+        order: 4,
+        dataService: this.countryDataService
+      })
+    );
+    return group;
   }
   
-  private submitCancelButtons() {
+  private submitCancelButtons():FormXtraButtonConfig[] {
     return [
-      new FormElementButton({
+      new FormXtraButtonConfig({
+        type: 'submit',
         key: 'register',
         validate: true,
-        order: 1,
-        type: 'submit',
-        orientation: 'left'
+        orientation: Direction.Left
       }),
-      new FormElementButton({
+      new FormXtraButtonConfig({
+        type: 'button',
         key: 'cancel',
         validate: false,
-        order: 2,
-        type: 'button',
-        orientation: 'right'
+        orientation: Direction.Right
       })
     ];
+  }
+  
+  private validation(control: string) {
+    return new FormControlValidationMap(control);
   }
 }

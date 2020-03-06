@@ -3,7 +3,7 @@ import { RegisterComponent } from "./register.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormComponent } from "../../_ui/form/form.component";
 import { TranslateModule } from "@ngx-translate/core";
-import { CountryDataService } from "../../_ui/form/services/country.data.service";
+import { CountryDataService } from "../../_ui/form/services/data/country.data.service";
 import { mockProvider } from "@ngneat/spectator/jest";
 import { FormAssemblyService } from "../../_ui/form/services/form.assembly.service";
 import { FormComponentSpecHelper } from '../../_ui/form/form.component.spec.helper';

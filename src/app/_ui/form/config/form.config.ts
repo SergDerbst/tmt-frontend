@@ -1,27 +1,35 @@
 import {FormSubmitService} from "../services/form.submit.service";
+import {FormGroupConfig} from "./form.group.config";
+import {FormXtraButtonConfig} from "./xtras/impl/form.xtra.button.config";
+import {FormXtraLinkConfig} from "./xtras/impl/form.xtra.link.config";
 
-/**
- * Configuration object for reactive forms. This is going to be attached to the
- * FormGroup that is being passed down as form value to the form component template.
- */
 export class FormConfig {
 	id: string;
-	text?: string;
 	showRequired: boolean;
 	submitService: FormSubmitService;
 	submitTarget: string;
+	firstFocus: number; //tab index of element to set focus on first
+	groups: FormGroupConfig[];
+	buttons: FormXtraButtonConfig[];
+	links: FormXtraLinkConfig[];
 	
 	constructor(config: {
 		id: string,
-		text?: string,
 		showRequired: boolean,
 		submitService: FormSubmitService,
-		submitTarget: string
+		submitTarget: string,
+		firstFocus?: number;
+		groups: FormGroupConfig[],
+		buttons: FormXtraButtonConfig[],
+		links: FormXtraLinkConfig[]
 	}) {
 		this.id = config.id;
-		this.text = config.text;
 		this.showRequired = config.showRequired;
 		this.submitService = config.submitService;
 		this.submitTarget = config.submitTarget;
+		this.firstFocus = config.firstFocus | 2;
+		this.groups = config.groups;
+		this.buttons = config.buttons;
+		this.links = config.links;
 	}
 }

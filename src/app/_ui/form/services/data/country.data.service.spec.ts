@@ -1,7 +1,7 @@
 import { createHttpFactory, HttpMethod } from '@ngneat/spectator';
 import { SpectatorHttp } from "@ngneat/spectator/public_api";
 import { CountryDataService } from './country.data.service';
-import {AppConfigService} from "../../../app.config.service";
+import {AppConfigService} from "../../../../app.config.service";
 
 describe('CountryDataService', () => {
 	let spectator: SpectatorHttp<CountryDataService>;

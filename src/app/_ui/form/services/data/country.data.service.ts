@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 
 import { DataService } from './data.service';
-import { AppConfigService } from "../../../app.config.service";
+import { AppConfigService } from "../../../../app.config.service";
 
 @Injectable()
 export class CountryDataService implements DataService<string> {

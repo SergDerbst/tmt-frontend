@@ -8,7 +8,7 @@ import {FormElementInputEmail} from "../elements/form.element.input.email";
 import {FormElementInputPassword} from "../elements/form.element.input.password";
 import {FormElementInputSelect} from "../elements/form.element.input.select";
 import {FormElementInputAutocomplete} from "../elements/form.element.input.autocomplete";
-import {CountryDataService} from "./country.data.service";
+import {CountryDataService} from "./data/country.data.service";
 import {createHttpFactory} from "@ngneat/spectator/jest";
 
 describe('FormService', () => {

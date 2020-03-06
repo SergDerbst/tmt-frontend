@@ -1,0 +1,8 @@
+<div *ngIf="controlConfig.isValidating && control.errors != null"
+     class="tmt-validation-msg-container">
+  <div *ngIf="control.errors.required"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.required' | translate"></span>
+  </div>
+</div>

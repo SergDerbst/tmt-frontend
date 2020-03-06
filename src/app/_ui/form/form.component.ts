@@ -1,20 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {TranslateService} from '@ngx-translate/core';
 
-import { FormAssemblyService } from './services/form.assembly.service';
-import { FormComponentConfig } from "./config/form.component.config";
+import {FormAssemblyService} from './services/form.assembly.service';
 import {SortService} from "../../_utils/sort/sort.service";
+import {FormConfig} from "./config/form.config";
+import {FormControlConfig} from "./config/controls/form.control.config";
 
 @Component({
   selector: 'tmt-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
-  @Input() formConfig: FormComponentConfig;
-  caption: string;
+export class FormComponent implements OnInit, AfterViewInit {
+  @Input() formConfig: FormConfig;
   form: FormGroup;
+  isSubmitting:boolean;
+  
 
   constructor(
     private formService: FormAssemblyService,
@@ -23,14 +25,20 @@ export class FormComponent implements OnInit {
   ) {
     translate.addLangs(['de', 'en']);
     translate.setDefaultLang('en');
+    this.isSubmitting = false;
   }
 
   ngOnInit(): void {
     this.form = this.formService.assemble(this.formConfig);
   }
+  
+  ngAfterViewInit(): void {
+    console.log('form component initialized');
+  }
 
   onSubmit() {
-    this.formConfig.config.submitService.submit(this.form.value, this.formConfig.config.submitTarget);
+    console.log('submit mein arsch');
+    //this.formConfig.config.submitService.submit(this.form.value, this.formConfig.config.submitUrl);
   }
   
   designatedOrder = this.sortService.designatedOrder;

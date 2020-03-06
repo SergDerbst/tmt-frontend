@@ -4,13 +4,28 @@ select {
   min-width: 25%;
 }
 
-.tmt-select-box {
+a.tmt-select-box {
   display: flex;
   justify-content: space-between;
   width: 33.33%;
-  padding: 0 5px;
-  background-color: $grey-dark;
-  color: $blue-sky;
+  padding-left: 5px;
+  background-color: white;
+  color: $grey-dark;
+
+  &:focus {
+    background-color: $golden-yellow;
+
+    span.tmt-toggle {
+      color: $red-blood;
+    }
+  }
+
+  span.tmt-toggle {
+    padding: 0 5px;
+    background-color: $grey-dark;
+    min-width: 10px;
+    color: $blue-sky;
+  }
 }
 
 ul {
@@ -27,7 +42,7 @@ ul {
     padding: 0 5px;
     color: $blue-sky;
 
-    &:hover {
+    &:hover, &.tmt-hovered {
       background-color: $grey-neutral;
       color: $blue-sky;
     }
