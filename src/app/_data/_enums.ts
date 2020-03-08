@@ -10,5 +10,5 @@ export enum Title {
 }
 
 export enum Direction {
-	Left, Right, Up, Down
+	Left = 'left', Right = 'right', Up = 'up', Down = 'down'
 }

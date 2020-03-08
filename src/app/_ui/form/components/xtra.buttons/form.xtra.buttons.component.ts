@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {SortService} from "../../../../_utils/sort/sort.service";
+import {FormConfig} from "../../config/form.config";
 
 @Component({
 	selector: 'tmt-form-xtra-buttons',
@@ -8,8 +9,8 @@ import {SortService} from "../../../../_utils/sort/sort.service";
 	styleUrls: ['./form.xtra.buttons.component.scss']
 })
 export class FormXtraButtonsComponent implements OnInit, AfterViewInit {
-	@Input() buttons: [];
 	@Input() form: FormGroup;
+	@Input() formConfig: FormConfig;
 	
 	constructor(private sortService: SortService) {}
 	
@@ -18,6 +19,7 @@ export class FormXtraButtonsComponent implements OnInit, AfterViewInit {
 	
 	ngAfterViewInit(): void {
 		console.log('component initialized: ' + 'arsch buttons');
+		console.log(this.formConfig.buttons);
 	}
 	
 	designatedOrder = this.sortService.designatedOrder;
