@@ -1,15 +1,20 @@
 @import "../../../../../styles";
 
-.tmt-form-xtra-item {
-  display: table-cell;
-  padding: 5px;
-  width: 50%;
+.tmt-form-xtra-container {
+  display: table;
+  width: 100%;
 
-  a {
-    font-size: small;
+  .tmt-form-xtra-item {
+    display: table-cell;
+    padding: 5px;
+    width: 50%;
 
-    :focus {
-      border: 1px solid $red-blood;
+    a {
+      font-size: small;
+
+      :focus {
+        border: 1px solid $red-blood;
+      }
     }
   }
 }

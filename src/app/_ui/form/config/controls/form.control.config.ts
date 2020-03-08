@@ -48,3 +48,7 @@ export abstract class FormControlConfig implements FormControlTabindex {
 		return this.tab;
 	}
 }
+
+export function validation(control: string):FormControlValidationMap {
+	return new FormControlValidationMap(control);
+}

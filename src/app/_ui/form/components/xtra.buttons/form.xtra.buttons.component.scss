@@ -1,9 +1,14 @@
-.tmt-form-button {
-  display: table-cell;
-  padding: 5px;
-  width: 50%;
+.tmt-form-xtra-container {
+  display: table;
+  width: 100%;
 
-  button {
-    padding: 5px 50px;
+  .tmt-form-button {
+    display: table-cell;
+    padding: 5px;
+    width: 50%;
+
+    button {
+      padding: 5px 50px;
+    }
   }
 }

@@ -11,6 +11,7 @@ import {FormControlAutocompleteInputConfig} from "../../_ui/form/config/controls
 import {FormXtraButtonConfig} from "../../_ui/form/config/xtras/impl/form.xtra.button.config";
 import {FormControlValidationMap} from "../../_ui/form/config/controls/validation/form.control.validation.map";
 import {equalValueValidator} from "../../_ui/form/config/controls/validation/form.group.validation";
+import {validation} from "../../_ui/form/config/controls/form.control.config";
 
 @Component({
   selector: 'tmt-register',
@@ -55,7 +56,7 @@ export class RegisterComponent implements OnInit {
       new FormControlSelectInputConfig<Title>({
         type: 'select',
         key: 'title',
-        validation: this.validation('title').setRequired(),
+        validation: validation('title').setRequired(),
         data: {
           options: [
             { key: 'male', value: Title.Mr},
@@ -68,31 +69,31 @@ export class RegisterComponent implements OnInit {
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'firstName',
-        validation: this.validation('firstName').setRequired(),
+        validation: validation('firstName').setRequired(),
         order: 1
       }),
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'middleName',
-        validation: this.validation('middleName'),
+        validation: validation('middleName'),
         order: 2
       }),
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'lastName',
-        validation: this.validation('lastName').setRequired(),
+        validation: validation('lastName').setRequired(),
         order: 3
       }),
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'birthday',
-        validation: this.validation('birthday').setRequired(),
+        validation: validation('birthday').setRequired(),
         order: 4
       }),
       new FormControlSelectInputConfig<Sex>({
         type: 'select',
         key: 'sex',
-        validation: this.validation('sex').setRequired(),
+        validation: validation('sex').setRequired(),
         order: 5,
         data: {
           options: [
@@ -118,31 +119,36 @@ export class RegisterComponent implements OnInit {
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'username',
-        validation: this.validation('username').setRequired().setMinLength(4),
+        validation: validation('username').setRequired().setMinLength(4),
         order: 0
       }),
       new FormControlGenericInputConfig({
         type: 'password',
         key: 'password',
-        validation: this.validation('password').setRequired(),
+        validation: validation('password').setRequired()
+          .setMinLength(8)
+          .setPassword('Lowercase')
+          .setPassword('Uppercase')
+          .setPassword('Numeric')
+          .setPassword('Special'),
         order: 1
       }),
       new FormControlGenericInputConfig({
         type: 'password',
         key: 'passwordConfirm',
-        validation: this.validation('passwordConfirm').setRequired(),
+        validation: validation('passwordConfirm').setRequired(),
         order: 2
       }),
       new FormControlGenericInputConfig({
         type: 'email',
         key: 'email',
-        validation: this.validation('email').setRequired().setEmail(),
+        validation: validation('email').setRequired().setEmail(),
         order: 3
       }),
       new FormControlGenericInputConfig({
         type: 'email',
         key: 'emailConfirm',
-        validation: this.validation('emailConfirm').setRequired().setEmail(),
+        validation: validation('emailConfirm').setRequired().setEmail(),
         order: 4
       })
     );
@@ -160,31 +166,31 @@ export class RegisterComponent implements OnInit {
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'street1',
-        validation: this.validation('street1').setRequired(),
+        validation: validation('street1').setRequired(),
         order: 0
       }),
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'street2',
-        validation: this.validation('street2'),
+        validation: validation('street2'),
         order: 1
       }),
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'city',
-        validation: this.validation('city').setRequired(),
+        validation: validation('city').setRequired(),
         order: 2
       }),
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'state',
-        validation: this.validation('state').setRequired(),
+        validation: validation('state').setRequired(),
         order: 3
       }),
       new FormControlAutocompleteInputConfig<string>({
         type: 'autocomplete',
         key: 'country',
-        validation: this.validation('country').setRequired(),
+        validation: validation('country').setRequired(),
         data: { options: [] },
         selection: { current: '', index: -1 },
         order: 4,
@@ -209,9 +215,5 @@ export class RegisterComponent implements OnInit {
         orientation: Direction.Right
       })
     ];
-  }
-  
-  private validation(control: string) {
-    return new FormControlValidationMap(control);
   }
 }

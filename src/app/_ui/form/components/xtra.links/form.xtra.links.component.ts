@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, Input} from "@angular/core";
 import {SortService} from "../../../../_utils/sort/sort.service";
+import {FormGroup} from "@angular/forms";
+import {FormConfig} from "../../config/form.config";
 
 @Component({
 	selector: 'tmt-form-xtra-links',
@@ -7,8 +9,8 @@ import {SortService} from "../../../../_utils/sort/sort.service";
 	styleUrls: ['./form.xtra.links.component.scss']
 })
 export class FormXtraLinksComponent implements AfterViewInit {
-	@Input() formId: string;
-	@Input() links: []
+	@Input() form: FormGroup;
+	@Input() formConfig: FormConfig;
 	
 	constructor(private sortService: SortService) {
 	}

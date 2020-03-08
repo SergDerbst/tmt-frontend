@@ -18,6 +18,26 @@
     <span [innerHtml]="'form.validation.message.field.minlength'
                       | translate:{'number': controlConfig.validation.get('minlength').value}"></span>
   </div>
+  <div *ngIf="control.errors.pwLowercase"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.pwLowercase' | translate"></span>
+  </div>
+  <div *ngIf="control.errors.pwUppercase"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.pwUppercase' | translate"></span>
+  </div>
+  <div *ngIf="control.errors.pwNumeric"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.pwNumeric' | translate"></span>
+  </div>
+  <div *ngIf="control.errors.pwSpecial"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.pwSpecial' | translate"></span>
+  </div>
   <div *ngIf="control.errors.required"
        class="tmt-msg-severe">
     <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>

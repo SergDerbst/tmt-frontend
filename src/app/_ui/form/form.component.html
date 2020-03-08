@@ -36,11 +36,11 @@
         </div>
       </div>
     </div>
-    <div class="tmt-form-xtra-container">
-      <!--tmt-form-xtra-links [formId]="form['config'].id"
-                           [links]="form['links']"></tmt-form-xtra-links-->
-    </div>
-    <div class="tmt-form-button-container">
+    <div>
+      <tmt-form-xtra-links [form]="form"
+                           [formConfig]="formConfig"></tmt-form-xtra-links>
+      </div>
+    <div>
       <tmt-form-xtra-buttons [form]="form"
                              [formConfig]="formConfig"></tmt-form-xtra-buttons>
     </div>

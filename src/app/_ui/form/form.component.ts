@@ -6,6 +6,7 @@ import {FormAssemblyService} from './services/form.assembly.service';
 import {SortService} from "../../_utils/sort/sort.service";
 import {FormConfig} from "./config/form.config";
 import {BehaviorSubject} from "rxjs";
+import {FormControlValidationMap} from "./config/controls/validation/form.control.validation.map";
 
 @Component({
   selector: 'tmt-form',
@@ -17,7 +18,6 @@ export class FormComponent implements OnInit, AfterViewInit {
   form: FormGroup;
   isSubmitting:boolean;
   
-
   constructor(
     private formService: FormAssemblyService,
     private sortService: SortService,

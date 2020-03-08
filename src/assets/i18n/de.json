@@ -42,5 +42,9 @@
   "form.validation.message.field.equalValue.email": "Emailadressen",
   "form.validation.message.field.equalValue.password": "Passwörter",
   "form.validation.message.field.minlength": " muss mindestens {{ number }} Zeichen lang sein.",
-  "form.validation.message.field.required": " ist ein Pflichtfeld.",
+  "form.validation.message.field.pwLowercase": " muss mindestens einen kleinen Buchstaben enthalten.",
+  "form.validation.message.field.pwUppercase": " muss mindestens einen großen Buchstaben enthalten.",
+  "form.validation.message.field.pwNumeric": " muss mindestens eine Zahl enthalten.",
+  "form.validation.message.field.pwSpecial": " muss mindestens ein Sonderzeichen enthalten.",
+  "form.validation.message.field.required": " ist ein Pflichtfeld."
 }

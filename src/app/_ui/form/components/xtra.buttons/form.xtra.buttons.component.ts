@@ -18,8 +18,6 @@ export class FormXtraButtonsComponent implements OnInit, AfterViewInit {
 	}
 	
 	ngAfterViewInit(): void {
-		console.log('component initialized: ' + 'arsch buttons');
-		console.log(this.formConfig.buttons);
 	}
 	
 	designatedOrder = this.sortService.designatedOrder;
