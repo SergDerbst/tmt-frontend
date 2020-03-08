@@ -1,5 +1,23 @@
 <div *ngIf="controlConfig.isValidating && control.errors != null"
      class="tmt-validation-msg-container">
+  <div *ngIf="control.errors.email"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.email' | translate"></span>
+  </div>
+  <!-- only display error message on second field -->
+  <div *ngIf="form.errors && form.errors.equalValue"
+       class="tmt-msg-severe">
+    <span [innerHTML]="'form.validation.message.field.equalValue.'
+                       + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.equalValue' | translate"></span>
+  </div>
+  <div *ngIf="control.errors.minlength"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.minlength'
+                      | translate:{'number': controlConfig.validation.get('minlength').value}"></span>
+  </div>
   <div *ngIf="control.errors.required"
        class="tmt-msg-severe">
     <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>

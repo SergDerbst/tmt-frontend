@@ -3,6 +3,7 @@
        [className]="controlConfig.isValidating && control.errors ? 'tmt-invalid' : ''"
        [tabindex]="controlConfig.tabIndex"
        #focusElement>
-<tmt-validation-msg [formConfig]="formConfig"
+<tmt-validation-msg [form]="form"
+                    [formConfig]="formConfig"
                     [controlConfig]="controlConfig"
                     [control]="control"></tmt-validation-msg>

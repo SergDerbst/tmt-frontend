@@ -5,11 +5,11 @@
          [formGroupName]="group.key"
          class="tmt-form-group">
       <div class="tmt-form-separator">&nbsp;</div>
-      <div *ngIf="group.value.value['captionVisible']"
+      <div *ngIf="group.value['config']['captionVisible']"
            class="tmt-form-separator tmt-form-group-separator">
         <span [innerHtml]="form['config'].id + '.form.group.caption.' + group.key | translate"></span>
       </div>
-      <div *ngFor="let control of group.value.value.controls | keyvalue:designatedOrder" class="tmt-form-property">
+      <div *ngFor="let control of group.value.controls | keyvalue:designatedOrder" class="tmt-form-property">
         <div class="tmt-form-property-label">
           <tmt-form-label [formId]="form['config'].id"
                           [control]="control.value"
@@ -18,15 +18,18 @@
         </div>
         <div class="tmt-form-property-control">
           <tmt-form-autocomplete-input *ngIf="control.value.config.type === 'autocomplete'"
+                                       [form]="form"
                                        [formConfig]="formConfig"
                                        [controlConfig]="control.value.config"
                                        [control]="control.value"></tmt-form-autocomplete-input>
           <tmt-form-select *ngIf="control.value.config.type === 'select'"
+                           [form]="form"
                            [formConfig]="formConfig"
                            [controlConfig]="control.value.config"
                            [control]="control.value"></tmt-form-select>
           <tmt-form-generic-input *ngIf="control.value.config.type !== 'autocomplete' &&
                                          control.value.config.type !== 'select'"
+                                  [form]="form"
                                   [formConfig]="formConfig"
                                   [control]="control.value"
                                   [controlConfig]="control.value.config"></tmt-form-generic-input>
@@ -38,8 +41,8 @@
                            [links]="form['links']"></tmt-form-xtra-links-->
     </div>
     <div class="tmt-form-button-container">
-      <!--tmt-form-xtra-buttons [form]="form"
-                             [buttons]="form['buttons']"></--tmt-form-xtra-buttons-->
+      <tmt-form-xtra-buttons [form]="form"
+                             [buttons]="form['buttons']"></tmt-form-xtra-buttons>
     </div>
     <div class="tmt-form-separator">&nbsp;</div>
   </form>

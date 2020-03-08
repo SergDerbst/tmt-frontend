@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from "@angular/core";
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {CountryDataService} from "../../services/data/country.data.service";
 import {FormConfig} from "../../config/form.config";
 import {FormControlConfig} from "../../config/controls/form.control.config";
@@ -11,9 +11,10 @@ import {FormElementFocusService} from "../../services/form.element.focus.service
 	styleUrls: ['./form.autocomplete.input.component.scss']
 })
 export class FormAutocompleteInputComponent implements OnInit, AfterViewInit {
+	@Input() form: FormGroup;
+	@Input() formConfig: FormConfig;
 	@Input() control: FormControl;
 	@Input() controlConfig: FormControlConfig;
-	@Input() formConfig: FormConfig;
 	@ViewChild('focusElement') focusElement;
 	
 	constructor(

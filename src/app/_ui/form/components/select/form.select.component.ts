@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from "@angular/core";
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 
 import {faCaretDown, faCaretLeft} from '@fortawesome/free-solid-svg-icons';
 import {FormConfig} from "../../config/form.config";
@@ -14,6 +14,7 @@ import {Direction, Title} from "../../../../_data/_enums";
 	styleUrls: ['./form.select.component.scss']
 })
 export class FormSelectComponent implements OnInit, AfterViewInit {
+	@Input() form:FormGroup;
 	@Input() formConfig: FormConfig;
 	@Input() controlConfig: FormControlDataConfig<Title>;
 	@Input() control: FormControl;

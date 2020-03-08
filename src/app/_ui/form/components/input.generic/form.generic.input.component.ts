@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from "@angular/core";
 import {FormConfig} from "../../config/form.config";
 import {FormControlConfig} from "../../config/controls/form.control.config";
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {FormElementFocusService} from "../../services/form.element.focus.service";
 
 @Component({
@@ -10,9 +10,10 @@ import {FormElementFocusService} from "../../services/form.element.focus.service
 	styleUrls: ['./form.generic.input.component.scss']
 })
 export class FormGenericInputComponent implements OnInit, AfterViewInit {
-	@Input() controlConfig: FormControlConfig;
-	@Input() control: FormControl;
+	@Input() form: FormGroup;
 	@Input() formConfig: FormConfig;
+	@Input() control: FormControl;
+	@Input() controlConfig: FormControlConfig;
 	@ViewChild('focusElement') focusElement;
 	
 	constructor(private elementFocusService: FormElementFocusService) {}

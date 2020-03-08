@@ -5,7 +5,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {FormAssemblyService} from './services/form.assembly.service';
 import {SortService} from "../../_utils/sort/sort.service";
 import {FormConfig} from "./config/form.config";
-import {FormControlConfig} from "./config/controls/form.control.config";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'tmt-form',
@@ -32,9 +32,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.form = this.formService.assemble(this.formConfig);
   }
   
-  ngAfterViewInit(): void {
-    console.log('form component initialized');
-  }
+  ngAfterViewInit(): void {}
 
   onSubmit() {
     console.log('submit mein arsch');

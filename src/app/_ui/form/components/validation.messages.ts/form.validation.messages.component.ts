@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {AfterViewInit, Component, Input, OnInit} from "@angular/core";
 import {FormConfig} from "../../config/form.config";
-import {FormControl} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {FormControlConfig} from "../../config/controls/form.control.config";
 
 @Component({
@@ -8,10 +8,16 @@ import {FormControlConfig} from "../../config/controls/form.control.config";
 	templateUrl: './form.validation.messages.component.html',
 	styleUrls: ['./form.validation.messages.component.scss']
 })
-export class FormValidationMessagesComponent implements OnInit {
+export class FormValidationMessagesComponent implements OnInit, AfterViewInit {
+	@Input() form: FormGroup;
 	@Input() formConfig: FormConfig;
 	@Input() controlConfig: FormControlConfig;
 	@Input() control: FormControl;
+	errors: {};
 	
-	ngOnInit(): void {}
+	ngOnInit(): void {
+	}
+	
+	ngAfterViewInit(): void {
+	}
 }

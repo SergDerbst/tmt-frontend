@@ -11,20 +11,17 @@ export class FormAssemblyService {
 	constructor(private fb: FormBuilder) {}
 	
 	assemble(config: FormConfig):FormGroup {
-		this.tabIndex = 2;
-		let form = this.fb.group(this.formControlGroups(config.groups));
+		this.tabIndex = 2; //needs to be two in order to overcome chrome behavior of entering the address bar at one
+		let form = this.fb.group(this.formControlGroups(config.groups), {validators: config.validators});
 		form['config'] = config;
 		return form;
 	}
 	
 	private formControlGroups(groups: FormGroupConfig[]) {
-		let controlGroups = {};
+		let controlGroups ={};
 		for (let i = 0, len = groups.length; i < len; i++) {
-			controlGroups[groups[i].caption] = {
-				caption: groups[i].caption,
-				captionVisible: groups[i].captionVisible,
-				controls: this.formControls(groups[i].controls)
-			};
+			controlGroups[groups[i].caption] = this.fb.group(this.formControls(groups[i].controls), groups[i].validators);
+			controlGroups[groups[i].caption]['config'] = groups[i];
 		}
 		return controlGroups;
 	}
