@@ -3,15 +3,17 @@
        [formControl]="control"
        [className]="controlConfig.shouldValidate() && control.errors != null ? 'tmt-invalid' : ''"
        [tabindex]="controlConfig.tabIndex"
-       (keyup)="fetchSelect($event)"
+       (keyup)="handleKeyEvent($event)"
        #focusElement>
 <ul *ngIf="controlConfig.type === 'autocomplete'"
     [className]="controlConfig['data'].options.length > 0 ? 'tmt-display-block' : 'tmt-display-none'">
   <li *ngFor="let option of controlConfig['data'].options; let i = index"
-      [className]="controlConfig['selection']['current'] == i ? 'tmt-selected' : ''"
-      (mouseover)="fetchSelect($event, i, control.value)"
-      (click)="fetchSelect($event)">
-    <span>{{ option.value }}</span>
+      [className]="controlConfig['selection']['index'] == i ? 'tmt-selected' : ''"
+      (mouseover)="handleMouseEvent($event, i)"
+      (click)="handleMouseEvent($event, i)">
+    <span *ngIf="option.value.before">{{ option.value.before }}</span>
+    <span *ngIf="option.value.highlight" class="tmt-highlight">{{ option.value.highlight }}</span>
+    <span *ngIf="option.value.after">{{ option.value.after }}</span>
   </li>
 </ul>
 <tmt-validation-msg [form]="form"

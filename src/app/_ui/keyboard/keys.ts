@@ -1,3 +1,15 @@
+export function isNumeric(code: number) {
+	return (code >= KeyCodes.Zero && code <= KeyCodes.Nine) ||
+				 (code >= KeyCodes.NumpadZero && code <= KeyCodes.NumpadNine);
+}
+
+export function isLiteral(code: number) {
+	return (code >= KeyCodes.A && code <= KeyCodes.Z) ||
+				 code === KeyCodes.Shift ||
+				 code === KeyCodes.Backspace ||
+				 code === KeyCodes.Delete
+}
+
 export enum KeyCodes {
 	Backspace = 8,
 	Tab = 9,

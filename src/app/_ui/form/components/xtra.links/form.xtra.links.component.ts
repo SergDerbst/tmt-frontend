@@ -16,7 +16,6 @@ export class FormXtraLinksComponent implements AfterViewInit {
 	}
 	
 	ngAfterViewInit(): void {
-		console.log('component initialized: ' + 'arsch links');
 	}
 	
 	designatedOrder = this.sortService.designatedOrder;

@@ -12,6 +12,7 @@ import {FormXtraButtonConfig} from "../../_ui/form/config/xtras/impl/form.xtra.b
 import {FormControlValidationMap} from "../../_ui/form/config/controls/validation/form.control.validation.map";
 import {equalValueValidator} from "../../_ui/form/config/controls/validation/form.group.validation";
 import {validation} from "../../_ui/form/config/controls/form.control.config";
+import {HighlightableStringValue} from "../../_ui/form/config/controls/form.control.data.config";
 
 @Component({
   selector: 'tmt-register',
@@ -187,7 +188,7 @@ export class RegisterComponent implements OnInit {
         validation: validation('state').setRequired(),
         order: 3
       }),
-      new FormControlAutocompleteInputConfig<string>({
+      new FormControlAutocompleteInputConfig<HighlightableStringValue>({
         type: 'autocomplete',
         key: 'country',
         validation: validation('country').setRequired(),

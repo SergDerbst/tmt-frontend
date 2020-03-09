@@ -18,10 +18,11 @@ ul {
   list-style-type: none;
   position: absolute;
   z-index: 1;
-  margin-top: 5px;
+  margin-top: 1px;
   padding: 5px 0;
   background-color: $grey-dark;
-  border-radius: 5px;
+  border-radius: 0;
+  min-width: 20%;
 
   li {
     padding: 0 5px;
@@ -30,6 +31,10 @@ ul {
     &.tmt-selected {
       background-color: $grey-neutral;
       color: $blue-sky;
+    }
+
+    .tmt-highlight {
+      color: $red-blood;
     }
   }
 }
