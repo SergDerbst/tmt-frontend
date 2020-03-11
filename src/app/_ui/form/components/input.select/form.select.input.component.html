@@ -1,11 +1,10 @@
-<a class="tmt-select-box"
-     [className]="controlConfig.isValidating && control.errors != null ? 'tmt-invalid' : ''"
-     (click)="toggleList()"
-     (keyup)="anchorKeyUp($event)"
-     (focus)="toggleFocus()"
-     (blur)="anchorBlur()"
-     [tabindex]="controlConfig.tabIndex"
-     #focusElement>
+<a [className]="controlConfig.isValidating && control.errors != null ? 'tmt-select-box tmt-invalid' : 'tmt-select-box'"
+   (click)="toggleList()"
+   (keyup)="anchorKeyUp($event)"
+   (focus)="toggleFocus()"
+   (blur)="anchorBlur()"
+   [tabindex]="controlConfig.tabIndex"
+   #focusElement>
     <span class="tmt-value"
           [innerHtml]="formConfig.id + '.form.control.' + controlConfig.key + '.' + control.value | translate"></span>
     <span class="tmt-toggle">

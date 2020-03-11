@@ -22,13 +22,19 @@
                                        [formConfig]="formConfig"
                                        [controlConfig]="control.value.config"
                                        [control]="control.value"></tmt-form-autocomplete-input>
-          <tmt-form-select *ngIf="control.value.config.type === 'select'"
+          <tmt-form-select-input *ngIf="control.value.config.type === 'select'"
                            [form]="form"
                            [formConfig]="formConfig"
                            [controlConfig]="control.value.config"
-                           [control]="control.value"></tmt-form-select>
+                           [control]="control.value"></tmt-form-select-input>
+          <tmt-form-date-input *ngIf="control.value.config.type === 'date'"
+                               [form]="form"
+                               [formConfig]="formConfig"
+                               [controlConfig]="control.value.config"
+                               [control]="control.value"></tmt-form-date-input>
           <tmt-form-generic-input *ngIf="control.value.config.type !== 'autocomplete' &&
-                                         control.value.config.type !== 'select'"
+                                         control.value.config.type !== 'select' &&
+                                         control.value.config.type !== 'date'"
                                   [form]="form"
                                   [formConfig]="formConfig"
                                   [control]="control.value"

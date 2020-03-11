@@ -70,7 +70,7 @@ describe('RegisterComponent', () => {
 				expect(spans[1]).toHaveText('auth.register.form.control.title');
 			});
 			
-			it('should be select with options: male, female', () => {
+			it('should be input.select with options: male, female', () => {
 				let options = control.querySelectorAll('option');
 				expect(options.length).toBe(2);
 				expect(options[0]).toHaveText('auth.register.form.control.title.mister');
@@ -181,7 +181,7 @@ describe('RegisterComponent', () => {
 				expect(spans[0]).toHaveText('auth.register.form.control.sex');
 			});
 			
-			it('should be select with options: male, female, other', () => {
+			it('should be input.select with options: male, female, other', () => {
 				let options = control.querySelectorAll('option');
 				expect(options.length).toBe(3);
 				expect(options[0]).toHaveText('auth.register.form.control.sex.male');

@@ -1,0 +1,10 @@
+<input [className]="controlConfig.isValidating && control.errors != null ? 'tmt-date-input tmt-invalid' : 'tmt-date-input'"
+       [formControl]="control"
+       [placeholder]="dateFormat.format"
+       [tabindex]="controlConfig.tabIndex"
+       (keyup)="keyUp($event)"
+       #focusElement>
+<tmt-validation-msg [form]="form"
+                    [formConfig]="formConfig"
+                    [controlConfig]="controlConfig"
+                    [control]="control"></tmt-validation-msg>

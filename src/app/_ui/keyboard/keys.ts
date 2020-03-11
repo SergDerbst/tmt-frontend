@@ -1,13 +1,38 @@
-export function isNumeric(code: number) {
-	return (code >= KeyCodes.Zero && code <= KeyCodes.Nine) ||
-				 (code >= KeyCodes.NumpadZero && code <= KeyCodes.NumpadNine);
+export function isArrow(code:number):boolean {
+	return code === KeyCodes.LeftArrow || code === KeyCodes.RightArrow ||
+				 code === KeyCodes.DownArrow || code === KeyCodes.UpArrow;
 }
 
-export function isLiteral(code: number) {
+export function isArrowLeftRight(code:number):boolean {
+	return code === KeyCodes.LeftArrow || code === KeyCodes.RightArrow;
+}
+
+export function isArrowUpDown(code:number):boolean {
+	return code === KeyCodes.UpArrow || code === KeyCodes.DownArrow;
+}
+
+export function isBackspace(code:number):boolean {
+	return code === KeyCodes.Backspace;
+}
+
+export function isCharacter(code: number):boolean {
+	return code >= KeyCodes.A && code <= KeyCodes.Z;
+}
+
+export function isDelete(code:number):boolean {
+	return code === KeyCodes.Delete;
+}
+
+export function isLiteral(code: number):boolean {
 	return (code >= KeyCodes.A && code <= KeyCodes.Z) ||
 				 code === KeyCodes.Shift ||
 				 code === KeyCodes.Backspace ||
 				 code === KeyCodes.Delete
+}
+
+export function isNumeric(code: number):boolean {
+	return (code >= KeyCodes.Zero && code <= KeyCodes.Nine) ||
+				 (code >= KeyCodes.NumpadZero && code <= KeyCodes.NumpadNine);
 }
 
 export enum KeyCodes {

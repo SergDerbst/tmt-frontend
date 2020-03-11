@@ -13,6 +13,7 @@ import {FormControlValidationMap} from "../../_ui/form/config/controls/validatio
 import {equalValueValidator} from "../../_ui/form/config/controls/validation/form.group.validation";
 import {validation} from "../../_ui/form/config/controls/form.control.config";
 import {HighlightableStringValue} from "../../_ui/form/config/controls/form.control.data.config";
+import {FormControlDateInputConfig} from "../../_ui/form/config/controls/impl/form.control.date.input.config";
 
 @Component({
   selector: 'tmt-register',
@@ -85,8 +86,8 @@ export class RegisterComponent implements OnInit {
         validation: validation('lastName').setRequired(),
         order: 3
       }),
-      new FormControlGenericInputConfig({
-        type: 'text',
+      new FormControlDateInputConfig({
+        type: 'date',
         key: 'birthday',
         validation: validation('birthday').setRequired(),
         order: 4

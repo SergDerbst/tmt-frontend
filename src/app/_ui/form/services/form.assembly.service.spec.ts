@@ -6,7 +6,7 @@ import {createFormConfig} from '../../_ui.module.spec.helper';
 import {FormElementInputText} from "../elements/form.element.input.text";
 import {FormElementInputEmail} from "../elements/form.element.input.email";
 import {FormElementInputPassword} from "../elements/form.element.input.password";
-import {FormElementInputSelect} from "../elements/form.element.input.select";
+import {FormElementInputSelect} from "../elements/form.element.input.input.select";
 import {FormElementInputAutocomplete} from "../elements/form.element.input.autocomplete";
 import {CountryDataService} from "./data/country.data.service";
 import {createHttpFactory} from "@ngneat/spectator/jest";
@@ -209,7 +209,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input.generic select element', () => {
+	describe('FormGroup with input.generic input.select element', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputSelect<string, string>({
@@ -223,7 +223,7 @@ describe('FormService', () => {
 			]
 		})));
 		
-		it('should create one group with an input.generic select element with select options', () => {
+		it('should create one group with an input.generic input.select element with input.select options', () => {
 			expect(form.controls['caption.visible']['controls']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['select']).toBeDefined();
 			expect(form.controls['caption.visible']['controls']['select'].type).toBe('select');

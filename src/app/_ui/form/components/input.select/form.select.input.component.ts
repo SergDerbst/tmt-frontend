@@ -9,11 +9,11 @@ import {FormControlDataConfig} from "../../config/controls/form.control.data.con
 import {Direction, Title} from "../../../../_data/_enums";
 
 @Component({
-	selector: 'tmt-form-select',
-	templateUrl: './form.select.component.html',
-	styleUrls: ['./form.select.component.scss']
+	selector: 'tmt-form-select-input',
+	templateUrl: './form.select.input.component.html',
+	styleUrls: ['./form.select.input.component.scss']
 })
-export class FormSelectComponent implements OnInit, AfterViewInit {
+export class FormSelectInputComponent implements OnInit, AfterViewInit {
 	@Input() form:FormGroup;
 	@Input() formConfig: FormConfig;
 	@Input() controlConfig: FormControlDataConfig<Title>;

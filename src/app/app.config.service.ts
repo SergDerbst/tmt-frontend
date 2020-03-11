@@ -16,6 +16,16 @@ export class AppConfigService {
 	}
 	
 	apiBaseUrl() {
+		this.ensureConfig();
+		return this.appConfig.apiBaseUrl;
+	}
+	
+	appLanguage() {
+		this.ensureConfig();
+		return navigator.language || this.appConfig.fallbackLanguage;
+	}
+	
+	private ensureConfig() {
 		if (!this.appConfig) {
 			this.loadConfig().then(data => {
 				if (!this.appConfig) {
@@ -23,6 +33,5 @@ export class AppConfigService {
 				}
 			});
 		}
-		return this.appConfig.apiBaseUrl;
 	}
 }

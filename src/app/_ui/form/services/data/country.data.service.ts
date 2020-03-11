@@ -15,6 +15,8 @@ export class CountryDataService implements DataService<string> {
   ) {}
 
   fetch(requestData: string): Observable<KeyValue<string, string>[]> {
-    return this.http.get(this.appConfigService.apiBaseUrl() + '/geo/country/names?typed=' + requestData) as Observable<KeyValue<string, string>[]>;
+    return this.http.get(this.appConfigService.apiBaseUrl() +
+                          '/geo/country/names?typed=' + requestData +
+                          '&lang=' + this.appConfigService.appLanguage()) as Observable<KeyValue<string, string>[]>;
   }
 }
