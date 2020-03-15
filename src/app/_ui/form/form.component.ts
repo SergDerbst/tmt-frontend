@@ -36,7 +36,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     console.log('submit mein arsch');
-    //this.formConfig.config.submitService.submit(this.form.value, this.formConfig.config.submitUrl);
+    this.formConfig.submitService.submit(this.form.value, this.formConfig.submitTarget);
   }
   
   designatedOrder = this.sortService.designatedOrder;

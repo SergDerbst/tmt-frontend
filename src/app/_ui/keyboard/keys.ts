@@ -23,6 +23,10 @@ export function isDelete(code:number):boolean {
 	return code === KeyCodes.Delete;
 }
 
+export function isEsc(code:number):boolean {
+	return code === KeyCodes.Escape;
+}
+
 export function isLiteral(code: number):boolean {
 	return (code >= KeyCodes.A && code <= KeyCodes.Z) ||
 				 code === KeyCodes.Shift ||

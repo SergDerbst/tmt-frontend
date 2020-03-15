@@ -26,6 +26,9 @@ export class FormAutocompleteInputComponent implements OnInit, AfterViewInit {
 	
 	ngOnInit(): void {
 		this.dataService = this.controlConfig['dataService'] as DataService<string>;
+		this.control.valueChanges.subscribe(value => {
+			this.controlConfig.shouldValidate(true);
+		});
 	}
 	
 	ngAfterViewInit(): void {

@@ -32,6 +32,9 @@ export class FormSelectInputComponent implements OnInit, AfterViewInit {
 	
 	ngOnInit(): void {
 		this.control.setValue(this.controlConfig.data.options[0].value);
+		this.control.valueChanges.subscribe(value => {
+			this.controlConfig.shouldValidate(true);
+		});
 	}
 	
 	ngAfterViewInit(): void {

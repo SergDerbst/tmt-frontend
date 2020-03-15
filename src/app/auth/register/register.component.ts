@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Direction, Sex, Title} from '../../_data/_enums';
+import {DateTimeUnit, Direction, Sex, Title} from '../../_data/_enums';
 import {CountryDataService} from '../../_ui/form/services/data/country.data.service';
 import {FormGroupConfig} from '../../_ui/form/config/form.group.config';
 import {FormSubmitService} from "../../_ui/form/services/form.submit.service";
@@ -9,7 +9,6 @@ import {FormControlSelectInputConfig} from "../../_ui/form/config/controls/impl/
 import {FormControlGenericInputConfig} from "../../_ui/form/config/controls/impl/form.control.generic.input.config";
 import {FormControlAutocompleteInputConfig} from "../../_ui/form/config/controls/impl/form.control.autocomplete.input.config";
 import {FormXtraButtonConfig} from "../../_ui/form/config/xtras/impl/form.xtra.button.config";
-import {FormControlValidationMap} from "../../_ui/form/config/controls/validation/form.control.validation.map";
 import {equalValueValidator} from "../../_ui/form/config/controls/validation/form.group.validation";
 import {validation} from "../../_ui/form/config/controls/form.control.config";
 import {HighlightableStringValue} from "../../_ui/form/config/controls/form.control.data.config";
@@ -36,7 +35,7 @@ export class RegisterComponent implements OnInit {
       groups: [
         this.personalDataGroup(),
         this.userCredentialsGroup(),
-        this.addressGroup()
+        //this.addressGroup()
       ],
       validators: [
         equalValueValidator('credentials.password', 'credentials.passwordConfirm'),
@@ -89,7 +88,12 @@ export class RegisterComponent implements OnInit {
       new FormControlDateInputConfig({
         type: 'date',
         key: 'birthday',
-        validation: validation('birthday').setRequired(),
+        validation: validation('birthday').setRequired()
+                                                 .setDate({
+                                                   future: false,
+                                                   minPast: { unit: DateTimeUnit.year, value: 14 },
+                                                   maxPast: { unit: DateTimeUnit.year, value: 120 }
+                                                 }),
         order: 4
       }),
       new FormControlSelectInputConfig<Sex>({

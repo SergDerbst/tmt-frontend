@@ -13,7 +13,6 @@ export class FormValidationMessagesComponent implements OnInit, AfterViewInit {
 	@Input() formConfig: FormConfig;
 	@Input() controlConfig: FormControlConfig;
 	@Input() control: FormControl;
-	errors: {};
 	
 	ngOnInit(): void {
 	}

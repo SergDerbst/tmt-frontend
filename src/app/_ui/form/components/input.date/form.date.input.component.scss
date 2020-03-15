@@ -18,25 +18,17 @@ a.tmt-date-input {
     background-color: $golden-yellow;
   }
 
-  span.tmt-placeholder {
-    color: $grey-gloomy;
-    font-size: smaller;
-    font-style: italic;
-  }
-}
+  div {
+    display: inline-flex;
 
-input {
-  min-width: 50%;
-  padding: 0 2px;
+    &.tmt-focus {
+      color: $red-blood
+    }
 
-  @include placeholder($grey-gloomy, italic, smaller);
-
-  &.tmt-invalid {
-    color: $red-blood !important;
-    border: 1px solid $red-blood;
-  }
-
-  &:focus {
-    background-color: $golden-yellow;
+    &.tmt-placeholder {
+      color: $grey-gloomy;
+      font-size: smaller;
+      font-style: italic;
+    }
   }
 }

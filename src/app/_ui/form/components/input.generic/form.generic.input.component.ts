@@ -19,6 +19,9 @@ export class FormGenericInputComponent implements OnInit, AfterViewInit {
 	constructor(private elementFocusService: FormElementFocusService) {}
 	
 	ngOnInit(): void {
+		this.control.valueChanges.subscribe(value => {
+			this.controlConfig.shouldValidate(true);
+		});
 	}
 	
 	ngAfterViewInit(): void {

@@ -11,8 +11,13 @@ export class FormSubmitService  {
 		private http: HttpClient,
 		private appConfigService: AppConfigService) {}
 	
-	submit(requestData: {}, path:string, method?:string): Observable<any> {
-		return this.http.post(this.appConfigService.apiBaseUrl() + path, this.prepareData(requestData));
+	submit(requestData: {}, path:string, method?:string) {
+		const data = this.prepareData(requestData);
+		console.log('der arsch kommt geflogen');
+		console.log(data);
+		this.http.post(this.appConfigService.apiBaseUrl() + path, data).subscribe(value => {
+			console.log('arsch padautz');
+		});
 	}
 	
 	private prepareData(data: {}):any {
@@ -21,6 +26,7 @@ export class FormSubmitService  {
 			preparedData[this.prepareKey(key)] = typeof data[key] === 'object' ?
 				this.prepareData(data[key]) : data[key];
 		});
+		
 		return preparedData;
 	}
 	
