@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {User} from "./auth/_data/user";
+import {KeycloakService} from "keycloak-angular";
 
 @Component({
   selector: 'app-root',
@@ -9,4 +11,12 @@ import { Component } from '@angular/core';
   `,
   styles: []
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  user:User;
+  
+  constructor(private keycloakService: KeycloakService) {}
+  
+  ngOnInit(): void {
+    //this.user = this.keycloakService.getUsername();
+  }
+}

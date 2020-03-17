@@ -15,6 +15,7 @@ export enum Operator {
 export enum Direction {
 	Left = 'left', Right = 'right', Up = 'up', Down = 'down'
 }
+
 export enum Sex {
 	Male = 'male',
 	Female = 'female',
@@ -24,4 +25,15 @@ export enum Sex {
 export enum Title {
 	Mr = 'male',
 	Ms = 'female'
+}
+
+export enum UserRole {
+	Reader,
+	Voter,
+	Translator,
+	Author,
+	Moderator,
+	Admin,
+	Developer,
+	God
 }
