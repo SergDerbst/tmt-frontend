@@ -5,7 +5,6 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/h
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {KeycloakService, KeycloakAngularModule, KeycloakBearerInterceptor} from 'keycloak-angular';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -15,8 +14,7 @@ import {MainComponent} from './main/main.component';
 import {AppConfigService} from "./app.config.service";
 import {MainSidebarComponent} from "./main/sidebar/main.sidebar.component";
 import {MainToolbox} from "./main/sidebar/main.toolbox/main.toolbox";
-
-const keycloakService = new KeycloakService();
+import {AuthHttpInterceptor} from "./auth/_services/auth.http.interceptor";
 
 @NgModule({
   declarations: [
@@ -39,7 +37,6 @@ const keycloakService = new KeycloakService();
         deps: [ HttpClient ]
       }
     }),
-    KeycloakAngularModule
   ],
   providers: [
     AppConfigService,
@@ -49,42 +46,21 @@ const keycloakService = new KeycloakService();
       deps: [AppConfigService],
       useFactory: (appConfigService: AppConfigService) => {
         return () => {
-          console.log('fotz kapurtz');
           return appConfigService.loadConfig();
         }
       }
     },
-    KeycloakService,
     {
-      provide: KeycloakService,
-      useValue: keycloakService
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
     }
   ],
-  entryComponents: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule implements DoBootstrap {
-  ngDoBootstrap(appRef: ApplicationRef): void {
-    keycloakService.init({
-      config: {
-        url: 'http://localhost:8080/auth',
-        realm: 'TooManyThoughts',
-        clientId: 'tmt-frontend'
-      },
-      initOptions: {
-        onLoad: 'login-required',
-        checkLoginIframe: false
-      },
-      enableBearerInterceptor: true,
-      bearerExcludedUrls: [
-        '/assets'
-      ]
-    }).then(() => {
-      appRef.bootstrap(AppComponent);
-    }).catch(error => {
-      throw Error('init Keycloak failed');
-    });
-  }
-}
+export class AppModule {}
 
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);

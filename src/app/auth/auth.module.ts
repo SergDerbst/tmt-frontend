@@ -8,7 +8,6 @@ import {UtilsModule} from '../_utils/_utils.module';
 import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {AuthGuardService} from "./_services/auth.guard.service";
 
 
 @NgModule({
@@ -23,8 +22,6 @@ import {AuthGuardService} from "./_services/auth.guard.service";
     LoginComponent,
     RegisterComponent
   ],
-  providers: [
-    AuthGuardService
-  ]
+  providers: []
 })
 export class AuthModule {}
