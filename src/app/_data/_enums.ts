@@ -17,23 +17,23 @@ export enum Direction {
 }
 
 export enum Sex {
-	Male = 'male',
-	Female = 'female',
-	Other = 'other'
+	Male = 'Male',
+	Female = 'Female',
+	Other = 'Other'
 }
 
 export enum Title {
-	Mr = 'male',
-	Ms = 'female'
+	Mr = 'MaleTitle',
+	Ms = 'FemaleTitle'
 }
 
 export enum UserRole {
-	Reader,
-	Voter,
-	Translator,
-	Author,
-	Moderator,
-	Admin,
-	Developer,
-	God
+	Reader = 'Reader',
+	Voter = 'Voter',
+	Translator = 'Translator',
+	Author = 'Author',
+	Moderator = 'Moderator',
+	Admin = 'Admin',
+	Developer = 'Developer',
+	God = 'God'
 }

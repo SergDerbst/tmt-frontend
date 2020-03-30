@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {DateTimeUnit, Direction, Sex, Title} from '../../_data/_enums';
+import {DateTimeUnit, Direction, Sex, Title, UserRole} from '../../_data/_enums';
 import {CountryDataService} from '../../_ui/form/services/data/country.data.service';
 import {FormGroupConfig} from '../../_ui/form/config/form.group.config';
 import {FormSubmitService} from "../../_ui/form/services/form.submit.service";
@@ -13,6 +13,8 @@ import {equalValueValidator} from "../../_ui/form/config/controls/validation/for
 import {validation} from "../../_ui/form/config/controls/form.control.config";
 import {HighlightableStringValue} from "../../_ui/form/config/controls/form.control.data.config";
 import {FormControlDateInputConfig} from "../../_ui/form/config/controls/impl/form.control.date.input.config";
+import {User} from "../_data/authenticated";
+import {AppConfigService} from "../../app.config.service";
 
 @Component({
   selector: 'tmt-register',
@@ -24,13 +26,19 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private countryDataService: CountryDataService,
-    private formSubmitService: FormSubmitService) {}
+    private formSubmitService: FormSubmitService,
+    private appConfigService: AppConfigService) {}
 
   ngOnInit(): void {
     this.formConfig = new FormConfig({
       id: 'auth.register',
       showRequired: true,
-      submitService: this.formSubmitService,
+      submit: (user: User, path:string, method?:string) => {
+        user.preferredLanguage = this.appConfigService.appLanguage();
+        this.formSubmitService.submit(user, path, method).subscribe(data => {
+          console.log('jetzt hat er sich vorn gekratzt');
+        });
+      },
       submitTarget: '/auth/register',
       groups: [
         this.personalDataGroup(),
@@ -87,8 +95,8 @@ export class RegisterComponent implements OnInit {
       }),
       new FormControlDateInputConfig({
         type: 'date',
-        key: 'birthday',
-        validation: validation('birthday').setRequired()
+        key: 'dayOfBirth',
+        validation: validation('dayOfBirth').setRequired()
                                                  .setDate({
                                                    future: false,
                                                    minPast: { unit: DateTimeUnit.year, value: 14 },
@@ -129,6 +137,18 @@ export class RegisterComponent implements OnInit {
         order: 0
       }),
       new FormControlGenericInputConfig({
+        type: 'email',
+        key: 'email',
+        validation: validation('email').setRequired().setEmail(),
+        order: 3
+      }),
+      new FormControlGenericInputConfig({
+        type: 'email',
+        key: 'emailConfirm',
+        validation: validation('emailConfirm').setRequired().setEmail(),
+        order: 4
+      }),
+      new FormControlGenericInputConfig({
         type: 'password',
         key: 'password',
         validation: validation('password').setRequired()
@@ -144,18 +164,6 @@ export class RegisterComponent implements OnInit {
         key: 'passwordConfirm',
         validation: validation('passwordConfirm').setRequired(),
         order: 2
-      }),
-      new FormControlGenericInputConfig({
-        type: 'email',
-        key: 'email',
-        validation: validation('email').setRequired().setEmail(),
-        order: 3
-      }),
-      new FormControlGenericInputConfig({
-        type: 'email',
-        key: 'emailConfirm',
-        validation: validation('emailConfirm').setRequired().setEmail(),
-        order: 4
       })
     );
     return group;
@@ -185,6 +193,12 @@ export class RegisterComponent implements OnInit {
         type: 'text',
         key: 'city',
         validation: validation('city').setRequired(),
+        order: 2
+      }),
+      new FormControlGenericInputConfig({
+        type: 'text',
+        key: 'zipCode',
+        validation: validation('zipCode').setRequired(),
         order: 2
       }),
       new FormControlGenericInputConfig({

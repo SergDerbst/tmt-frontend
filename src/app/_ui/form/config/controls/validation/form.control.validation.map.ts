@@ -141,7 +141,7 @@ export class FormControlValidationMap extends Map<string, FormControlValidation>
 		}
 	};
 	
-	setEmail = () => {
+	setEmail = (mustBeUnique?: boolean) => {
 		const _email = 'email';
 		const regExPatterns = this.regExpMap;
 		this.set(_email, new FormControlValidation({active: true, validator: email}));

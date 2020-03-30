@@ -3,6 +3,11 @@ import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 
 import { AppConfigService } from "../../../app.config.service";
+import {AbstractControl, ValidationErrors} from "@angular/forms";
+
+export declare interface SubmitFn {
+	(requestData: {}, path:string, method?:string): void;
+}
 
 @Injectable()
 export class FormSubmitService  {
@@ -11,23 +16,38 @@ export class FormSubmitService  {
 		private http: HttpClient,
 		private appConfigService: AppConfigService) {}
 	
-	submit(requestData: {}, path:string, method?:string) {
+	submit(requestData: {}, path:string, method?:string):Observable<Object> {
 		const data = this.prepareData(requestData);
-		console.log('der arsch kommt geflogen');
-		console.log(data);
-		this.http.post(this.appConfigService.apiBaseUrl() + path, data).subscribe(value => {
-			console.log('arsch padautz');
-		});
+		return this.http.post(this.appConfigService.apiBaseUrl() + path, data);
 	}
 	
 	private prepareData(data: {}):any {
 		let preparedData = {};
 		Object.keys(data).forEach((key:string) => {
-			preparedData[this.prepareKey(key)] = typeof data[key] === 'object' ?
-				this.prepareData(data[key]) : data[key];
+			preparedData[this.prepareKey(key)] = this.prepareValue(data[key]);
 		});
 		
 		return preparedData;
+	}
+	
+	private prepareValue(data: any) {
+		if(!data) {
+			return data;
+		} else if (data instanceof Array) {
+			return this.prepareArray(data);
+		} else if (typeof data === 'object') {
+			return this.prepareData(data);
+		} else {
+			return data;
+		}
+	}
+	
+	private prepareArray(data: Array<any>) {
+		let array = [];
+		for (let i = 0, len = data.length; i < len; i++) {
+			array.push(this.prepareData(data[i]));
+		}
+		return array;
 	}
 	
 	private prepareKey(key: string):string {

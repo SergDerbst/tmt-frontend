@@ -15,12 +15,14 @@ import {AppConfigService} from "./app.config.service";
 import {MainSidebarComponent} from "./main/sidebar/main.sidebar.component";
 import {MainToolbox} from "./main/sidebar/main.toolbox/main.toolbox";
 import {AuthHttpInterceptor} from "./auth/_services/auth.http.interceptor";
+import {FeedComponent} from "./feed/feed.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     MainComponent,
+    FeedComponent,
     MainSidebarComponent,
     MainToolbox,
     FooterComponent

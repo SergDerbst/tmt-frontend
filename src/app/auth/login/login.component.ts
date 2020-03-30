@@ -8,6 +8,9 @@ import {validation} from "../../_ui/form/config/controls/form.control.config";
 import {FormXtraButtonConfig} from "../../_ui/form/config/xtras/impl/form.xtra.button.config";
 import {Direction} from "../../_data/_enums";
 import {FormXtraLinkConfig} from "../../_ui/form/config/xtras/impl/form.xtra.link.config";
+import {Authenticated, User} from "../_data/authenticated";
+import {AuthenticationService} from "../_services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'tmt-login',
@@ -17,14 +20,25 @@ import {FormXtraLinkConfig} from "../../_ui/form/config/xtras/impl/form.xtra.lin
 export class LoginComponent implements OnInit {
   formConfig: FormConfig;
 
-  constructor(private formSubmitService: FormSubmitService) {}
+  constructor(private formSubmitService: FormSubmitService,
+              private authenticationService: AuthenticationService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.formConfig = new FormConfig({
       id: 'auth.login',
       showRequired: true,
-      submitService: this.formSubmitService,
-      submitTarget: '/auth/register',
+      submit: (requestData: { credentials: {}}, path:string, method?:string) => {
+        this.formSubmitService.submit(requestData.credentials, path, method).subscribe( (authenticated: Authenticated) => {
+         this.authenticationService.update(authenticated.user);
+         if (authenticated.redirectTo) {
+           this.router.navigate(authenticated.redirectTo.split('/'));
+         } else {
+           this.router.navigate(['feed']);
+         }
+        });
+      },
+      submitTarget: '/auth/login',
       groups: [
         this.loginCredentials()
       ],
