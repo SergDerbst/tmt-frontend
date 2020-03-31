@@ -15,6 +15,7 @@ import {HighlightableStringValue} from "../../_ui/form/config/controls/form.cont
 import {FormControlDateInputConfig} from "../../_ui/form/config/controls/impl/form.control.date.input.config";
 import {User} from "../_data/authenticated";
 import {AppConfigService} from "../../app.config.service";
+import {AuthenticationService} from "../_services/authentication.service";
 
 @Component({
   selector: 'tmt-register',
@@ -25,9 +26,10 @@ export class RegisterComponent implements OnInit {
   formConfig: FormConfig;
 
   constructor(
+    private appConfigService: AppConfigService,
+    private authenticationService: AuthenticationService,
     private countryDataService: CountryDataService,
-    private formSubmitService: FormSubmitService,
-    private appConfigService: AppConfigService) {}
+    private formSubmitService: FormSubmitService) {}
 
   ngOnInit(): void {
     this.formConfig = new FormConfig({
@@ -36,7 +38,7 @@ export class RegisterComponent implements OnInit {
       submit: (user: User, path:string, method?:string) => {
         user.preferredLanguage = this.appConfigService.appLanguage();
         this.formSubmitService.submit(user, path, method).subscribe(data => {
-          console.log('jetzt hat er sich vorn gekratzt');
+          //twiddle your thumbs, bitch
         });
       },
       submitTarget: '/auth/register',
@@ -133,13 +135,27 @@ export class RegisterComponent implements OnInit {
       new FormControlGenericInputConfig({
         type: 'text',
         key: 'username',
-        validation: validation('username').setRequired().setMinLength(4),
+        validation: validation('username')
+          .setRequired()
+          .setMinLength(4)
+          .setUnique({
+            url: '/auth/register/username/validate',
+            fieldName: 'username',
+            validationService: this.authenticationService
+          }),
         order: 0
       }),
       new FormControlGenericInputConfig({
         type: 'email',
         key: 'email',
-        validation: validation('email').setRequired().setEmail(),
+        validation: validation('email')
+          .setRequired()
+          .setEmail()
+          .setUnique({
+            url: '/auth/register/email/validate',
+            fieldName: 'email',
+            validationService: this.authenticationService
+          }),
         order: 3
       }),
       new FormControlGenericInputConfig({

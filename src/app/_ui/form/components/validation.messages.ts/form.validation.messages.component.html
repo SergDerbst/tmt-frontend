@@ -72,4 +72,9 @@
     <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
     <span [innerHtml]="'form.validation.message.field.required' | translate"></span>
   </div>
+  <div *ngIf="control.errors.unique"
+       class="tmt-msg-severe">
+    <span [innerHTML]="formConfig.id + '.form.control.' + controlConfig.key | translate"></span>
+    <span [innerHtml]="'form.validation.message.field.unique' | translate"></span>
+  </div>
 </div>

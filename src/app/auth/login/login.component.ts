@@ -8,7 +8,7 @@ import {validation} from "../../_ui/form/config/controls/form.control.config";
 import {FormXtraButtonConfig} from "../../_ui/form/config/xtras/impl/form.xtra.button.config";
 import {Direction} from "../../_data/_enums";
 import {FormXtraLinkConfig} from "../../_ui/form/config/xtras/impl/form.xtra.link.config";
-import {Authenticated, User} from "../_data/authenticated";
+import {Authenticated} from "../_data/authenticated";
 import {AuthenticationService} from "../_services/authentication.service";
 import {Router} from "@angular/router";
 

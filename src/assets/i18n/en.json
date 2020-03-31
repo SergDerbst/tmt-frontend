@@ -54,5 +54,6 @@
   "form.validation.message.field.pwUppercase": " must have at least one upper case character.",
   "form.validation.message.field.pwNumeric": " must have at least one numeric character.",
   "form.validation.message.field.pwSpecial": " must have at least one special character.",
-  "form.validation.message.field.required": " is required."
+  "form.validation.message.field.required": " is required.",
+  "form.validation.message.field.unique": " already exists."
 }

@@ -47,5 +47,6 @@
   "form.validation.message.field.pwUppercase": " muss mindestens einen großen Buchstaben enthalten.",
   "form.validation.message.field.pwNumeric": " muss mindestens eine Zahl enthalten.",
   "form.validation.message.field.pwSpecial": " muss mindestens ein Sonderzeichen enthalten.",
-  "form.validation.message.field.required": " ist ein Pflichtfeld."
+  "form.validation.message.field.required": " ist ein Pflichtfeld.",
+  "form.validation.message.field.unique": " existiert bereits."
 }

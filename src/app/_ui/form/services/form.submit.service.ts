@@ -3,7 +3,6 @@ import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 
 import { AppConfigService } from "../../../app.config.service";
-import {AbstractControl, ValidationErrors} from "@angular/forms";
 
 export declare interface SubmitFn {
 	(requestData: {}, path:string, method?:string): void;
