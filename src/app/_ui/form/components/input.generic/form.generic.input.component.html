@@ -1,6 +1,6 @@
 <input [type]="controlConfig.type"
        [formControl]="control"
-       [className]="controlConfig.isValidating && control.errors ? 'tmt-invalid' : ''"
+       [className]="controlConfig.isValidating && control.errors && control.errors.unique ? 'tmt-invalid' : ''"
        [tabindex]="controlConfig.tabIndex"
        #focusElement>
 <tmt-validation-msg [form]="form"

@@ -195,11 +195,19 @@ export class FormControlValidationMap extends Map<string, FormControlValidation>
 						fieldName: config.fieldName,
 						url: config.url
 					}).toPromise().catch(err => {
-						control.errors.unique = true;
+						if (control.errors) {
+							control.errors.unique = true;
+						} else {
+							control.setErrors(valid);
+						}
+					}).then(data => {
+						if (control.errors) {
+							control.errors.unique = undefined;
+						}
 					});
 				}
 			}
-			return valid;
+			return null;
 		}
 		return this;
 	}
