@@ -3,9 +3,6 @@ import {AbstractControl, ValidationErrors, Validators} from "@angular/forms";
 import {ValidationRegExMap} from "./validation.reg.ex.map";
 import {DateTimeUnit, Operator} from "../../../../../_data/_enums";
 import * as moment from 'moment';
-import {Inject} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {AuthenticationService} from "../../../../../auth/_services/authentication.service";
 import {DataValidationService} from "../../../services/data/data.validation.service";
 
 export class FormControlValidationMap extends Map<string, FormControlValidation> {
