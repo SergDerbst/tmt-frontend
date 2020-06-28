@@ -1,1 +1,22 @@
-<p>content works!</p>
+<div class="tmt-content-container">
+  <div class="tmt-toolbox-container">
+    <div [className]="selectedType === contentTypes[0] ?
+          'tmt-toolbox-item tmt-selected' : 'tmt-toolbox-item'">
+      <a (click)="selectType(0)">
+        <fa-icon [icon]="faNewspaper"></fa-icon>
+      </a>
+    </div>
+    <div [className]="selectedType === contentTypes[1] ?
+          'tmt-toolbox-item tmt-border-left tmt-selected' : 'tmt-toolbox-item tmt-border-left '">
+      <a (click)="selectType(1)">
+        <fa-icon [icon]="faVideo"></fa-icon>
+      </a>
+    </div>
+    <div [className]="selectedType === contentTypes[2] ?
+          'tmt-toolbox-item tmt-border-left tmt-selected' : 'tmt-toolbox-item tmt-border-left '">
+      <a (click)="selectType(2)">
+        <fa-icon [icon]="faPodcast"></fa-icon>
+      </a>
+    </div>
+  </div>
+</div>

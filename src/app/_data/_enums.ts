@@ -37,3 +37,9 @@ export enum UserRole {
 	Developer = 'Developer',
 	God = 'God'
 }
+
+export enum ContentType {
+	Article = 'article',
+	Video = 'video',
+	Podcast = 'podcast'
+}

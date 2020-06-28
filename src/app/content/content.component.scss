@@ -1,0 +1,33 @@
+@import "../../styles";
+
+.tmt-content-container {
+
+  .tmt-toolbox-container {
+    display: inline-flex;
+    flex-direction: row;
+    border: 1px solid $grey-dark;
+    border-radius: 5px;
+
+    .tmt-toolbox-item {
+      padding: 5px;
+      min-width: 19px;
+
+      &.tmt-selected {
+        background-color: $grey-dark;
+      }
+
+      &.tmt-border-left {
+        border-left: 1px solid $grey-dark;
+      }
+
+      a {
+        margin-left: 1px;
+        cursor: pointer;
+
+        &:hover {
+          color: $blue-sky;
+        }
+      }
+    }
+  }
+}
