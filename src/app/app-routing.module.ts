@@ -4,12 +4,12 @@ import {FeedComponent} from "./feed/feed.component";
 
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'article', loadChildren: () => import('./article/article.module').then(m => m.ArticleModule) },
-  { path: 'feed', component: FeedComponent }
+  { path: 'feed', component: FeedComponent },
+  { path: 'content', loadChildren: () => import('./content/content.module').then(m => m.ContentModule) },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

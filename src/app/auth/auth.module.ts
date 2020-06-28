@@ -5,7 +5,6 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {UiModule} from '../_ui/_ui.module';
 import {UtilsModule} from '../_utils/_utils.module';
 
-import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {AuthenticationService} from "./_services/authentication.service";
@@ -19,7 +18,6 @@ import {AuthenticationService} from "./_services/authentication.service";
     UtilsModule
   ],
   declarations: [
-    AuthComponent,
     LoginComponent,
     RegisterComponent
   ],
