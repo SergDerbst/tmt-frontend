@@ -3,11 +3,13 @@
 .tmt-toolbox-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 
   .tmt-toolbox-item {
     background-color: $grey-dark;
     border-radius: 5px;
     padding: 5px;
+    margin: 0 2.5px;
     min-width: 19px;
 
     a {

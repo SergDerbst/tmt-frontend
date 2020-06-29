@@ -43,3 +43,10 @@ export enum ContentType {
 	Video = 'video',
 	Podcast = 'podcast'
 }
+
+export enum ContentFilter {
+	Recent = 'recent',
+	Unpublished = 'unpublished',
+	Published = 'published',
+	All = 'all'
+}

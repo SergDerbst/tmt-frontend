@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {faNewspaper} from "@fortawesome/free-solid-svg-icons/faNewspaper";
 import {faVideo} from "@fortawesome/free-solid-svg-icons/faVideo";
 import {faPodcast} from "@fortawesome/free-solid-svg-icons/faPodcast";
-import {ContentType} from "../_data/_enums";
+import {ContentFilter, ContentType} from "../_data/_enums";
+import {TranslateService} from "@ngx-translate/core";
+import {ContentConfig} from "./content.config";
+import {SearchboxConfig} from "./filter/searchbox/searchbox.config";
 
 @Component({
   selector: 'tmt-content',
@@ -10,20 +13,39 @@ import {ContentType} from "../_data/_enums";
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
-  contentTypes: string[];
-  selectedType: string;
+  contentConfig: ContentConfig;
   faNewspaper = faNewspaper;
   faVideo = faVideo;
   faPodcast = faPodcast;
     
-  constructor() { }
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['de', 'en']);
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit(): void {
-    this.contentTypes = [ContentType.Article, ContentType.Video, ContentType.Podcast];
-    this.selectedType = this.contentTypes[0];
+    this.contentConfig = new ContentConfig({
+      contentTypes: [
+        ContentType.Article,
+        ContentType.Video,
+        ContentType.Podcast
+      ],
+      contentFilters: [
+        ContentFilter.Recent,
+        ContentFilter.Published,
+        ContentFilter.Unpublished,
+        ContentFilter.All
+      ],
+      searchboxConfig: new SearchboxConfig({
+        placeholderPrefix: 'content.filter.searchbox.placeholderPrefix.',
+        contentType: ContentType.Article,
+        contentFilter: ContentFilter.Recent
+      })
+    });
   }
   
   selectType(index: number) {
-    this.selectedType = this.contentTypes[index];
+    this.contentConfig.selectedType = this.contentConfig.contentTypes[index];
+    this.contentConfig.searchboxConfig.contentType = this.contentConfig.contentTypes[index];
   }
 }

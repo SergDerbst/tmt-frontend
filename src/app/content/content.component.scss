@@ -1,32 +1,47 @@
 @import "../../styles";
 
 .tmt-content-container {
-
-  .tmt-toolbox-container {
-    display: inline-flex;
+  .tmt-row {
+    display: flex;
     flex-direction: row;
-    border: 1px solid $grey-dark;
-    border-radius: 5px;
+    width: 100%;
 
-    .tmt-toolbox-item {
-      padding: 5px;
-      min-width: 19px;
+    .tmt-toolbox-container {
+      display: inline-flex;
+      flex-direction: row;
+      border: 1px solid $grey-dark;
+      border-radius: 5px;
 
-      &.tmt-selected {
-        background-color: $grey-dark;
-      }
+      .tmt-toolbox-item {
+        padding: 5px;
+        min-width: 19px;
 
-      &.tmt-border-left {
-        border-left: 1px solid $grey-dark;
-      }
-
-      a {
-        margin-left: 1px;
-        cursor: pointer;
-
-        &:hover {
-          color: $blue-sky;
+        &.tmt-selected {
+          background-color: $grey-dark;
         }
+
+        &.tmt-border-left {
+          border-left: 1px solid $grey-dark;
+        }
+
+        a {
+          margin-left: 1px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .tmt-caption {
+      padding: 5px;
+      display: table-cell;
+      width: 100%;
+      text-align: center;
+
+      span {
+        min-height: 1em;
+        font-size: large;
+        color: $blue-sky;
+        text-align: center;
       }
     }
   }

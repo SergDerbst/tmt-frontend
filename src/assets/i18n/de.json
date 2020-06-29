@@ -38,6 +38,18 @@
   "auth.register.form.control.postal": "Postleitzahl",
   "auth.register.form.control.country": "Land",
 
+  "content.filter.recent": "Recent",
+  "content.filter.published": "Published",
+  "content.filter.unpublished": "Unpublished",
+  "content.filter.tags": "Tags",
+  "content.filter.all": "All",
+  "content.type.caption.article": "Artikel",
+  "content.type.caption.video": "Videos",
+  "content.type.caption.podcast": "Podcasts",
+  "content.type.new.article": "Neuer Artikel",
+  "content.type.new.video": "Neues Video",
+  "content.type.new.podcast": "Neuer Podcast",
+
   "form.validation.message.field.email": " muss eine gültige Emailadresse sein.",
   "form.validation.message.field.equalValue": " müssen übereinstimmen.",
   "form.validation.message.field.equalValue.email": "Emailadressen",

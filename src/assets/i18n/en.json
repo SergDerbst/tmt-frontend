@@ -38,6 +38,18 @@
   "auth.register.form.control.postal": "Zip / Postal Code",
   "auth.register.form.control.country": "Country",
 
+  "content.filter.recent": "Recent",
+  "content.filter.published": "Published",
+  "content.filter.unpublished": "Unpublished",
+  "content.filter.tags": "Tags",
+  "content.filter.all": "All",
+  "content.type.caption.article": "Articles",
+  "content.type.caption.video": "Videos",
+  "content.type.caption.podcast": "Podcasts",
+  "content.type.new.article": "New Article",
+  "content.type.new.video": "New Video",
+  "content.type.new.podcast": "New Podcast",
+
   "form.validation.message.field.date.day": " must have a valid value for day.",
   "form.validation.message.field.date.month": " must have a valid value for month.",
   "form.validation.message.field.date.maxPast": " must have been less than {{ number }} {{unit}}s ago.",

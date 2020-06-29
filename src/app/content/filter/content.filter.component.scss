@@ -1,0 +1,61 @@
+@import "../../../styles";
+
+.tmt-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .tmt-new-content {
+    background-color: white;
+      border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 25px 15px;
+    min-width: 60px;
+    min-height: 60px;
+    text-align: center;
+    color: $blue-sky;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px dashed $grey-dark;
+      color: $red-blood;
+    }
+
+    .tmt-icon {
+      font-size: 2em;
+    }
+
+    .tmt-caption {
+      margin-top: 5px;
+      font-size: 0.5em;
+    }
+  }
+
+  .tmt-filter {
+    flex-grow: 1;
+    text-align: center;
+
+    .tmt-filter-container {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid $grey-dark;
+      border-radius: 5px;
+      margin-top: 20px;
+
+      .tmt-filter-item {
+        padding: 5px;
+        cursor: pointer;
+        flex: 1 1 0px;
+
+        &.tmt-selected {
+          background-color: $grey-dark;
+        }
+
+        &.tmt-border-left {
+          border-left: 1px solid $grey-dark;
+        }
+      }
+    }
+  }
+}

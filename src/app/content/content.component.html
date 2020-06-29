@@ -1,22 +1,25 @@
 <div class="tmt-content-container">
-  <div class="tmt-toolbox-container">
-    <div [className]="selectedType === contentTypes[0] ?
-          'tmt-toolbox-item tmt-selected' : 'tmt-toolbox-item'">
-      <a (click)="selectType(0)">
-        <fa-icon [icon]="faNewspaper"></fa-icon>
-      </a>
+  <div class="tmt-row">
+    <div class="tmt-toolbox-container">
+      <div *ngFor="let type of contentConfig.contentTypes; let i = index"
+           [ngClass]="{'tmt-toolbox-item': true,
+                       'tmt-selected': contentConfig.selectedType === type,
+                       'tmt-border-left': i > 0 }">
+        <a (click)="selectType(i)">
+          <fa-icon *ngIf="type === 'article'"
+                   [icon]="faNewspaper"></fa-icon>
+          <fa-icon *ngIf="type === 'video'"
+                   [icon]="faVideo"></fa-icon>
+          <fa-icon *ngIf="type === 'podcast'"
+                   [icon]="faPodcast"></fa-icon>
+        </a>
+      </div>
     </div>
-    <div [className]="selectedType === contentTypes[1] ?
-          'tmt-toolbox-item tmt-border-left tmt-selected' : 'tmt-toolbox-item tmt-border-left '">
-      <a (click)="selectType(1)">
-        <fa-icon [icon]="faVideo"></fa-icon>
-      </a>
+    <div class="tmt-caption">
+      <span [innerHTML]="'content.type.caption.' + contentConfig.selectedType | translate"></span>
     </div>
-    <div [className]="selectedType === contentTypes[2] ?
-          'tmt-toolbox-item tmt-border-left tmt-selected' : 'tmt-toolbox-item tmt-border-left '">
-      <a (click)="selectType(2)">
-        <fa-icon [icon]="faPodcast"></fa-icon>
-      </a>
-    </div>
+  </div>
+  <div class="tmt-row">
+    <tmt-content-filter [contentConfig]="contentConfig"></tmt-content-filter>
   </div>
 </div>
