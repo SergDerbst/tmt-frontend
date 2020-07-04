@@ -6,7 +6,7 @@ import { ContentComponent } from './content.component';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpClient } from "@angular/common/http";
-import { httpTranslateLoader } from "../_ui/_ui.module";
+import { httpTranslateLoader } from "../_KLOGRIFF_/_ui/_ui.module";
 import { ContentFilterComponent } from "./filter/content.filter.component";
 import { Searchbox } from "./filter/searchbox/searchbox";
 import {ContentArticleEditComponent} from "./article/content.article.edit.component";
@@ -15,16 +15,23 @@ import {ContentPodcastEditComponent} from "./podcast/content.podcast.edit.compon
 import {ContentPodcastViewComponent} from "./podcast/content.podcast.view.component";
 import {ContentVideoEditComponent} from "./video/content.video.edit.component";
 import {ContentVideoViewComponent} from "./video/content.video.view.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {ContentVideoCreateComponent} from "./video/content.video.create.component";
+import {ContentArticleCreateComponent} from "./article/content.article.create.component";
+import {ContentPodcastCreateComponent} from "./podcast/content.podcast.create.component";
 
 
 @NgModule({
   declarations: [
   	ContentComponent,
 	  ContentFilterComponent,
+	  ContentArticleCreateComponent,
 	  ContentArticleEditComponent,
 	  ContentArticleViewComponent,
+	  ContentPodcastCreateComponent,
 	  ContentPodcastEditComponent,
 	  ContentPodcastViewComponent,
+	  ContentVideoCreateComponent,
 	  ContentVideoEditComponent,
 	  ContentVideoViewComponent,
 	  Searchbox
@@ -33,6 +40,7 @@ import {ContentVideoViewComponent} from "./video/content.video.view.component";
 		CommonModule,
 		ContentRoutingModule,
 		FontAwesomeModule,
+		ReactiveFormsModule,
 		TranslateModule.forChild({
 			loader: {
 				provide: TranslateLoader,

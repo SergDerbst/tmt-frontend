@@ -27,7 +27,7 @@ export class ContentFilterComponent implements OnInit, AfterViewInit {
 	}
 	
 	createContent() {
-		return this.router.navigateByUrl('/content/' + this.contentConfig.selectedType + '/edit');
+		return this.router.navigateByUrl('/content/' + this.contentConfig.selectedType + '/create');
 	}
 	
 	selectFilter(index: number) {

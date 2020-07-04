@@ -8,14 +8,14 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './main/header/header.component';
+import {FooterComponent} from './main/footer/footer.component';
 import {MainComponent} from './main/main.component';
 import {AppConfigService} from "./app.config.service";
 import {MainSidebarComponent} from "./main/sidebar/main.sidebar.component";
 import {MainToolbox} from "./main/sidebar/main.toolbox/main.toolbox";
-import {AuthHttpInterceptor} from "./auth/_services/auth.http.interceptor";
-import {FeedComponent} from "./feed/feed.component";
+import {AuthHttpInterceptor} from "./_KLOGRIFF_/auth/_services/auth.http.interceptor";
+import {FeedComponent} from "./content/feed/feed.component";
 
 @NgModule({
   declarations: [

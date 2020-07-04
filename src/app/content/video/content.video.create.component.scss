@@ -1,0 +1,58 @@
+@import "../../../styles";
+
+.tmt-content-container {
+  padding: 10px;
+
+  .tmt-segment {
+    form {
+      .tmt-form {
+        display: flex;
+        flex-direction: row;
+
+        .tmt-form-group {
+          flex-grow: 1;
+
+          .tmt-form-control {
+            margin-bottom: 10px;
+
+            input {
+              width: 100%;
+              padding: 5px;
+
+              @include placeholder {
+                color: $grey-dark;
+                font-style: italic;
+                font-size: smaller;
+              }
+
+              &.ng-touched.ng-invalid {
+                border: 1px solid $red-blood;
+              }
+            }
+          }
+        }
+
+        .tmt-form-button {
+          margin-top: 10px;
+          margin-left: 30px;
+
+          button {
+            height: 50px;
+            width: 50px;
+            border-radius: 5px;
+            font-size: 1.5em;
+          }
+        }
+      }
+
+      .tmt-msg-container {
+        div {
+          color: $red-blood;
+          text-align: center;
+          font-style: italic;
+          font-size: smaller;
+        }
+      }
+    }
+  }
+}

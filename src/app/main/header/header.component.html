@@ -1,0 +1,33 @@
+<header>
+  <div class="tmt-main-container">
+    <div class="tmt-main-container-item">
+      <a class="tmt-logo">
+        <img src="assets/img/tmt-logo.png">
+      </a>
+    </div>
+    <div class="tmt-main-container-item tmt-right">
+      <div class="tmt-account-container">
+        <div class="tmt-account-container-item">
+          <a class="tmt-account-tool"
+             href="/auth/login"
+             tabindex="-1">
+            <fa-icon [icon]="faSignInAlt"></fa-icon>
+            <span>sign in</span>
+          </a>
+          <a class="tmt-account-tool"
+             href="/auth/register"
+             tabIndex="-1">
+            <fa-icon [icon]="faUserPlus"></fa-icon>
+            <span>sign up</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="tmt-navbar">
+    <div class="tmt-navbar-main">
+      <span [innerHTML]="'app.location.hint' + location.hint | translate"></span>
+    </div>
+    <div class="tmt-navbar-side"></div>
+  </nav>
+</header>

@@ -1,0 +1,9 @@
+@import "../../../../../../styles";
+
+label {
+  .tmt-form-control-required.tmt-blood-red {
+    color: $red-blood;
+  }
+
+  color: $grey-dark;
+}

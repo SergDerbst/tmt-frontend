@@ -1,0 +1,22 @@
+@import "../../../styles";
+
+footer {
+  background-color: $grey-darkest;
+  color: $blue-sky;
+
+  .tmt-footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1080px;
+    min-height: 120px;
+
+    @media (min-width: $break-large) {
+      margin: 0 auto;
+    }
+
+    .tmt-footer-item {
+      padding: 0 10px;
+    }
+  }
+}

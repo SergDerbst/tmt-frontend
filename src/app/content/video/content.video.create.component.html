@@ -1,0 +1,51 @@
+<div class="tmt-content-container">
+  <div class="tmt-segment">
+    <form [formGroup]="mainForm"
+          (keyup)="handleKeyEvent($event)"
+          (ngSubmit)="createVideo()">
+      <div class="tmt-form">
+        <div class="tmt-form-group">
+          <div class="tmt-form-control">
+            <input formControlName="title"
+                   type="text"
+                   [tabIndex]="1"
+                   [placeholder]="'content.create.video.title' | translate"
+                   #focusElement>
+          </div>
+          <div class="tmt-form-control">
+            <input formControlName="url"
+                   type="url"
+                   [tabIndex]="2"
+                   [placeholder]="'content.create.video.url' | translate" >
+          </div>
+        </div>
+        <div class="tmt-form-button">
+          <button type="submit"
+                  [tabIndex]="3"
+                  [disabled]="!mainForm.valid">
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="tmt-msg-container">
+        <div>
+          <span *ngIf="mainForm.controls.title.touched &&
+                       mainForm.controls.title.errors != null &&
+                       mainForm.controls.title.errors.required"
+                [innerHTML]="'content.create.video.title.error.msg.required' | translate">
+          </span>
+        </div>
+        <div>
+          <span *ngIf="(mainForm.controls.url.touched &&
+                        mainForm.controls.url.errors != null &&
+                        mainForm.controls.url.errors.required) ||
+                       (mainForm.controls.url.touched &&
+                        mainForm.controls.url.errors != null &&
+                        mainForm.controls.url.errors.pattern != null)"
+               [innerHTML]="'content.create.video.url.error.msg.valid.required' | translate">
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -7,12 +7,12 @@
 
   .tmt-new-content {
     background-color: white;
-      border: 1px solid white;
+    border: 1px solid white;
     border-radius: 5px;
     padding: 10px;
-    margin: 25px 15px;
-    min-width: 60px;
-    min-height: 60px;
+    margin: 25px 25px;
+    min-width: 100px;
+    min-height: 100px;
     text-align: center;
     color: $blue-sky;
     cursor: pointer;
@@ -23,12 +23,12 @@
     }
 
     .tmt-icon {
-      font-size: 2em;
+      font-size: 4em;
     }
 
     .tmt-caption {
       margin-top: 5px;
-      font-size: 0.5em;
+      font-size: 0.75em;
     }
   }
 
@@ -37,11 +37,12 @@
     text-align: center;
 
     .tmt-filter-container {
-      display: flex;
+      display: inline-flex;
       flex-direction: row;
       border: 1px solid $grey-dark;
       border-radius: 5px;
       margin-top: 20px;
+      width: 80%;
 
       .tmt-filter-item {
         padding: 5px;
