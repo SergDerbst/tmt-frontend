@@ -11,9 +11,8 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		if (!this.isExcluded(req)) {
 			
-		} else {
-			console.log('arsch kaputt: ' + req.url);
 		}
+		
 		return next.handle(req);
 	}
 	

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {FeedComponent} from "./content/feed/feed.component";
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import('./_KLOGRIFF_/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'feed', component: FeedComponent },
   { path: 'content', loadChildren: () => import('./content/content.module').then(m => m.ContentModule) },
 ];

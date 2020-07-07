@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthRoutingModule} from './auth-routing.module';
+import {KloRoutingModule} from './klo-routing.module';
 
 import {UiModule} from '../_ui/_ui.module';
 import {UtilsModule} from '../../utils/_utils.module';
@@ -13,7 +13,7 @@ import {AuthenticationService} from "./_services/authentication.service";
 @NgModule({
   imports: [
     CommonModule,
-    AuthRoutingModule,
+    KloRoutingModule,
     UiModule,
     UtilsModule
   ],
@@ -25,4 +25,4 @@ import {AuthenticationService} from "./_services/authentication.service";
     AuthenticationService
   ]
 })
-export class AuthModule {}
+export class KloModule {}
