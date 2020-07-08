@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Input} from "@angular/core";
-import {SortService} from "../../../../../utils/sort/sort.service";
+import {SortService} from "../../../../../_utils/sort/sort.service";
 import {FormGroup} from "@angular/forms";
 import {FormConfig} from "../../config/form.config";
 

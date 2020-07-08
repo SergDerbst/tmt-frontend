@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
 
 import {FormAssemblyService} from './services/form.assembly.service';
-import {SortService} from "../../../utils/sort/sort.service";
+import {SortService} from "../../../_utils/sort/sort.service";
 import {FormConfig} from "./config/form.config";
 
 @Component({

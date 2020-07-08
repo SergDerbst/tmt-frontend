@@ -33,23 +33,23 @@ describe('RegisterComponent', () => {
 			.toHaveText('auth.register.form.caption');
 	});
 	
-	describe('1st group of form controls: personal data', () => {
+	describe('1st group of form controls: personal _data', () => {
 		let groupContainer: Element;
 		let groupControls: NodeListOf<Element>;
 		
 		beforeEach(() => {
-			groupContainer = componentSpectator.query(specHelper.select.groupContainerSelector('personal.data'));
+			groupContainer = componentSpectator.query(specHelper.select.groupContainerSelector('personal._data'));
 			groupControls = specHelper.select.groupControlContainers(groupContainer);
 		});
 		
-		it('should have a caption for personal data', () => {
+		it('should have a caption for personal _data', () => {
 			let groupCaption:Element = specHelper.select.groupCaption(groupContainer);
 			
 			expect(groupContainer).toHaveClass('tmt-form-group');
-			expect(groupCaption).toHaveText('auth.register.form.group.caption.personal.data');
+			expect(groupCaption).toHaveText('auth.register.form.group.caption.personal._data');
 		});
 		
-		it('should have six form controls for personal data', () => {
+		it('should have six form controls for personal _data', () => {
 			expect(groupControls.length).toBe(6);
 		});
 		
@@ -207,7 +207,7 @@ describe('RegisterComponent', () => {
 			expect(groupCaption).toHaveText('auth.register.form.group.caption.credentials');
 		});
 		
-		it('should have five form controls for personal data', () => {
+		it('should have five form controls for personal _data', () => {
 			expect(groupControls.length).toBe(5);
 		});
 		
@@ -338,7 +338,7 @@ describe('RegisterComponent', () => {
 			expect(groupCaption).toHaveText('auth.register.form.group.caption.address');
 		});
 		
-		it('should have six form controls for personal data', () => {
+		it('should have six form controls for personal _data', () => {
 			expect(groupControls.length).toBe(6);
 		});
 		

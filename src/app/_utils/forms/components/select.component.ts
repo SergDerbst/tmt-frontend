@@ -1,0 +1,40 @@
+import {AfterViewInit, Component, Input, OnInit} from "@angular/core";
+import {faCaretDown, faCaretLeft} from "@fortawesome/free-solid-svg-icons";
+import {FormControl} from "@angular/forms";
+import {TranslateService} from "@ngx-translate/core";
+
+@Component({
+	selector: 'tmt-form-control-select',
+	templateUrl: './select.component.html',
+	styleUrls: ['./select.component.scss']
+})
+export class SelectComponent implements OnInit, AfterViewInit {
+	faCaretDown = faCaretDown;
+	faCaretLeft = faCaretLeft;
+	@Input() control: FormControl;
+	@Input() data: any[];
+	@Input() index: number;
+	@Input() translatePrefix: string;
+	showList: boolean;
+	
+	constructor(public translate: TranslateService) {
+		translate.addLangs(['de', 'en']);
+		translate.setDefaultLang('en');
+	}
+	
+	ngAfterViewInit(): void {
+	}
+	
+	ngOnInit(): void {
+		this.showList = false;
+	}
+	
+	toggleList(): void {
+		this.showList = !this.showList;
+	}
+	
+	select(i: number): void {
+		this.control.setValue(this.data[i]);
+		this.showList = false;
+	}
+}

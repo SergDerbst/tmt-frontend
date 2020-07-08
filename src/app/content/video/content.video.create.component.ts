@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TranslateService} from "@ngx-translate/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {ValidationRegExMap} from "../../_KLOGRIFF_/_ui/form/config/controls/validation/validation.reg.ex.map";
-import {isEnter} from "../../_KLOGRIFF_/_ui/keyboard/keys";
+import {isEnter} from "../../_utils/keyboard/keys";
 
 @Component({
 	selector: 'tmt-video-create',

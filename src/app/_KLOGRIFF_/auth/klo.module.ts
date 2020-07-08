@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {KloRoutingModule} from './klo-routing.module';
 
 import {UiModule} from '../_ui/_ui.module';
-import {UtilsModule} from '../../utils/_utils.module';
+import {UtilsModule} from '../../_utils/_utils.module';
 
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';

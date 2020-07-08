@@ -1,0 +1,50 @@
+@import "../../../../styles";
+
+a.tmt-select-box {
+  display: flex;
+  justify-content: space-between;
+  width: 33.33%;
+  padding-left: 5px;
+  background-color: white;
+  color: $grey-dark;
+
+  &:focus {
+    background-color: $golden-yellow;
+
+    span.tmt-toggle {
+      color: $red-blood;
+    }
+  }
+
+  span.tmt-toggle {
+    padding: 0 5px;
+    background-color: $grey-dark;
+    min-width: 10px;
+    color: $blue-sky;
+  }
+}
+
+ul {
+  list-style-type: none;
+  position: absolute;
+  z-index: 1;
+  margin-top: 1px;
+  padding: 5px 0;
+  background-color: $grey-dark;
+  border-radius: 0;
+  min-width: 20%;
+
+  li {
+    padding: 0 5px;
+    color: $blue-sky;
+
+    &:hover, &.tmt-hovered {
+      background-color: $grey-neutral;
+      color: $blue-sky;
+    }
+
+    &.tmt-selected {
+      color: $red-blood;
+    }
+  }
+}

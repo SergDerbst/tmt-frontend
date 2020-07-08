@@ -1,4 +1,4 @@
-import {ContentFilter, ContentType} from "../data/_enums";
+import {ContentFilter, ContentType} from "../_data/enums";
 import {SearchboxConfig} from "./filter/searchbox/searchbox.config";
 
 export class ContentConfig {

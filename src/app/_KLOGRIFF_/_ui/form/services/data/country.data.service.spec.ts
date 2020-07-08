@@ -14,7 +14,7 @@ describe('CountryDataService', () => {
 	
 	beforeEach(() => spectator = createHttp());
 	
-	it('should get country data', () => {
+	it('should get country _data', () => {
 		spectator.service.fetch('rubbish').subscribe();
 		spectator.expectOne('http://localhost:8080/geo/country/names?typed=rubbish', HttpMethod.GET);
 	});

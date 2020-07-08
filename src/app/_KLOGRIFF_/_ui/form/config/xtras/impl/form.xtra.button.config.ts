@@ -1,5 +1,5 @@
 import {FormXtraConfig} from "../form.xtra.config";
-import {Direction} from "../../../../../../data/_enums";
+import {Direction} from "../../../../../../_data/enums";
 
 export class FormXtraButtonConfig extends FormXtraConfig {
 	type: string;

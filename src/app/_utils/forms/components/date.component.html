@@ -1,0 +1,22 @@
+<a [className]="control.errors != null ?
+               'tmt-date-input tmt-invalid' : 'tmt-date-input'"
+   [tabindex]="index"
+   (keyup)="keyUp($event)"
+   (blur)="unfocus()">
+  <div [ngClass]="{'tmt-placeholder': !dateValue[0].value,
+                   'tmt-focus': _currentState.focus === 0}"
+       [innerHTML]="dateValue[0].value || splitFormat[0].toLowerCase()"
+       (click)="focus(0)"></div>
+  <div [ngClass]="{'tmt-placeholder' : !dateValue[0].value || dateValue[0].value.length < splitFormat[0].length}"
+       [innerHtml]="dateFormat.separator"></div>
+  <div [ngClass]="{'tmt-placeholder': !dateValue[1].value,
+                   'tmt-focus': _currentState.focus === 1}"
+       [innerHTML]="dateValue[1].value || splitFormat[1].toLowerCase()"
+       (click)="focus(1)"></div>
+  <div [ngClass]="{'tmt-placeholder': !dateValue[1].value || dateValue[1].value.length < splitFormat[1].length}"
+       [innerHtml]="dateFormat.separator"></div>
+  <div [ngClass]="{'tmt-placeholder': !dateValue[2].value,
+                   'tmt-focus': _currentState.focus === 2}"
+       [innerHTML]="dateValue[2].value || splitFormat[2].toLowerCase()"
+       (click)="focus(2)"></div>
+</a>

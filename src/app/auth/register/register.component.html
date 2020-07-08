@@ -1,1 +1,17 @@
-<p>here be register, you silly bitch!</p>
+<div class="tmt-container">
+  <div class="tmt-form-container">
+    <form class="tmt-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="tmt-form-title" [innerHTML]="'auth.register.form.caption' | translate"></div>
+      <tmt-auth-register-personal-data [personalData]="form.get('personalData')"></tmt-auth-register-personal-data>
+      <tmt-auth-register-credentials [credentials]="form.get('credentials')"></tmt-auth-register-credentials>
+      <div class="tmt-form-xtra-container">
+        <div class="tmt-form-button tmt-txt-right">
+          <button [innerHTML]="'auth.register.form.button.register' | translate"></button>
+        </div>
+        <div class="tmt-form-button tmt-txt-left">
+          <button [innerHTML]="'auth.register.form.button.cancel' | translate"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

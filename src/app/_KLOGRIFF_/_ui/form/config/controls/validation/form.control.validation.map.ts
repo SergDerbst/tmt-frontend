@@ -1,7 +1,7 @@
 import {FormControlValidation} from "./form.control.validation";
 import {AbstractControl, ValidationErrors, Validators} from "@angular/forms";
 import {ValidationRegExMap} from "./validation.reg.ex.map";
-import {DateTimeUnit, Operator} from "../../../../../../data/_enums";
+import {DateTimeUnit, Operator} from "../../../../../../_data/enums";
 import * as moment from 'moment';
 import {DataValidationService} from "../../../services/data/data.validation.service";
 

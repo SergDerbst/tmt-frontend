@@ -1,45 +1,35 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
-import {FormConfig} from "../../config/form.config";
-import {FormControlConfig} from "../../config/controls/form.control.config";
-import {FormElementFocusService} from "../../services/form.element.focus.service";
-import {AppConfigService} from "../../../../../app.config.service";
-import {DateFormatMap} from "../../../../../_data/date.format.map";
-import {FormControl, FormGroup} from "@angular/forms";
-import {DateTimeUnit, Direction} from "../../../../../_data/enums";
-import {isBackspace, isEsc, isNumeric} from "../../../../../_utils/keyboard/keys";
+import {AfterViewInit, Component, Input, OnInit} from "@angular/core";
+import {TranslateService} from "@ngx-translate/core";
+import {FormControl} from "@angular/forms";
+import {isBackspace, isEsc, isNumeric} from "../../keyboard/keys";
+import {DateFormatMap} from "../../../_data/date.format.map";
+import {DateTimeUnit} from "../../../_data/enums";
+import {AppConfigService} from "../../../app.config.service";
 
 @Component({
-	selector: 'tmt-form-date-input',
-	templateUrl: './form.date.input.component.html',
-	styleUrls: ['./form.date.input.component.scss']
+	selector: 'tmt-form-control-date',
+	templateUrl: './date.component.html',
+	styleUrls: ['./date.component.scss']
 })
-export class FormDateInputComponent implements OnInit, AfterViewInit {
-	@Input() form: FormGroup;
-	@Input() formConfig: FormConfig;
+export class DateComponent implements OnInit, AfterViewInit {
 	@Input() control: FormControl;
-	@Input() controlConfig: FormControlConfig;
-	
-	@ViewChild('focusElement') focusElement;
-	
+	@Input() index: number;
 	dateFormat: { format: string, separator: string, regexSep: RegExp };
 	splitFormat: string[];
 	dateValue: { unit:DateTimeUnit, value: string }[];
 	_currentState: { typeCount: number, focus: number };
 	
-	constructor(private elementFocusService: FormElementFocusService,
+	constructor(public translate: TranslateService,
 	            private appConfigService: AppConfigService) {
+		translate.addLangs(['de', 'en']);
+		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {
 		this.prepareDateValue();
-		this.control.valueChanges.subscribe(value => {
-			this.controlConfig.shouldValidate(true);
-		});
 	}
 	
 	ngAfterViewInit(): void {
-		this.elementFocusService.setFocus(this.focusElement, this.formConfig.firstFocus);
-		this.focus(0);
 	}
 	
 	unfocus() {
@@ -50,7 +40,7 @@ export class FormDateInputComponent implements OnInit, AfterViewInit {
 		this._currentState.focus = on;
 	}
 	
-	keyUp(event: KeyboardEvent) {
+	keyUp(event: KeyboardEvent): void {
 		if(isNumeric(event.keyCode) && !this.dateDoneTyping()) {
 			this.addToValue(event.key);
 		} else if (isBackspace(event.keyCode)) {

@@ -4,9 +4,9 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {faCaretDown, faCaretLeft} from '@fortawesome/free-solid-svg-icons';
 import {FormConfig} from "../../config/form.config";
 import {FormElementFocusService} from "../../services/form.element.focus.service";
-import {KeyCodes} from "../../../keyboard/keys";
+import {KeyCodes} from "../../../../../_utils/keyboard/keys";
 import {FormControlDataConfig} from "../../config/controls/form.control.data.config";
-import {Direction, Title} from "../../../../../data/_enums";
+import {Direction, Title} from "../../../../../_data/enums";
 
 @Component({
 	selector: 'tmt-form-select-input',

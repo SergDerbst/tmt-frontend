@@ -5,7 +5,7 @@ import {FormConfig} from "../../config/form.config";
 import {FormElementFocusService} from "../../services/form.element.focus.service";
 import {DataService} from "../../services/data/data.service";
 import {FormControlDataConfig, HighlightableStringValue} from "../../config/controls/form.control.data.config";
-import {isLiteral, KeyCodes} from "../../../keyboard/keys";
+import {isLiteral, KeyCodes} from "../../../../../_utils/keyboard/keys";
 
 @Component({
 	selector: 'tmt-form-autocomplete-input',
