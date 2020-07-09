@@ -1,5 +1,5 @@
 import * as moment from "moment";
-import {Sex, Title, UserRole} from "../../../_data/enums";
+import {Sex, Title, UserRole} from "../../../_utils/data/enums";
 import {KeyValue} from "@angular/common";
 
 export class Authenticated {

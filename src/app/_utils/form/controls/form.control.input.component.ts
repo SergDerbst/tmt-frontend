@@ -4,10 +4,12 @@ import {FormControl} from "@angular/forms";
 
 @Component({
 	selector: 'tmt-form-control-input',
-	templateUrl: './input.component.html',
-	styleUrls: ['./input.component.scss']
+	templateUrl: './form.control.input.component.html',
+	styleUrls: ['./form.control.input.component.scss']
 })
-export class InputComponent implements OnInit, AfterViewInit {
+export class FormControlInputComponent {
+	@Input() formName: string;
+	@Input() controlName: string;
 	@Input() control: FormControl;
 	@Input() index: number;
 	@Input() type: string;
@@ -15,11 +17,5 @@ export class InputComponent implements OnInit, AfterViewInit {
 	constructor(public translate: TranslateService) {
 		translate.addLangs(['de', 'en']);
 		translate.setDefaultLang('en');
-	}
-	
-	ngAfterViewInit(): void {
-	}
-	
-	ngOnInit(): void {
 	}
 }

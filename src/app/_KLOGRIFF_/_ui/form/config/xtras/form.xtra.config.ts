@@ -1,4 +1,4 @@
-import {Direction} from "../../../../../_data/enums";
+import {Direction} from "../../../../../_utils/data/enums";
 
 export abstract class FormXtraConfig {
 	orientation: Direction;

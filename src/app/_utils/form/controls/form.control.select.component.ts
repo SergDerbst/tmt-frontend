@@ -5,12 +5,14 @@ import {TranslateService} from "@ngx-translate/core";
 
 @Component({
 	selector: 'tmt-form-control-select',
-	templateUrl: './select.component.html',
-	styleUrls: ['./select.component.scss']
+	templateUrl: './form.control.select.component.html',
+	styleUrls: ['./form.control.select.component.scss']
 })
-export class SelectComponent implements OnInit, AfterViewInit {
+export class FormControlSelectComponent implements OnInit {
 	faCaretDown = faCaretDown;
 	faCaretLeft = faCaretLeft;
+	@Input() formName: string;
+	@Input() controlName: string;
 	@Input() control: FormControl;
 	@Input() data: any[];
 	@Input() index: number;
@@ -20,9 +22,6 @@ export class SelectComponent implements OnInit, AfterViewInit {
 	constructor(public translate: TranslateService) {
 		translate.addLangs(['de', 'en']);
 		translate.setDefaultLang('en');
-	}
-	
-	ngAfterViewInit(): void {
 	}
 	
 	ngOnInit(): void {

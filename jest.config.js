@@ -28,7 +28,7 @@ module.exports = {
 	collectCoverageFrom: [
 		'src/app/**/*.ts',
 		'!src/app/**/*.module.ts',
-		'!src/app/**/*.array.ts',
+		'!src/app/**/*.compose.ts',
 		'!src/app/fragmentTypes.ts'
 	],
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],

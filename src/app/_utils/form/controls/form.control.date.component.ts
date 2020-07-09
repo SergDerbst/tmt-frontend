@@ -2,18 +2,21 @@ import {AfterViewInit, Component, Input, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {FormControl} from "@angular/forms";
 import {isBackspace, isEsc, isNumeric} from "../../keyboard/keys";
-import {DateFormatMap} from "../../../_data/date.format.map";
-import {DateTimeUnit} from "../../../_data/enums";
+import {DateFormatMap} from "../../data/date.format.map";
+import {DateTimeUnit} from "../../data/enums";
 import {AppConfigService} from "../../../app.config.service";
 
 @Component({
 	selector: 'tmt-form-control-date',
-	templateUrl: './date.component.html',
-	styleUrls: ['./date.component.scss']
+	templateUrl: './form.control.date.component.html',
+	styleUrls: ['./form.control.date.component.scss']
 })
-export class DateComponent implements OnInit, AfterViewInit {
+export class FormControlDateComponent implements OnInit {
+	@Input() formName: string;
+	@Input() controlName: string;
 	@Input() control: FormControl;
 	@Input() index: number;
+	
 	dateFormat: { format: string, separator: string, regexSep: RegExp };
 	splitFormat: string[];
 	dateValue: { unit:DateTimeUnit, value: string }[];
@@ -27,9 +30,6 @@ export class DateComponent implements OnInit, AfterViewInit {
 	
 	ngOnInit(): void {
 		this.prepareDateValue();
-	}
-	
-	ngAfterViewInit(): void {
 	}
 	
 	unfocus() {

@@ -1,0 +1,23 @@
+<div class="tmt-form-container">
+  <form class="tmt-form" [formGroup]="formConfig" (ngSubmit)="onSubmit()">
+    <div class="tmt-form-title" [innerHTML]="'auth.register.form.caption' | translate"></div>
+    <div class="tmt-form-group"
+         *ngFor="let group of formConfig.form.controls | keyvalue">
+      <div class="tmt-form-separator"></div>
+      <div class="tmt-form-separator tmt-form-group-separator">
+        <span [innerHTML]="formName + '.form.group.caption.' + group.key | translate"></span>
+      </div>
+      <tmt-form-group [formName]="formName"
+                      [groupName]="group.key"
+                      [groupConfig]="formConfig.config[group.key]"></tmt-form-group>
+    </div>
+    <div class="tmt-form-xtra-container">
+      <div class="tmt-form-button tmt-txt-right">
+        <button [innerHTML]="formName + '.form.button.register' | translate"></button>
+      </div>
+      <div class="tmt-form-button tmt-txt-left">
+        <button [innerHTML]="formName + '.form.button.cancel' | translate"></button>
+      </div>
+    </div>
+  </form>
+</div>

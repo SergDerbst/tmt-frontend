@@ -1,0 +1,24 @@
+@import "../../../../styles";
+
+.tmt-form-property {
+  display: table;
+  width: 100%;
+
+  .tmt-form-property-label {
+    display: table-cell;
+    padding: 5px;
+    width: 50%;
+    text-align: right;
+
+    .tmt-required {
+      color: $red-blood;
+    }
+  }
+
+  .tmt-form-property-control {
+    display: table-cell;
+    padding: 5px;
+    width: 50%;
+    text-align: left;
+  }
+}

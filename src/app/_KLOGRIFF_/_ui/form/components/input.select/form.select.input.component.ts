@@ -6,7 +6,7 @@ import {FormConfig} from "../../config/form.config";
 import {FormElementFocusService} from "../../services/form.element.focus.service";
 import {KeyCodes} from "../../../../../_utils/keyboard/keys";
 import {FormControlDataConfig} from "../../config/controls/form.control.data.config";
-import {Direction, Title} from "../../../../../_data/enums";
+import {Direction, Title} from "../../../../../_utils/data/enums";
 
 @Component({
 	selector: 'tmt-form-select-input',

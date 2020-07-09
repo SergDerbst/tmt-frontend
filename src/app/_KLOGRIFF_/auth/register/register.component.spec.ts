@@ -478,7 +478,7 @@ describe('RegisterComponent', () => {
 		});
 	});
 	
-	describe('xtra components', () => {
+	describe('xtra controls', () => {
 		let xtraContainer: Element;
 		let xtraItems: NodeListOf<Element>;
 		
@@ -487,7 +487,7 @@ describe('RegisterComponent', () => {
 			xtraItems = specHelper.select.xtraControlContainers(xtraContainer);
 		});
 		
-		it('should have no xtra components', () => {
+		it('should have no xtra controls', () => {
 			expect(xtraItems.length).toBe(0);
 		});
 	});
@@ -509,7 +509,7 @@ describe('RegisterComponent', () => {
 			expect(buttons[0]).toHaveAttribute('disabled');
 			expect(buttons[0]).toHaveAttribute('type', 'submit');
 			expect(buttons[0]).toHaveText('auth.register.form.button.register');
-			//text orientation of inline components is contrary to their visible position due to table cell display
+			//text orientation of inline controls is contrary to their visible position due to table cell display
 			expect(buttons[0].parentElement).toHaveClass('tmt-txt-right');
 		});
 		
@@ -517,7 +517,7 @@ describe('RegisterComponent', () => {
 			expect(buttons[1]).not.toHaveAttribute('disabled');
 			expect(buttons[1]).toHaveAttribute('type', 'button');
 			expect(buttons[1]).toHaveText('auth.register.form.button.cancel');
-			//text orientation of inline components is contrary to their visible position due to table cell display
+			//text orientation of inline controls is contrary to their visible position due to table cell display
 			expect(buttons[1].parentElement).toHaveClass('tmt-txt-left');
 		});
 	});

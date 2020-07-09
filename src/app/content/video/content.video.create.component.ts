@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TranslateService} from "@ngx-translate/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
-import {ValidationRegExMap} from "../../_KLOGRIFF_/_ui/form/config/controls/validation/validation.reg.ex.map";
+import {ValidationRegexMap} from "../../_utils/form/validation/validation.regex.map";
 import {isEnter} from "../../_utils/keyboard/keys";
 
 @Component({
@@ -32,7 +32,7 @@ export class ContentVideoCreateComponent implements OnInit, AfterViewInit {
 			]),
 			url: new FormControl('', [
 				Validators.required,
-				Validators.pattern(new ValidationRegExMap().get('url'))
+				Validators.pattern(new ValidationRegexMap().get('url'))
 			])
 		});
 	}

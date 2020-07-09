@@ -18,7 +18,7 @@
  * BROWSER POLYFILLS
  */
 
-/** IE10 and IE11 requires the following for NgClass support on SVG components */
+/** IE10 and IE11 requires the following for NgClass support on SVG controls */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
 
 /**

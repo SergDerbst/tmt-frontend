@@ -14,4 +14,8 @@ export class FormControlValidation {
 		this.validator = config.validator;
 		this.value = config.value;
 	}
+	
+	password() {
+		return undefined;
+	}
 }

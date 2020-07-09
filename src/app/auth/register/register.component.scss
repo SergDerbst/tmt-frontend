@@ -1,47 +1,4 @@
 @import "../../../styles";
 
 .tmt-container {
-  .tmt-form-container {
-    text-align: center;
-    border: 1px solid $grey-dark;
-    border-radius: 5px;
-    vertical-align: middle;
-
-    .tmt-form {
-      display: inline-flex;
-      flex-direction: column;
-      width: 100%;
-
-      .tmt-form-title {
-        grid-area: title;
-        background-color: $grey-dark;
-        color: $blue-sky;
-        text-align: center;
-        padding: 5px 0;
-      }
-
-      .tmt-form-xtra-container {
-        padding: 20px 0 10px;
-        display: table;
-        width: 100%;
-
-        .tmt-form-separator {
-          min-height: 1em;
-          font-size: small;
-          color: $blue-sky;
-          text-align: center;
-        }
-
-        .tmt-form-button {
-          display: table-cell;
-          padding: 5px;
-          width: 50%;
-
-          button {
-            padding: 5px 50px;
-          }
-        }
-      }
-    }
-  }
 }

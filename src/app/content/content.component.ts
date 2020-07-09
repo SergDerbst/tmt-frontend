@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {faNewspaper} from "@fortawesome/free-solid-svg-icons/faNewspaper";
 import {faVideo} from "@fortawesome/free-solid-svg-icons/faVideo";
 import {faPodcast} from "@fortawesome/free-solid-svg-icons/faPodcast";
-import {ContentFilter, ContentType} from "../_data/enums";
+import {ContentFilter, ContentType} from "../_utils/data/enums";
 import {TranslateService} from "@ngx-translate/core";
 import {ContentConfig} from "./content.config";
 import {SearchboxConfig} from "./filter/searchbox/searchbox.config";

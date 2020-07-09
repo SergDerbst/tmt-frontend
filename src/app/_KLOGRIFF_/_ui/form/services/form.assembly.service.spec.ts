@@ -25,7 +25,7 @@ describe('FormService', () => {
 	
 	beforeEach(() => formServiceSpectator = createFormService());
 	
-	describe('FormGroup with main properties and basic components', () => {
+	describe('FormGroup with main properties and basic controls', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({})));
 		
 		it('should create FormGroup with main properties and submit service', () => {
@@ -116,7 +116,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input.generic text components', () => {
+	describe('FormGroup with input.generic text controls', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputText({
@@ -147,7 +147,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input.generic email components', () => {
+	describe('FormGroup with input.generic email controls', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputEmail({
@@ -178,7 +178,7 @@ describe('FormService', () => {
 		});
 	});
 	
-	describe('FormGroup with input.generic password components', () => {
+	describe('FormGroup with input.generic password controls', () => {
 		beforeEach(() => form = formServiceSpectator.service.assemble(createFormConfig({
 			elements: [
 				new FormElementInputPassword({

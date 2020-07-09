@@ -29,7 +29,7 @@ export class AppConfigService {
 		if (!this.appConfig) {
 			this.loadConfig().then(data => {
 				if (!this.appConfig) {
-					throw Error('Config file could not be loaded, bitch!');
+					throw Error('KeyValueConfigutation file could not be loaded, bitch!');
 				}
 			});
 		}

@@ -1,4 +1,4 @@
-import {ContentFilter, ContentType} from "../../../_data/enums";
+import {ContentFilter, ContentType} from "../../../_utils/data/enums";
 
 export class SearchboxConfig {
 	placeholderPrefix: string;

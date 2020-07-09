@@ -1,0 +1,6 @@
+<div *ngIf="control.errors != null" class="tmt-validation-msg-container">
+  <div *ngFor="let error of control.errors | keyvalue" class="tmt-msg-severe">
+    <span [innerHTML]="formName + '.form.control.' + controlName | translate"></span>
+    <span [innerHTML]="'form.validation.message.field.' + error.key | translate"></span>
+  </div>
+</div>

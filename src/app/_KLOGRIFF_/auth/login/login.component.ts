@@ -6,7 +6,7 @@ import {FormGroupConfig} from "../../_ui/form/config/form.group.config";
 import {FormControlGenericInputConfig} from "../../_ui/form/config/controls/impl/form.control.generic.input.config";
 import {validation} from "../../_ui/form/config/controls/form.control.config";
 import {FormXtraButtonConfig} from "../../_ui/form/config/xtras/impl/form.xtra.button.config";
-import {Direction} from "../../../_data/enums";
+import {Direction} from "../../../_utils/data/enums";
 import {FormXtraLinkConfig} from "../../_ui/form/config/xtras/impl/form.xtra.link.config";
 import {Authenticated} from "../_data/authenticated";
 import {AuthenticationService} from "../_services/authentication.service";

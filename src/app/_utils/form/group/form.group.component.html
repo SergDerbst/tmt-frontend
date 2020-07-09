@@ -1,0 +1,7 @@
+<div class="tmt-form-property"
+     *ngFor="let control of groupConfig.formGroup.controls | keyvalue">
+  <tmt-form-control-generic-basic [formName]="formName"
+                                  [controlName]="control.key"
+                                  [controlConfig]="groupConfig.config[control.key]"></tmt-form-control-generic-basic>
+</div>
+

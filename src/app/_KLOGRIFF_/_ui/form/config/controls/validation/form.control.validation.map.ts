@@ -1,13 +1,13 @@
 import {FormControlValidation} from "./form.control.validation";
 import {AbstractControl, ValidationErrors, Validators} from "@angular/forms";
-import {ValidationRegExMap} from "./validation.reg.ex.map";
-import {DateTimeUnit, Operator} from "../../../../../../_data/enums";
+import {ValidationRegexMap} from "../../../../../../_utils/form/validation/validation.regex.map";
+import {DateTimeUnit, Operator} from "../../../../../../_utils/data/enums";
 import * as moment from 'moment';
 import {DataValidationService} from "../../../services/data/data.validation.service";
 
 export class FormControlValidationMap extends Map<string, FormControlValidation> {
 	control: string;
-	private regExpMap = new ValidationRegExMap();
+	private regExpMap = new ValidationRegexMap();
 	
 	constructor(control: string) {
 		super();

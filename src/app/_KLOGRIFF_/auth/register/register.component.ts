@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {DateTimeUnit, Direction, Sex, Title, UserRole} from '../../../_data/enums';
+import {DateTimeUnit, Direction, Sex, Title, UserRole} from '../../../_utils/data/enums';
 import {CountryDataService} from '../../_ui/form/services/data/country.data.service';
 import {FormGroupConfig} from '../../_ui/form/config/form.group.config';
 import {FormSubmitService} from "../../_ui/form/services/form.submit.service";

@@ -1,0 +1,24 @@
+<div class="tmt-form-property-label">
+  <tmt-form-control-label [controlName]="controlName"
+                          [required]="controlConfig.getParameter('required')"
+                          [translatePrefix]="formName + '.form.control.'"></tmt-form-control-label>
+</div>
+<div class="tmt-form-property-control">
+  <tmt-form-control-input *ngIf="controlConfig.getParameter('type').startsWith('input')"
+                          [type]="controlConfig.getParameter('type')"
+                          [control]="controlConfig.control"
+                          [formName]="formName"
+                          [controlName]="controlName"
+                          [index]="controlConfig.getParameter('index')"></tmt-form-control-input>
+  <tmt-form-control-select *ngIf="controlConfig.getParameter('type') === 'select'"
+                           [control]="controlConfig.control"
+                           [data]="controlConfig.getParameter('data')"
+                           [index]="controlConfig.getParameter('index')"
+                           [translatePrefix]="formName + '.form.control.' + controlName"></tmt-form-control-select>
+  <tmt-form-control-date *ngIf="controlConfig.getParameter('type') === 'date'"
+                         [control]="controlConfig.control"
+                         [index]="controlConfig.getParameter('index')"></tmt-form-control-date>
+  <tmt-form-control-error-msg [control]="controlConfig.control"
+                              [controlName]="controlName"
+                              [formName]="formName"></tmt-form-control-error-msg>
+</div>
