@@ -1,9 +1,8 @@
 import {FormControlValidation} from "./form.control.validation";
 import {AbstractControl, ValidationErrors, Validators} from "@angular/forms";
-import {ValidationRegexMap} from "../../../../../../_utils/form/validation/validation.regex.map";
-import {DateTimeUnit, Operator} from "../../../../../../_utils/data/enums";
+import {ValidationRegexMap} from "../../_utils/form/validation/validation.regex.map";
+import {DateTimeUnit, Operator} from "../../_utils/data/enums";
 import * as moment from 'moment';
-import {DataValidationService} from "../../../services/data/data.validation.service";
 
 export class FormControlValidationMap extends Map<string, FormControlValidation> {
 	control: string;
@@ -179,7 +178,7 @@ export class FormControlValidationMap extends Map<string, FormControlValidation>
 	setUnique(config: {
 		fieldName: string,
 		url: string,
-		validationService: DataValidationService<any>
+		//validationService: DataValidationService<any>
 	}) {
 		this.set('unique', new FormControlValidation({active: true, validator: unique}));
 		
@@ -187,7 +186,7 @@ export class FormControlValidationMap extends Map<string, FormControlValidation>
 			let valid = { ['unique']: false };
 			if (control.statusChanges) {
 				if (control.value && control.valid) {
-					config.validationService.validate({
+					/**config.validationService.validate({
 						toValidate: control.value,
 						fieldName: config.fieldName,
 						url: config.url
@@ -202,6 +201,7 @@ export class FormControlValidationMap extends Map<string, FormControlValidation>
 							control.errors.unique = undefined;
 						}
 					});
+					 */
 				}
 			}
 			return null;

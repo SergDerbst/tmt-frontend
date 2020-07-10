@@ -6,7 +6,6 @@ import { ContentComponent } from './content.component';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpClient } from "@angular/common/http";
-import { httpTranslateLoader } from "../_KLOGRIFF_/_ui/_ui.module";
 import { ContentFilterComponent } from "./filter/content.filter.component";
 import { Searchbox } from "./filter/searchbox/searchbox";
 import {ContentArticleEditComponent} from "./article/content.article.edit.component";
@@ -19,6 +18,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ContentVideoCreateComponent} from "./video/content.video.create.component";
 import {ContentArticleCreateComponent} from "./article/content.article.create.component";
 import {ContentPodcastCreateComponent} from "./podcast/content.podcast.create.component";
+import {httpTranslateLoader} from "../app.module";
 
 
 @NgModule({

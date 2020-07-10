@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {FormGroupConfig} from "../config/form.group.config";
 
 @Component({
@@ -6,8 +6,11 @@ import {FormGroupConfig} from "../config/form.group.config";
 	templateUrl: './form.group.component.html',
 	styleUrls: ['./form.group.component.scss']
 })
-export class FormGroupComponent {
+export class FormGroupComponent implements OnInit {
 	@Input() formName: string;
 	@Input() groupName: string;
 	@Input() groupConfig: FormGroupConfig;
+	
+	ngOnInit(): void {
+	}
 }

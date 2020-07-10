@@ -78,10 +78,10 @@
   "form.validation.message.field.equalValue.password": "Passwords",
   "form.validation.message.field.equalValue.passwordConfirm": "Passwords",
   "form.validation.message.field.minlength": " must be at least {{ number }} characters long.",
-  "form.validation.message.field.pwLowercase": " must have at least one lower case character.",
-  "form.validation.message.field.pwUppercase": " must have at least one upper case character.",
-  "form.validation.message.field.pwNumeric": " must have at least one numeric character.",
-  "form.validation.message.field.pwSpecial": " must have at least one special character.",
+  "form.validation.message.field.lowercase": " must have at least one lower case character.",
+  "form.validation.message.field.uppercase": " must have at least one upper case character.",
+  "form.validation.message.field.numeric": " must have at least one numeric character.",
+  "form.validation.message.field.specialCharacter": " must have at least one special character.",
   "form.validation.message.field.required": " is required.",
   "form.validation.message.field.unique": " already exists."
 }

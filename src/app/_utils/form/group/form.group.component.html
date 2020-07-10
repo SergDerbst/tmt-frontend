@@ -1,7 +1,29 @@
-<div class="tmt-form-property"
-     *ngFor="let control of groupConfig.formGroup.controls | keyvalue">
-  <tmt-form-control-generic-basic [formName]="formName"
-                                  [controlName]="control.key"
-                                  [controlConfig]="groupConfig.config[control.key]"></tmt-form-control-generic-basic>
+<div *ngFor="let control of groupConfig.controls">
+  <div class="tmt-form-property">
+    <div class="tmt-form-property-label">
+      <tmt-form-control-label [controlName]="control.getParameter('name')"
+                              [required]="control.getParameter('required')"
+                              [translatePrefix]="formName + '.form.control.'"></tmt-form-control-label>
+    </div>
+    <div class="tmt-form-property-control">
+      <tmt-form-control-input *ngIf="control.getParameter('type').startsWith('input')"
+                              [type]="control.getParameter('type')"
+                              [control]="control.control"
+                              [formName]="formName"
+                              [controlName]="control.getParameter('name')"
+                              [index]="control.getParameter('index')"></tmt-form-control-input>
+      <tmt-form-control-select *ngIf="control.getParameter('type') === 'select'"
+                               [control]="control.control"
+                               [data]="control.getParameter('data')"
+                               [index]="control.getParameter('index')"
+                               [translatePrefix]="formName + '.form.control.' + control.getParameter('name')"></tmt-form-control-select>
+      <tmt-form-control-date *ngIf="control.getParameter('type') === 'date'"
+                             [control]="control.control"
+                             [index]="control.getParameter('index')"></tmt-form-control-date>
+      <tmt-form-control-error-msg [control]="control.control"
+                                  [controlName]="control.getParameter('name')"
+                                  [formName]="formName"></tmt-form-control-error-msg>
+    </div>
+  </div>
 </div>
 

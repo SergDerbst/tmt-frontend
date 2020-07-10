@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {FormConfig} from "./config/form.group.config";
 
 @Component({
@@ -6,11 +6,14 @@ import {FormConfig} from "./config/form.group.config";
 	templateUrl: './form.component.html',
 	styleUrls: ['./form.component.scss']
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
 	@Input() formName: string;
 	@Input() formConfig: FormConfig;
 	
 	onSubmit() {
 		console.log('arsch Puperz');
+	}
+	
+	ngOnInit(): void {
 	}
 }

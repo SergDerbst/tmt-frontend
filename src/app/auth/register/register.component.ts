@@ -11,7 +11,7 @@ import {FormConfig, FormGroupConfig, FormControlConfig} from "../../_utils/form/
 	styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-	form: FormConfig;
+	formConfig: FormConfig;
 	
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder) {
@@ -23,10 +23,13 @@ export class RegisterComponent implements OnInit {
 		let personalData = this.personalData();
 		let credentials = this.credentials();
 		
-		this.form = new FormConfig(this.fb.group({
+		this.formConfig = new FormConfig(this.fb.group({
 			personalData: personalData.formGroup,
 			credentials: credentials.formGroup
-		}));
+		})).setGroups([
+			personalData,
+			credentials
+		]);
 	}
 	
 	private personalData() {
@@ -37,42 +40,50 @@ export class RegisterComponent implements OnInit {
 			lastName: [''],
 			dayOfBirth: [''],
 			sex: [Sex.Male]
-		}));
+		})).setConfiguration({
+			name: 'personalData'
+		});
 		
-		personalData.setConfiguration({
-			title: new FormControlConfig(<FormControl> personalData.formGroup.controls.title).setConfiguration({
+		personalData.setControls([
+			new FormControlConfig(<FormControl> personalData.formGroup.controls.title).setConfiguration({
+				name: 'title',
 				type: 'select',
 				required: true,
 				index: 2,
 				data: [Title.Mr, Title.Ms]
 			}),
-			firstName: new FormControlConfig(<FormControl> personalData.formGroup.controls.firstName).setConfiguration({
+			new FormControlConfig(<FormControl> personalData.formGroup.controls.firstName).setConfiguration({
+				name: 'firstName',
 				type: 'input.text',
 				required: true,
 				index: 3
 			}),
-			middleName: new FormControlConfig(<FormControl> personalData.formGroup.controls.middleName).setConfiguration({
+			new FormControlConfig(<FormControl> personalData.formGroup.controls.middleName).setConfiguration({
+				name: 'middleName',
 				type: 'input.text',
 				required: false,
 				index: 4
 			}),
-			lastName: new FormControlConfig(<FormControl> personalData.formGroup.controls.lastName).setConfiguration({
+			new FormControlConfig(<FormControl> personalData.formGroup.controls.lastName).setConfiguration({
+				name: 'lastName',
 				type: 'input.text',
 				required: true,
 				index: 5
 			}),
-			dayOfBirth: new FormControlConfig(<FormControl> personalData.formGroup.controls.dayOfBirth).setConfiguration({
+			new FormControlConfig(<FormControl> personalData.formGroup.controls.dayOfBirth).setConfiguration({
+				name: 'dayOfBirth',
 				type: 'date',
 				required: true,
 				index: 6
 			}),
-			sex: new FormControlConfig(<FormControl> personalData.formGroup.controls.sex).setConfiguration({
+			new FormControlConfig(<FormControl> personalData.formGroup.controls.sex).setConfiguration({
+				name: 'sex',
 				type: 'select',
 				required: true,
 				index: 7,
 				data: [Sex.Male, Sex.Female, Sex.Other]
-			}),
-		});
+			})
+		]);
 		
 		validation(personalData.formGroup.get('title'))
 			.required()
@@ -100,35 +111,42 @@ export class RegisterComponent implements OnInit {
 			passwordConfirm: [''],
 			email: [''],
 			emailConfirm: [''],
-		}));
+		})).setConfiguration({
+			name: 'credentials'
+		});
 		
-		credentials.setConfiguration({
-			username: new FormControlConfig(<FormControl> credentials.formGroup.controls.username).setConfiguration({
+		credentials.setControls([
+			new FormControlConfig(<FormControl> credentials.formGroup.controls.username).setConfiguration({
+				name: 'username',
 				type: 'input.text',
 				required: true,
 				index: 8
 			}),
-			password: new FormControlConfig(<FormControl> credentials.formGroup.controls.password).setConfiguration({
+			new FormControlConfig(<FormControl> credentials.formGroup.controls.password).setConfiguration({
+				name: 'password',
 				type: 'input.text',
 				required: true,
 				index: 9
 			}),
-			passwordConfirm: new FormControlConfig(<FormControl> credentials.formGroup.controls.passwordConfirm).setConfiguration({
+			new FormControlConfig(<FormControl> credentials.formGroup.controls.passwordConfirm).setConfiguration({
+				name: 'passwordConfirm',
 				type: 'input.text',
 				required: true,
 				index: 10
 			}),
-			email: new FormControlConfig(<FormControl> credentials.formGroup.controls.email).setConfiguration({
+			new FormControlConfig(<FormControl> credentials.formGroup.controls.email).setConfiguration({
+				name: 'email',
 				type: 'input.text',
 				required: true,
 				index: 11
 			}),
-			emailConfirm: new FormControlConfig(<FormControl> credentials.formGroup.controls.emailConfirm).setConfiguration({
+			new FormControlConfig(<FormControl> credentials.formGroup.controls.emailConfirm).setConfiguration({
+				name: 'emailConfirm',
 				type: 'input.text',
 				required: true,
 				index: 12
-			}),
-		});
+			})
+		]);
 		
 		validation(credentials.formGroup.get('username'))
 			.required()

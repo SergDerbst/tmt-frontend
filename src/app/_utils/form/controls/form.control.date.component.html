@@ -1,4 +1,4 @@
-<a [className]="control.errors != null ?
+<a [className]="control.touched && control.errors != null ?
                'tmt-date-input tmt-invalid' : 'tmt-date-input'"
    [tabindex]="index"
    (keyup)="keyUp($event)"

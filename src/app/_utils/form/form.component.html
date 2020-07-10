@@ -1,15 +1,15 @@
 <div class="tmt-form-container">
-  <form class="tmt-form" [formGroup]="formConfig" (ngSubmit)="onSubmit()">
-    <div class="tmt-form-title" [innerHTML]="'auth.register.form.caption' | translate"></div>
+  <form class="tmt-form" [formGroup]="formConfig.form" (ngSubmit)="onSubmit()">
+    <div class="tmt-form-title" [innerHTML]="formName + '.form.caption' | translate"></div>
     <div class="tmt-form-group"
-         *ngFor="let group of formConfig.form.controls | keyvalue">
+         *ngFor="let group of formConfig.groups; let i = index">
       <div class="tmt-form-separator"></div>
       <div class="tmt-form-separator tmt-form-group-separator">
-        <span [innerHTML]="formName + '.form.group.caption.' + group.key | translate"></span>
+        <span [innerHTML]="formName + '.form.group.caption.' + group.getParameter('name') | translate"></span>
       </div>
       <tmt-form-group [formName]="formName"
-                      [groupName]="group.key"
-                      [groupConfig]="formConfig.config[group.key]"></tmt-form-group>
+                      [groupName]="group.getParameter('name')"
+                      [groupConfig]="group"></tmt-form-group>
     </div>
     <div class="tmt-form-xtra-container">
       <div class="tmt-form-button tmt-txt-right">

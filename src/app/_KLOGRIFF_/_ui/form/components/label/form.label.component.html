@@ -1,6 +1,0 @@
-<label>
-  <span *ngIf="showRequired && config.validation.hasActive('required')"
-        [className]="control.errors != null && control.errors.required ?
-        'tmt-form-control-required tmt-blood-red' : 'tmt-form-control-required'">*&nbsp;</span>
-  <span [innerHtml]="formId + '.form.control.' + config.key | translate"></span>
-</label>

@@ -3,8 +3,8 @@ import {FormControl} from "@angular/forms";
 
 @Component({
 	selector: 'tmt-form-control-error-msg',
-	templateUrl: './error.mgs.component.html',
-	styleUrls: ['./form-control-error-msg.component.scss']
+	templateUrl: './form.control.error.mgs.component.html',
+	styleUrls: ['./form.control.error.msg.component.scss']
 })
 export class FormControlErrorMsgComponent {
 	@Input() control: FormControl;

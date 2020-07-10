@@ -37,7 +37,7 @@ export class FormControlValidation {
 	specialCharacter(): ValidatorFn {
 		return (control:AbstractControl): ValidationErrors | null => {
 			if (!validationRegex().get('Special').test(control.value)) {
-				return { specialCase: true };
+				return { specialCharacter: true };
 			}
 			return null;
 		}
@@ -54,7 +54,7 @@ export class FormControlValidation {
 }
 
 /**
- * Factory for form validation.
+ * Factory for formConfig validation.
  *
  * @param control
  */

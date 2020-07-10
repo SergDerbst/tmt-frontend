@@ -1,3 +1,5 @@
+@import "../../../styles";
+
 .tmt-form-container {
   text-align: center;
   border: 1px solid $grey-dark;
@@ -15,6 +17,25 @@
       color: $blue-sky;
       text-align: center;
       padding: 5px 0;
+    }
+
+    .tmt-form-group {
+      padding-top: 5px;
+
+      .tmt-form-separator {
+        min-height: 1em;
+        font-size: small;
+        color: $blue-sky;
+        text-align: center;
+
+        &.tmt-form-group-separator {
+          margin-bottom: 5px;
+        }
+
+        span {
+          background: $grey-bright;
+        }
+      }
     }
 
     .tmt-form-xtra-container {

@@ -1,8 +1,12 @@
 /**
  * Abstract base class for key-value configurations.
  */
-export abstract class KeyValueConfigutation<T> {
+export abstract class KeyValueConfiguration<T> {
 	config: { [key: string]: T };
+	
+	protected constructor() {
+		this.config = {};
+	}
 	
 	/**
 	 * Sets the configuration. Warning: it will overwrite any given configration.

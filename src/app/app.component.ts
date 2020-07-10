@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "./_KLOGRIFF_/auth/_data/authenticated";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,6 @@ import {User} from "./_KLOGRIFF_/auth/_data/authenticated";
   styles: []
 })
 export class AppComponent implements OnInit {
-  user:User;
   
   constructor() {}
   

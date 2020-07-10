@@ -6,7 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 	templateUrl: './form.control.label.component.html',
 	styleUrls: ['./form.control.label.component.scss']
 })
-export class FormControlLabelComponent  {
+export class FormControlLabelComponent {
 	@Input() controlName: string;
 	@Input() required: boolean;
 	@Input() translatePrefix: string;

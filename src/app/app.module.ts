@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, ApplicationRef, DoBootstrap, NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -14,9 +14,9 @@ import {MainComponent} from './main/main.component';
 import {AppConfigService} from "./app.config.service";
 import {MainSidebarComponent} from "./main/sidebar/main.sidebar.component";
 import {MainToolbox} from "./main/sidebar/main.toolbox/main.toolbox";
-import {AuthHttpInterceptor} from "./_KLOGRIFF_/auth/_services/auth.http.interceptor";
 import {FeedComponent} from "./content/feed/feed.component";
 import {UtilsModule} from "./_utils/_utils.module";
+import {AuthHttpInterceptor} from "./auth/auth.http.interceptor";
 
 @NgModule({
   declarations: [

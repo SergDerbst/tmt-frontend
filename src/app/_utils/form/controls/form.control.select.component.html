@@ -1,7 +1,7 @@
 <a [ngClass]="{'tmt-select-box': true, 'tmt-invalid': control.errors != null }"
    (click)="toggleList()"
    [tabIndex]="index">
-  <span class="tmt-value" [innerHTML]="translatePrefix + control.value | translate"></span>
+  <span class="tmt-value" [innerHTML]="translatePrefix + '.' + control.value | translate"></span>
   <span class="tmt-toggle">
     <fa-icon *ngIf="showList" [icon]="faCaretDown"></fa-icon>
     <fa-icon *ngIf="!showList" [icon]="faCaretLeft"></fa-icon>
@@ -11,5 +11,5 @@
   <li *ngFor="let item of data; let i = index"
       (click)="select(i)"
       [ngClass]="{'tmt-selected': item === control.value}"
-      [innerHTML]="translatePrefix + item | translate"></li>
+      [innerHTML]="translatePrefix + '.' + item | translate"></li>
 </ul>
