@@ -13,10 +13,12 @@
     </div>
     <div class="tmt-form-xtra-container">
       <div class="tmt-form-button tmt-txt-right">
-        <button [innerHTML]="formName + '.form.button.register' | translate"></button>
+        <button type="submit"
+                [innerHTML]="formName + '.form.button.register' | translate"></button>
       </div>
       <div class="tmt-form-button tmt-txt-left">
-        <button [innerHTML]="formName + '.form.button.cancel' | translate"></button>
+        <button type="button"
+                [innerHTML]="formName + '.form.button.cancel' | translate"></button>
       </div>
     </div>
   </form>

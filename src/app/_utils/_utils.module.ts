@@ -13,6 +13,7 @@ import {FormControlErrorMsgComponent} from "./form/validation/form.control.error
 import {FormGroupComponent} from "./form/group/form.group.component";
 import {FormComponent} from "./form/form.component";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {FormControlValidationService} from "./form/validation/form.control.validation.service";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
     FormControlSelectComponent,
     FormControlErrorMsgComponent
   ],
-  providers: []
+  providers: [
+    FormControlValidationService
+  ]
 })
 export class UtilsModule {}
 

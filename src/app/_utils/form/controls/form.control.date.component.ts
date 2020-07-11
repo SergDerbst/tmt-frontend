@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {FormControl} from "@angular/forms";
 import {isBackspace, isEsc, isNumeric} from "../../keyboard/keys";
-import {DateFormatMap} from "../../data/date.format.map";
+import {DateFormatMap} from "../../data/date.and.time";
 import {DateTimeUnit} from "../../data/enums";
 import {AppConfigService} from "../../../app.config.service";
 

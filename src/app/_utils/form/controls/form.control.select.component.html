@@ -1,4 +1,4 @@
-<a [ngClass]="{'tmt-select-box': true, 'tmt-invalid': control.errors != null }"
+<a [ngClass]="{'tmt-select-box': true}"
    (click)="toggleList()"
    [tabIndex]="index">
   <span class="tmt-value" [innerHTML]="translatePrefix + '.' + control.value | translate"></span>

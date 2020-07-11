@@ -20,7 +20,9 @@
       <tmt-form-control-date *ngIf="control.getParameter('type') === 'date'"
                              [control]="control.control"
                              [index]="control.getParameter('index')"></tmt-form-control-date>
-      <tmt-form-control-error-msg [control]="control.control"
+      <tmt-form-control-error-msg *ngIf="control.control.touched"
+                                  [control]="control.control"
+                                  [config]="control"
                                   [controlName]="control.getParameter('name')"
                                   [formName]="formName"></tmt-form-control-error-msg>
     </div>

@@ -2,8 +2,9 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {TranslateService} from "@ngx-translate/core";
 import {Sex, Title} from "../../_utils/data/enums";
-import {validation} from "../../_utils/form/validation/form.control.validation";
+import {FormControlValidationService} from "../../_utils/form/validation/form.control.validation.service";
 import {FormConfig, FormGroupConfig, FormControlConfig} from "../../_utils/form/config/form.group.config";
+import {FormControlValidationDate} from "../../_utils/form/validation/form.control.validation.date";
 
 @Component({
 	selector: 'tmt-register',
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 	formConfig: FormConfig;
 	
 	constructor(public translate: TranslateService,
-	            private fb: FormBuilder) {
+	            private fb: FormBuilder,
+	            private validation: FormControlValidationService) {
 		translate.addLangs(['de', 'en']);
 		translate.setDefaultLang('en');
 	}
@@ -74,7 +76,9 @@ export class RegisterComponent implements OnInit {
 				name: 'dayOfBirth',
 				type: 'date',
 				required: true,
-				index: 6
+				index: 6,
+				minimumAge: FormControlValidationDate.Default_Minimum_Age,
+				maximumAge: FormControlValidationDate.Default_Maximum_Age
 			}),
 			new FormControlConfig(<FormControl> personalData.formGroup.controls.sex).setConfiguration({
 				name: 'sex',
@@ -85,19 +89,26 @@ export class RegisterComponent implements OnInit {
 			})
 		]);
 		
-		validation(personalData.formGroup.get('title'))
+		let title = personalData.formGroup.get('title'),
+				firstName = personalData.formGroup.get('firstName'),
+				lastName = personalData.formGroup.get('lastName'),
+				dayOfBirth = personalData.formGroup.get('dayOfBirth'),
+				sex = personalData.formGroup.get('sex');
+		
+		this.validation.prepare(title)
 			.required()
 			.compose();
-		validation(personalData.formGroup.get('firstName'))
+		this.validation.prepare(firstName)
 			.required()
 			.compose();
-		validation(personalData.formGroup.get('lastName'))
+		this.validation.prepare(lastName)
 			.required()
 			.compose();
-		validation(personalData.formGroup.get('dayOfBirth'))
+		this.validation.prepare(dayOfBirth)
 			.required()
+			.date().complete()
 			.compose();
-		validation(personalData.formGroup.get('sex'))
+		this.validation.prepare(sex)
 			.required()
 			.compose();
 		
@@ -124,48 +135,52 @@ export class RegisterComponent implements OnInit {
 			}),
 			new FormControlConfig(<FormControl> credentials.formGroup.controls.password).setConfiguration({
 				name: 'password',
-				type: 'input.text',
+				type: 'input.password',
 				required: true,
-				index: 9
+				index: 9,
+				minLength: 8
 			}),
 			new FormControlConfig(<FormControl> credentials.formGroup.controls.passwordConfirm).setConfiguration({
 				name: 'passwordConfirm',
-				type: 'input.text',
+				type: 'input.password',
 				required: true,
 				index: 10
 			}),
 			new FormControlConfig(<FormControl> credentials.formGroup.controls.email).setConfiguration({
 				name: 'email',
-				type: 'input.text',
+				type: 'input.email',
 				required: true,
 				index: 11
 			}),
 			new FormControlConfig(<FormControl> credentials.formGroup.controls.emailConfirm).setConfiguration({
 				name: 'emailConfirm',
-				type: 'input.text',
+				type: 'input.email',
 				required: true,
 				index: 12
 			})
 		]);
 		
-		validation(credentials.formGroup.get('username'))
-			.required()
+		this.validation.prepare(credentials.formGroup.get('username'))
 			.minLength(3)
-			.compose();
-		validation(credentials.formGroup.get('password'))
 			.required()
+			.unique('username')
+			.compose();
+		this.validation.prepare(credentials.formGroup.get('password'))
 			.password()
-			.compose();
-		validation(credentials.formGroup.get('passwordConfirm'))
-			.required()
-			//TODO: equalValue(other: AbstractControl)
-			.compose();
-		validation(credentials.formGroup.get('email'))
 			.required()
 			.compose();
-		validation(credentials.formGroup.get('emailConfirm'))
+		this.validation.prepare(credentials.formGroup.get('passwordConfirm'))
+			.equalTo(credentials.formGroup.get('password')).password()
 			.required()
-			//TODO: equalValue(other: AbstractControl)
+			.compose();
+		this.validation.prepare(credentials.formGroup.get('email'))
+			.email()
+			.required()
+			.unique('email')
+			.compose();
+		this.validation.prepare(credentials.formGroup.get('emailConfirm'))
+			.required()
+			.equalTo(credentials.formGroup.get('email')).email()
 			.compose();
 		
 		return credentials;
