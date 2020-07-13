@@ -36,10 +36,10 @@ export class FormControlValidationDate {
 			switch(operator) {
 				case Operator.LessThan:
 					return now.diff(value, period.unit) < period.amount ? {
-						dateMinPast: { active: true, dateMinPast: period }} : { active: false };
+						dateMinPast: { active: true, dateMinPast: period }} : null;
 				case Operator.MoreThan:
 					return now.diff(value, period.unit) > period.amount ? {
-						dateMaxPast: { active: true, dateMaxPast: period }} : { active: false };
+						dateMaxPast: { active: true, dateMaxPast: period }} : null;
 			}
 		};
 		
@@ -59,10 +59,10 @@ export class FormControlValidationDate {
 		return (control: AbstractControl): ValidationErrors | null => {
 			let date = control.value;
 			let extendedMonth = function () {
-				return date.day < 1 || date.day > 31 ? { dateDay: { active: true }} : { dateDay: { active: false }};
+				return date.day < 1 || date.day > 31 ? { dateDay: { active: true }} : null;
 			};
 			let standardMonth = function () {
-				return date.day < 1 || date.day > 30 ? { dateDay: { active: true }} : { dateDay: { active: false }};
+				return date.day < 1 || date.day > 30 ? { dateDay: { active: true }} : null;
 			};
 			let leapMonth = function () {
 				return date.month && date.month === 2;
@@ -71,10 +71,10 @@ export class FormControlValidationDate {
 				return date.year && date.year % 4 === 0 && leapMonth();
 			};
 			let extendedLeap = function () {
-				return date.day < 1 || date.day > 29 ? { dateDay: { active: true }} : { dateDay: { active: false }};
+				return date.day < 1 || date.day > 29 ? { dateDay: { active: true }} : null;
 			};
 			let standardLeap = function () {
-				return date.day < 1 || date.day > 28 ? { dateDay: { active: true }} : { dateDay: { active: false }};
+				return date.day < 1 || date.day > 28 ? { dateDay: { active: true }} : null;
 			};
 			
 			if (date.month && date.day) {
@@ -99,7 +99,7 @@ export class FormControlValidationDate {
 						return standardMonth();
 				}
 			}
-			return { dateDay: { active: false }};
+			return null;
 		}
 	}
 	
@@ -114,7 +114,7 @@ export class FormControlValidationDate {
 			if (this.dateDoneTyping(control.value)) {
 				return this.validatePast(control, maxPast, Operator.MoreThan);
 			}
-			return { maxPast: { active: false }};
+			return null;
 		}
 	}
 	
@@ -129,7 +129,7 @@ export class FormControlValidationDate {
 			if (this.dateDoneTyping(control.value)) {
 				return this.validatePast(control, minPast, Operator.LessThan);
 			}
-			return { maxPast: { active: false }};
+			return null;
 		}
 	}
 	
@@ -144,9 +144,9 @@ export class FormControlValidationDate {
 					control.value.month - 1,
 					control.value.day]).startOf(DateTimeUnit.day);
 				const now = moment().startOf(DateTimeUnit.day);
-				return now.diff(value, DateTimeUnit.day) < 0 ? { dateFuture: { active: true }} : { dateFuture: { active: false }};
+				return now.diff(value, DateTimeUnit.day) < 0 ? { dateFuture: { active: true }} : null;
 			}
-			return { dateFuture: { active: false }};
+			return null;
 		}
 	}
 	
@@ -159,7 +159,7 @@ export class FormControlValidationDate {
 			if (date.month && (date.month < 1 || date.month > 12)) {
 				return { dateMonth: { active: true }};
 			}
-			return { dateFuture: { active: false }};
+			return null;
 		}
 	}
 }

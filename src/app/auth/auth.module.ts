@@ -9,10 +9,22 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {CommonModule} from "@angular/common";
 import {UtilsModule} from "../_utils/_utils.module";
 import {httpTranslateLoader} from "../app.module";
+import {AuthService} from "./auth.service";
+import {JwtModule} from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+	return localStorage.getItem('tmt_access_token');
+}
 
 @NgModule({
 	imports: [
 		AuthRoutingModule,
+		JwtModule.forRoot({
+			config: {
+				tokenGetter: tokenGetter,
+				whitelistedDomains: ['arsch.morz'],
+			}
+		}),
 		ReactiveFormsModule,
 		TranslateModule.forChild({
 			loader: {
@@ -29,7 +41,9 @@ import {httpTranslateLoader} from "../app.module";
 		LoginComponent,
 		RegisterComponent
 	],
-	providers: []
+	providers: [
+		AuthService
+	]
 })
 export class AuthModule {
 }

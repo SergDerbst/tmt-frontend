@@ -14,10 +14,12 @@
     <div class="tmt-form-xtra-container">
       <div class="tmt-form-button tmt-txt-right">
         <button type="submit"
+                [disabled]="!formConfig.form.valid"
                 [innerHTML]="formName + '.form.button.register' | translate"></button>
       </div>
       <div class="tmt-form-button tmt-txt-left">
         <button type="button"
+                (click)="cancel()"
                 [innerHTML]="formName + '.form.button.cancel' | translate"></button>
       </div>
     </div>

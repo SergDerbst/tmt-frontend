@@ -10,4 +10,6 @@ export class AuthService {
 		const token = localStorage.getItem('tmt-token');
 		return !this.jwtHelper.isTokenExpired(token);
 	}
+	
+	
 }
