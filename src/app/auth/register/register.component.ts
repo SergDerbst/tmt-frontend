@@ -5,6 +5,8 @@ import {Sex, Title} from "../../_utils/data/enums";
 import {FormControlValidationService} from "../../_utils/form/validation/form.control.validation.service";
 import {FormConfig, FormGroupConfig, FormControlConfig} from "../../_utils/form/config/form.group.config";
 import {FormControlValidationDate} from "../../_utils/form/validation/form.control.validation.date";
+import {Observable} from "rxjs";
+import {AuthService} from "../auth.service";
 
 @Component({
 	selector: 'tmt-register',
@@ -16,7 +18,8 @@ export class RegisterComponent implements OnInit {
 	
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
-	            private validation: FormControlValidationService) {
+	            private validation: FormControlValidationService,
+	            private authService: AuthService) {
 		translate.addLangs(['de', 'en']);
 		translate.setDefaultLang('en');
 	}
@@ -28,7 +31,9 @@ export class RegisterComponent implements OnInit {
 		this.formConfig = new FormConfig(this.fb.group({
 			personalData: personalData.formGroup,
 			credentials: credentials.formGroup
-		})).setGroups([
+		}), ():void => {
+			this.authService.register(this.formConfig.form.value);
+		}).setGroups([
 			personalData,
 			credentials
 		]);

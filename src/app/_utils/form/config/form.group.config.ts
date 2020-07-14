@@ -1,5 +1,6 @@
 import {FormControl, FormGroup} from "@angular/forms";
 import {KeyValueConfiguration} from "../../data/key.value.configuration";
+import {Observable} from "rxjs";
 
 /**
  * Since Angular doesn't yet allow coniguration parameters on FormGroups and FormControls,
@@ -10,10 +11,13 @@ import {KeyValueConfiguration} from "../../data/key.value.configuration";
 export class FormConfig extends KeyValueConfiguration<FormGroupConfig> {
 	form: FormGroup;
 	groups: FormGroupConfig[];
+	submit: () => void;
 
-	constructor(form: FormGroup) {
+	constructor(form: FormGroup,
+	            submit: () => void) {
 		super();
 		this.form =  form;
+		this.submit = submit;
 	}
 	
 	setGroups(groups: FormGroupConfig[]): FormConfig {

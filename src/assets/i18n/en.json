@@ -13,8 +13,9 @@
   "app.location.hint.content.video.view": "&nbsp;",
 
   "auth.login.form.button.cancel": "Cancel",
-  "auth.login.form.button.login": "Login",
-  "auth.login.form.caption": "Login:",
+  "auth.login.form.button.submit": "Login",
+  "auth.login.form.caption": "Login",
+  "auth.login.form.group.caption.login": "Login:",
   "auth.login.form.control.username": "Username or Email",
   "auth.login.form.control.password": "Password",
   "auth.login.form.group.caption.credentials": "Credentials",
@@ -22,7 +23,7 @@
   "auth.login.form.link.register": "Register",
 
   "auth.register.form.button.cancel": "Cancel",
-  "auth.register.form.button.register": "Register",
+  "auth.register.form.button.submit": "Register",
   "auth.register.form.caption": "Register:",
   "auth.register.form.group.caption.personalData": "Personal Data",
   "auth.register.form.control.title": "Title",

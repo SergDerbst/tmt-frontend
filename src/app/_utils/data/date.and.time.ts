@@ -19,3 +19,9 @@ export class SimpleTimePeriod {
 		this.unit = unit;
 	}
 }
+
+export class DayOfBirth {
+	day: number;
+	month: number;
+	year: number;
+}

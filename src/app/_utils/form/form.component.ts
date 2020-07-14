@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {FormConfig} from "./config/form.group.config";
 import {Router} from "@angular/router";
 import {AuthService} from "../../auth/auth.service";
+import {Observable} from "rxjs";
 
 @Component({
 	selector: 'tmt-form',
@@ -11,19 +12,15 @@ import {AuthService} from "../../auth/auth.service";
 export class FormComponent implements OnInit {
 	@Input() formName: string;
 	@Input() formConfig: FormConfig;
+	onSubmit: () => void;
 	
-	constructor(private router: Router,
-	            private authService: AuthService) {}
+	constructor(private router: Router) {}
 	
 	cancel() {
 		return this.router.navigateByUrl('/');
 	};
 	
-	onSubmit() {
-		console.log('arsch Puperz');
-		console.log(this.formConfig.form.value);
-	}
-	
 	ngOnInit(): void {
+		this.onSubmit = this.formConfig.submit;
 	}
 }
