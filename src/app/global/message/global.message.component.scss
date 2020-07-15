@@ -1,0 +1,25 @@
+@import "../../../styles";
+
+.tmt-container {
+  .tmt-msg-container {
+    text-align: center;
+    border: 1px solid $grey-dark;
+    border-radius: 5px;
+    vertical-align: middle;
+
+    .tmt-msg-title {
+      grid-area: title;
+      background-color: $grey-dark;
+      color: $blue-sky;
+      text-align: center;
+      padding: 5px 0;
+    }
+
+    .tmt-msg-content {
+      display: inline-flex;
+      flex-direction: column;
+      width: 100%;
+
+    }
+  }
+}

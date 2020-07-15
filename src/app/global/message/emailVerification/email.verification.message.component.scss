@@ -1,0 +1,17 @@
+@import "../../../../styles";
+
+.tmt-msg {
+  padding: 75px;
+
+  .tmt-msg-paragraph {
+
+    &.tmt-gap {
+      padding: 10px;
+    }
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 5px 50px;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="tmt-container">
+  <div class="tmt-msg-container">
+    <div class="tmt-msg-title" [innerHTML]="'global.message.' + type + '.' + id + '.title' | translate"></div>
+    <div class="tmt-message-content">
+      <tmt-msg-email-verification [state]="state"></tmt-msg-email-verification>
+    </div>
+  </div>
+</div>

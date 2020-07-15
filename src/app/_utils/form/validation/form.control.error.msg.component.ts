@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit} from "@angular/core";
 import {FormControl} from "@angular/forms";
-import {FormControlConfig} from "../config/form.group.config";
+import {FormControlConfig} from "../config/form.config";
 
 @Component({
 	selector: 'tmt-form-control-error-msg',

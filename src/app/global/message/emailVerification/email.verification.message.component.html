@@ -1,0 +1,20 @@
+<div class="tmt-msg">
+  <div class="tmt-msg-paragraph">
+    <span [innerHTML]="'global.message.email.verification.body.paragraph.0' | translate"></span>
+    <span class="tmt-italic">{{ state.email }}.</span>
+  </div>
+  <div class="tmt-msg-paragraph">
+    <span [innerHTML]="'global.message.email.verification.body.paragraph.1' | translate"></span>
+  </div>
+  <div class="tmt-msg-paragraph tmt-gap">
+    <span [innerHTML]="'global.message.email.verification.body.paragraph.2' | translate"></span>
+  </div>
+
+  <div class="tmt-msg-paragraph tmt-gap">
+    <span [innerHTML]="'global.message.email.verification.body.paragraph.3' | translate"></span>
+  </div>
+
+  <button type="button"
+          (click)="home()"
+          [innerHTML]="'global.message.email.verification.button.caption' | translate"></button>
+</div>

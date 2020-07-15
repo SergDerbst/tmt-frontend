@@ -11,6 +11,8 @@
   "app.location.hint.content.video.create": "Create Video",
   "app.location.hint.content.video.edit": "Edit Video",
   "app.location.hint.content.video.view": "&nbsp;",
+  "app.location.hint.global.message.email.verification": "Verify Email",
+  "app.location.hint.home": "Home",
 
   "auth.login.form.button.cancel": "Cancel",
   "auth.login.form.button.submit": "Login",
@@ -67,6 +69,14 @@
   "content.type.new.video": "New Video",
   "content.type.new.podcast": "New Podcast",
 
+  "global.message.email.verification.title": "Verification Email",
+  "global.message.email.verification.body.paragraph.0": "An email has been sent to ",
+  "global.message.email.verification.body.paragraph.1": "Please click the link provided in that email to verify the email address.",
+  "global.message.email.verification.body.paragraph.2": "Then login and enjoy having too many thoughts.",
+  "global.message.email.verification.body.paragraph.3": "Thanks for joining us and welcome!",
+  "global.message.email.verification.button.caption": "OK",
+
+  "form.error.message.auth.login.AuthorizationFailed": "Login failed. Username '{{ properties.username }}' cannot be matched to the given password.",
   "form.validation.message.field.dateDay": " must have a valid value for day.",
   "form.validation.message.field.dateMonth": " must have a valid value for month.",
   "form.validation.message.field.dateMaxPast": " must have been less than {{ number }} {{unit}}s ago.",

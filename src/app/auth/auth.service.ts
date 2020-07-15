@@ -11,30 +11,21 @@ export class AuthService {
 	
 	constructor(private appConfigService: AppConfigService,
 	            private http: HttpClient,
-	            private jwtHelper: JwtHelperService,
-	            private router: Router) {}
+	            private jwtHelper: JwtHelperService) {}
 	public isAuthenticated(): boolean {
 		const token = localStorage.getItem('tmt-token');
 		return !this.jwtHelper.isTokenExpired(token);
 	}
 	
 	public register(data: RegisterFormData) {
+		console.log('ficken dilla');
+		console.log(data);
 		return this.http.post(this.appConfigService.apiBaseUrl() + '/auth/register', data);
-		//TODO redirect to 'email has been sent, bitch' message
 	}
 	
 	public login(data: LoginFormData) {
-		this.http.post(this.appConfigService.apiBaseUrl() + '/auth/login', data.login, {
+		return this.http.post(this.appConfigService.apiBaseUrl() + '/auth/login', data.login, {
 			observe: 'response'
-		}).subscribe(
-			response => {
-				let data = <{ username: string, token: string }> response.body;
-				localStorage.setItem('tmt-username', data.username);
-				localStorage.setItem('tmt-token', data.token);
-				//TODO handle redirect to recent route
-				return this.router.navigateByUrl('/');
-			},error => {
-				console.log(error);
-			});
+		});
 	}
 }

@@ -25,7 +25,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe((value => {
-      this.location.hint = this.router.url.replace(/\//g, '.');
+      if (this.router.url === '/') {
+        this.location.hint = '.home';
+      } else {
+        this.location.hint = this.router.url.replace(/\//g, '.');
+      }
     }));
   }
 }

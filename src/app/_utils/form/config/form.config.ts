@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 export class FormConfig extends KeyValueConfiguration<FormGroupConfig> {
 	form: FormGroup;
 	groups: FormGroupConfig[];
+	errorMessage: FormErrorMessage;
 	submit: () => void;
 
 	constructor(form: FormGroup,
@@ -28,6 +29,10 @@ export class FormConfig extends KeyValueConfiguration<FormGroupConfig> {
 	setConfiguration(config: { [p: string]: any }): FormConfig {
 		super.setConfiguration(config);
 		return this;
+	}
+	
+	setErrorMessage(msgId: string, properties: { [key: string]: any }) {
+		this.errorMessage = new FormErrorMessage(msgId, properties);
 	}
 }
 
@@ -62,5 +67,15 @@ export class FormControlConfig extends KeyValueConfiguration<any> {
 	setConfiguration(config: { [p: string]: any }): FormControlConfig {
 		super.setConfiguration(config);
 		return this;
+	}
+}
+
+export class FormErrorMessage {
+	msgId: string;
+	properties: { [key: string]: any };
+	
+	constructor(msgId: string, properties: { [key: string]: any }) {
+		this.msgId = msgId;
+		this.properties = properties;
 	}
 }

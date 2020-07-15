@@ -59,6 +59,13 @@
           padding: 5px 50px;
         }
       }
+
+      .tmt-form-error-msg {
+        min-height: 1em;
+        font-size: small;
+        color:$red-blood;
+        text-align: center;
+      }
     }
   }
 }

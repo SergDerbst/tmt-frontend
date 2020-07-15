@@ -9,6 +9,7 @@
   "app.location.hint.content.video.create": "Video erstellen",
   "app.location.hint.content.video.edit": "Video bearbeiten",
   "app.location.hint.content.video.view": "&nbsp;",
+  "app.location.hint.global.message.email.verification": "Email bestätigen",
 
   "auth.login.form.button.cancel": "Abbrechen",
   "auth.login.form.button.login": "Einloggen",
@@ -64,6 +65,13 @@
   "content.type.new.video": "Neues Video",
   "content.type.new.podcast": "Neuer Podcast",
 
+  "global.message.email.verification.title": "Bestätigungsemail",
+  "global.message.email.verification.body.paragraph.0": "Wir haben eine Email an {{ email  }} verschickt.",
+  "global.message.email.verification.body.paragraph.1": "Bitte klicken Sie auf den enthaltenen Link, um Ihre Emailadresse zu bestätigen.",
+  "global.message.email.verification.body.paragraph.2": "Dann können Sie sich einloggen und es genießen, zu viele Gedanken zu haben.",
+  "global.message.email.verification.body.paragraph.3": "Vielen Dank, dass Sie sich uns anschließen und herzlich Willkommen!",
+
+  "form.error.message.auth.login.AuthorizationFailed": "Login fehlgeschlagen. Benutzername '{{ properties.username }}' kann dem gegebenen Passwort nicht zugeordnet werden.",
   "form.validation.message.field.email": " muss eine gültige Emailadresse sein.",
   "form.validation.message.field.equalValue": " müssen übereinstimmen.",
   "form.validation.message.field.equalValue.email": "Emailadressen",

@@ -11,6 +11,13 @@
                       [groupName]="group.getParameter('name')"
                       [groupConfig]="group"></tmt-form-group>
     </div>
+    <div class="tmt-form-xtra-container" *ngIf="formConfig.errorMessage">
+      <div class="tmt-form-error-msg">
+        <span [innerHTML]="'form.error.message.' + formName + '.' + formConfig.errorMessage.msgId | translate: {
+          properties: formConfig.errorMessage.properties
+        }"></span>
+      </div>
+    </div>
     <div class="tmt-form-xtra-container">
       <div class="tmt-form-button tmt-txt-right">
         <button type="submit"

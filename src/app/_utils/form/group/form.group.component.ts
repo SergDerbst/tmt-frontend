@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {FormGroupConfig} from "../config/form.group.config";
+import {FormGroupConfig} from "../config/form.config";
 
 @Component({
 	selector: 'tmt-form-group',

@@ -11,6 +11,7 @@ import {ContentVideoViewComponent} from "./video/content.video.view.component";
 import {ContentArticleCreateComponent} from "./article/content.article.create.component";
 import {ContentPodcastCreateComponent} from "./podcast/content.podcast.create.component";
 import {ContentVideoCreateComponent} from "./video/content.video.create.component";
+import {GlobalMessageComponent} from "../global/message/global.message.component";
 
 const routes: Routes = [
   { path: '', component: ContentComponent },

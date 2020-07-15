@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {FormConfig} from "./config/form.group.config";
+import {FormConfig} from "./config/form.config";
 import {Router} from "@angular/router";
 import {AuthService} from "../../auth/auth.service";
 import {Observable} from "rxjs";

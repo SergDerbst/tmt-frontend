@@ -1,11 +1,10 @@
-import {AfterViewInit, Component, OnInit} from "@angular/core";
-import {FormConfig, FormControlConfig, FormGroupConfig} from "../../_utils/form/config/form.group.config";
+import {Component, OnInit} from "@angular/core";
+import {FormConfig, FormControlConfig, FormGroupConfig} from "../../_utils/form/config/form.config";
 import {TranslateService} from "@ngx-translate/core";
 import {FormControlValidationService} from "../../_utils/form/validation/form.control.validation.service";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {log} from "util";
-import {Observable} from "rxjs";
+import {FormBuilder, FormControl} from "@angular/forms";
 import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
 	selector: 'tmt-login',
@@ -18,7 +17,8 @@ export class LoginComponent implements OnInit {
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
 	            private validation: FormControlValidationService,
-	            private authService: AuthService) {
+	            private authService: AuthService,
+	            private router: Router) {
 	}
 	
 	ngOnInit(): void {
@@ -27,7 +27,16 @@ export class LoginComponent implements OnInit {
 		this.formConfig = new FormConfig(this.fb.group({
 			login: loginGroup.formGroup
 		}), ():void => {
-			this.authService.login(this.formConfig.form.value);
+			this.authService.login(this.formConfig.form.value).subscribe(
+				response => {
+					let data = <{ username: string, token: string }> response.body;
+					localStorage.setItem('tmt-username', data.username);
+					localStorage.setItem('tmt-token', data.token);
+					//TODO handle redirect to recent route
+					return this.router.navigateByUrl('/');
+				},error => {
+					this.formConfig.setErrorMessage(error.error.name, error.error.properties);
+				});
 		}).setGroups([
 			loginGroup
 		]);
