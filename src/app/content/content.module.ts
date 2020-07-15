@@ -19,6 +19,7 @@ import {ContentVideoCreateComponent} from "./video/content.video.create.componen
 import {ContentArticleCreateComponent} from "./article/content.article.create.component";
 import {ContentPodcastCreateComponent} from "./podcast/content.podcast.create.component";
 import {httpTranslateLoader} from "../app.module";
+import {AuthModule} from "../auth/auth.module";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {httpTranslateLoader} from "../app.module";
 	  Searchbox
   ],
 	imports: [
+		AuthModule,
 		CommonModule,
 		ContentRoutingModule,
 		FontAwesomeModule,

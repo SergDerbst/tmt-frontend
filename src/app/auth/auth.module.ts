@@ -11,6 +11,7 @@ import {UtilsModule} from "../_utils/_utils.module";
 import {httpTranslateLoader} from "../app.module";
 import {AuthService} from "./auth.service";
 import {JwtModule} from "@auth0/angular-jwt";
+import {AuthRouteGuard} from "./auth.route.guard";
 
 export function tokenGetter() {
 	return localStorage.getItem('tmt_access_token');
@@ -42,7 +43,8 @@ export function tokenGetter() {
 		RegisterComponent
 	],
 	providers: [
-		AuthService
+		AuthService,
+		AuthRouteGuard
 	]
 })
 export class AuthModule {

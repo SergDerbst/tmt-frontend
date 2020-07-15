@@ -10,7 +10,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 	
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		if (!this.isExcluded(req)) {
-		
+			//TODO add JWT token
 		}
 		
 		return next.handle(req);
