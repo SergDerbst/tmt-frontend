@@ -1,6 +1,6 @@
 <div class="tmt-content-container">
   <div class="tmt-segment">
-    <form [formGroup]="mainForm"
+    <form [formGroup]="form"
           (keyup)="handleKeyEvent($event)"
           (ngSubmit)="createVideo()">
       <div class="tmt-form">
@@ -22,26 +22,26 @@
         <div class="tmt-form-button">
           <button type="submit"
                   [tabIndex]="3"
-                  [disabled]="!mainForm.valid">
+                  [disabled]="!form.valid">
             <fa-icon [icon]="faPlus"></fa-icon>
           </button>
         </div>
       </div>
       <div class="tmt-msg-container">
         <div>
-          <span *ngIf="mainForm.controls.title.touched &&
-                       mainForm.controls.title.errors != null &&
-                       mainForm.controls.title.errors.required"
+          <span *ngIf="form.controls.title.touched &&
+                       form.controls.title.errors != null &&
+                       form.controls.title.errors.required"
                 [innerHTML]="'content.create.video.title.error.msg.required' | translate">
           </span>
         </div>
         <div>
-          <span *ngIf="(mainForm.controls.url.touched &&
-                        mainForm.controls.url.errors != null &&
-                        mainForm.controls.url.errors.required) ||
-                       (mainForm.controls.url.touched &&
-                        mainForm.controls.url.errors != null &&
-                        mainForm.controls.url.errors.pattern != null)"
+          <span *ngIf="(form.controls.url.touched &&
+                        form.controls.url.errors != null &&
+                        form.controls.url.errors.required) ||
+                       (form.controls.url.touched &&
+                        form.controls.url.errors != null &&
+                        form.controls.url.errors.pattern != null)"
                [innerHTML]="'content.create.video.url.error.msg.valid.required' | translate">
           </span>
         </div>

@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { ContentRoutingModule } from './content-routing.module';
-import { ContentComponent } from './content.component';
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { HttpClient } from "@angular/common/http";
-import { ContentFilterComponent } from "./filter/content.filter.component";
-import { Searchbox } from "./filter/searchbox/searchbox";
+import {ContentRoutingModule} from './content-routing.module';
+import {ContentComponent} from './content.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {HttpClient} from "@angular/common/http";
+import {ContentFilterComponent} from "./filter/content.filter.component";
+import {Searchbox} from "./filter/searchbox/searchbox";
 import {ContentArticleEditComponent} from "./article/content.article.edit.component";
 import {ContentArticleViewComponent} from "./article/content.article.view.component";
 import {ContentPodcastEditComponent} from "./podcast/content.podcast.edit.component";
@@ -20,6 +20,7 @@ import {ContentArticleCreateComponent} from "./article/content.article.create.co
 import {ContentPodcastCreateComponent} from "./podcast/content.podcast.create.component";
 import {httpTranslateLoader} from "../app.module";
 import {AuthModule} from "../auth/auth.module";
+import {VideoService} from "./video/video.service";
 
 
 @NgModule({
@@ -50,6 +51,9 @@ import {AuthModule} from "../auth/auth.module";
 				deps: [HttpClient]
 			}
 		})
+	],
+	providers: [
+		VideoService
 	]
 })
 export class ContentModule {}

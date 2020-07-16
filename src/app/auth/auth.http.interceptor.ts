@@ -10,7 +10,13 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 	
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		if (!this.isExcluded(req)) {
-			//TODO add JWT token
+			let token = localStorage.getItem('tmt-token');
+			if (token) {
+				let request = req.clone({
+					headers: req.headers.set('Authorization', token)
+				});
+				return next.handle(request);
+			}
 		}
 		
 		return next.handle(req);

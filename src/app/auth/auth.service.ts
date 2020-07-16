@@ -18,8 +18,6 @@ export class AuthService {
 	}
 	
 	public register(data: RegisterFormData) {
-		console.log('ficken dilla');
-		console.log(data);
 		return this.http.post(this.appConfigService.apiBaseUrl() + '/auth/register', data);
 	}
 	

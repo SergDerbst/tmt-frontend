@@ -33,6 +33,11 @@ header {
         padding: 10px 10px;
         max-width: 100px;
 
+        &.tmt-user {
+          margin-right: 15px;
+          max-width: 200px;
+        }
+
         :hover {
           color: $red-blood;
         }
@@ -43,6 +48,13 @@ header {
           flex-direction: column;
           align-content: center;
           text-align: center;
+          cursor: pointer;
+
+          &.tmt-user {
+            fa-icon {
+              font-size:2.25em;
+            }
+          }
 
           span {
             font-size: x-small;

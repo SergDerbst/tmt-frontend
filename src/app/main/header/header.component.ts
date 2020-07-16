@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 //icons
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import {faSignInAlt, faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -12,18 +13,22 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  username: string;
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
   faUserPlus = faUserPlus;
-  location = { hint: 'wurst' };
+  faUserCircle = faUserCircle;
+  location = { hint: '' };
   
   constructor(public translate: TranslateService,
+              private authService: AuthService,
               private router: Router) {
     translate.addLangs(['de', 'en']);
     translate.setDefaultLang('en');
   }
 
   ngOnInit() {
+    this.username = localStorage.getItem('tmt-username');
     this.router.events.subscribe((value => {
       if (this.router.url === '/') {
         this.location.hint = '.home';
@@ -31,5 +36,13 @@ export class HeaderComponent implements OnInit {
         this.location.hint = this.router.url.replace(/\//g, '.');
       }
     }));
+  }
+  
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
+  }
+  
+  logout() {
+    console.log('Der Arsch will weg!');
   }
 }

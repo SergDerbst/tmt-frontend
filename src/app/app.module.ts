@@ -17,6 +17,17 @@ import {MainToolbox} from "./main/sidebar/main.toolbox/main.toolbox";
 import {FeedComponent} from "./content/feed/feed.component";
 import {UtilsModule} from "./_utils/_utils.module";
 import {AuthHttpInterceptor} from "./auth/auth.http.interceptor";
+import {AuthModule} from "./auth/auth.module";
+import {JwtModule} from "@auth0/angular-jwt";
+
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
+export function tokenGetter() {
+  return localStorage.getItem('tmt_access_token');
+}
 
 @NgModule({
   declarations: [
@@ -30,9 +41,16 @@ import {AuthHttpInterceptor} from "./auth/auth.http.interceptor";
   ], 
   imports: [
     AppRoutingModule,
+    AuthModule,
     BrowserModule,
-    HttpClientModule,
     FontAwesomeModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['arsch.morz'],
+      }
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -65,7 +83,3 @@ import {AuthHttpInterceptor} from "./auth/auth.http.interceptor";
   ]
 })
 export class AppModule {}
-
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
