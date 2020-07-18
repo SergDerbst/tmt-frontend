@@ -19,6 +19,11 @@ export class VideoEditComponent implements OnInit {
 	video: VideoData;
 	formConfig: FormConfig;
 	onSubmit: () => void;
+	groups: {
+		header: FormGroupConfig,
+		metadata: FormGroupConfig,
+		transcript: FormGroupConfig
+	};
 	
 	constructor(public translate: TranslateService,
 	            private route: ActivatedRoute,
@@ -59,20 +64,22 @@ export class VideoEditComponent implements OnInit {
 	}
 	
 	private prepareForm() {
-		let header = this.header();
-		let metadata = this.metadata();
-		let transcript = this.transcript();
+		this.groups = {
+			header: this.header(),
+			metadata: this.metadata(),
+			transcript: this.transcript()
+		};
 		
 		this.formConfig = new FormConfig(this.fb.group({
-			header: header.formGroup,
-			metadata: metadata.formGroup,
-			transcript: transcript //TODO transcription magic motherfucker
+			header: this.groups.header.formGroup,
+			metadata: this.groups.metadata.formGroup,
+			transcript: this.groups.transcript //TODO transcription magic motherfucker
 		}), (): void => {
 			this.videoService.updateVideo(this.formConfig.form.value).subscribe(video => {
 				//TODO what ever you wanna do, bitch
 			});
 		}).setGroups([
-			header, metadata, transcript
+			this.groups.header, this.groups.metadata, this.groups.transcript
 		]);
 		this.onSubmit = this.formConfig.submit;
 	}

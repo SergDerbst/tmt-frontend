@@ -24,6 +24,7 @@ import {VideoService} from "./video/video.service";
 import {VideoHeaderComponent} from "./video/edit/header/video.header.component";
 import {VideoMetadataComponent} from "./video/edit/metadata/video.metadata.component";
 import {UtilsModule} from "../_utils/_utils.module";
+import {VideoTranscriptComponent} from "./video/edit/transcript/video.transcript.component";
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {UtilsModule} from "../_utils/_utils.module";
 		VideoViewComponent,
 		VideoHeaderComponent,
 		VideoMetadataComponent,
+		VideoTranscriptComponent,
 		Searchbox
 	],
 	imports: [

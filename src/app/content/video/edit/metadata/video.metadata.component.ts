@@ -13,9 +13,7 @@ export class VideoMetadataComponent implements OnInit {
 	@Input() metadata: FormGroupConfig;
 	@ViewChild('editButton') editButton;
 	title: FormControl;
-	faCheck = faCheck;
-	faPen = faPen;
-	edit: { title: boolean };
+	edit: { metadata: boolean };
 	
 	constructor(public translate: TranslateService) {
 		translate.addLangs(['de', 'en']);
