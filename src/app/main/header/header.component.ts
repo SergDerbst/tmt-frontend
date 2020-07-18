@@ -6,6 +6,8 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../../auth/auth.service";
+import {HeaderHintService} from "./hint/header.hint.service";
+import {HintData} from "./hint/header.hint.data";
 
 @Component({
   selector: 'app-header',
@@ -18,7 +20,6 @@ export class HeaderComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
   faUserPlus = faUserPlus;
   faUserCircle = faUserCircle;
-  location = { hint: '' };
   
   constructor(public translate: TranslateService,
               private authService: AuthService,
@@ -29,13 +30,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem('tmt-username');
-    this.router.events.subscribe((value => {
-      if (this.router.url === '/') {
-        this.location.hint = '.home';
-      } else {
-        this.location.hint = this.hint(this.router.url);
-      }
-    }));
+    
   }
   
   isAuthenticated() {
@@ -44,19 +39,5 @@ export class HeaderComponent implements OnInit {
   
   logout() {
     console.log('Der Arsch will weg!');
-  }
-  
-  private hint(url: string) {
-    let s = '';
-    let array = url.split(/\//g);
-    for (let i = 0, len = array.length; i < len; i++) {
-      if (isNaN(Number(array[i]))) {
-        s = s + array[i];
-        if (i != len-1) {
-          s = s + '.';
-        }
-      }
-    }
-    return s;
   }
 }

@@ -1,8 +1,11 @@
 <div class="tmt-content-container">
-  <div class="tmt-segment">
-    <form [formGroup]="formConfig.form" (ngSubmit)="onSubmit()">
-      <tmt-video-header [header]="groups.header"></tmt-video-header>
-      <tmt-video-metadata [metadata]="groups.metadata"></tmt-video-metadata>
+  <div *ngIf="video" class="tmt-segment">
+    <form [formGroup]="formConfig.form">
+      <tmt-video-header [header]="groups.header"
+                        [video]="video"></tmt-video-header>
+      <tmt-video-player></tmt-video-player>
+      <tmt-video-metadata [metadata]="groups.metadata"
+                          [video]="video"></tmt-video-metadata>
       <tmt-video-transcript [transcript]="groups.transcript"></tmt-video-transcript>
     </form>
   </div>

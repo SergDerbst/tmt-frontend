@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {FormGroupConfig} from "../../../../_utils/form/config/form.config";
 import {FormControl} from "@angular/forms";
-import {faCheck, faPen} from "@fortawesome/free-solid-svg-icons";
+import {VideoData} from "../../video.data";
 
 @Component({
 	selector: 'tmt-video-metadata',
@@ -11,8 +11,9 @@ import {faCheck, faPen} from "@fortawesome/free-solid-svg-icons";
 })
 export class VideoMetadataComponent implements OnInit {
 	@Input() metadata: FormGroupConfig;
+	@Input() video: VideoData;
 	@ViewChild('editButton') editButton;
-	title: FormControl;
+	description: FormControl;
 	edit: { metadata: boolean };
 	
 	constructor(public translate: TranslateService) {
@@ -21,5 +22,8 @@ export class VideoMetadataComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
+		this.edit = { metadata: false};
+		console.log('arsch bubu lutsch');
+		console.log(this.video);
 	}
 }

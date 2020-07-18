@@ -19,6 +19,8 @@ import {UtilsModule} from "./_utils/_utils.module";
 import {AuthHttpInterceptor} from "./auth/auth.http.interceptor";
 import {AuthModule} from "./auth/auth.module";
 import {JwtModule} from "@auth0/angular-jwt";
+import {HeaderHintComponent} from "./main/header/hint/header.hint.component";
+import {HeaderHintService} from "./main/header/hint/header.hint.service";
 
 
 export function httpTranslateLoader(http: HttpClient) {
@@ -33,6 +35,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     HeaderComponent,
+    HeaderHintComponent,
     MainComponent,
     FeedComponent,
     MainSidebarComponent,
@@ -76,7 +79,8 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
       multi: true
-    }
+    },
+    HeaderHintService
   ],
   bootstrap: [
     AppComponent

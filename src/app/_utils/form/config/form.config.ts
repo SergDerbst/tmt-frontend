@@ -18,7 +18,7 @@ export class FormConfig extends KeyValueConfiguration<FormGroupConfig> {
 	submit: () => void;
 
 	constructor(form: FormGroup,
-	            submit: () => void) {
+	            submit?: () => void) {
 		super();
 		this.form =  form;
 		this.submit = submit;
@@ -45,12 +45,10 @@ export class FormConfig extends KeyValueConfiguration<FormGroupConfig> {
 export class FormGroupConfig extends KeyValueConfiguration<FormControlConfig> {
 	formGroup: FormGroup;
 	controls: FormControlConfig[];
-	controlMap: { [key: string]: FormControlConfig };
 	
 	constructor(formGroup: FormGroup) {
 		super();
 		this.formGroup = formGroup;
-		this.controlMap = {};
 	}
 	
 	setControls(controls: FormControlConfig[]): FormGroupConfig {

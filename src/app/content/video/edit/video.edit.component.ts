@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {FormConfig, FormControlConfig, FormGroupConfig} from "../../../_utils/form/config/form.config";
 import {FormControlValidationService} from "../../../_utils/form/validation/form.control.validation.service";
+import {HeaderHintService} from "../../../main/header/hint/header.hint.service";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -18,7 +19,6 @@ const updateOnBlur = { updateOn: 'blur' };
 export class VideoEditComponent implements OnInit {
 	video: VideoData;
 	formConfig: FormConfig;
-	onSubmit: () => void;
 	groups: {
 		header: FormGroupConfig,
 		metadata: FormGroupConfig,
@@ -28,6 +28,7 @@ export class VideoEditComponent implements OnInit {
 	constructor(public translate: TranslateService,
 	            private route: ActivatedRoute,
 	            private fb: FormBuilder,
+	            private hintService: HeaderHintService,
 	            private validation: FormControlValidationService,
 	            private videoService: VideoService) {
 		translate.addLangs(['de', 'en']);
@@ -37,32 +38,47 @@ export class VideoEditComponent implements OnInit {
 	ngOnInit(): void {
 		this.prepareForm();
 		this.loadData();
+		//TODO extract these methods to a ContentService available to other content components.
 	}
 	
+	/**
+	 * Loads the data.
+	 */
 	private loadData() {
 		this.route.params.subscribe(params => {
 			this.videoService.getVideo(params['id']).subscribe(video => {
 				if (video.header.status === ContentStatus.Created) {
 					video.header.status = ContentStatus.InProcess;
 				}
+				this.video = video;
 				this.activateController(video, 'header', 'title');
 				this.activateController(video, 'metadata', 'description');
 			});
 		});
 	}
 	
+	/**
+	 * Activates the controller of the group with the given names, so that a value changes triggers
+	 * the whole thing to be saved accordingly.
+	 *
+	 * @param video
+	 * @param groupName
+	 * @param controlName
+	 */
 	private activateController(video: VideoData, groupName: string, controlName: string) {
 		let control = (<FormGroup>this.formConfig.form.controls[groupName]).controls[controlName];
 		control.setValue(video[groupName][controlName]);
 		control.valueChanges.subscribe(value => {
-			video[groupName][controlName] = value;
-			//TODO update location hint 'saving video...'
+			this.video[groupName][controlName] = value;
 			this.videoService.updateVideo(this.video).subscribe(() => {
-				//TODO update location hint 'video saved'
+				this.hintService.overwriteHint(this.hintService.hintPrefix + '.content.video.edit.saved', 1500);
 			});
 		});
 	}
 	
+	/**
+	 * Prepares the form, bitch!
+	 */
 	private prepareForm() {
 		this.groups = {
 			header: this.header(),
@@ -73,60 +89,58 @@ export class VideoEditComponent implements OnInit {
 		this.formConfig = new FormConfig(this.fb.group({
 			header: this.groups.header.formGroup,
 			metadata: this.groups.metadata.formGroup,
-			transcript: this.groups.transcript //TODO transcription magic motherfucker
-		}), (): void => {
-			this.videoService.updateVideo(this.formConfig.form.value).subscribe(video => {
-				//TODO what ever you wanna do, bitch
-			});
-		}).setGroups([
+			transcript: this.groups.transcript.formGroup
+		})).setGroups([
 			this.groups.header, this.groups.metadata, this.groups.transcript
 		]);
-		this.onSubmit = this.formConfig.submit;
 	}
 	
+	/**
+	 * Prepares the header group.
+	 */
 	private header() {
-		let mainForm = new FormGroupConfig(this.fb.group({
+		let header = new FormGroupConfig(this.fb.group({
 			title: ['', updateOnBlur]
 		}));
-		mainForm.setControls([
-			new FormControlConfig(<FormControl> mainForm.formGroup.controls.title)
+		header.setControls([
+			new FormControlConfig(<FormControl> header.formGroup.controls.title)
 		]);
-		let title = mainForm.formGroup.get('title');
+		let title = header.formGroup.get('title');
 		this.validation.prepare(title)
 			.required()
 			.maxLength(100)
 			.compose();
-		title.valueChanges.subscribe(value => {
-			//TODO set value on video and save the bitch
-		});
-		return mainForm;
+		return header;
 	}
 	
+	/**
+	 * Prepares the metadata group.
+	 */
 	private metadata() {
-		let metadataForm = new FormGroupConfig(this.fb.group({
+		let metadata = new FormGroupConfig(this.fb.group({
 			description: ['', updateOnBlur]
 		})).setConfiguration({
 			name: 'metadata',
 			edit: { description: false },
 			visible: false
 		});
-		metadataForm.setControls([
-			new FormControlConfig(<FormControl> metadataForm.formGroup.controls.description).setConfiguration({
+		metadata.setControls([
+			new FormControlConfig(<FormControl> metadata.formGroup.controls.description).setConfiguration({
 				name: 'description',
 				type: 'textbox'
 			})
 		]);
-		let description = metadataForm.formGroup.get('description');
+		let description = metadata.formGroup.get('description');
 		this.validation.prepare(description)
 			.required()
 			.maxLength(1000)
 			.compose();
-		description.valueChanges.subscribe(value => {
-			//TODO set value on video and save the bitch
-		});
-		return metadataForm;
+		return metadata;
 	}
 	
+	/**
+	 * Prepares the transcript group.
+	 */
 	private transcript() {
 		let transcript = new FormGroupConfig(this.fb.group({
 			//TODO add super-fancy transcript controls

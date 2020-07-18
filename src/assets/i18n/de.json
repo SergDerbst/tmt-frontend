@@ -8,6 +8,8 @@
   "app.location.hint.content.podcast.view": "&nbsp;",
   "app.location.hint.content.video.create": "Video erstellen",
   "app.location.hint.content.video.edit": "Video bearbeiten",
+  "app.header.hint.content.video.edit.saving": "Video wird gespeichert...",
+  "app.header.hint.content.video.edit.saved": "Video Gespeichert",
   "app.location.hint.content.video.view": "&nbsp;",
   "app.location.hint.global.message.email.verification": "Email bestätigen",
 

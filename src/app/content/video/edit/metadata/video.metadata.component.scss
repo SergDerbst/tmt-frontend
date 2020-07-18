@@ -1,5 +1,22 @@
 @import "../../../../../styles";
 
 .tmt-metadata-segment {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-bottom: 1px solid $grey-gloomy;
 
+  .tmt-metadata-view {
+    flex-grow: 2;
+
+  }
+
+  .tmt-metadata-edit {
+    flex-grow: 2;
+
+  }
+
+  .tmt-edit {
+    flex-grow: 0;
+  }
 }

@@ -1,9 +1,21 @@
+<div class="tmt-header">
+  <div class="tmt-owner">
+    <a [href]="'/user/' + video.header.owner.id + '/profile'">
+      <fa-icon [icon]="faUser"></fa-icon>
+      <span [innerHTML]="video.header.owner.username"></span>
+    </a>
+  </div>
+  <div class="tmt-data">
+    <span [innerHTML]="video.header.createdAt | date: dateFormat"></span>
+  </div>
+</div>
 <div class="tmt-header-segment">
   <div class="tmt-title" #titleSegment>
     <h1 *ngIf="!edit.title" [innerHTML]="title.value"></h1>
     <input type="text"
            id="title"
            *ngIf="edit.title"
+           (keypress)="keyEvent($event)"
            (focus)="handleTitleFocus()"
            [formControl]="title" autofocus>
   </div>
