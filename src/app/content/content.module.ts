@@ -22,6 +22,8 @@ import {httpTranslateLoader} from "../app.module";
 import {AuthModule} from "../auth/auth.module";
 import {VideoService} from "./video/video.service";
 import {VideoHeaderComponent} from "./video/edit/header/video.header.component";
+import {VideoMetadataComponent} from "./video/edit/metadata/video.metadata.component";
+import {UtilsModule} from "../_utils/_utils.module";
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import {VideoHeaderComponent} from "./video/edit/header/video.header.component";
 		VideoEditComponent,
 		VideoViewComponent,
 		VideoHeaderComponent,
+		VideoMetadataComponent,
 		Searchbox
 	],
 	imports: [
@@ -53,7 +56,8 @@ import {VideoHeaderComponent} from "./video/edit/header/video.header.component";
 				deps: [HttpClient]
 			}
 		}),
-		FormsModule
+		FormsModule,
+		UtilsModule
 	],
 	providers: [
 		VideoService

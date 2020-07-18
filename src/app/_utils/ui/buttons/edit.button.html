@@ -1,0 +1,8 @@
+<button type="button"
+        (click)="toggleEdit()"
+        #editButton>
+  <fa-icon *ngIf="!editControl[controlKey]"
+           [icon]="faPen"></fa-icon>
+  <fa-icon *ngIf="editControl[controlKey]"
+           [icon]="faCheck"></fa-icon>
+</button>

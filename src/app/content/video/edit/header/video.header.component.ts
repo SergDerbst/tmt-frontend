@@ -12,11 +12,8 @@ import {faCheck, faPen} from "@fortawesome/free-solid-svg-icons";
 })
 export class VideoHeaderComponent implements OnInit {
 	@Input() header: FormGroupConfig;
-	@ViewChild('editTitleButton') editTitleButton;
 	@ViewChild('titleSegment') titleSegment;
 	title: FormControl;
-	faCheck = faCheck;
-	faPen = faPen;
 	edit: { title: boolean };
 	
 	constructor(public translate: TranslateService) {
@@ -29,18 +26,7 @@ export class VideoHeaderComponent implements OnInit {
 		this.title = <FormControl><unknown>this.header.controls[0].control;
 	}
 	
-	toggleEdit() {
-		this.edit.title = !this.edit.title;
-		this.editTitleButton.nativeElement.blur();
-	}
-	
 	handleTitleFocus() {
 		this.titleSegment.nativeElement.querySelector('#title').select();
-	}
-	
-	handleKey($event: KeyboardEvent) {
-		if (isEnter($event.keyCode)) {
-			this.toggleEdit();
-		}
 	}
 }

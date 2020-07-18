@@ -14,9 +14,11 @@ import {FormGroupComponent} from "./form/group/form.group.component";
 import {FormComponent} from "./form/form.component";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {FormControlValidationService} from "./form/validation/form.control.validation.service";
+import {EditButton} from "./ui/buttons/edit.button";
 
 @NgModule({
   declarations: [
+    EditButton,
     FormControlDateComponent,
     FormComponent,
     FormGroupComponent,
@@ -38,6 +40,7 @@ import {FormControlValidationService} from "./form/validation/form.control.valid
     ReactiveFormsModule
   ],
   exports: [
+    EditButton,
     FormComponent,
     FormGroupComponent,
     FormControlDateComponent,
