@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
       if (this.router.url === '/') {
         this.location.hint = '.home';
       } else {
-        this.location.hint = this.router.url.replace(/\//g, '.');
+        this.location.hint = this.hint(this.router.url);
       }
     }));
   }
@@ -44,5 +44,19 @@ export class HeaderComponent implements OnInit {
   
   logout() {
     console.log('Der Arsch will weg!');
+  }
+  
+  private hint(url: string) {
+    let s = '';
+    let array = url.split(/\//g);
+    for (let i = 0, len = array.length; i < len; i++) {
+      if (isNaN(Number(array[i]))) {
+        s = s + array[i];
+        if (i != len-1) {
+          s = s + '.';
+        }
+      }
+    }
+    return s;
   }
 }

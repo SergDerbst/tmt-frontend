@@ -50,3 +50,13 @@ export enum ContentFilter {
 	Published = 'published',
 	All = 'all'
 }
+
+export enum ContentStatus {
+	Created = 'Created',
+	InProcess = 'InProcess',
+	InReview = 'InReview',
+	Reviewed = 'Reviewed',
+	Scheduled = 'Scheduled',
+	Published = 'Published',
+	Unpublished = 'Unpublished'
+}

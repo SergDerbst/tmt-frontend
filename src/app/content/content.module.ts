@@ -12,32 +12,34 @@ import {ContentArticleEditComponent} from "./article/content.article.edit.compon
 import {ContentArticleViewComponent} from "./article/content.article.view.component";
 import {ContentPodcastEditComponent} from "./podcast/content.podcast.edit.component";
 import {ContentPodcastViewComponent} from "./podcast/content.podcast.view.component";
-import {ContentVideoEditComponent} from "./video/content.video.edit.component";
-import {ContentVideoViewComponent} from "./video/content.video.view.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {ContentVideoCreateComponent} from "./video/content.video.create.component";
+import {VideoEditComponent} from "./video/edit/video.edit.component";
+import {VideoViewComponent} from "./video/view/video.view.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {VideoCreateComponent} from "./video/create/video.create.component";
 import {ContentArticleCreateComponent} from "./article/content.article.create.component";
 import {ContentPodcastCreateComponent} from "./podcast/content.podcast.create.component";
 import {httpTranslateLoader} from "../app.module";
 import {AuthModule} from "../auth/auth.module";
 import {VideoService} from "./video/video.service";
+import {VideoHeaderComponent} from "./video/edit/header/video.header.component";
 
 
 @NgModule({
-  declarations: [
-  	ContentComponent,
-	  ContentFilterComponent,
-	  ContentArticleCreateComponent,
-	  ContentArticleEditComponent,
-	  ContentArticleViewComponent,
-	  ContentPodcastCreateComponent,
-	  ContentPodcastEditComponent,
-	  ContentPodcastViewComponent,
-	  ContentVideoCreateComponent,
-	  ContentVideoEditComponent,
-	  ContentVideoViewComponent,
-	  Searchbox
-  ],
+	declarations: [
+		ContentComponent,
+		ContentFilterComponent,
+		ContentArticleCreateComponent,
+		ContentArticleEditComponent,
+		ContentArticleViewComponent,
+		ContentPodcastCreateComponent,
+		ContentPodcastEditComponent,
+		ContentPodcastViewComponent,
+		VideoCreateComponent,
+		VideoEditComponent,
+		VideoViewComponent,
+		VideoHeaderComponent,
+		Searchbox
+	],
 	imports: [
 		AuthModule,
 		CommonModule,
@@ -50,7 +52,8 @@ import {VideoService} from "./video/video.service";
 				useFactory: httpTranslateLoader,
 				deps: [HttpClient]
 			}
-		})
+		}),
+		FormsModule
 	],
 	providers: [
 		VideoService

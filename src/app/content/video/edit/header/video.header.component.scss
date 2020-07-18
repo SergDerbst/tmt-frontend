@@ -1,0 +1,31 @@
+@import "../../../../../styles";
+
+.tmt-header-segment {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-bottom: 1px solid $grey-gloomy;
+
+  .tmt-title {
+    flex-grow: 2;
+    color: $grey-neutral;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+
+    input {
+      width: 90%;
+      padding: 0 20px;
+    }
+  }
+
+  .tmt-edit {
+    flex-grow: 0;
+
+    button {
+      border-radius: 5px;
+      min-width: 10px;
+      font-size: small;
+    }
+  }
+}

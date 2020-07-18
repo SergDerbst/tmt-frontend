@@ -6,25 +6,24 @@ import {ContentArticleEditComponent} from "./article/content.article.edit.compon
 import {ContentArticleViewComponent} from "./article/content.article.view.component";
 import {ContentPodcastEditComponent} from "./podcast/content.podcast.edit.component";
 import {ContentPodcastViewComponent} from "./podcast/content.podcast.view.component";
-import {ContentVideoEditComponent} from "./video/content.video.edit.component";
-import {ContentVideoViewComponent} from "./video/content.video.view.component";
+import {VideoEditComponent} from "./video/edit/video.edit.component";
+import {VideoViewComponent} from "./video/view/video.view.component";
 import {ContentArticleCreateComponent} from "./article/content.article.create.component";
 import {ContentPodcastCreateComponent} from "./podcast/content.podcast.create.component";
-import {ContentVideoCreateComponent} from "./video/content.video.create.component";
-import {GlobalMessageComponent} from "../global/message/global.message.component";
+import {VideoCreateComponent} from "./video/create/video.create.component";
 import {AuthRouteGuard} from "../auth/auth.route.guard";
 
 const routes: Routes = [
   { path: '', component: ContentComponent, canActivate: [AuthRouteGuard] },
   { path: 'article/create', component: ContentArticleCreateComponent, canActivate: [AuthRouteGuard] },
-  { path: 'article/edit', component: ContentArticleEditComponent, canActivate: [AuthRouteGuard] },
-  { path: 'article/view', component: ContentArticleViewComponent },
+  { path: 'article/:id/edit', component: ContentArticleEditComponent, canActivate: [AuthRouteGuard] },
+  { path: 'article/:id', component: ContentArticleViewComponent },
   { path: 'podcast/create', component: ContentPodcastCreateComponent, canActivate: [AuthRouteGuard] },
-  { path: 'podcast/edit', component: ContentPodcastEditComponent, canActivate: [AuthRouteGuard] },
-  { path: 'pudcast/view', component: ContentPodcastViewComponent },
-  { path: 'video/create', component: ContentVideoCreateComponent, canActivate: [AuthRouteGuard] },
-  { path: 'video/edit', component: ContentVideoEditComponent, canActivate: [AuthRouteGuard] },
-  { path: 'video/view', component: ContentVideoViewComponent },
+  { path: 'podcast/:id/edit', component: ContentPodcastEditComponent, canActivate: [AuthRouteGuard] },
+  { path: 'pudcast/:id', component: ContentPodcastViewComponent },
+  { path: 'video/create', component: VideoCreateComponent, canActivate: [AuthRouteGuard] },
+  { path: 'video/:id/edit', component: VideoEditComponent, canActivate: [AuthRouteGuard] },
+  { path: 'video/:id', component: VideoViewComponent },
 ];
 
 @NgModule({

@@ -2,17 +2,17 @@ import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TranslateService} from "@ngx-translate/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
-import {ValidationRegexMap} from "../../_utils/form/validation/validation.regex.map";
-import {isEnter} from "../../_utils/keyboard/keys";
-import {VideoService} from "./video.service";
+import {ValidationRegexMap} from "../../../_utils/form/validation/validation.regex.map";
+import {isEnter} from "../../../_utils/keyboard/keys";
+import {VideoService} from "../video.service";
 import {Router} from "@angular/router";
 
 @Component({
 	selector: 'tmt-video-create',
-	templateUrl: './content.video.create.component.html',
-	styleUrls: ['./content.video.create.component.scss']
+	templateUrl: './video.create.component.html',
+	styleUrls: ['./video.create.component.scss']
 })
-export class ContentVideoCreateComponent implements OnInit, AfterViewInit {
+export class VideoCreateComponent implements OnInit, AfterViewInit {
 	@ViewChild('focusElement') focusElement;
 	form: FormGroup;
 	faPlus = faPlus;
@@ -51,7 +51,7 @@ export class ContentVideoCreateComponent implements OnInit, AfterViewInit {
 		this.videoService.createVideo(this.form.value)
 			.subscribe(
 				data => {
-				return this.router.navigateByUrl('content/video/edit', {
+				return this.router.navigateByUrl('content/video/' + data.header.id + '/edit', {
 					state: { data: data }
 				});
 			});

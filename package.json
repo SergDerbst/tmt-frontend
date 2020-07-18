@@ -50,6 +50,7 @@
     "codelyzer": "^5.2.2",
     "jest": "^25.5.4",
     "jest-preset-angular": "^8.2.1",
+    "rxjs-observe": "^2.1.5",
     "ts-node": "~8.6.2",
     "tslib": "^1.13.0",
     "tslint": "~6.0.0"

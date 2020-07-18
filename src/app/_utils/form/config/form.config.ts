@@ -8,6 +8,9 @@ import {Observable} from "rxjs";
  * themselves as and the respective configurations. Note: the keys of the configuration should match the
  * names of the controls (according to the structure of Angular Reactive Forms).
  */
+/**
+ * Configuration class for a form.
+ */
 export class FormConfig extends KeyValueConfiguration<FormGroupConfig> {
 	form: FormGroup;
 	groups: FormGroupConfig[];
@@ -36,13 +39,18 @@ export class FormConfig extends KeyValueConfiguration<FormGroupConfig> {
 	}
 }
 
+/**
+ * Configuration class for a group of form controls.
+ */
 export class FormGroupConfig extends KeyValueConfiguration<FormControlConfig> {
 	formGroup: FormGroup;
 	controls: FormControlConfig[];
+	controlMap: { [key: string]: FormControlConfig };
 	
 	constructor(formGroup: FormGroup) {
 		super();
 		this.formGroup = formGroup;
+		this.controlMap = {};
 	}
 	
 	setControls(controls: FormControlConfig[]): FormGroupConfig {
@@ -56,6 +64,9 @@ export class FormGroupConfig extends KeyValueConfiguration<FormControlConfig> {
 	}
 }
 
+/**
+ * Configuration class for a single form controll.
+ */
 export class FormControlConfig extends KeyValueConfiguration<any> {
 	control: FormControl;
 	
@@ -70,6 +81,9 @@ export class FormControlConfig extends KeyValueConfiguration<any> {
 	}
 }
 
+/**
+ * Configuration class for error messages on invalid form controls.
+ */
 export class FormErrorMessage {
 	msgId: string;
 	properties: { [key: string]: any };

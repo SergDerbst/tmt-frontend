@@ -17,11 +17,11 @@ export class FormControlValidationService {
 	            private appConfigService: AppConfigService) {}
 	
 	/**
-	 * Prepares the validation for the given control. It returns an object with
+	 * Prepares the validation for the given uiControl. It returns an object with
 	 * respective factories for validator functions. They can be called serially
 	 * to prepare each validator accordingly. The compose method then combines
-	 * the prepared validators by adding them as array to the given control's
-	 * validators and updating the control.
+	 * the prepared validators by adding them as array to the given uiControl's
+	 * validators and updating the uiControl.
 	 *
 	 * @param control
 	 */
@@ -82,6 +82,10 @@ export class FormControlValidationService {
 					return v;
 				}
 			},
+			maxLength: (maxLength: number) => {
+				validators.push(validation.maxLength(maxLength));
+				return v;
+			},
 			minLength: (minLength: number) => {
 				validators.push(validation.minLength(minLength));
 				return v;
@@ -108,7 +112,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control value consists of a
+	 * Returns a validator that checks of the runtime uiControl value consists of a
 	 * valid email address.
 	 */
 	private email(): ValidatorFn {
@@ -121,8 +125,8 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control has the same value
-	 * as the given other control.
+	 * Returns a validator that checks of the runtime uiControl has the same value
+	 * as the given other uiControl.
 	 *
 	 * @param otherControl
 	 * @param msgId
@@ -137,7 +141,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control value contains
+	 * Returns a validator that checks of the runtime uiControl value contains
 	 * at least one lower case character.
 	 */
 	private lowercase(): ValidatorFn {
@@ -150,14 +154,14 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control value has
+	 * Returns a validator that checks of the runtime uiControl value has
 	 * at most the given maximum length.
 	 *
 	 * @param maxLength
 	 */
 	private maxLength(maxLength: number): ValidatorFn {
 		return (control: AbstractControl): ValidationErrors | null => {
-			if (control.value.length > maxLength) {
+			if (control.value && control.value.length > maxLength) {
 				return { maxLength: { active: true, maxLength: maxLength }};
 			}
 			return null;
@@ -165,7 +169,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control value has
+	 * Returns a validator that checks of the runtime uiControl value has
 	 * at least the given minimum length.
 	 *
 	 * @param minLength
@@ -180,7 +184,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control contains
+	 * Returns a validator that checks of the runtime uiControl contains
 	 * at least one numeric character.
 	 */
 	private numeric(): ValidatorFn {
@@ -193,7 +197,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control has a value.
+	 * Returns a validator that checks of the runtime uiControl has a value.
 	 */
 	private required():ValidatorFn {
 		return (control:AbstractControl): ValidationErrors | null => {
@@ -205,7 +209,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks if the runtime control value contains
+	 * Returns a validator that checks if the runtime uiControl value contains
 	 * at least one special character (neither numeric nor letter).
 	 */
 	private specialCharacter(): ValidatorFn {
@@ -219,7 +223,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime control would pass data
+	 * Returns a validator that checks of the runtime uiControl would pass data
 	 * on submit that doesn't already exist (would be unique, e.g. a username).
 	 * The validator calls a backend controller to validate whether the data
 	 * already exists, but only if no other validation error exists (the current
@@ -250,7 +254,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks if the runtime control value contains
+	 * Returns a validator that checks if the runtime uiControl value contains
 	 * at least one upper case character.
 	 */
 	private uppercase(): ValidatorFn {

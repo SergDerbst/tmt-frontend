@@ -1,15 +1,26 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {VideoCreationData} from "./video.data";
+import {VideoCreationData, VideoData} from "./video.data";
 import {AppConfigService} from "../../app.config.service";
 
 @Injectable()
 export class VideoService {
+	private readonly baseUrl: string;
 	
 	constructor(private appConfigService: AppConfigService,
-	            private httpClient: HttpClient) {}
+	            private httpClient: HttpClient) {
+		this.baseUrl = this.appConfigService.apiBaseUrl() + '/content/video';
+	}
 	
 	createVideo(data: VideoCreationData) {
-		return this.httpClient.post(this.appConfigService.apiBaseUrl() + '/content/video/create', data);
+		return this.httpClient.post<VideoData>(this.baseUrl, data);
+	}
+	
+	getVideo(id: number) {
+		return this.httpClient.get<VideoData>(this.baseUrl + '/' + id);
+	}
+	
+	updateVideo(video: VideoData) {
+		return this.httpClient.put(this.baseUrl, video);
 	}
 }
