@@ -22,7 +22,6 @@ import {TimestampControl} from "./edit/transcript/controlPanel/timestamp/timesta
 import {Controls} from "./edit/transcript/controlPanel/controls/controls";
 import {TextPanel} from "./edit/transcript/textPanel/text.panel";
 import {ControlPanel} from "./edit/transcript/controlPanel/control.panel";
-import {PropertiesPanel} from "./edit/transcript/propertiesPanel/properties.panel";
 
 @NgModule({
 	declarations: [
@@ -37,7 +36,6 @@ import {PropertiesPanel} from "./edit/transcript/propertiesPanel/properties.pane
 					TimestampControl,
 					Controls,
 				TextPanel,
-				PropertiesPanel,
 			VideoViewComponent,
 	],
 	imports: [

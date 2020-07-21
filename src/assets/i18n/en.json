@@ -75,7 +75,7 @@
   "content.video.edit.control.panel.snippet.start": "start:",
   "content.video.edit.control.panel.snippet.end": "end:",
   "content.video.edit.control.panel.counter.none": "no snippet",
-  "content.video.edit.control.panel.counter.snippet": "Snippet: "
+  "content.video.edit.control.panel.counter.snippet": "Snippet: ",
 
   "global.message.email.verification.title": "Verification Email",
   "global.message.email.verification.body.paragraph.0": "An email has been sent to ",
