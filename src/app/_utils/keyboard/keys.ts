@@ -1,49 +1,49 @@
 export function isArrow(code:number):boolean {
-	return code === KeyCodes.LeftArrow || code === KeyCodes.RightArrow ||
-				 code === KeyCodes.DownArrow || code === KeyCodes.UpArrow;
+	return code === KeyCode.LeftArrow || code === KeyCode.RightArrow ||
+				 code === KeyCode.DownArrow || code === KeyCode.UpArrow;
 }
 
 export function isArrowLeftRight(code:number):boolean {
-	return code === KeyCodes.LeftArrow || code === KeyCodes.RightArrow;
+	return code === KeyCode.LeftArrow || code === KeyCode.RightArrow;
 }
 
 export function isArrowUpDown(code:number):boolean {
-	return code === KeyCodes.UpArrow || code === KeyCodes.DownArrow;
+	return code === KeyCode.UpArrow || code === KeyCode.DownArrow;
 }
 
 export function isBackspace(code:number):boolean {
-	return code === KeyCodes.Backspace;
+	return code === KeyCode.Backspace;
 }
 
 export function isCharacter(code: number):boolean {
-	return code >= KeyCodes.A && code <= KeyCodes.Z;
+	return code >= KeyCode.A && code <= KeyCode.Z;
 }
 
 export function isDelete(code:number):boolean {
-	return code === KeyCodes.Delete;
+	return code === KeyCode.Delete;
 }
 
 export function isEnter(code:number):boolean {
-	return code === KeyCodes.Enter;
+	return code === KeyCode.Enter;
 }
 
 export function isEsc(code:number):boolean {
-	return code === KeyCodes.Escape;
+	return code === KeyCode.Escape;
 }
 
 export function isLiteral(code: number):boolean {
-	return (code >= KeyCodes.A && code <= KeyCodes.Z) ||
-				 code === KeyCodes.Shift ||
-				 code === KeyCodes.Backspace ||
-				 code === KeyCodes.Delete
+	return (code >= KeyCode.A && code <= KeyCode.Z) ||
+				 code === KeyCode.Shift ||
+				 code === KeyCode.Backspace ||
+				 code === KeyCode.Delete
 }
 
 export function isNumeric(code: number):boolean {
-	return (code >= KeyCodes.Zero && code <= KeyCodes.Nine) ||
-				 (code >= KeyCodes.NumpadZero && code <= KeyCodes.NumpadNine);
+	return (code >= KeyCode.Zero && code <= KeyCode.Nine) ||
+				 (code >= KeyCode.NumpadZero && code <= KeyCode.NumpadNine);
 }
 
-export enum KeyCodes {
+export enum KeyCode {
 	Backspace = 8,
 	Tab = 9,
 	Enter = 13,

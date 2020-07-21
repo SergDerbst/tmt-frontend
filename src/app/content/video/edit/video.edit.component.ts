@@ -18,7 +18,7 @@ const updateOnBlur = { updateOn: 'blur' };
 })
 export class VideoEditComponent implements OnInit {
 	video: VideoData;
-	formConfig: FormConfig;
+	videoFormConfig: FormConfig;
 	groups: {
 		header: FormGroupConfig,
 		metadata: FormGroupConfig,
@@ -38,7 +38,6 @@ export class VideoEditComponent implements OnInit {
 	ngOnInit(): void {
 		this.prepareForm();
 		this.loadData();
-		//TODO extract these methods to a ContentService available to other content components.
 	}
 	
 	/**
@@ -66,7 +65,7 @@ export class VideoEditComponent implements OnInit {
 	 * @param controlName
 	 */
 	private activateController(video: VideoData, groupName: string, controlName: string) {
-		let control = (<FormGroup>this.formConfig.form.controls[groupName]).controls[controlName];
+		let control = (<FormGroup>this.videoFormConfig.form.controls[groupName]).controls[controlName];
 		control.setValue(video[groupName][controlName]);
 		control.valueChanges.subscribe(value => {
 			this.video[groupName][controlName] = value;
@@ -86,7 +85,7 @@ export class VideoEditComponent implements OnInit {
 			transcript: this.transcript()
 		};
 		
-		this.formConfig = new FormConfig(this.fb.group({
+		this.videoFormConfig = new FormConfig(this.fb.group({
 			header: this.groups.header.formGroup,
 			metadata: this.groups.metadata.formGroup,
 			transcript: this.groups.transcript.formGroup

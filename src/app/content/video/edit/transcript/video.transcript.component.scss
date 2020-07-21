@@ -1,4 +1,15 @@
 @import "../../../../../styles";
 
 .tmt-transcript-segment {
+  font-size: small;
+  color: $blue-sky;
+
+  &.tmt-no-snippet {
+    color: $grey-neutral;
+  }
+
+  .tmt-message {
+    min-height: 1.5em;
+    font-style: italic;
+  }
 }

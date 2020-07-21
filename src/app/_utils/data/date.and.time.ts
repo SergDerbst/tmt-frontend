@@ -20,8 +20,15 @@ export class SimpleTimePeriod {
 	}
 }
 
-export class DayOfBirth {
+export class SimpleDate {
 	day: number;
 	month: number;
 	year: number;
+}
+
+export class SimpleTime {
+	hour: number;
+	minute: number;
+	second: number;
+	millisecond: number;
 }

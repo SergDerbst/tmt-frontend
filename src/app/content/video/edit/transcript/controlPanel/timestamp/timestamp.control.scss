@@ -1,0 +1,50 @@
+@import "../../../../../../../styles";
+
+.tmt-timestamp-control {
+  display: inline-flex;
+  margin: 5px 5px;
+  font-size: large;
+
+  &.tmt-disabled {
+    color: $grey-neutral;
+
+    div {
+      cursor: not-allowed;
+    }
+  }
+
+  .tmt-timestamp {
+    background-color: $grey-darkest;
+    padding: 2px;
+    margin: 0 2px;
+
+    span {
+      margin: 0 2px;
+    }
+  }
+
+  .tmt-colon {
+    padding-top: 2px;
+  }
+
+  .tmt-up-down-control {
+    display: inline-flex;
+    flex-direction: column;
+    font-size: xx-small;
+
+    button {
+      background-color: $grey-darkest;
+      padding: 2px 5px;
+      margin-left: 5px;
+
+      &.tmt-up {
+        border-bottom: 1px solid $grey-dark;
+      }
+
+      &.tmt-disabled {
+        color: $grey-neutral;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

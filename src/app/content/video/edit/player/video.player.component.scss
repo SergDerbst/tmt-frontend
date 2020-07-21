@@ -1,5 +1,13 @@
 @import "../../../../../styles";
 
 .tmt-player-segment {
+  background-color: $grey-dark;
+  text-align: center;
 
+  .tmt-player {
+    display: inline;
+    font-size: small;
+    color: $blue-sky;
+
+  }
 }

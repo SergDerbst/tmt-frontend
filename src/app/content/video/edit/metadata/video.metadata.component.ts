@@ -11,6 +11,7 @@ import {VideoData} from "../../video.data";
 })
 export class VideoMetadataComponent implements OnInit {
 	@Input() metadata: FormGroupConfig;
+	@Input() formId: string;
 	@Input() video: VideoData;
 	@ViewChild('editButton') editButton;
 	description: FormControl;
@@ -23,7 +24,5 @@ export class VideoMetadataComponent implements OnInit {
 	
 	ngOnInit(): void {
 		this.edit = { metadata: false};
-		console.log('arsch bubu lutsch');
-		console.log(this.video);
 	}
 }

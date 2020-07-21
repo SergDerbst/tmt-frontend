@@ -26,6 +26,7 @@ import {VideoMetadataComponent} from "./video/edit/metadata/video.metadata.compo
 import {UtilsModule} from "../_utils/_utils.module";
 import {VideoTranscriptComponent} from "./video/edit/transcript/video.transcript.component";
 import {VideoPlayerComponent} from "./video/edit/player/video.player.component";
+import {VideoModule} from "./video/video.module";
 
 
 @NgModule({
@@ -38,13 +39,6 @@ import {VideoPlayerComponent} from "./video/edit/player/video.player.component";
 		ContentPodcastCreateComponent,
 		ContentPodcastEditComponent,
 		ContentPodcastViewComponent,
-		VideoCreateComponent,
-		VideoEditComponent,
-		VideoViewComponent,
-		VideoHeaderComponent,
-		VideoPlayerComponent,
-		VideoMetadataComponent,
-		VideoTranscriptComponent,
 		Searchbox
 	],
 	imports: [
@@ -61,7 +55,8 @@ import {VideoPlayerComponent} from "./video/edit/player/video.player.component";
 			}
 		}),
 		FormsModule,
-		UtilsModule
+		UtilsModule,
+		VideoModule
 	],
 	providers: [
 		VideoService

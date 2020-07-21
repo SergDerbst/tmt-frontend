@@ -9,6 +9,7 @@ import {faCheck, faPen} from "@fortawesome/free-solid-svg-icons";
 export class EditButton implements OnInit {
 	@Input() editControl: { [key: string]: boolean };
 	@Input() controlKey: string;
+	@Input() formId: string;
 	@ViewChild('editButton') editButton;
 	faCheck = faCheck;
 	faPen = faPen;

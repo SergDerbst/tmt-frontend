@@ -1,0 +1,17 @@
+<div class="tmt-control-panel">
+  <div class="tmt-area tmt-snippet-start">
+    <div class="tmt-label">
+      <span [innerHTML]="'content.video.edit.control.panel.snippet.start' | translate"></span>
+    </div>
+    <tmt-timestamp-control [snippet]="snippet"></tmt-timestamp-control>
+  </div>
+  <div class="tmt-area tmt-snippet-controls">
+    <tmt-controls [snippet]="snippet"></tmt-controls>
+  </div>
+  <div class="tmt-area tmt-snippet-end">
+    <div class="tmt-label">
+      <span [innerHTML]="'content.video.edit.control.panel.snippet.end' | translate"></span>
+    </div>
+    <tmt-timestamp-control [snippet]="snippet"></tmt-timestamp-control>
+  </div>
+</div>

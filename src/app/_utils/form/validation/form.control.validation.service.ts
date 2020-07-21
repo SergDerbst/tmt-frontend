@@ -82,6 +82,10 @@ export class FormControlValidationService {
 					return v;
 				}
 			},
+			hexColorCode: () => {
+				validators.push(validation.hexColorCode());
+				return v;
+			},
 			maxLength: (maxLength: number) => {
 				validators.push(validation.maxLength(maxLength));
 				return v;
@@ -112,7 +116,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl value consists of a
+	 * Returns a validator that checks if the runtime uiControl value consists of a
 	 * valid email address.
 	 */
 	private email(): ValidatorFn {
@@ -125,7 +129,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl has the same value
+	 * Returns a validator that checks if the runtime uiControl has the same value
 	 * as the given other uiControl.
 	 *
 	 * @param otherControl
@@ -141,7 +145,20 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl value contains
+	 * Returns a validator that checks if the runtime uiControl has a value that
+	 * matches a hex color code.
+	 */
+	private hexColorCode(): ValidatorFn {
+		return (control: AbstractControl): ValidationErrors | null => {
+			if (!validationRegex().get('hexColorCode').test(control.value)) {
+				return { hexColorCode: { active: true }};
+			}
+			return null;
+		};
+	}
+	
+	/**
+	 * Returns a validator that checks if the runtime uiControl value contains
 	 * at least one lower case character.
 	 */
 	private lowercase(): ValidatorFn {
@@ -154,7 +171,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl value has
+	 * Returns a validator that checks if the runtime uiControl value has
 	 * at most the given maximum length.
 	 *
 	 * @param maxLength
@@ -169,7 +186,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl value has
+	 * Returns a validator that checks if the runtime uiControl value has
 	 * at least the given minimum length.
 	 *
 	 * @param minLength
@@ -184,7 +201,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl contains
+	 * Returns a validator that checks if the runtime uiControl contains
 	 * at least one numeric character.
 	 */
 	private numeric(): ValidatorFn {
@@ -197,7 +214,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl has a value.
+	 * Returns a validator that checks if the runtime uiControl has a value.
 	 */
 	private required():ValidatorFn {
 		return (control:AbstractControl): ValidationErrors | null => {
@@ -223,7 +240,7 @@ export class FormControlValidationService {
 	}
 	
 	/**
-	 * Returns a validator that checks of the runtime uiControl would pass data
+	 * Returns a validator that checks if the runtime uiControl would pass data
 	 * on submit that doesn't already exist (would be unique, e.g. a username).
 	 * The validator calls a backend controller to validate whether the data
 	 * already exists, but only if no other validation error exists (the current

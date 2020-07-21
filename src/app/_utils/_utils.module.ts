@@ -15,6 +15,7 @@ import {FormComponent} from "./form/form.component";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {FormControlValidationService} from "./form/validation/form.control.validation.service";
 import {EditButton} from "./ui/buttons/edit.button";
+import {DocumentKeyEventService} from "./keyboard/document.key.event.service";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {EditButton} from "./ui/buttons/edit.button";
     FormControlErrorMsgComponent
   ],
   providers: [
-    FormControlValidationService
+    FormControlValidationService,
+    DocumentKeyEventService
   ]
 })
 export class UtilsModule {}

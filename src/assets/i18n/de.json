@@ -67,6 +67,10 @@
   "content.type.new.video": "Neues Video",
   "content.type.new.podcast": "Neuer Podcast",
 
+  "content.video.edit.message": "",
+  "content.video.edit.control.panel.snippet.start": "Start:",
+  "content.video.edit.control.panel.snippet.end": "Ende:",
+
   "global.message.email.verification.title": "Bestätigungsemail",
   "global.message.email.verification.body.paragraph.0": "Wir haben eine Email an {{ email  }} verschickt.",
   "global.message.email.verification.body.paragraph.1": "Bitte klicken Sie auf den enthaltenen Link, um Ihre Emailadresse zu bestätigen.",
@@ -78,6 +82,7 @@
   "form.validation.message.field.equalValue": " müssen übereinstimmen.",
   "form.validation.message.field.equalValue.email": "Emailadressen",
   "form.validation.message.field.equalValue.password": "Passwörter",
+  "form.validation.message.field.hexColorCode": " must be a hex color code.",
   "form.validation.message.field.minlength": " muss mindestens {{ number }} Zeichen lang sein.",
   "form.validation.message.field.pwLowercase": " muss mindestens einen kleinen Buchstaben enthalten.",
   "form.validation.message.field.pwUppercase": " muss mindestens einen großen Buchstaben enthalten.",

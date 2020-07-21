@@ -1,0 +1,26 @@
+@import "../../../../../../styles";
+
+.tmt-control-panel {
+  display: flex;
+  flex-direction: row;
+  min-height: 55px;
+  border-top: 1px solid $grey-darkest;
+
+  .tmt-area {
+    padding: 5px;
+
+    &.tmt-snippet-start {
+      flex-grow: 0;
+    }
+
+    &.tmt-snippet-controls {
+      flex-grow: 2;
+      border-left: 1px solid $grey-darkest;
+      border-right: 1px solid $grey-darkest;
+    }
+
+    &.tmt-snippet-end {
+      flex-grow: 0;
+    }
+  }
+}

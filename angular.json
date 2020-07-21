@@ -67,6 +67,9 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "tmt-frontend:build",
+            "sslCert": "./server.crt",
+            "sslKey": "./server.key",
+            "ssl": true
           },
           "configurations": {
             "production": {

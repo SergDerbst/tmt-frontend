@@ -1,0 +1,34 @@
+@import "../../../../../../../styles";
+
+.tmt-control-panel {
+  .tmt-counter {
+
+    &.tmt-none {
+      font-style: italic;
+    }
+
+  }
+
+  .tmt-button-bar {
+    margin: 5px;
+
+    button {
+      background-color: $grey-darkest;
+      padding: 7px 20px;
+
+      &.tmt-left-border {
+        margin-left: 1px;
+      }
+
+      &.tmt-disabled {
+        color: $grey-neutral;
+        cursor: not-allowed;
+
+        &:hover {
+          color: $grey-neutral;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

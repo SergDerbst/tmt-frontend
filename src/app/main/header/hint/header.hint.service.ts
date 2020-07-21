@@ -30,8 +30,6 @@ export class HeaderHintService {
 	 * @param milliseconds
 	 */
 	overwriteHint(key: string, milliseconds?: number) {
-		console.log('original: ' + this.hint.key);
-		console.log('neue bitch: ' + key);
 		this.hint.key = key;
 		if (milliseconds) {
 			let that = this;
@@ -64,7 +62,7 @@ export class HeaderHintService {
 	private hintFromUrl(url?: string) {
 		url = url || location.pathname;
 		if (url === '/') {
-			return '.home';
+			return this.hintPrefix + '.home';
 		} else {
 			let s = '';
 			let array = url.split(/\//g);

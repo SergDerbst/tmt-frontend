@@ -71,6 +71,12 @@
   "content.type.new.video": "New Video",
   "content.type.new.podcast": "New Podcast",
 
+  "content.video.edit.message": "",
+  "content.video.edit.control.panel.snippet.start": "start:",
+  "content.video.edit.control.panel.snippet.end": "end:",
+  "content.video.edit.control.panel.counter.none": "no snippet",
+  "content.video.edit.control.panel.counter.snippet": "Snippet: "
+
   "global.message.email.verification.title": "Verification Email",
   "global.message.email.verification.body.paragraph.0": "An email has been sent to ",
   "global.message.email.verification.body.paragraph.1": "Please click the link provided in that email to verify the email address.",
@@ -87,6 +93,7 @@
   "form.validation.message.field.email": " must be a valid email address.",
   "form.validation.message.field.equalEmail": " must match email.",
   "form.validation.message.field.equalPassword": " must match password.",
+  "form.validation.message.field.hexColorCode": " must be a hex color code.",
   "form.validation.message.field.minLength": " must be at least {{ number }} characters long.",
   "form.validation.message.field.maxlength": " must be at most {{ number }} characters long.",
   "form.validation.message.field.lowercase": " must have at least one lower case character.",

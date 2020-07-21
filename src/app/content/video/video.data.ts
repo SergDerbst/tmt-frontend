@@ -27,6 +27,8 @@ export class VideoData extends ContentData<VideoHeader, VideoMetadata> {
 export class VideoHeader extends ContentHeader {
 	title: string;
 	url: string;
+	domain: VideoDomain;
+	videoId: string;
 	
 	constructor(config: {
 		id: number;
@@ -67,4 +69,8 @@ export class VideoCreationData {
 		this.title = title;
 		this.url = url;
 	}
+}
+
+export enum VideoDomain {
+	Youtube = 'youtube.com'
 }

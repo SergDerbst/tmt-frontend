@@ -1,4 +1,6 @@
+<!--suppress XmlInvalidId -->
 <button type="button"
+        [attr.form]="formId"
         (click)="toggleEdit()"
         #editButton>
   <fa-icon *ngIf="!editControl[controlKey]"

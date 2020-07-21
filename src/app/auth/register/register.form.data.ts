@@ -1,4 +1,4 @@
-import {DayOfBirth} from "../../_utils/data/date.and.time";
+import {SimpleDate} from "../../_utils/data/date.and.time";
 import {Sex, Title} from "../../_utils/data/enums";
 
 export class RegisterFormData {
@@ -11,7 +11,7 @@ export class RegisterFormData {
 		username: string;
 	};
 	personalData: {
-		dayOfBirth: DayOfBirth,
+		dayOfBirth: SimpleDate,
 		firstName: string,
 		lastName: string,
 		middleName: string,
@@ -29,7 +29,7 @@ export class RegisterFormData {
 			username: string;
 		},
 		personalData: {
-			dayOfBirth: DayOfBirth,
+			dayOfBirth: SimpleDate,
 			firstName: string,
 			lastName: string,
 			middleName: string,

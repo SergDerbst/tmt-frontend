@@ -1,0 +1,84 @@
+@import "../../../../../../styles";
+
+.tmt-text-panel {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 5px 0 5px;
+  border-top: 1px solid $grey-darkest;
+
+  .tmt-text-control {
+    flex-grow: 2;
+    padding: 5px 5px 0 5px;
+    text-align: left;
+
+    textarea {
+      width: 98%;
+      min-height: 55px;
+      background-color: $grey-gloomy;
+      color: $grey-dark;
+      font-size: large;
+      padding: 5px;
+      resize: vertical;
+    }
+
+    .tmt-text-controls {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+
+      .tmt-text-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 0;
+        padding-top: 5px;
+
+        .tmt-btn-group {
+          margin-right: 5px;
+
+          button {
+            min-width: 25px;
+            background-color: $grey-darkest;
+            margin-right: 1px;
+          }
+        }
+      }
+
+      .tmt-text-checks {
+        margin: 11px 25px;
+        flex-grow: 0;
+
+        label {
+          padding-left: 7px;
+          margin-bottom: 5px;
+        }
+      }
+
+      .tmt-property {
+        padding-top: 10px;
+        flex-grow: 2;
+        text-align: right;
+        margin-right: 5px;
+
+        input.hex {
+          max-width: 60px;
+        }
+      }
+    }
+  }
+
+  .tmt-crud-buttons {
+    flex-grow: 0;
+    padding: 5px;
+
+    button {
+      min-width: 25px;
+      background-color: $grey-darkest;
+      margin-top: 1px;
+
+      &.tmt-disabled {
+        color: $grey-neutral;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<a *ngIf="snippet" class="tmt-timestamp-control"
+  (keydown)="keyDown($event)">
+  <div class="tmt-timestamp">
+    <span *ngIf="snippet.start.hour < 10">0</span>
+    <span [innerHTML]="snippet.start.hour"></span>
+  </div>
+  <div class="tmt-timestamp">
+    <span *ngIf="snippet.start.minute < 10">0</span>
+    <span [innerHTML]="snippet.start.hour"></span>
+  </div>
+  <div class="tmt-timestamp">
+    <span *ngIf="snippet.start.second < 10">0</span>
+    <span [innerHTML]="snippet.start.hour"></span>
+  </div>
+  <div class="tmt-timestamp">
+    <span *ngIf="snippet.start.millisecond < 100 && snippet.start.millisecond>= 10">0</span>
+    <span *ngIf="snippet.start.millisecond < 10">00</span>
+    <span [innerHTML]="snippet.start.hour"></span>
+  </div>
+  <div class="tmt-up-down-control">
+    <button (click)="up()" class="tmt-up">
+      <fa-icon [icon]="faCaretUp"></fa-icon>
+    </button>
+    <button (click)="down()">
+      <fa-icon [icon]="faCaretDown"></fa-icon>
+    </button>
+  </div>
+</a>
+<a *ngIf="!snippet" class="tmt-timestamp-control tmt-disabled">
+  <div class="tmt-timestamp">
+    <span>-</span>
+    <span>-</span>
+  </div>
+  <div class="tmt-colon">:</div>
+  <div class="tmt-timestamp">
+    <span>-</span>
+    <span>-</span>
+  </div>
+  <div class="tmt-colon">:</div>
+  <div class="tmt-timestamp">
+    <span>-</span>
+    <span>-</span>
+  </div>
+  <div class="tmt-colon">:</div>
+  <div class="tmt-timestamp">
+    <span>-</span>
+    <span>-</span>
+    <span>-</span>
+  </div>
+  <div class="tmt-up-down-control">
+    <button class="tmt-up tmt-disabled">
+      <fa-icon [icon]="faCaretUp"></fa-icon>
+    </button>
+    <button class="tmt-disabled">
+      <fa-icon [icon]="faCaretDown"></fa-icon>
+    </button>
+  </div>
+</a>

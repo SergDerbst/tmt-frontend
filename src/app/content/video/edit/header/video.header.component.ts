@@ -15,6 +15,7 @@ import {AppConfigService} from "../../../../app.config.service";
 })
 export class VideoHeaderComponent implements OnInit {
 	@Input() header: FormGroupConfig;
+	@Input() formId: string;
 	@Input() video: VideoData;
 	@ViewChild('titleSegment') titleSegment;
 	title: FormControl;

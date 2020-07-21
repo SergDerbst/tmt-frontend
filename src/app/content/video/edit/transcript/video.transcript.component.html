@@ -1,3 +1,11 @@
-<div class="tmt-transcript-segment">
-
+<div [className]="control.current === null ?
+                  'tmt-transcript-segment tmt-no-snippet' : 'tmt-transcript-segment'">
+  <div class="tmt-message">
+    <span></span>
+  </div>
+  <form id="transcriptForm" [formGroup]="transcriptFormConfig.form"></form>
+  <tmt-control-panel [snippet]="currentSnippet()" [formId]="'transcriptForm'"></tmt-control-panel>
+  <tmt-text-panel [snippet]="currentSnippet()" [formId]="'transcriptForm'"></tmt-text-panel>
+  <tmt-properties-panel [snippet]="currentSnippet()" [formId]="'transcriptForm'"></tmt-properties-panel>
+  <!--tmt-comments-panel [snippet]="currentSnippet()" [formId]="'transcriptForm'"></tmt-comments-panel-->
 </div>

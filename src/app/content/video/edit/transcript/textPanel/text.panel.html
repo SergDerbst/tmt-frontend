@@ -1,0 +1,58 @@
+<div class="tmt-text-panel">
+  <div class="tmt-text-control">
+    <textarea [attr.form]="formId" [disabled]="!snippet"></textarea>
+    <div class="tmt-text-controls">
+      <div class="tmt-text-buttons">
+        <div class="tmt-btn-group">
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faBold"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faItalic"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faUnderline"></fa-icon>
+          </button>
+        </div>
+        <div class="tmt-btn-group">
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faAlignLeft"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faAlignCenter"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faAlignRight"></fa-icon>
+          </button>
+        </div>
+        <div class="tmt-btn-group">
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <span class="icon-icon-vertical-bottom"></span>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <span class="icon-icon-vertical-center"></span>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <span class="icon-icon-vertical-top"></span>
+          </button>
+        </div>
+      </div>
+      <div class="tmt-text-checks">
+        <input type="checkbox" [disabled]="!snippet">
+        <label>New Paragraph</label>
+      </div>
+    </div>
+  </div>
+  <div class="tmt-crud-buttons">
+    <div>
+      <button [attr.form]="formId" [className]="snippet ? '' : 'tmt-disabled'">
+        <span class="icon-enter"></span>
+      </button>
+    </div>
+    <div>
+      <button [attr.form]="formId" [className]="snippet ? '' : 'tmt-disabled'">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>
