@@ -1,0 +1,34 @@
+<div class="tmt-control-panel">
+  <div class="tmt-counter tmt-none">
+    <span *ngIf="!snippet"
+          [innerHTML]="'content.video.edit.control.panel.counter.none' | translate"></span>
+    <span *ngIf="snippet"
+          [innerHTML]="'content.video.edit.control.panel.counter.snippet' | translate"></span>
+  </div>
+  <div class="tmt-button-bar">
+    <button (click)="newSnippet()"
+            [disabled]="!snippet">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+    <button class="tmt-left-border"
+            [disabled]="!snippet"
+            (click)="previousSnippet()">
+      <fa-icon [icon]="faStepBackward"></fa-icon>
+    </button>
+    <button class="tmt-left-border"
+            [disabled]="!snippet"
+            (click)="playSnippet()">
+      <fa-icon [icon]="faPlay"></fa-icon>
+    </button>
+    <button class="tmt-left-border"
+            [disabled]="!snippet"
+            (click)="nextSnippet()">
+      <fa-icon [icon]="faStepForward"></fa-icon>
+    </button>
+    <button class="tmt-left-border"
+            [disabled]="!snippet"
+            (click)="toggleLoop()">
+      <span class="icon-loop2"></span>
+    </button>
+  </div>
+</div>

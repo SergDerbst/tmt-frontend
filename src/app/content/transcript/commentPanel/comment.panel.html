@@ -1,0 +1,44 @@
+<div class="tmt-comment-panel">
+  <div class="tmt-header">
+    <div [innerHTML]="'content.video.edit.comment.panel.header' | translate"></div>
+  </div>
+  <div class="tmt-text-panel">
+    <textarea [attr.form]="formId" [disabled]="!snippet"></textarea>
+    <div class="tmt-text-controls">
+      <div class="tmt-text-buttons">
+        <div class="tmt-button-group">
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faBold"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faItalic"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faUnderline"></fa-icon>
+          </button>
+        </div>
+        <div class="tmt-button-group">
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faAlignLeft"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faAlignCenter"></fa-icon>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <fa-icon [icon]="faAlignRight"></fa-icon>
+          </button>
+        </div>
+        <div class="tmt-button-group">
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <span class="icon-icon-vertical-bottom"></span>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <span class="icon-icon-vertical-center"></span>
+          </button>
+          <button [attr.form]="formId" [disabled]="!snippet">
+            <span class="icon-icon-vertical-top"></span>
+          </button>
+        </div>
+      </div>
+  </div>
+</div>

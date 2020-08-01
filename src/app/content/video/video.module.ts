@@ -5,7 +5,7 @@ import {VideoViewComponent} from "./view/video.view.component";
 import {VideoHeaderComponent} from "./edit/header/video.header.component";
 import {VideoPlayerComponent} from "./edit/player/video.player.component";
 import {VideoMetadataComponent} from "./edit/metadata/video.metadata.component";
-import {VideoTranscriptComponent} from "./edit/transcript/video.transcript.component";
+import {TranscriptComponent} from "../transcript/transcript.component";
 import {AuthModule} from "../../auth/auth.module";
 import {CommonModule} from "@angular/common";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -18,10 +18,11 @@ import {VideoRoutingModule} from "./video-routing.module";
 import {YoutubePlayerComponent} from "./edit/player/youtube/youtube.player.component";
 import {YouTubePlayerModule} from "@angular/youtube-player";
 import {VideoEditKeyActions} from "./edit/video.edit.key.actions";
-import {TimestampControl} from "./edit/transcript/controlPanel/timestamp/timestamp.control";
-import {Controls} from "./edit/transcript/controlPanel/controls/controls";
-import {TextPanel} from "./edit/transcript/textPanel/text.panel";
-import {ControlPanel} from "./edit/transcript/controlPanel/control.panel";
+import {TimestampControl} from "../transcript/controlPanel/timestamp/timestamp.control";
+import {Controls} from "../transcript/controlPanel/controls/controls";
+import {TextPanel} from "../transcript/textPanel/text.panel";
+import {ControlPanel} from "../transcript/controlPanel/control.panel";
+import {CommentPanel} from "../transcript/commentPanel/comment.panel";
 
 @NgModule({
 	declarations: [
@@ -31,11 +32,12 @@ import {ControlPanel} from "./edit/transcript/controlPanel/control.panel";
 			VideoPlayerComponent,
 				YoutubePlayerComponent,
 			VideoMetadataComponent,
-			VideoTranscriptComponent,
+			TranscriptComponent,
 				ControlPanel,
 					TimestampControl,
 					Controls,
 				TextPanel,
+				CommentPanel,
 			VideoViewComponent,
 	],
 	imports: [

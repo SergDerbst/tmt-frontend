@@ -1,16 +1,17 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {Transcript} from "./transcript.data";
-import {FormConfig, FormControlConfig, FormGroupConfig} from "../../../../_utils/form/config/form.config";
+import {FormConfig, FormControlConfig, FormGroupConfig} from "../../_utils/form/config/form.config";
 import {FormBuilder, FormControl} from "@angular/forms";
-import {FormControlValidationService} from "../../../../_utils/form/validation/form.control.validation.service";
+import {FormControlValidationService} from "../../_utils/form/validation/form.control.validation.service";
+import {DocumentKeyEventService} from "../../_utils/keyboard/document.key.event.service";
 
 @Component({
 	selector: 'tmt-video-transcript',
-	templateUrl: './video.transcript.component.html',
-	styleUrls: ['./video.transcript.component.scss']
+	templateUrl: './transcript.component.html',
+	styleUrls: ['./transcript.component.scss']
 })
-export class VideoTranscriptComponent implements OnInit {
+export class TranscriptComponent implements OnInit {
 	@Input() transcript: Transcript;
 	@Input() formId: string;
 	transcriptFormConfig: FormConfig;

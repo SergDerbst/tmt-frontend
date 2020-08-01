@@ -70,6 +70,10 @@
   "content.video.edit.message": "",
   "content.video.edit.control.panel.snippet.start": "Start:",
   "content.video.edit.control.panel.snippet.end": "Ende:",
+  "content.video.edit.control.panel.counter.none": "Kein Schnipsel Vorhanden",
+  "content.video.edit.control.panel.counter.snippet": "Schnipsel: ",
+  "content.video.edit.comment.panel.header": "Des Schreibers Kommentar: ",
+  "content.video.edit.text.panel.new.paragraph": "Neuer Absatz",
 
   "global.message.email.verification.title": "Bestätigungsemail",
   "global.message.email.verification.body.paragraph.0": "Wir haben eine Email an {{ email  }} verschickt.",

@@ -1,0 +1,49 @@
+@import "../../../../styles";
+
+.tmt-comment-panel {
+  padding: 5px;
+  border-top: 1px solid $grey-darkest;
+
+  .tmt-header {
+    font-size: large;
+    font-style: italic;
+    padding-bottom: 5px;
+  }
+
+  .tmt-text-panel {
+    padding: 5px;
+
+    textarea {
+      width: 98%;
+      min-height: 55px;
+      background-color: $grey-gloomy;
+      color: $grey-dark;
+      font-size: large;
+      padding: 5px;
+      resize: vertical;
+    }
+
+    .tmt-text-controls {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+
+      .tmt-text-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 0;
+        padding-top: 5px;
+
+        .tmt-button-group {
+          margin-right: 5px;
+
+          button {
+            min-width: 25px;
+            background-color: $grey-darkest;
+            margin-right: 1px;
+          }
+        }
+      }
+    }
+  }
+}

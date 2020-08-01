@@ -1,6 +1,16 @@
 import {Injectable, OnDestroy, OnInit} from "@angular/core";
 
 /**
+ * Abstract class to define the given key actions.
+ */
+export abstract class KeyActionsPreparer {
+	
+	protected constructor(protected documentKeyEventService: DocumentKeyEventService) {}
+	
+	abstract prepareActions(): void;
+}
+
+/**
  * Holds an action or handler of a specific order, a combination of pressed keys,
  * that will be executed when the expected keys have been currently pressed.
  *

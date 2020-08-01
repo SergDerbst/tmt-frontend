@@ -22,9 +22,7 @@ export class VideoPlayerComponent implements OnInit {
 		youtube: VideoDomain.Youtube
 	}
 	
-	constructor(public translate: TranslateService,
-	            private keyEventService: DocumentKeyEventService,
-	            private videoEditKeyActions: VideoEditKeyActions) {
+	constructor(public translate: TranslateService) {
 		translate.addLangs(['de', 'en']);
 		translate.setDefaultLang('en');
 	}
@@ -32,7 +30,6 @@ export class VideoPlayerComponent implements OnInit {
 	ngOnInit(): void {
 		this.prepareVideoId();
 		this.prepareScript();
-		this.videoEditKeyActions.prepareActions();
 	}
 	
 	private prepareVideoId() {

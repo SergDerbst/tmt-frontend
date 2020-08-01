@@ -9,6 +9,7 @@ import {
 	faTrash,
 	faUnderline
 } from "@fortawesome/free-solid-svg-icons";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
 	selector: 'tmt-text-panel',
@@ -27,7 +28,10 @@ export class TextPanel implements OnInit {
 	faAlignCenter = faAlignCenter;
 	faAlignRight = faAlignRight;
 	
-	constructor() {}
+	constructor(public translate: TranslateService) {
+		translate.addLangs(['de', 'en']);
+		translate.setDefaultLang('en');
+	}
 	
 	ngOnInit(): void {
 	
