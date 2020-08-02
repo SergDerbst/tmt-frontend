@@ -1,10 +1,12 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {ChangeDetectorRef, Component, Input, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {Transcript} from "./transcript.data";
 import {FormConfig, FormControlConfig, FormGroupConfig} from "../../_utils/form/config/form.config";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {FormControlValidationService} from "../../_utils/form/validation/form.control.validation.service";
-import {DocumentKeyEventService} from "../../_utils/keyboard/document.key.event.service";
+import {TranscriptKeyActions} from "./transcript.key.actions";
+import {TranscriptService} from "./transcript.service";
+import {TranscriptPlayer} from "./transcript.player";
 
 @Component({
 	selector: 'tmt-video-transcript',
@@ -13,6 +15,7 @@ import {DocumentKeyEventService} from "../../_utils/keyboard/document.key.event.
 })
 export class TranscriptComponent implements OnInit {
 	@Input() transcript: Transcript;
+	@Input() transcriptPlayer: TranscriptPlayer;
 	@Input() formId: string;
 	transcriptFormConfig: FormConfig;
 	groups: {
@@ -23,11 +26,14 @@ export class TranscriptComponent implements OnInit {
 	};
 	control: {
 		current: number
-	}
+	};
 	
 	constructor(public translate: TranslateService,
+	            public transcriptService: TranscriptService,
 	            private fb: FormBuilder,
-							private validation: FormControlValidationService) {
+							private changeDetection: ChangeDetectorRef,
+							private validation: FormControlValidationService,
+							private transcriptKeyActions: TranscriptKeyActions) {
 		translate.addLangs(['de', 'en']);
 		translate.setDefaultLang('en');
 		this.control = { current: null };
@@ -52,6 +58,10 @@ export class TranscriptComponent implements OnInit {
 			this.groups.properties,
 			this.groups.comment
 		]);
+		this.transcriptKeyActions.prepareActions(this.transcriptPlayer);
+		this.transcriptService.statusChanged.subscribe(value => {
+			this.changeDetection.detectChanges();
+		});
 	}
 	
 	currentSnippet() {

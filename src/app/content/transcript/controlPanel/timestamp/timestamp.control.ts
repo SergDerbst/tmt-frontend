@@ -16,7 +16,6 @@ export class TimestampControl implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		console.log(this.snippet);
 	}
 	
 	keyDown(event: KeyboardEvent) {

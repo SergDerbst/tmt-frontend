@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {VideoData} from "../../../video.data";
+import {TranscriptService, TranscriptStatus} from "../../../../transcript/transcript.service";
 
 @Component({
 	selector: 'tmt-youtube-player',
@@ -8,13 +9,48 @@ import {VideoData} from "../../../video.data";
 })
 export class YoutubePlayerComponent implements OnInit {
 	@Input() video: VideoData;
+	YT: any;
+	player: any;
+	reframed: boolean = false;
 	
-	constructor() {
-	}
+	constructor(private transcriptService: TranscriptService) {}
 	
 	ngOnInit(): void {
 		const tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/iframe_api";
-		document.body.appendChild(tag);
+		let firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		
+		window['onYouTubeIframeAPIReady'] = () => {
+			this.reframed = false;
+			this.player = new window['YT'].Player('player', {
+				videoId: this.video.header.videoId,
+				width: '100%',
+				playerVars: {
+					autoplay: 0,
+					modestbranding: 1,
+					controls: 1,
+					disablekb: 1,
+				},
+				events: {
+					'onStateChange': this.onPlayerStateChange.bind(this),
+					'onReady': this.onPlayerReady.bind(this),
+				}
+			})
+		};
+	}
+	
+	onPlayerReady(event) {
+		this.transcriptService.player.setPlayer(event.target);
+		this.transcriptService.updateStatus(TranscriptStatus.ReadyForTranscription);
+	}
+	
+	onPlayerStateChange(event) {
+		switch(event.data) {
+			case window['YT'].PlayerState.PLAYING:
+				if (this.transcriptService.status === TranscriptStatus.ReadyForTranscription) {
+					this.transcriptService.updateStatus(TranscriptStatus.ReadyForSnippet);
+				}
+		}
 	}
 }

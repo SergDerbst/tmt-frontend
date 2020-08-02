@@ -27,6 +27,7 @@ import {UtilsModule} from "../_utils/_utils.module";
 import {TranscriptComponent} from "./transcript/transcript.component";
 import {VideoPlayerComponent} from "./video/edit/player/video.player.component";
 import {VideoModule} from "./video/video.module";
+import {TranscriptKeyActions} from "./transcript/transcript.key.actions";
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import {VideoModule} from "./video/video.module";
 		VideoModule
 	],
 	providers: [
-		VideoService
+		VideoService,
+		TranscriptKeyActions
 	]
 })
 export class ContentModule {}

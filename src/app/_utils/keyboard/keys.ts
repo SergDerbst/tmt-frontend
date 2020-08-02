@@ -43,6 +43,10 @@ export function isNumeric(code: number):boolean {
 				 (code >= KeyCode.NumpadZero && code <= KeyCode.NumpadNine);
 }
 
+export enum Key {
+
+}
+
 export enum KeyCode {
 	Backspace = 8,
 	Tab = 9,
@@ -113,7 +117,7 @@ export enum KeyCode {
 	NumpadEight = 104,
 	NumpadNine = 105,
 	Multiply = 106,
-	Add = 108,
+	Add = 107,
 	Subtract = 109,
 	DecimalPoint = 110,
 	Divide = 111,
@@ -132,7 +136,7 @@ export enum KeyCode {
 	NumLock = 144,
 	ScrollLock = 145,
 	SemiColon = 186,
-	EqualSign = 187,
+	PlusSign = 187,
 	Comma = 188,
 	Dash = 189,
 	Period = 190,

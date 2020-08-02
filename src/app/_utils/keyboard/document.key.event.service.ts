@@ -1,13 +1,18 @@
 import {Injectable, OnDestroy, OnInit} from "@angular/core";
 
 /**
- * Abstract class to define the given key actions.
+ * The action mapping from keys to action.
  */
-export abstract class KeyActionsPreparer {
+export class KeyAction {
+	order: { [key: number]: boolean };
+	action: () => void;
 	
-	protected constructor(protected documentKeyEventService: DocumentKeyEventService) {}
-	
-	abstract prepareActions(): void;
+	constructor(action: {
+		order: { [key: number]: boolean }, action: () => void
+	}) {
+		this.order = action.order;
+		this.action = action.action;
+	}
 }
 
 /**
@@ -65,8 +70,8 @@ export class DocumentKeyEventService implements OnDestroy {
 		document.addEventListener('keyup', this.keyUp());
 	}
 	
-	addAction(order: { [key: number]: boolean }, action: () => void) {
-		this.actions.push(new KeysDownAction(order, action));
+	addAction(action: KeyAction) {
+		this.actions.push(new KeysDownAction(action.order, action.action));
 	}
 	
 	ngOnDestroy(): void {
@@ -86,6 +91,9 @@ export class DocumentKeyEventService implements OnDestroy {
 	private keyDown(): (event: KeyboardEvent)=>void {
 		let that = this;
 		return (event: KeyboardEvent) => {
+			console.log('keyCode: ' + event.keyCode);
+			console.log('key: ' + event.key);
+			
 			that.keysDown[event.keyCode] = true;
 			that.checkOrder(that.keysDown);
 		};

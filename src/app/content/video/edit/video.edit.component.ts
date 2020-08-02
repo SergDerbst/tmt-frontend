@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {VideoData, VideoMetadata} from "../video.data";
 import {VideoService} from "../video.service";
@@ -8,6 +8,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {FormConfig, FormControlConfig, FormGroupConfig} from "../../../_utils/form/config/form.config";
 import {FormControlValidationService} from "../../../_utils/form/validation/form.control.validation.service";
 import {HeaderHintService} from "../../../main/header/hint/header.hint.service";
+import {Transcript} from "../../transcript/transcript.data";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -49,6 +50,9 @@ export class VideoEditComponent implements OnInit {
 				if (video.header.status === ContentStatus.Created) {
 					video.header.status = ContentStatus.InProcess;
 				}
+				if (!video.transcript) {
+					video.transcript = new Transcript();
+				}
 				this.video = video;
 				this.activateController(video, 'header', 'title');
 				this.activateController(video, 'metadata', 'description');
@@ -70,7 +74,7 @@ export class VideoEditComponent implements OnInit {
 		control.valueChanges.subscribe(value => {
 			this.video[groupName][controlName] = value;
 			this.videoService.updateVideo(this.video).subscribe(() => {
-				this.hintService.overwriteHint(this.hintService.hintPrefix + '.content.video.edit.saved', 1500);
+				this.hintService.overwriteHint(this.hintService.hintPrefix + '.content.transcript.edit.saved', 1500);
 			});
 		});
 	}

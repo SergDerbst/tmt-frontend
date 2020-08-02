@@ -17,7 +17,7 @@ export class VideoData extends ContentData<VideoHeader, VideoMetadata> {
 		transcript: Transcript
 	}) {
 		super(config);
-		this.transcript = config.transcript;
+		this.transcript = config.transcript || new Transcript();
 	}
 }
 

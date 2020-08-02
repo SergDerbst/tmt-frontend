@@ -16,13 +16,13 @@ import {HttpClient} from "@angular/common/http";
 import {UtilsModule} from "../../_utils/_utils.module";
 import {VideoRoutingModule} from "./video-routing.module";
 import {YoutubePlayerComponent} from "./edit/player/youtube/youtube.player.component";
-import {YouTubePlayerModule} from "@angular/youtube-player";
-import {VideoEditKeyActions} from "./edit/video.edit.key.actions";
 import {TimestampControl} from "../transcript/controlPanel/timestamp/timestamp.control";
 import {Controls} from "../transcript/controlPanel/controls/controls";
 import {TextPanel} from "../transcript/textPanel/text.panel";
 import {ControlPanel} from "../transcript/controlPanel/control.panel";
 import {CommentPanel} from "../transcript/commentPanel/comment.panel";
+import {YoutubePlayer} from "./edit/player/youtube/youtube.player";
+import {TranscriptService} from "../transcript/transcript.service";
 
 @NgModule({
 	declarations: [
@@ -55,10 +55,10 @@ import {CommentPanel} from "../transcript/commentPanel/comment.panel";
 		FormsModule,
 		UtilsModule,
 		VideoRoutingModule,
-		YouTubePlayerModule
 	],
 	providers: [
-		VideoEditKeyActions
+		TranscriptService,
+		YoutubePlayer,
 	]
 })
 export class VideoModule {}
