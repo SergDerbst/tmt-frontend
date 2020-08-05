@@ -48,6 +48,7 @@ export class YoutubePlayerComponent implements OnInit {
 	onPlayerStateChange(event) {
 		switch(event.data) {
 			case window['YT'].PlayerState.PLAYING:
+				this.transcriptService.listenToTime();
 				if (this.transcriptService.status === TranscriptStatus.ReadyForTranscription) {
 					this.transcriptService.updateStatus(TranscriptStatus.ReadyForSnippet);
 				}

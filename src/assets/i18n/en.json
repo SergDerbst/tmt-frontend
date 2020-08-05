@@ -74,6 +74,7 @@
   "content.transcript.edit.message.status.0": "",
   "content.transcript.edit.message.status.1": "Press <b>Ctrl+Shift+Space</b> to start transcription.",
   "content.transcript.edit.message.status.2": "Press <i>Ctrl+Shift+Plus</i> to begin snippet.",
+  "content.transcript.edit.message.status.3": "Press <i>Ctrl+Shift+Enter</i> to set end of snippet.",
 
   "content.transcript.edit.panel.control.snippet.start": "start:",
   "content.transcript.edit.panel.control.snippet.end": "end:",

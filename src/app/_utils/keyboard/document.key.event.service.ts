@@ -91,9 +91,6 @@ export class DocumentKeyEventService implements OnDestroy {
 	private keyDown(): (event: KeyboardEvent)=>void {
 		let that = this;
 		return (event: KeyboardEvent) => {
-			console.log('keyCode: ' + event.keyCode);
-			console.log('key: ' + event.key);
-			
 			that.keysDown[event.keyCode] = true;
 			that.checkOrder(that.keysDown);
 		};

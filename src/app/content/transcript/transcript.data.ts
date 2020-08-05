@@ -8,18 +8,33 @@ import {TranscriptPlayer} from "./transcript.player";
 export class Transcript {
 	snippets: Snippet[];
 	player: TranscriptPlayer;
+	current: number;
 	
 	constructor() {
 		this.snippets = [];
+		this.current = -1;
 	}
 	
-	addSnippet(snippet: Snippet) {
-		this.snippets.push(snippet);
-		//TODO insert snippet, or split snippet
+	beginSnippet(snippet: Snippet): void {
+		if (this.current <= 0) {
+			this.snippets.push(snippet);
+			this.current = 0;
+		}
+		//TODO insert snippet, or split snippet, sort snippets, all that jazz
+	}
+	
+	endSnippet(endTime: SimpleTime) {
+		if (this.current >= 0) {
+			this.snippets[this.current].end = endTime;
+		}
 	}
 	
 	getSnippet(index: number) {
 		return this.snippets[index];
+	}
+	
+	currentSnippet() {
+		return this.snippets[this.current];
 	}
 }
 

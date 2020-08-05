@@ -15,6 +15,7 @@ export class TranscriptKeyActions {
 		this.transcriptService.setPlayer(transcriptPlayer);
 		this.documentKeyEventService.addAction(this.startTranscriptionAction());
 		this.documentKeyEventService.addAction(this.beginSnippetAction());
+		this.documentKeyEventService.addAction(this.endSnippetAction());
 	}
 	
 	private startTranscriptionAction(): KeyAction {
@@ -40,7 +41,26 @@ export class TranscriptKeyActions {
 				[KeyCode.Add]: true
 			},
 			action: () => {
-				console.log('begin snippet');
+				if (this.transcriptService.status === TranscriptStatus.ReadyForSnippet) {
+					this.transcriptService.beginSnippet();
+					this.transcriptService.updateStatus(TranscriptStatus.SnippetTriggered);
+				}
+			}
+		}
+	}
+	
+	private endSnippetAction() {
+		return {
+			order: {
+				[KeyCode.Ctrl]: true,
+				[KeyCode.Shift]: true,
+				[KeyCode.Enter]: true
+			},
+			action: () => {
+				if (this.transcriptService.status === TranscriptStatus.SnippetTriggered) {
+					this.transcriptService.endSnippet();
+					this.transcriptService.updateStatus(TranscriptStatus.SnippetEdit);
+				}
 			}
 		}
 	}

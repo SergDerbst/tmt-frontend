@@ -31,4 +31,14 @@ export class SimpleTime {
 	minute: number;
 	second: number;
 	millisecond: number;
+	total: number;
+	
+	constructor(millis: number) {
+		this.total = millis;
+		let date = new Date(millis);
+		this.hour = date.getHours() - 1;
+		this.minute = date.getMinutes();
+		this.second = date.getSeconds();
+		this.millisecond = date.getMilliseconds();
+	}
 }
