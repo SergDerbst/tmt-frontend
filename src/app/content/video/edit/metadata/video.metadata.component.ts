@@ -18,8 +18,6 @@ export class VideoMetadataComponent implements OnInit {
 	edit: { metadata: boolean };
 	
 	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

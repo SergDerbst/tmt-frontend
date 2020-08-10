@@ -19,8 +19,6 @@ export class ContentComponent implements OnInit {
   faPodcast = faPodcast;
     
   constructor(public translate: TranslateService) {
-    translate.addLangs(['de', 'en']);
-    translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {

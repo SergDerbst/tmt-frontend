@@ -22,8 +22,6 @@ export class VideoPlayerComponent implements OnInit {
 	
 	constructor(public translate: TranslateService,
 	            private youtubePlayer: YoutubePlayer) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

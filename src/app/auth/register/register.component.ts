@@ -22,8 +22,6 @@ export class RegisterComponent implements OnInit {
 	            private validation: FormControlValidationService,
 	            private authService: AuthService,
 	            private router: Router) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

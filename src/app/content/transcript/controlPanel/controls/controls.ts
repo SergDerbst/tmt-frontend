@@ -31,8 +31,6 @@ export class Controls implements OnInit {
 	
 	constructor(public translate: TranslateService,
 	            public transcriptService: TranscriptService,) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

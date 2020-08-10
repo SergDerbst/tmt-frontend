@@ -34,8 +34,6 @@ export class TranscriptComponent implements OnInit {
 							private changeDetection: ChangeDetectorRef,
 							private validation: FormControlValidationService,
 							private transcriptKeyActions: TranscriptKeyActions) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 		this.control = { current: null };
 	}
 	

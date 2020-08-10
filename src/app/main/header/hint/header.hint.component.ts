@@ -17,8 +17,6 @@ export class HeaderHintComponent implements OnInit {
 	constructor(public translate: TranslateService,
 	            private router: Router,
 	            private store: Store<AppState>) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

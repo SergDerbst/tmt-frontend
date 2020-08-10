@@ -11,8 +11,6 @@ export class Searchbox implements OnInit, AfterViewInit {
 	@Input() searchBoxConfig: SearchboxConfig;
 	
 	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngAfterViewInit(): void {

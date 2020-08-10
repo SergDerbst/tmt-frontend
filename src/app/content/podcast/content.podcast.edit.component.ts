@@ -8,10 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class ContentPodcastEditComponent implements OnInit, AfterViewInit {
 	
-	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
-	}
+	constructor(public translate: TranslateService) {}
 	
 	ngAfterViewInit(): void {
 	}

@@ -29,8 +29,6 @@ export class TextPanel implements OnInit {
 	faAlignRight = faAlignRight;
 	
 	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

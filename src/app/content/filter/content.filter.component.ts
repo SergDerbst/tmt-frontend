@@ -16,8 +16,6 @@ export class ContentFilterComponent implements OnInit, AfterViewInit {
 	
 	constructor(public translate: TranslateService,
 	            private router: Router) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngAfterViewInit(): void {

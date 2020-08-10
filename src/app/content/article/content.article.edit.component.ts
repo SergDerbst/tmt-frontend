@@ -9,8 +9,6 @@ import {TranslateService} from "@ngx-translate/core";
 export class ContentArticleEditComponent implements OnInit, AfterViewInit {
 	
 	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngAfterViewInit(): void {

@@ -11,8 +11,5 @@ export class FormControlLabelComponent {
 	@Input() required: boolean;
 	@Input() translatePrefix: string;
 	
-	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
-	}
+	constructor(public translate: TranslateService) {}
 }

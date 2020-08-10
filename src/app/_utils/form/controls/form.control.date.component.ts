@@ -24,8 +24,6 @@ export class FormControlDateComponent implements OnInit {
 	
 	constructor(public translate: TranslateService,
 	            private appConfigService: AppConfigService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

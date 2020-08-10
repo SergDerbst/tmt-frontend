@@ -11,8 +11,6 @@ export class ContentArticleCreateComponent implements OnInit, AfterViewInit {
 	
 	constructor(private fb: FormBuilder,
 	            public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngAfterViewInit(): void {

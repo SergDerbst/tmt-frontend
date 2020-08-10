@@ -14,8 +14,6 @@ export class ControlPanel implements OnInit {
 	@Input() formId: string;
 	
 	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

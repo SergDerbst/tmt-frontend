@@ -20,8 +20,6 @@ export class FormControlSelectComponent implements OnInit {
 	showList: boolean;
 	
 	constructor(public translate: TranslateService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {

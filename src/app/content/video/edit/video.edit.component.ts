@@ -35,8 +35,6 @@ export class VideoEditComponent implements OnInit {
 	            private store: Store<AppState>,
 	            private validation: FormControlValidationService,
 	            private videoService: VideoService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
 	}
 	
 	ngOnInit(): void {
