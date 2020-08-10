@@ -3,12 +3,14 @@ import {TranslateService} from "@ngx-translate/core";
 import {VideoData, VideoMetadata} from "../video.data";
 import {VideoService} from "../video.service";
 import {ContentStatus} from "../../../_utils/data/enums";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {FormConfig, FormControlConfig, FormGroupConfig} from "../../../_utils/form/config/form.config";
 import {FormControlValidationService} from "../../../_utils/form/validation/form.control.validation.service";
-import {HeaderHintService} from "../../../main/header/hint/header.hint.service";
 import {Transcript} from "../../transcript/transcript.data";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../_store/state/app.state";
+import {FlashHintAction, ReplaceHintAction, UpdateHintFromUrlAction} from "../../../main/header/_store/header.actions";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -27,9 +29,10 @@ export class VideoEditComponent implements OnInit {
 	};
 	
 	constructor(public translate: TranslateService,
-	            private route: ActivatedRoute,
 	            private fb: FormBuilder,
-	            private hintService: HeaderHintService,
+	            private route: ActivatedRoute,
+	            private router: Router,
+	            private store: Store<AppState>,
 	            private validation: FormControlValidationService,
 	            private videoService: VideoService) {
 		translate.addLangs(['de', 'en']);
@@ -73,8 +76,10 @@ export class VideoEditComponent implements OnInit {
 		control.setValue(video[groupName][controlName]);
 		control.valueChanges.subscribe(value => {
 			this.video[groupName][controlName] = value;
+			this.showVideoSavingHint();
+			//TODO SaveVideoAction with proper effects that dispatch further actions for flashing hints
 			this.videoService.updateVideo(this.video).subscribe(() => {
-				this.hintService.overwriteHint(this.hintService.hintPrefix + '.content.transcript.edit.saved', 1500);
+				this.flashVideoSavedHint();
 			});
 		});
 	}
@@ -149,5 +154,13 @@ export class VideoEditComponent implements OnInit {
 			//TODO add super-fancy transcript controls
 		}));
 		return transcript;
+	}
+	
+	private flashVideoSavedHint() {
+		this.store.dispatch(new FlashHintAction({messageKey: 'content.transcript.edit.saved'}));
+	}
+	
+	private showVideoSavingHint() {
+		this.store.dispatch(new ReplaceHintAction({messageKey: 'content.transcript.edit.saving'}))
 	}
 }

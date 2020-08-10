@@ -1,7 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
-import {HintData} from "./header.hint.data";
-import {HeaderHintService} from "./header.hint.service";
+import {select, Store} from "@ngrx/store";
+import {AppState} from "../../../_store/state/app.state";
+import {selectGlobalHintMessageKey} from "../_store/header.selectors";
+import {NavigationEnd, Router} from "@angular/router";
+import {UpdateHintFromUrlAction} from "../_store/header.actions";
 
 @Component({
 	selector: 'tmt-header-hint',
@@ -9,15 +12,22 @@ import {HeaderHintService} from "./header.hint.service";
 	styleUrls: ['./header.hint.component.scss']
 })
 export class HeaderHintComponent implements OnInit {
-	hint: HintData;
+	hintKey = this.store.pipe(select(selectGlobalHintMessageKey));
 	
 	constructor(public translate: TranslateService,
-	            private hintService: HeaderHintService) {
+	            private router: Router,
+	            private store: Store<AppState>) {
 		translate.addLangs(['de', 'en']);
 		translate.setDefaultLang('en');
-		this.hint = this.hintService.hint;
 	}
 	
 	ngOnInit(): void {
+		this.router.events.subscribe((event) => {
+			if (event instanceof NavigationEnd) {
+				let action = new UpdateHintFromUrlAction({ url: this.router.url });
+				this.store.dispatch(action);
+			}
+		});
 	}
+	
 }

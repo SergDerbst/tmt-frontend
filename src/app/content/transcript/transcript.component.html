@@ -1,6 +1,6 @@
 <div [className]="control.current === null ?
                   'tmt-transcript-segment tmt-no-snippet' : 'tmt-transcript-segment'">
-  <div class="tmt-message"> <!-- TODO check if user wants to see hint messages -->
+  <div class="tmt-message"> <!-- TODO check if user wants to see hintKey messages -->
     <span [innerHTML]="'content.transcript.edit.message.status.' + transcriptService.status | translate"></span>
   </div>
   <form id="transcriptForm" [formGroup]="transcriptFormConfig.form"></form>

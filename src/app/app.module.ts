@@ -20,7 +20,14 @@ import {AuthHttpInterceptor} from "./auth/auth.http.interceptor";
 import {AuthModule} from "./auth/auth.module";
 import {JwtModule} from "@auth0/angular-jwt";
 import {HeaderHintComponent} from "./main/header/hint/header.hint.component";
-import {HeaderHintService} from "./main/header/hint/header.hint.service";
+import {StoreModule} from "@ngrx/store";
+import {appReducers} from "./_store/reducers/app.reducers";
+import {StoreRouterConnectingModule} from "@ngrx/router-store";
+import {environment} from "../environments/environment.prod";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {EffectsModule} from "@ngrx/effects";
+import {HeaderEffects} from "./main/header/_store/header.effects";
+import {CommonModule} from "@angular/common";
 
 
 export function httpTranslateLoader(http: HttpClient) {
@@ -40,12 +47,16 @@ export function tokenGetter() {
     FeedComponent,
     MainSidebarComponent,
     MainToolbox,
-    FooterComponent
+    FooterComponent,
   ], 
   imports: [
     AppRoutingModule,
     AuthModule,
     BrowserModule,
+    CommonModule,
+    EffectsModule.forRoot([
+      HeaderEffects
+    ]),
     FontAwesomeModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -54,6 +65,9 @@ export function tokenGetter() {
         whitelistedDomains: ['arsch.morz'],
       }
     }),
+    StoreModule.forRoot(appReducers),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    !environment.production ? StoreDevtoolsModule.instrument(): [],
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -79,8 +93,7 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
       multi: true
-    },
-    HeaderHintService
+    }
   ],
   bootstrap: [
     AppComponent

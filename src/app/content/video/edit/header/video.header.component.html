@@ -15,7 +15,7 @@
     <h1 *ngIf="!edit.title" [innerHTML]="title.value"></h1>
     <input type="text"
            id="title"
-           form="{{ formId }}"
+           [attr.form]="formId"
            *ngIf="edit.title"
            (keydown)="keyEvent($event)"
            (focus)="handleTitleFocus()"

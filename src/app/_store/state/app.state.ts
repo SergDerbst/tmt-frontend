@@ -1,7 +1,11 @@
 /**
  * Rootstate of the whole TMT app.
  */
+import {RouterReducerState} from "@ngrx/router-store";
+import {HeaderState} from "../../main/header/_store/header.state";
+
 export interface AppState {
+	readonly routerState?: RouterReducerState;
 	readonly headerState: HeaderState;
 	readonly footerState: FooterState;
 	readonly securityState: SecurityState;
@@ -12,16 +16,6 @@ export interface AppState {
  */
 export interface SecurityState {
 
-}
-
-/**
- * Base state for the ever visible application header.
- */
-export interface HeaderState {
-	/**
-	 * Message key, normally created from the path of the current router url.
-	 */
-	readonly globalHintMsgKey: string;
 }
 
 /**

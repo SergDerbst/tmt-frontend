@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-//icons
 import {faSignInAlt, faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../../auth/auth.service";
-import {HeaderHintService} from "./hint/header.hint.service";
-import {HintData} from "./hint/header.hint.data";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../_store/state/app.state";
 
 @Component({
   selector: 'app-header',
@@ -22,8 +21,7 @@ export class HeaderComponent implements OnInit {
   faUserCircle = faUserCircle;
   
   constructor(public translate: TranslateService,
-              private authService: AuthService,
-              private router: Router) {
+              private authService: AuthService) {
     translate.addLangs(['de', 'en']);
     translate.setDefaultLang('en');
   }
