@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FeedComponent } from "./content/feed/feed.component";
+import { FeedComponent } from "./contentFM/feedFM/feed.component";
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./authFM/auth.module').then(m => m.AuthModule) },
   { path: 'feed', component: FeedComponent },
-  { path: 'content', loadChildren: () => import('./content/content.module').then(m => m.ContentModule) },
-  { path: 'global', loadChildren: () => import('./global/global.module').then(m => m.GlobalModule) },
+  { path: 'content', loadChildren: () => import('./contentFM/content.module').then(m => m.ContentModule) },
+  { path: 'global', loadChildren: () => import('./globalFM/global.module').then(m => m.GlobalModule) },
 ];
 
 @NgModule({

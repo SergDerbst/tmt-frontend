@@ -2,32 +2,22 @@
  * Rootstate of the whole TMT app.
  */
 import {RouterReducerState} from "@ngrx/router-store";
+import {AuthState} from "../../authFM/_store/auth.state";
 import {HeaderState} from "../../main/header/_store/header.state";
+import {FooterState} from "../../main/footer/_store/footer.state";
+import {ContentState} from "../../contentFM/_store/content.state";
 
 export interface AppState {
 	readonly routerState?: RouterReducerState;
+	readonly authState: AuthState;
 	readonly headerState: HeaderState;
 	readonly footerState: FooterState;
-	readonly securityState: SecurityState;
+	readonly contentState: ContentState;
 }
-
-/**
- * Global state for everything authentication, etc.
- */
-export interface SecurityState {
-
-}
-
-/**
- * Base state for the ever visible application footer.
- */
-export interface FooterState {
-
-}
-
-/**
- * Base state for the ever visible content.
- */
-export interface ContentState {
-
-}
+export const initialAppState = {
+	routerState: undefined,
+	authState: undefined,
+	headerState: undefined,
+	footerState: undefined,
+	contentState: undefined
+};

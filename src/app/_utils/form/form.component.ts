@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {FormConfig} from "./config/form.config";
 import {Router} from "@angular/router";
-import {AuthService} from "../../auth/auth.service";
+import {AuthService} from "../../authFM/auth.service";
 import {Observable} from "rxjs";
 
 @Component({

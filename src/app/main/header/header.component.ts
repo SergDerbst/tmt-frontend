@@ -4,7 +4,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
-import {AuthService} from "../../auth/auth.service";
+import {AuthService} from "../../authFM/auth.service";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../_store/state/app.state";
 

@@ -23,8 +23,7 @@ export class FormControlDateComponent implements OnInit {
 	_currentState: { typeCount: number, focus: number };
 	
 	constructor(public translate: TranslateService,
-	            private appConfigService: AppConfigService) {
-	}
+	            private appConfigService: AppConfigService) {}
 	
 	ngOnInit(): void {
 		this.prepareDateValue();

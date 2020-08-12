@@ -1,9 +1,11 @@
 import {ActionReducerMap} from "@ngrx/store";
 import {AppState} from "../state/app.state";
-import {headerReducers} from "../../main/header/_store/header.reducers";
+import {headerReducer} from "../../main/header/_store/headerReducer";
+import {contentReducer} from "../../contentFM/_store/contentReducer";
 
 export const appReducers: ActionReducerMap<AppState, any> = {
-	headerState: headerReducers,
+	authState: undefined, //TODO the security state, cunt
+	headerState: headerReducer,
 	footerState: undefined, //TODO the footer state, bitch
-	securityState: undefined, //TODO the security state, cunt
+	contentState: contentReducer
 };
