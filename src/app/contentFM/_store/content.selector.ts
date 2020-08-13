@@ -1,13 +1,20 @@
-import {AppState} from "../../_store/state/app.state";
 import {createSelector} from "@ngrx/store";
-import {ContentState} from "./content.state";
 
-export const selectContentState = (appState: AppState) => appState.contentState;
+export const contentState = (state) => state.contentState;
+export const adminState = (state) => state.adminState;
+export const filterState = (state) => state.filterState;
 
-export const selectContentConfig = createSelector(
-	selectContentState,
-	(contentState: ContentState) => contentState.contentConfig);
+export const selectContentAdminState = createSelector(
+	contentState,
+	(state) => {
+		return adminState(contentState(state))
+	});
 
-export const selectVideoState = createSelector(
-	selectContentState,
-	(contentState: ContentState) => contentState.videoState);
+export const selectContentFilterState = createSelector(
+	contentState,
+	(state) => {
+		return {
+			...filterState(adminState(contentState(state))),
+			contentType: state.contentState.adminState.selectedType
+		}
+	});

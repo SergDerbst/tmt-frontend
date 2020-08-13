@@ -1,9 +1,12 @@
 import {AppState} from "../../../_store/state/app.state";
 import {createSelector} from "@ngrx/store";
-import {VideoState} from "./video.state";
+import {initialVideoState, VideoState} from "./video.state";
+import {contentState} from "../../_store/content.selector";
 
-export const selectVideoState = (appState: AppState) => appState.contentState.videoState;
+export const videoState = (state) => state.videoState;
 
-export const selectVideo = createSelector(
-	selectVideoState,
-	(videoState: VideoState) => videoState.video);
+export const selectVideoState = createSelector(
+	contentState,
+	(state) => {
+		return videoState(contentState(state)) ?? initialVideoState;
+	});

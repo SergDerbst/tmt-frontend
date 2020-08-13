@@ -6,6 +6,9 @@ import {ValidationRegexMap} from "../../../_utils/form/validation/validation.reg
 import {isEnter} from "../../../_utils/keyboard/keys";
 import {VideoService} from "../video.service";
 import {Router} from "@angular/router";
+import {select, Store} from "@ngrx/store";
+import {selectVideoState} from "../_store/video.selectors";
+import {VideoState} from "../_store/video.state";
 
 @Component({
 	selector: 'tmt-video-create',
@@ -13,6 +16,7 @@ import {Router} from "@angular/router";
 	styleUrls: ['./video.create.component.scss']
 })
 export class VideoCreateComponent implements OnInit, AfterViewInit {
+	videoState: VideoState;
 	@ViewChild('focusElement') focusElement;
 	form: FormGroup;
 	faPlus = faPlus;
@@ -20,16 +24,17 @@ export class VideoCreateComponent implements OnInit, AfterViewInit {
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
 	            private router: Router,
-	            private videoService: VideoService) {
-		translate.addLangs(['de', 'en']);
-		translate.setDefaultLang('en');
-	}
+	            private store: Store,
+	            private videoService: VideoService) {}
 	
 	ngAfterViewInit(): void {
 		this.focusElement.nativeElement.focus();
 	}
 	
 	ngOnInit(): void {
+		this.store.pipe(select(selectVideoState)).subscribe((videoState) => {
+			this.videoState = videoState;
+		});
 		this.form = this.fb.group({
 			title: new FormControl('', [
 				Validators.required

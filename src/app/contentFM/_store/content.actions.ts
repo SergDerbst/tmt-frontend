@@ -1,11 +1,18 @@
 import {Action} from "@ngrx/store";
 
-export type ContentActions = ContentInitializeComponentAction;
+export type ContentActions = ContentSelectContentTypeAction;
 
 export enum ContentActionTypes {
-	ContentInitializeComponentAction = '[Content] Initialize Component',
+	SelectContentType = '[Content] Select Type',
+	SelectFilterType = '[Content] Select Filter',
 }
 
-export class ContentInitializeComponentAction implements Action {
-	type = ContentActionTypes.ContentInitializeComponentAction;
+export class ContentSelectContentTypeAction implements Action {
+	type = ContentActionTypes.SelectContentType;
+	constructor(public payload: { index: number }) {}
+}
+
+export class ContentSelectContentFilterAction implements Action {
+	type = ContentActionTypes.SelectFilterType;
+	constructor(public payload: { index: number }) {}
 }

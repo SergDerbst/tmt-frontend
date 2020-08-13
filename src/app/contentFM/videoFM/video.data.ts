@@ -3,9 +3,6 @@ import {ContentStatus, ContentType} from "../../_utils/data/enums";
 import {ContentData, ContentHeader, ContentMetadata} from "../content.data";
 import {Transcript} from "../transcriptFM/transcript.data";
 
-/**
- * Video model.
- */
 export class VideoData extends ContentData<VideoHeader, VideoMetadata> {
 	header: VideoHeader;
 	metadata: VideoMetadata;
@@ -21,9 +18,6 @@ export class VideoData extends ContentData<VideoHeader, VideoMetadata> {
 	}
 }
 
-/**
- * Video header model.
- */
 export class VideoHeader extends ContentHeader {
 	title: string;
 	url: string;
@@ -46,9 +40,6 @@ export class VideoHeader extends ContentHeader {
 	}
 }
 
-/**
- * Video metadata model.
- */
 export class VideoMetadata extends ContentMetadata {
 	
 	constructor(config: {
@@ -58,9 +49,6 @@ export class VideoMetadata extends ContentMetadata {
 	}
 }
 
-/**
- * Model sent to backend for creating new video.
- */
 export class VideoCreationData {
 	title: string;
 	url: string;

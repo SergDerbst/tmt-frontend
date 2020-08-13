@@ -26,6 +26,7 @@ import {TranscriptService} from "../transcriptFM/transcript.service";
 import {YoutubePlayer} from "./edit/player/youtube/youtube.player";
 import {VideoRoutingModule} from "./video-routing.module";
 import {TranscriptModule} from "../transcriptFM/transcript.module";
+import {StoreModule} from "@ngrx/store";
 
 @NgModule({
 	declarations: [
@@ -42,6 +43,7 @@ import {TranscriptModule} from "../transcriptFM/transcript.module";
 		CommonModule,
 		FontAwesomeModule,
 		ReactiveFormsModule,
+		//StoreModule.forFeature(),
 		TranslateModule.forChild({
 			loader: {
 				provide: TranslateLoader,

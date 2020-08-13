@@ -5,20 +5,20 @@
       <fa-icon [icon]="faPlus"></fa-icon>
     </div>
     <div class="tmt-caption">
-      <span [innerHTML]="'content.type.new.' + contentConfig.selectedType | translate"></span>
+      <span [innerHTML]="'content.type.new.' + filterConfig.contentType | translate"></span>
     </div>
   </div>
   <div class="tmt-filter">
     <div class="tmt-filter-container">
-      <div *ngFor="let filter of contentConfig.contentFilters; let i = index"
+      <div *ngFor="let filter of filterConfig.contentFilters; let i = index"
            [ngClass]="{'tmt-filter-item': true,
-                       'tmt-selected': contentConfig.selectedFilter === filter,
+                       'tmt-selected': filterConfig.selectedFilter === filter,
                        'tmt-border-left': i > 0}">
         <a (click)="selectFilter(i)">
           <span [innerHTML]="'content.filter.' + filter | translate"></span>
         </a>
       </div>
     </div>
-    <tmt-searchbox [searchBoxConfig]="contentConfig.searchboxConfig"></tmt-searchbox>
+    <tmt-searchbox [filterConfig]="filterConfig"></tmt-searchbox>
   </div>
 </div>
