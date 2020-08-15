@@ -9,7 +9,7 @@ import {FormControlValidationService} from "../../../_utils/form/validation/form
 import {select, Store} from "@ngrx/store";
 import {FlashHintAction, ReplaceHintAction} from "../../../main/header/_store/header.actions";
 import {selectVideoState} from "../_store/video.selectors";
-import {VideoInitializeComponentAction} from "../_store/video.actions";
+import {VideoInitializeEditComponentAction} from "../_store/video.actions";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -46,12 +46,14 @@ export class VideoEditComponent implements OnInit {
 	 * Loads the data.
 	 */
 	private loadData() {
-		this.route.params.subscribe(params => {
-			this.store.dispatch(new VideoInitializeComponentAction({ videoId: params['id'] }));
-		});
 		this.store.pipe(select(selectVideoState)).subscribe((video) => {
 			console.log('arschpuperzendrama');
 			console.log(video);
+			/*
+				this.route.params.subscribe(params => {
+				this.store.dispatch(new VideoInitializeEditComponentAction({ videoId: params['id'] }));
+			});
+			 */
 			this.activateController(video, 'header', 'title');
 			this.activateController(video, 'metadata', 'description');
 		});

@@ -21,12 +21,13 @@ import {httpTranslateLoader} from "../../app.module";
 import {HttpClient} from "@angular/common/http";
 import {UtilsModule} from "../../_utils/_utils.module";
 import {VideoService} from "./video.service";
-import {TranscriptKeyActions} from "../transcriptFM/transcript.key.actions";
-import {TranscriptService} from "../transcriptFM/transcript.service";
 import {YoutubePlayer} from "./edit/player/youtube/youtube.player";
 import {VideoRoutingModule} from "./video-routing.module";
 import {TranscriptModule} from "../transcriptFM/transcript.module";
 import {StoreModule} from "@ngrx/store";
+import {videoReducer} from "./_store/video.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {VideoEffects} from "./_store/video.effects";
 
 @NgModule({
 	declarations: [
@@ -43,7 +44,12 @@ import {StoreModule} from "@ngrx/store";
 		CommonModule,
 		FontAwesomeModule,
 		ReactiveFormsModule,
-		//StoreModule.forFeature(),
+		StoreModule.forFeature('videoState', {
+			videoState: videoReducer
+		}),
+		EffectsModule.forFeature([
+			VideoEffects
+		]),
 		TranslateModule.forChild({
 			loader: {
 				provide: TranslateLoader,

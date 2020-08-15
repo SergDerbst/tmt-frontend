@@ -3,7 +3,7 @@ import {HeaderActions, HeaderActionTypes} from './header.actions';
 import {ActionReducer} from "@ngrx/store";
 import {StrategicReducer} from "../../../_store/reducers/strategic.reducer";
 
-const reducer = new StrategicReducer({
+const reducer = new StrategicReducer(HeaderActionTypes, {
 	[HeaderActionTypes.FlashHint]: replaceHint, // triggers effect with timeout
 	[HeaderActionTypes.ReplaceHint]: replaceHint,
 	[HeaderActionTypes.SetHintFromUrl]: hintFromUrl,

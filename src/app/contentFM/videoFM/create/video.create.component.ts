@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
 import {selectVideoState} from "../_store/video.selectors";
 import {VideoState} from "../_store/video.state";
+import {VideoCreateAction} from "../_store/video.actions";
 
 @Component({
 	selector: 'tmt-video-create',
@@ -24,8 +25,7 @@ export class VideoCreateComponent implements OnInit, AfterViewInit {
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
 	            private router: Router,
-	            private store: Store,
-	            private videoService: VideoService) {}
+	            private store: Store) {}
 	
 	ngAfterViewInit(): void {
 		this.focusElement.nativeElement.focus();
@@ -53,12 +53,6 @@ export class VideoCreateComponent implements OnInit, AfterViewInit {
 	}
 	
 	createVideo() {
-		this.videoService.createVideo(this.form.value)
-			.subscribe(
-				data => {
-				return this.router.navigateByUrl('content/video/' + data.header.id + '/edit', {
-					state: { data: data }
-				});
-			});
+		this.store.dispatch(new VideoCreateAction(this.form.value));
 	}
 }

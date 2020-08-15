@@ -7,5 +7,5 @@ export const appReducers: ActionReducerMap<AppState, any> = {
 	authState: undefined, //TODO the security state, cunt
 	headerState: headerReducer,
 	footerState: undefined, //TODO the footer state, bitch
-	contentState: contentReducer
+	contentState: undefined //in content feature module
 };

@@ -1,5 +1,4 @@
-import {VideoData, VideoHeader, VideoMetadata} from "../video.data";
-import {Transcript} from "../../transcriptFM/transcript.data";
+import {VideoData} from "../video.data";
 
 export const initialVideoState: VideoState = {
 	video: undefined

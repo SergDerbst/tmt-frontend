@@ -3,7 +3,7 @@ import {ContentState, initialContentState} from "./content.state";
 import {ActionReducer} from "@ngrx/store";
 import {StrategicReducer} from "../../_store/reducers/strategic.reducer";
 
-const reducer = new StrategicReducer({
+const reducer = new StrategicReducer(ContentActionTypes, {
 	[ContentActionTypes.SelectContentType]: selectContentType,
 	[ContentActionTypes.SelectFilterType]: selectFilterType,
 	__default__: (state, action) => initialContentState
