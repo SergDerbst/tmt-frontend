@@ -3,7 +3,7 @@
     <div class="tmt-form-property-label">
       <tmt-form-control-label [controlName]="control.getParameter('name')"
                               [required]="control.getParameter('required')"
-                              [translatePrefix]="formName + '.form.uiControl.'"></tmt-form-control-label>
+                              [translatePrefix]="formName + '.form.control.'"></tmt-form-control-label>
     </div>
     <div class="tmt-form-property-control">
       <tmt-form-control-input *ngIf="control.getParameter('type').startsWith('input')"
@@ -16,7 +16,7 @@
                                [control]="control.control"
                                [data]="control.getParameter('data')"
                                [index]="control.getParameter('index')"
-                               [translatePrefix]="formName + '.form.uiControl.' + control.getParameter('name')"></tmt-form-control-select>
+                               [translatePrefix]="formName + '.form.control.' + control.getParameter('name')"></tmt-form-control-select>
       <tmt-form-control-date *ngIf="control.getParameter('type') === 'date'"
                              [control]="control.control"
                              [index]="control.getParameter('index')"></tmt-form-control-date>
