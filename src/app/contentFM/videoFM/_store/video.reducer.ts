@@ -1,15 +1,13 @@
 import {initialVideoState} from "./video.state";
 import {VideoActions, VideoActionTypes} from "./video.actions";
-import {ContentStatus} from "../../../_utils/data/enums";
-import {Transcript} from "../../transcriptFM/transcript.data";
-import {VideoData} from "../video.data";
 import {StrategicReducer} from "../../../_store/reducers/strategic.reducer";
 
-const reducer = new StrategicReducer(VideoActionTypes, {
-	[VideoActionTypes.VideoCreate]: createVideo,
+const doNothing = StrategicReducer.doNothing;
+	const reducer = new StrategicReducer(VideoActionTypes, {
+		[VideoActionTypes.VideoCreate]: doNothing,
 	[VideoActionTypes.VideoCreatedSuccess]: handleVideoCreatedSuccess,
 	[VideoActionTypes.VideoCreatedError]: handleVideoCreatedError,
-	[VideoActionTypes.VideoInitializeEditComponent]: initializeEditVideoState,
+	[VideoActionTypes.VideoLoad]: doNothing,
 	[VideoActionTypes.VideoLoadedSuccess]: handleVideoLoadedSuccess,
 	[VideoActionTypes.VideoLoadedError]: handleVideoLoadedError,
 	__default__: (state, action) => initialVideoState
@@ -19,17 +17,15 @@ export const videoReducer = (
 	state = initialVideoState,
 	action: VideoActions
 ) => {
-	return reducer.reduce(state, action);
-}
-
-function createVideo(state, action) {
-	return state; //the real 'action' happens in effect
+	let videoState = reducer.reduce(state, action);
+	console.log('reduced: ', videoState);
+	return videoState;
 }
 
 function handleVideoCreatedSuccess(state, action) {
 	return {
 		...state,
-		video: action.payload
+		video: action.payload.video
 	}
 }
 
@@ -38,25 +34,15 @@ function handleVideoCreatedError(state, action) {
 	//TODO create error effect (redirect or error message and shit)
 }
 
-function initializeEditVideoState(state, action) {
-	return state;
-}
-
 function handleVideoLoadedSuccess(state, action)  {
+	console.log('arsch mit keks', state, action.payload.video, {
+		...state,
+		video: action.payload.video
+	});
 	return {
 		...state,
-		video: prepareVideoForEdit(action.payload.video)
+		video: action.payload.video
 	};
-	
-	function prepareVideoForEdit(video: VideoData) {
-		if (video.header.status === ContentStatus.Created) {
-			video.header.status = ContentStatus.InProcess;
-		}
-		if (!video.transcript) {
-			video.transcript = new Transcript();
-		}
-		return video;
-	}
 }
 
 function handleVideoLoadedError(state, action) {

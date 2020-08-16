@@ -4,10 +4,9 @@ import {TranslateService} from "@ngx-translate/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {ValidationRegexMap} from "../../../_utils/form/validation/validation.regex.map";
 import {isEnter} from "../../../_utils/keyboard/keys";
-import {VideoService} from "../video.service";
 import {Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
-import {selectVideoState} from "../_store/video.selectors";
+import {selectVideo} from "../_store/video.selectors";
 import {VideoState} from "../_store/video.state";
 import {VideoCreateAction} from "../_store/video.actions";
 
@@ -32,9 +31,6 @@ export class VideoCreateComponent implements OnInit, AfterViewInit {
 	}
 	
 	ngOnInit(): void {
-		this.store.pipe(select(selectVideoState)).subscribe((videoState) => {
-			this.videoState = videoState;
-		});
 		this.form = this.fb.group({
 			title: new FormControl('', [
 				Validators.required

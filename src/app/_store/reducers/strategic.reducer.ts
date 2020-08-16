@@ -1,4 +1,10 @@
 export class StrategicReducer<S, A extends { type: string;	payload?: any; }> {
+	static doNothing = (state, action) => {
+		return {
+			...state
+		};
+	}
+	
 	constructor(
 		private readonly actionTypes: any,
 		private readonly strategies: { [key:string]: (S, A) => S }

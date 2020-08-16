@@ -30,9 +30,7 @@ import {ContentAdminComponent} from "./admin/content.admin.component";
 		ContentRoutingModule,
 		FontAwesomeModule,
 		ReactiveFormsModule,
-		StoreModule.forFeature('contentState', {
-			contentState: contentReducer
-		}),
+		StoreModule.forFeature('content', contentReducer),
 		TranslateModule.forChild({
 			loader: {
 				provide: TranslateLoader,

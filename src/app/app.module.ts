@@ -54,9 +54,6 @@ export function tokenGetter() {
     AuthModule,
     BrowserModule,
     CommonModule,
-    EffectsModule.forRoot([
-      HeaderEffects
-    ]),
     FontAwesomeModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -65,6 +62,9 @@ export function tokenGetter() {
         whitelistedDomains: ['arsch.morz'],
       }
     }),
+    EffectsModule.forRoot([
+      HeaderEffects
+    ]),
     StoreModule.forRoot(appReducers),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument(): [],

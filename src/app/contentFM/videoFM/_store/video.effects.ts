@@ -2,15 +2,17 @@ import {Injectable} from "@angular/core";
 import {Actions, Effect, ofType} from "@ngrx/effects";
 import {Store} from "@ngrx/store";
 import {
-	VideoActionTypes, VideoCreateAction, VideoCreatedErrorAction, VideoCreatedSuccessAction,
-	VideoInitializeEditComponentAction,
+	VideoActionTypes,
+	VideoCreateAction,
+	VideoCreatedErrorAction,
+	VideoCreatedSuccessAction,
+	VideoLoadAction,
+	VideoLoadedSuccessAction,
 	VideoLoadedErrorAction,
-	VideoLoadedSuccessAction
 } from "./video.actions";
-import {map, switchMap, tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {VideoService} from "../video.service";
 import {Router} from "@angular/router";
-import {of} from "rxjs";
 
 @Injectable()
 export class VideoEffects {
@@ -46,11 +48,12 @@ export class VideoEffects {
 	 
 	@Effect({dispatch: false})
 	loadVideo = this.actions$.pipe(
-		ofType<VideoInitializeEditComponentAction>(VideoActionTypes.VideoInitializeEditComponent),
+		ofType<VideoLoadAction>(VideoActionTypes.VideoLoad),
 		map(action => action.payload),
 		tap((payload) => {
 			this.videoService.getVideo(payload.videoId).subscribe(
 			video => {
+				console.log('arschie bumbaitschie', this.store);
 				this.store.dispatch(new VideoLoadedSuccessAction({ video: video }))
 			}, error => {
 				this.store.dispatch(new VideoLoadedErrorAction({ error: error }))

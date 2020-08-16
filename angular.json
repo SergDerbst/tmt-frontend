@@ -117,5 +117,8 @@
       }
     }
   },
-  "defaultProject": "tmt-frontend"
+  "defaultProject": "tmt-frontend",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

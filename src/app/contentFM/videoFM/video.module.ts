@@ -44,9 +44,7 @@ import {VideoEffects} from "./_store/video.effects";
 		CommonModule,
 		FontAwesomeModule,
 		ReactiveFormsModule,
-		StoreModule.forFeature('videoState', {
-			videoState: videoReducer
-		}),
+		StoreModule.forFeature('video', videoReducer),
 		EffectsModule.forFeature([
 			VideoEffects
 		]),

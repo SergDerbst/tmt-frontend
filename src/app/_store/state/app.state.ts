@@ -12,12 +12,10 @@ export interface AppState {
 	readonly authState: AuthState;
 	readonly headerState: HeaderState;
 	readonly footerState: FooterState;
-	readonly contentState: ContentState;
 }
 export const initialAppState = {
 	routerState: undefined,
 	authState: undefined,
 	headerState: undefined,
 	footerState: undefined,
-	contentState: undefined
 };

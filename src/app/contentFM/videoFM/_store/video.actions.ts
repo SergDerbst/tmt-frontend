@@ -2,7 +2,7 @@ import {Action} from "@ngrx/store";
 import {VideoData} from "../video.data";
 
 export type VideoActions =
-	VideoInitializeEditComponentAction |
+	VideoLoadAction |
 	VideoLoadedSuccessAction |
 	VideoLoadedErrorAction;
 
@@ -10,7 +10,7 @@ export enum VideoActionTypes {
 	VideoCreate = '[Video] Create',
 	VideoCreatedSuccess = '[Video] Created Success',
 	VideoCreatedError = '[Video] Created Error',
-	VideoInitializeEditComponent = '[Video] Initialize Component',
+	VideoLoad = '[Video] Load',
 	VideoLoadedSuccess = '[Video] Loaded Success',
 	VideoLoadedError = '[Video] Loaded Error',
 }
@@ -34,11 +34,9 @@ export class VideoCreatedErrorAction implements Action {
 	constructor(public payload: any) {}
 }
 
-export class VideoInitializeEditComponentAction implements Action {
-	readonly type = VideoActionTypes.VideoInitializeEditComponent;
-	constructor(public payload: {
-		videoId: number;
-	}) {}
+export class VideoLoadAction implements Action {
+	readonly type = VideoActionTypes.VideoLoad;
+	constructor(public payload: { videoId: number }) {}
 }
 
 export class VideoLoadedSuccessAction implements Action {

@@ -1,12 +1,14 @@
-import {AppState} from "../../../_store/state/app.state";
-import {createSelector} from "@ngrx/store";
-import {initialVideoState, VideoState} from "./video.state";
-import {contentState} from "../../_store/content.selector";
+import {createFeatureSelector, createSelector} from "@ngrx/store";
 
-export const videoState = (state) => state.videoState;
+export const videoState = createFeatureSelector('video');
+export const video = (state) => state.video;
 
-export const selectVideoState = createSelector(
-	contentState,
-	(state) => {
-		return videoState(contentState(state)) ?? initialVideoState;
+export const selectVideo = createSelector(
+	videoState,
+	(state) =>
+	{
+		console.log('arsch bummbeck', state);
+		return {
+			...video(state)
+		};
 	});
