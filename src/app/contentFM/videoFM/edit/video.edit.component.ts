@@ -9,8 +9,10 @@ import {FormControlValidationService} from "../../../_utils/form/validation/form
 import {Store} from "@ngrx/store";
 import {FlashHintAction, ReplaceHintAction} from "../../../main/header/_store/header.actions";
 import {VideoLoadAction} from "../_store/video.actions";
-import {selectVideo} from "../_store/video.selectors";
+import {selectVideoState} from "../_store/video.selectors";
 import {select} from "@ngrx/store";
+import {VideoState} from "../_store/video.state";
+import {filter} from "rxjs/operators";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -39,17 +41,22 @@ export class VideoEditComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		this.prepareForm();
+		console.log('video edit');
 		this.loadData();
 	}
 	
 	private loadData() {
 		this.route.params.subscribe(params => {
 			this.store.dispatch(new VideoLoadAction({ videoId: params['id'] }));
-			this.store.pipe(select(selectVideo)).subscribe((video) => {
-				this.video = video;
-				this.activateController(video, 'header', 'title');
-				this.activateController(video, 'metadata', 'description');
+			this.store.pipe(
+				select(selectVideoState),
+				filter((videoState: VideoState) => videoState.video !== undefined),
+				filter((videoState: VideoState) => videoState.video.header.domain === undefined)
+			).subscribe((videoState: VideoState) => {
+				this.video = videoState.video;
+				this.prepareForm();
+				this.activateController(this.video, 'header', 'title');
+				this.activateController(this.video, 'metadata', 'description');
 			});
 		});
 	}

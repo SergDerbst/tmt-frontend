@@ -1,5 +1,5 @@
 import {Action} from "@ngrx/store";
-import {VideoData} from "../video.data";
+import {VideoData, VideoDomain} from "../video.data";
 
 export type VideoActions =
 	VideoLoadAction |
@@ -13,6 +13,7 @@ export enum VideoActionTypes {
 	VideoLoad = '[Video] Load',
 	VideoLoadedSuccess = '[Video] Loaded Success',
 	VideoLoadedError = '[Video] Loaded Error',
+	VideoPrepareForPlayer = '[Video] Prepare for Player',
 }
 
 export class VideoCreateAction implements Action {
@@ -51,4 +52,13 @@ export class VideoLoadedErrorAction implements Action {
 	constructor(public payload: {
 		error: any;
 	}) {}
+}
+
+export class VideoPrepareForPlayerAction implements Action {
+	readonly type = VideoActionTypes.VideoPrepareForPlayer;
+	constructor(public payload: {
+		domain: VideoDomain,
+		videoId: string,
+	}) {
+	}
 }

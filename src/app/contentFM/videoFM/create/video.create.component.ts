@@ -6,7 +6,7 @@ import {ValidationRegexMap} from "../../../_utils/form/validation/validation.reg
 import {isEnter} from "../../../_utils/keyboard/keys";
 import {Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
-import {selectVideo} from "../_store/video.selectors";
+import {selectVideoState} from "../_store/video.selectors";
 import {VideoState} from "../_store/video.state";
 import {VideoCreateAction} from "../_store/video.actions";
 

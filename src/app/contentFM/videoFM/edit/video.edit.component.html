@@ -2,12 +2,9 @@
   <div *ngIf="video" class="tmt-segment">
     <form id="videoForm" [formGroup]="videoFormConfig.form"></form>
     <tmt-video-header [header]="groups.header"
-                      [formId]="'videoForm'"
-                      [video]="video"></tmt-video-header>
-    <tmt-video-player [video]="video"
-                      [groups]="groups"></tmt-video-player>
+                      [formId]="'videoForm'"></tmt-video-header>
+    <tmt-video-player [groups]="groups"></tmt-video-player>
     <tmt-video-metadata [metadata]="groups.metadata"
-                        [formId]="'videoForm'"
-                        [video]="video"></tmt-video-metadata>
+                        [formId]="'videoForm'"></tmt-video-metadata>
   </div>
 </div>

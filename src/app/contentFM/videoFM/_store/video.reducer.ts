@@ -10,6 +10,7 @@ const doNothing = StrategicReducer.doNothing;
 	[VideoActionTypes.VideoLoad]: doNothing,
 	[VideoActionTypes.VideoLoadedSuccess]: handleVideoLoadedSuccess,
 	[VideoActionTypes.VideoLoadedError]: handleVideoLoadedError,
+	[VideoActionTypes.VideoPrepareForPlayer]: prepareVideoPlayer,
 	__default__: (state, action) => initialVideoState
 });
 
@@ -18,7 +19,6 @@ export const videoReducer = (
 	action: VideoActions
 ) => {
 	let videoState = reducer.reduce(state, action);
-	console.log('reduced: ', videoState);
 	return videoState;
 }
 
@@ -35,10 +35,6 @@ function handleVideoCreatedError(state, action) {
 }
 
 function handleVideoLoadedSuccess(state, action)  {
-	console.log('arsch mit keks', state, action.payload.video, {
-		...state,
-		video: action.payload.video
-	});
 	return {
 		...state,
 		video: action.payload.video
@@ -48,4 +44,18 @@ function handleVideoLoadedSuccess(state, action)  {
 function handleVideoLoadedError(state, action) {
 	return state;
 	//TODO create error effect (redirect or error message and shit)
+}
+
+function prepareVideoPlayer(state, action) {
+	return {
+		...state,
+		video: {
+			...state.video,
+			header: {
+				...state.video.header,
+				domain: action.payload.domain,
+				videoId: action.payload.videoId,
+			}
+		}
+	};
 }
