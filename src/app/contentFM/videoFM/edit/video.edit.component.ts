@@ -41,7 +41,6 @@ export class VideoEditComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		console.log('video edit');
 		this.loadData();
 	}
 	
