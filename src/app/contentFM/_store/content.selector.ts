@@ -13,8 +13,5 @@ export const selectContentAdminState = createSelector(
 export const selectContentFilterState = createSelector(
 	contentState,
 	(state) => {
-		return {
-			...filterState(adminState(state)),
-			contentType: adminState(state).selectedType
-		};
+		return filterState(state);
 	});

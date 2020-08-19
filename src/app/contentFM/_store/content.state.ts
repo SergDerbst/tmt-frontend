@@ -13,13 +13,11 @@ export const contentFilters = [
 ];
 export const initialFilterState = {
 	placeholderPrefix: searchBoxPlaceHolderPrefix,
-	contentType: undefined,
 	contentFilters: contentFilters,
 	selectedFilter: contentFilters[0]
 };
 export interface ContentFilterState {
 	placeholderPrefix: string;
-	contentType: ContentType;
 	contentFilters: ContentFilter[];
 	selectedFilter: ContentFilter;
 }
@@ -35,12 +33,10 @@ export const contentTypes = [
 export const initialContentAdminState = {
 	contentTypes: contentTypes,
 	selectedType: contentTypes[0],
-	filterState: initialFilterState
 };
 export interface ContentAdminState {
 	contentTypes: ContentType[];
 	selectedType: ContentType;
-	filterState: ContentFilterState
 }
 
 /**
@@ -48,9 +44,9 @@ export interface ContentAdminState {
  */
 export interface ContentState {
 	adminState: ContentAdminState;
-	videoState: VideoState;
+	filterState: ContentFilterState;
 }
 export const initialContentState = {
 	adminState: initialContentAdminState,
-	videoState: undefined
+	filterState: initialFilterState,
 };

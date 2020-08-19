@@ -22,10 +22,6 @@ function selectContentType(state, action) {
 		adminState: {
 			...state.adminState,
 			selectedType: state.adminState.contentTypes[action.payload.index],
-			searchboxConfig: {
-				...state.adminState.filterState,
-				contentType: state.adminState.contentTypes[action.payload.index]
-			}
 		}
 	};
 }
@@ -33,12 +29,9 @@ function selectContentType(state, action) {
 function selectFilterType(state, action) {
 	return {
 		...state,
-		adminState: {
-			...state.adminState,
 			filterState: {
-				...state.adminState.filterState,
-				selectedFilter: state.adminState.filterState.contentFilters[action.payload.index]
-			}
+				...state.filterState,
+				selectedFilter: state.filterState.contentFilters[action.payload.index]
 		}
 	};
 }

@@ -17,6 +17,7 @@ import {ArticleModule} from "./articleFM/article.module";
 import {StoreModule} from "@ngrx/store";
 import {contentReducer} from "./_store/content.reducer";
 import {ContentAdminComponent} from "./admin/content.admin.component";
+import {ContentJunctionBox} from "./_junction/content.junction.box";
 
 @NgModule({
 	declarations: [
@@ -45,6 +46,7 @@ import {ContentAdminComponent} from "./admin/content.admin.component";
 		ArticleModule,
 	],
 	providers: [
+		ContentJunctionBox
 	]
 })
 export class ContentModule {}

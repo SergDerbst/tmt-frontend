@@ -3,10 +3,8 @@ import {faNewspaper} from "@fortawesome/free-solid-svg-icons/faNewspaper";
 import {faVideo} from "@fortawesome/free-solid-svg-icons/faVideo";
 import {faPodcast} from "@fortawesome/free-solid-svg-icons/faPodcast";
 import {TranslateService} from "@ngx-translate/core";
-import {select, Store} from "@ngrx/store";
-import {selectContentAdminState} from "../_store/content.selector";
-import {ContentSelectContentTypeAction} from "../_store/content.actions";
-import {ContentAdminState, initialContentAdminState} from "../_store/content.state";
+import {ContentAdminState} from "../_store/content.state";
+import {ContentJunctionBox} from "../_junction/content.junction.box";
 
 @Component({
   selector: 'tmt-content-admin',
@@ -20,15 +18,15 @@ export class ContentAdminComponent implements OnInit {
   faPodcast = faPodcast;
     
   constructor(public translate: TranslateService,
-              private store: Store) {}
+              private junctionBox: ContentJunctionBox) {}
 
   ngOnInit(): void {
-    this.store.pipe(select(selectContentAdminState)).subscribe((adminState) => {
+    this.junctionBox.store().adminState$().subscribe((adminState) => {
       this.adminState = adminState;
     });
   }
   
   selectType(index: number) {
-    this.store.dispatch(new ContentSelectContentTypeAction({ index: index }));
+    this.junctionBox.store().setContentType(index);
   }
 }

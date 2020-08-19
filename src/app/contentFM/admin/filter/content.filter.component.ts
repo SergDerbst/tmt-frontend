@@ -1,11 +1,9 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {TranslateService} from "@ngx-translate/core";
-import {Router} from "@angular/router";
-import {select, Store} from "@ngrx/store";
-import {selectContentFilterState} from "../../_store/content.selector";
-import {ContentSelectContentFilterAction} from "../../_store/content.actions";
 import {ContentFilterState} from "../../_store/content.state";
+import {ContentJunctionBox} from "../../_junction/content.junction.box";
+import {ContentType} from "../../../_utils/data/enums";
 
 @Component({
 	selector: 'tmt-content-filter',
@@ -14,25 +12,25 @@ import {ContentFilterState} from "../../_store/content.state";
 	styles: [':host { display: block; width: 100% }']
 })
 export class ContentFilterComponent implements OnInit {
-	filterConfig: ContentFilterState
+	@Input() contentType: ContentType;
+	filterState: ContentFilterState
 	selectedContentType: string;
 	faPlus = faPlus;
 	
 	constructor(public translate: TranslateService,
-	            private router: Router,
-	            private store: Store) {}
+	            private junctionBox: ContentJunctionBox) {}
 	
 	ngOnInit(): void {
-		this.store.pipe(select(selectContentFilterState)).subscribe(filterState => {
-			this.filterConfig = filterState;
+		this.junctionBox.store().filterState$().subscribe(filterState => {
+			this.filterState = filterState;
 		});
 	}
 	
 	createContent() {
-		return this.router.navigateByUrl('/content/' + this.filterConfig.contentType + '/create');
+		this.junctionBox.route().createContent(this.contentType);
 	}
 	
 	selectFilter(index: number) {
-		this.store.dispatch(new ContentSelectContentFilterAction({ index: index }));
+		this.junctionBox.store().setFilter(index);
 	}
 }
