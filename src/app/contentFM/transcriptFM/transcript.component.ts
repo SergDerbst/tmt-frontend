@@ -7,6 +7,8 @@ import {FormControlValidationService} from "../../_utils/form/validation/form.co
 import {TranscriptKeyActions} from "./transcript.key.actions";
 import {TranscriptService} from "./transcript.service";
 import {TranscriptPlayer} from "./transcript.player";
+import {select, Store} from "@ngrx/store";
+import {selectTranscriptState} from "./_store/transcript.selector";
 
 @Component({
 	selector: 'tmt-video-transcript',
@@ -14,10 +16,10 @@ import {TranscriptPlayer} from "./transcript.player";
 	styleUrls: ['./transcript.component.scss']
 })
 export class TranscriptComponent implements OnInit {
-	@Input() transcript: Transcript;
 	@Input() transcriptPlayer: TranscriptPlayer;
 	@Input() formId: string;
 	transcriptFormConfig: FormConfig;
+	transcript: Transcript;
 	groups: {
 		controls: FormGroupConfig,
 		text: FormGroupConfig,
@@ -33,11 +35,19 @@ export class TranscriptComponent implements OnInit {
 	            private fb: FormBuilder,
 							private changeDetection: ChangeDetectorRef,
 							private validation: FormControlValidationService,
-							private transcriptKeyActions: TranscriptKeyActions) {
+							private transcriptKeyActions: TranscriptKeyActions,
+	            private store: Store) {
 		this.control = { current: null };
 	}
 	
 	ngOnInit(): void {
+		this.store.pipe(
+			select(selectTranscriptState),
+		).subscribe((t) => {
+			console.log('arschbacken kacken', t);
+		});
+		
+		
 		this.groups = {
 			controls: this.controls(),
 			text: this.text(),

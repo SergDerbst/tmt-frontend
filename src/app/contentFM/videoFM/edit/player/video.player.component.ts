@@ -9,6 +9,7 @@ import {videoState} from "../../_store/video.selectors";
 import {filter, map} from "rxjs/operators";
 import {VideoState} from "../../_store/video.state";
 import {VideoPrepareForPlayerAction} from "../../_store/video.actions";
+import {TranscriptService} from "../../../transcriptFM/transcript.service";
 
 @Component({
 	selector: 'tmt-video-player',
@@ -27,6 +28,7 @@ export class VideoPlayerComponent implements OnInit {
 	
 	constructor(public translate: TranslateService,
 	            private store: Store,
+	            private transcriptService: TranscriptService,
 	            private youtubePlayer: YoutubePlayer) {
 	}
 	
@@ -50,5 +52,6 @@ export class VideoPlayerComponent implements OnInit {
 			}));
 			this.player = this.youtubePlayer;
 		}
+		this.transcriptService.setPlayer(this.player);
 	}
 }

@@ -13,6 +13,7 @@ import {selectVideoState} from "../_store/video.selectors";
 import {select} from "@ngrx/store";
 import {VideoState} from "../_store/video.state";
 import {filter} from "rxjs/operators";
+import {TranscriptService} from "../../transcriptFM/transcript.service";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -23,7 +24,6 @@ const updateOnBlur = { updateOn: 'blur' };
 })
 export class VideoEditComponent implements OnInit {
 	video: VideoData;
-	
 	videoFormConfig: FormConfig;
 	groups: {
 		header: FormGroupConfig,
@@ -36,6 +36,7 @@ export class VideoEditComponent implements OnInit {
 	            private route: ActivatedRoute,
 	            private router: Router,
 	            private store: Store,
+	            private transcriptService: TranscriptService,
 	            private validation: FormControlValidationService,
 	            private videoService: VideoService) {
 	}
@@ -127,7 +128,7 @@ export class VideoEditComponent implements OnInit {
 	
 	private prepareTranscript() {
 		let transcript = new FormGroupConfig(this.fb.group({
-			//TODO add super-fancy transcript controls
+			//TODO add super-fancy transcript controls, no: do that in transcript module
 		}));
 		return transcript;
 	}

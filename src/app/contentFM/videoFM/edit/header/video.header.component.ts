@@ -3,7 +3,7 @@ import {FormGroupConfig} from "../../../../_utils/form/config/form.config";
 import {TranslateService} from "@ngx-translate/core";
 import {FormControl} from "@angular/forms";
 import {isEnter} from "../../../../_utils/keyboard/keys";
-import {faCheck, faPen, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {VideoData} from "../../video.data";
 import {DateFormatMap} from "../../../../_utils/data/date.and.time";
 import {AppConfigService} from "../../../../app.config.service";

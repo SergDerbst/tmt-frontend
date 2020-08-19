@@ -3,8 +3,8 @@ import {VideoActions, VideoActionTypes} from "./video.actions";
 import {StrategicReducer} from "../../../_store/reducers/strategic.reducer";
 
 const doNothing = StrategicReducer.doNothing;
-	const reducer = new StrategicReducer(VideoActionTypes, {
-		[VideoActionTypes.VideoCreate]: doNothing,
+const reducer = new StrategicReducer(VideoActionTypes, {
+	[VideoActionTypes.VideoCreate]: doNothing,
 	[VideoActionTypes.VideoCreatedSuccess]: handleVideoCreatedSuccess,
 	[VideoActionTypes.VideoCreatedError]: handleVideoCreatedError,
 	[VideoActionTypes.VideoLoad]: doNothing,

@@ -16,6 +16,8 @@ import {TimestampControl} from "./controlPanel/timestamp/timestamp.control";
 import {Controls} from "./controlPanel/controls/controls";
 import {TextPanel} from "./textPanel/text.panel";
 import {CommentPanel} from "./commentPanel/comment.panel";
+import {StoreModule} from "@ngrx/store";
+import {transcriptReducer} from "./_store/transcript.reducer";
 
 @NgModule({
 	declarations: [
@@ -31,6 +33,7 @@ import {CommentPanel} from "./commentPanel/comment.panel";
 		CommonModule,
 		FontAwesomeModule,
 		ReactiveFormsModule,
+		StoreModule.forFeature('transcript', transcriptReducer),
 		TranslateModule.forChild({
 			loader: {
 				provide: TranslateLoader,

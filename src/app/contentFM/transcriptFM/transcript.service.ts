@@ -15,9 +15,6 @@ export enum TranscriptStatus {
 	SnippetDone//snippet done editing,
 }
 
-/**
- * Central service to handle status and playback of transcription among different compoents.
- */
 @Injectable()
 export class TranscriptService {
 	player: TranscriptPlayer;
@@ -28,7 +25,6 @@ export class TranscriptService {
 	constructor() {
 		this.status = TranscriptStatus.WaitingForPlayer;
 		this.statusChanged = new BehaviorSubject<TranscriptStatus>(TranscriptStatus.WaitingForPlayer);
-		this.transcript = new Transcript();
 	}
 	
 	beginSnippet() {

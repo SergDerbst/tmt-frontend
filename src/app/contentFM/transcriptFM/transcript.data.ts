@@ -1,13 +1,13 @@
 import {SimpleTime} from "../../_utils/data/date.and.time";
 import {KeyValue} from "@angular/common";
 import {TranscriptPlayer} from "./transcript.player";
+import {VideoDomain} from "../videoFM/video.data";
 
 /**
  * DTO representing a video's or podcast's transcript.
  */
 export class Transcript {
 	snippets: Snippet[];
-	player: TranscriptPlayer;
 	current: number;
 	
 	constructor() {
