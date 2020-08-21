@@ -20,14 +20,13 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {httpTranslateLoader} from "../../app.module";
 import {HttpClient} from "@angular/common/http";
 import {UtilsModule} from "../../_utils/_utils.module";
-import {VideoService} from "./video.service";
+import {VideoDataService} from "./video.data.service";
 import {YoutubePlayer} from "./edit/player/youtube/youtube.player";
 import {VideoRoutingModule} from "./video-routing.module";
 import {TranscriptModule} from "../transcriptFM/transcript.module";
 import {StoreModule} from "@ngrx/store";
 import {videoReducer} from "./_store/video.reducer";
-import {EffectsModule} from "@ngrx/effects";
-import {VideoEffects} from "./_store/video.effects";
+import {VideoJunctionBox} from "./video.junction.box";
 
 @NgModule({
 	declarations: [
@@ -45,9 +44,6 @@ import {VideoEffects} from "./_store/video.effects";
 		FontAwesomeModule,
 		ReactiveFormsModule,
 		StoreModule.forFeature('video', videoReducer),
-		EffectsModule.forFeature([
-			VideoEffects
-		]),
 		TranslateModule.forChild({
 			loader: {
 				provide: TranslateLoader,
@@ -61,8 +57,9 @@ import {VideoEffects} from "./_store/video.effects";
 		VideoRoutingModule,
 	],
 	providers: [
-		VideoService,
-		YoutubePlayer
+		VideoDataService,
+		YoutubePlayer,
+		VideoJunctionBox
 	]
 })
 export class VideoModule {}

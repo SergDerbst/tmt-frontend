@@ -1,50 +1,51 @@
-export function isArrow(code:number):boolean {
-	return code === KeyCode.LeftArrow || code === KeyCode.RightArrow ||
-				 code === KeyCode.DownArrow || code === KeyCode.UpArrow;
-}
+import {Injectable} from "@angular/core";
 
-export function isArrowLeftRight(code:number):boolean {
-	return code === KeyCode.LeftArrow || code === KeyCode.RightArrow;
-}
-
-export function isArrowUpDown(code:number):boolean {
-	return code === KeyCode.UpArrow || code === KeyCode.DownArrow;
-}
-
-export function isBackspace(code:number):boolean {
-	return code === KeyCode.Backspace;
-}
-
-export function isCharacter(code: number):boolean {
-	return code >= KeyCode.A && code <= KeyCode.Z;
-}
-
-export function isDelete(code:number):boolean {
-	return code === KeyCode.Delete;
-}
-
-export function isEnter(code:number):boolean {
-	return code === KeyCode.Enter;
-}
-
-export function isEsc(code:number):boolean {
-	return code === KeyCode.Escape;
-}
-
-export function isLiteral(code: number):boolean {
-	return (code >= KeyCode.A && code <= KeyCode.Z) ||
-				 code === KeyCode.Shift ||
-				 code === KeyCode.Backspace ||
-				 code === KeyCode.Delete
-}
-
-export function isNumeric(code: number):boolean {
-	return (code >= KeyCode.Zero && code <= KeyCode.Nine) ||
-				 (code >= KeyCode.NumpadZero && code <= KeyCode.NumpadNine);
-}
-
-export enum Key {
-
+@Injectable()
+export class Keys {
+	isArrow(code:number):boolean {
+		return code === KeyCode.LeftArrow || code === KeyCode.RightArrow ||
+			code === KeyCode.DownArrow || code === KeyCode.UpArrow;
+	}
+	
+	isArrowLeftRight(code:number):boolean {
+		return code === KeyCode.LeftArrow || code === KeyCode.RightArrow;
+	}
+	
+	isArrowUpDown(code:number):boolean {
+		return code === KeyCode.UpArrow || code === KeyCode.DownArrow;
+	}
+	
+	isBackspace(code:number):boolean {
+		return code === KeyCode.Backspace;
+	}
+	
+	isCharacter(code: number):boolean {
+		return code >= KeyCode.A && code <= KeyCode.Z;
+	}
+	
+	isDelete(code:number):boolean {
+		return code === KeyCode.Delete;
+	}
+	
+	isEnter(code:number):boolean {
+		return code === KeyCode.Enter;
+	}
+	
+	isEsc(code:number):boolean {
+		return code === KeyCode.Escape;
+	}
+	
+	isLiteral(code: number):boolean {
+		return (code >= KeyCode.A && code <= KeyCode.Z) ||
+			code === KeyCode.Shift ||
+			code === KeyCode.Backspace ||
+			code === KeyCode.Delete
+	}
+	
+	isNumeric(code: number):boolean {
+		return (code >= KeyCode.Zero && code <= KeyCode.Nine) ||
+			(code >= KeyCode.NumpadZero && code <= KeyCode.NumpadNine);
+	}
 }
 
 export enum KeyCode {

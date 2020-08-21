@@ -1,10 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
-import {select, Store} from "@ngrx/store";
-import {AppState} from "../../../_store/state/app.state";
-import {selectGlobalHintMessageKey} from "../_store/header.selectors";
-import {NavigationEnd, Router} from "@angular/router";
-import {UpdateHintFromUrlAction} from "../_store/header.actions";
+import {NavigationEnd} from "@angular/router";
+import {AppJunctionBox} from "../../../app.junction.box";
+import {Observable} from "rxjs";
 
 @Component({
 	selector: 'tmt-header-hint',
@@ -12,20 +10,18 @@ import {UpdateHintFromUrlAction} from "../_store/header.actions";
 	styleUrls: ['./header.hint.component.scss']
 })
 export class HeaderHintComponent implements OnInit {
-	hintKey = this.store.pipe(select(selectGlobalHintMessageKey));
+	hintKey: Observable<string>;
 	
 	constructor(public translate: TranslateService,
-	            private router: Router,
-	            private store: Store<AppState>) {
+	            private jBox: AppJunctionBox) {
 	}
 	
 	ngOnInit(): void {
-		this.router.events.subscribe((event) => {
+		this.hintKey = this.jBox.store().hintKey$();
+		this.jBox.route().events$().subscribe((event) => {
 			if (event instanceof NavigationEnd) {
-				let action = new UpdateHintFromUrlAction({ url: this.router.url });
-				this.store.dispatch(action);
+				this.jBox.store().updateHintFromUrl();
 			}
 		});
 	}
-	
 }

@@ -5,7 +5,7 @@ import {AppConfigService} from "../../app.config.service";
 import {of, ReplaySubject} from "rxjs";
 
 @Injectable()
-export class VideoService {
+export class VideoDataService {
 	private readonly baseUrl: string;
 	
 	constructor(private appConfigService: AppConfigService,
@@ -17,11 +17,11 @@ export class VideoService {
 		return this.httpClient.post<VideoData>(this.baseUrl, data);
 	}
 	
-	getVideo(id: number) {
+	loadVideo(id: number) {
 		return this.httpClient.get<VideoData>(this.baseUrl + '/' + id);
 	}
 	
 	updateVideo(video: VideoData) {
-		return this.httpClient.put(this.baseUrl, video);
+		return this.httpClient.put<VideoData>(this.baseUrl, video);
 	}
 }

@@ -1,19 +1,31 @@
 import {Observable} from "rxjs";
-import {Router} from "@angular/router";
 
 export enum JunctionType {
+	Auth = 'auth',
 	Data = 'data',
+	Error = 'error',
 	Logic = 'logic',
 	Router = 'router',
 	Store = 'store',
 }
 
 export interface Juncture<Input, Output> {
-	(input?: Input): Observable<Output>;
+	(input?: Input, callback?: (v?: any) => Observable<Output>): Observable<Output>;
 }
 
 export interface Junction {
 	[key: string]: Juncture<any, any>;
+}
+
+export interface AuthJunction extends Junction {}
+export interface DataJunction extends Junction {}
+export interface ErrorJunction extends Junction {}
+export interface LogicJunction extends Junction {}
+export interface RouteJunction extends Junction {}
+export interface StoreJunction extends Junction {}
+
+export interface JunctionFactory {
+	create: (junction?: Junction) => Junction;
 }
 
 export interface JunctionProvider<J extends Junction> {
@@ -21,11 +33,13 @@ export interface JunctionProvider<J extends Junction> {
 }
 
 export abstract class JunctionBox<
-	D extends Junction,
-	L extends Junction,
-	R extends Junction,
-	S extends Junction> {
-	private readonly junctions: { [key: string]: Junction };
+	A extends AuthJunction,
+	D extends DataJunction,
+	E extends ErrorJunction,
+	L extends LogicJunction,
+	R extends RouteJunction,
+	S extends StoreJunction> {
+	protected readonly junctions: { [key: string]: Junction };
 	
 	protected constructor() {
 		this.junctions = {};
@@ -39,11 +53,25 @@ export abstract class JunctionBox<
 		return this.junctions[name];
 	}
 	
+	auth: JunctionProvider<A> = (junction?: A): A => {
+		if (junction) {
+			this.junctions[JunctionType.Auth] = junction;
+		}
+		return this.junctions[JunctionType.Auth] as A;
+	}
+	
 	data: JunctionProvider<D> = (junction?: D): D => {
 		if (junction) {
 			this.junctions[JunctionType.Data] = junction;
 		}
 		return this.junctions[JunctionType.Data] as D;
+	}
+	
+	error: JunctionProvider<E> = (junction?:E): E => {
+		if (junction) {
+			this.junctions[JunctionType.Error] = junction;
+		}
+		return this.junctions[JunctionType.Error] as E;
 	}
 	
 	logic: JunctionProvider<L> = (junction?: L): L => {

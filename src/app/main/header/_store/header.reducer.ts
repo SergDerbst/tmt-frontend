@@ -25,6 +25,7 @@ function replaceHint(state, action) {
 }
 
 function hintFromUrl(state, action) {
+	console.log('arsch mit käsebrot', updateHintFromUrl(action.payload.url));
 	return {
 		...state,
 		globalHintMsgKey: updateHintFromUrl(action.payload.url)

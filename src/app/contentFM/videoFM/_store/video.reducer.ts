@@ -4,9 +4,6 @@ import {StrategicReducer} from "../../../_store/reducers/strategic.reducer";
 
 const doNothing = StrategicReducer.doNothing;
 const reducer = new StrategicReducer(VideoActionTypes, {
-	[VideoActionTypes.VideoCreate]: doNothing,
-	[VideoActionTypes.VideoCreatedSuccess]: handleVideoCreatedSuccess,
-	[VideoActionTypes.VideoCreatedError]: handleVideoCreatedError,
 	[VideoActionTypes.VideoLoad]: doNothing,
 	[VideoActionTypes.VideoLoadedSuccess]: handleVideoLoadedSuccess,
 	[VideoActionTypes.VideoLoadedError]: handleVideoLoadedError,
@@ -20,18 +17,6 @@ export const videoReducer = (
 ) => {
 	let videoState = reducer.reduce(state, action);
 	return videoState;
-}
-
-function handleVideoCreatedSuccess(state, action) {
-	return {
-		...state,
-		video: action.payload.video
-	}
-}
-
-function handleVideoCreatedError(state, action) {
-	return state;
-	//TODO create error effect (redirect or error message and shit)
 }
 
 function handleVideoLoadedSuccess(state, action)  {

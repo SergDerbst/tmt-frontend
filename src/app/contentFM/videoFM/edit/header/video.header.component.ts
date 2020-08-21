@@ -2,15 +2,11 @@ import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {FormGroupConfig} from "../../../../_utils/form/config/form.config";
 import {TranslateService} from "@ngx-translate/core";
 import {FormControl} from "@angular/forms";
-import {isEnter} from "../../../../_utils/keyboard/keys";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {VideoData} from "../../video.data";
 import {DateFormatMap} from "../../../../_utils/data/date.and.time";
 import {AppConfigService} from "../../../../app.config.service";
-import {select, Store} from "@ngrx/store";
-import {videoState} from "../../_store/video.selectors";
-import {filter, map} from "rxjs/operators";
-import {VideoState} from "../../_store/video.state";
+import {VideoJunctionBox} from "../../video.junction.box";
 
 @Component({
 	selector: 'tmt-video-header',
@@ -28,17 +24,12 @@ export class VideoHeaderComponent implements OnInit {
 	faUser = faUser;
 	
 	constructor(public translate: TranslateService,
-	            private store: Store,
+	            private junctionBox: VideoJunctionBox,
 	            private appConfigService: AppConfigService) {
 	}
 	
 	ngOnInit(): void {
-		this.store.pipe(
-			select(videoState),
-			filter((videoState: VideoState) => videoState.video !== undefined),
-			map(videoState => videoState.video),
-			filter(video => video.header.domain === undefined),
-		).subscribe((video) => {
+		this.junctionBox.store().video$().subscribe((video) => {
 			this.video = video;
 		});
 		this.edit = { title: false };
@@ -51,8 +42,6 @@ export class VideoHeaderComponent implements OnInit {
 	}
 	
 	keyEvent(event: KeyboardEvent) {
-		if (isEnter(event.keyCode)) {
-			this.edit.title = !this.edit.title;
-		}
+		this.junctionBox.keys().enter(event.keyCode, this.edit.title = !this.edit.title);
 	}
 }

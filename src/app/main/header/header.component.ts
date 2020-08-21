@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {faSignInAlt, faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
-import {AuthService} from "../../authFM/auth.service";
-import {Store} from "@ngrx/store";
-import {AppState} from "../../_store/state/app.state";
+import {AppJunctionBox} from "../../app.junction.box";
 
 @Component({
   selector: 'app-header',
@@ -15,22 +12,18 @@ import {AppState} from "../../_store/state/app.state";
 })
 export class HeaderComponent implements OnInit {
   username: string;
+  isAuthenticated: boolean;
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
   faUserPlus = faUserPlus;
   faUserCircle = faUserCircle;
   
   constructor(public translate: TranslateService,
-              private authService: AuthService) {
-  }
+              private junctionBox: AppJunctionBox) {}
 
   ngOnInit() {
-    this.username = localStorage.getItem('tmt-username');
-    
-  }
-  
-  isAuthenticated() {
-    return this.authService.isAuthenticated();
+    this.junctionBox.auth().userName$().subscribe((username) => this.username = username);
+    this.junctionBox.auth().isAuthenticated$().subscribe((isAuthenticated) => this.isAuthenticated = isAuthenticated);
   }
   
   logout() {

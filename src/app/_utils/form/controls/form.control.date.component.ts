@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {FormControl} from "@angular/forms";
-import {isBackspace, isEsc, isNumeric} from "../../keyboard/keys";
+import {Keys} from "../../keyboard/keys";
 import {DateFormatMap} from "../../data/date.and.time";
 import {DateTimeUnit} from "../../data/enums";
 import {AppConfigService} from "../../../app.config.service";
@@ -23,7 +23,8 @@ export class FormControlDateComponent implements OnInit {
 	_currentState: { typeCount: number, focus: number };
 	
 	constructor(public translate: TranslateService,
-	            private appConfigService: AppConfigService) {}
+	            private appConfigService: AppConfigService,
+	            private keys: Keys) {}
 	
 	ngOnInit(): void {
 		this.prepareDateValue();
@@ -38,9 +39,9 @@ export class FormControlDateComponent implements OnInit {
 	}
 	
 	keyUp(event: KeyboardEvent): void {
-		if(isNumeric(event.keyCode) && !this.dateDoneTyping()) {
+		if(this.keys.isNumeric(event.keyCode) && !this.dateDoneTyping()) {
 			this.addToValue(event.key);
-		} else if (isBackspace(event.keyCode)) {
+		} else if (this.keys.isBackspace(event.keyCode)) {
 			if(this.outOfFocus()) {
 				this.decreaseFocus();
 			}
@@ -50,7 +51,7 @@ export class FormControlDateComponent implements OnInit {
 			if (this.elementNotFirst()) {
 				this.decreaseFocus();
 			}
-		} else if (isEsc(event.keyCode)) {
+		} else if (this.keys.isEsc(event.keyCode)) {
 			this.clearValue();
 		}
 		this.updateTypeCount();

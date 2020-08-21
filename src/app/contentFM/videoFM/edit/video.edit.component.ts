@@ -1,19 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {VideoData} from "../video.data";
-import {VideoService} from "../video.service";
-import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {FormConfig, FormControlConfig, FormGroupConfig} from "../../../_utils/form/config/form.config";
 import {FormControlValidationService} from "../../../_utils/form/validation/form.control.validation.service";
-import {Store} from "@ngrx/store";
-import {FlashHintAction, ReplaceHintAction} from "../../../main/header/_store/header.actions";
-import {VideoLoadAction} from "../_store/video.actions";
-import {selectVideoState} from "../_store/video.selectors";
-import {select} from "@ngrx/store";
-import {VideoState} from "../_store/video.state";
-import {filter} from "rxjs/operators";
-import {TranscriptService} from "../../transcriptFM/transcript.service";
+import {VideoJunctionBox} from "../video.junction.box";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -33,12 +24,8 @@ export class VideoEditComponent implements OnInit {
 	
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
-	            private route: ActivatedRoute,
-	            private router: Router,
-	            private store: Store,
-	            private transcriptService: TranscriptService,
-	            private validation: FormControlValidationService,
-	            private videoService: VideoService) {
+	            private junctionBox: VideoJunctionBox,
+	            private validation: FormControlValidationService) {
 	}
 	
 	ngOnInit(): void {
@@ -46,14 +33,10 @@ export class VideoEditComponent implements OnInit {
 	}
 	
 	private loadData() {
-		this.route.params.subscribe(params => {
-			this.store.dispatch(new VideoLoadAction({ videoId: params['id'] }));
-			this.store.pipe(
-				select(selectVideoState),
-				filter((videoState: VideoState) => videoState.video !== undefined),
-				filter((videoState: VideoState) => videoState.video.header.domain === undefined)
-			).subscribe((videoState: VideoState) => {
-				this.video = videoState.video;
+		this.junctionBox.route().params$().subscribe(params => {
+			this.junctionBox.data().loadVideo$(params['id']);
+			this.junctionBox.store().video$().subscribe((video: VideoData) => {
+				this.video = video;
 				this.prepareForm();
 				this.activateController(this.video, 'header', 'title');
 				this.activateController(this.video, 'metadata', 'description');
@@ -66,9 +49,10 @@ export class VideoEditComponent implements OnInit {
 		control.setValue(video[groupName][controlName]);
 		control.valueChanges.subscribe(value => {
 			this.video[groupName][controlName] = value;
-			this.showVideoSavingHint();
-			this.videoService.updateVideo(this.video).subscribe(() => {
-				this.flashVideoSavedHint();
+			this.junctionBox.logic().showHintVideoSaving();
+			this.junctionBox.data().updateVideo$(this.video).subscribe((video) => {
+				this.junctionBox.store(); //TODO put video
+				this.junctionBox.logic().flashHintVideoSaved();
 			});
 		});
 	}
@@ -131,13 +115,5 @@ export class VideoEditComponent implements OnInit {
 			//TODO add super-fancy transcript controls, no: do that in transcript module
 		}));
 		return transcript;
-	}
-	
-	private flashVideoSavedHint() {
-		this.store.dispatch(new FlashHintAction({messageKey: 'content.transcript.edit.saved'}));
-	}
-	
-	private showVideoSavingHint() {
-		this.store.dispatch(new ReplaceHintAction({messageKey: 'content.transcript.edit.saving'}))
 	}
 }

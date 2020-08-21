@@ -25,9 +25,8 @@ import {appReducers} from "./_store/reducers/app.reducers";
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {environment} from "../environments/environment.prod";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {EffectsModule} from "@ngrx/effects";
-import {HeaderEffects} from "./main/header/_store/header.effects";
 import {CommonModule} from "@angular/common";
+import {AppJunctionBox} from "./app.junction.box";
 
 
 export function httpTranslateLoader(http: HttpClient) {
@@ -62,9 +61,6 @@ export function tokenGetter() {
         whitelistedDomains: ['arsch.morz'],
       }
     }),
-    EffectsModule.forRoot([
-      HeaderEffects
-    ]),
     StoreModule.forRoot(appReducers),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument(): [],
@@ -93,7 +89,8 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
       multi: true
-    }
+    },
+    AppJunctionBox
   ],
   bootstrap: [
     AppComponent

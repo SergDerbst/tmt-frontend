@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {TranslateService} from "@ngx-translate/core";
 import {ContentFilterState} from "../../_store/content.state";
-import {ContentJunctionBox} from "../../_junction/content.junction.box";
+import {ContentJunctionBox} from "../../content.junction.box";
 import {ContentType} from "../../../_utils/data/enums";
 
 @Component({

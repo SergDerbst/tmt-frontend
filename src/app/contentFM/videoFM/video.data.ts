@@ -3,6 +3,11 @@ import {ContentStatus, ContentType} from "../../_utils/data/enums";
 import {ContentData, ContentHeader, ContentMetadata} from "../content.data";
 import {Transcript} from "../transcriptFM/transcript.data";
 
+export interface VideoCreateData {
+	title: string,
+	url: string
+}
+
 export class VideoData extends ContentData<VideoHeader, VideoMetadata> {
 	header: VideoHeader;
 	metadata: VideoMetadata;
