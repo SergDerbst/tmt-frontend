@@ -27,6 +27,7 @@ import {TranscriptModule} from "../transcriptFM/transcript.module";
 import {StoreModule} from "@ngrx/store";
 import {videoReducer} from "./_store/video.reducer";
 import {VideoJunctionBox} from "./video.junction.box";
+import {KeysJunctionFactory} from "../../_utils/keyboard/keys.junction";
 
 @NgModule({
 	declarations: [
