@@ -25,11 +25,11 @@ export interface RouteSocket extends Socket {}
 export interface StoreSocket extends Socket {}
 
 export interface SocketFactory {
-	create: (junction?: Socket) => Socket;
+	create: (socket?: Socket) => Socket;
 }
 
 export interface SocketProvider<J extends Socket> {
-	(junction?: J): J;
+	(socket?: J): J;
 }
 
 export abstract class Patchbay<

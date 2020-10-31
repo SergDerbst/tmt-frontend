@@ -26,20 +26,20 @@ export class VideoEditComponent {
 	
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
-	            private jBox: VideoPatchbay,
+	            private pbay: VideoPatchbay,
 	            private validation: FormControlValidationService) {
 		this.loadData();
 	}
 	
 	private loadData() {
-		this.jBox.route().videoId$().subscribe(videoId => {
-			this.jBox.data().loadVideo$(videoId).subscribe(
+		this.pbay.route().videoId$().subscribe(videoId => {
+			this.pbay.data().loadVideo$(videoId).subscribe(
 				(video: VideoData) => {
-					this.jBox.store().putVideo(video);
+					this.pbay.store().putVideo(video);
 				},
-				(error) => this.jBox.error().videoLoading(error)
+				(error) => this.pbay.error().videoLoading(error)
 			);
-			this.jBox.store().video$().subscribe((video: VideoData) => {
+			this.pbay.store().video$().subscribe((video: VideoData) => {
 				this.video = video;
 				this.prepareForm();
 				this.activateController(this.video, 'header', 'title');
@@ -53,13 +53,13 @@ export class VideoEditComponent {
 		control.setValue(video[groupName][controlName]);
 		control.valueChanges.subscribe(value => {
 			this.video[groupName][controlName] = value;
-			this.jBox.logic().showHintVideoSaving();
-			this.jBox.data().updateVideo$(this.video).subscribe(
+			this.pbay.logic().showHintVideoSaving();
+			this.pbay.data().updateVideo$(this.video).subscribe(
 				(video) => {
-					this.jBox.store().putVideo(video);
-					this.jBox.logic().flashHintVideoSaved();
+					this.pbay.store().putVideo(video);
+					this.pbay.logic().flashHintVideoSaved();
 				},
-				(error) => this.jBox.error().videoUpdating(error)
+				(error) => this.pbay.error().videoUpdating(error)
 			);
 		});
 	}

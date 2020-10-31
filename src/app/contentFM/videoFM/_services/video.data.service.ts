@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {VideoCreationData, VideoData} from "./video.data";
-import {AppConfigService} from "../../app.config.service";
+import {VideoCreationData, VideoData} from "../video.data";
+import {AppConfigService} from "../../../app.config.service";
 import {of, ReplaySubject} from "rxjs";
 
 @Injectable()

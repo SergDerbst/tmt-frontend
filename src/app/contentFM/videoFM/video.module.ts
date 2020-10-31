@@ -14,7 +14,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {httpTranslateLoader} from "../../app.module";
 import {HttpClient} from "@angular/common/http";
 import {UtilsModule} from "../../_utils/_utils.module";
-import {VideoDataService} from "./video.data.service";
+import {VideoDataService} from "./_services/video.data.service";
 import {YoutubePlayer} from "./edit/player/youtube/youtube.player";
 import {VideoRoutingModule} from "./video-routing.module";
 import {TranscriptModule} from "../transcriptFM/transcript.module";

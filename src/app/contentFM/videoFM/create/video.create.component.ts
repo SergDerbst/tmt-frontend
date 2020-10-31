@@ -19,7 +19,7 @@ export class VideoCreateComponent implements OnInit, AfterViewInit {
 	
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
-	            private junctionBox: VideoPatchbay) {}
+	            private pbay: VideoPatchbay) {}
 	
 	ngAfterViewInit(): void {
 		this.focusElement.nativeElement.focus();
@@ -38,13 +38,13 @@ export class VideoCreateComponent implements OnInit, AfterViewInit {
 	}
 	
 	handleKeyEvent(event) {
-		this.junctionBox.keys().enter(event.keyCode, this.createVideo);
+		this.pbay.keys().enter(event.keyCode, this.createVideo);
 	}
 	
 	createVideo() {
-		this.junctionBox.data().createVideo$(this.form.value).subscribe(
-			video => this.junctionBox.route().editVideo(video.header.id),
-			error => this.junctionBox.error().videoCreation(error),
+		this.pbay.data().createVideo$(this.form.value).subscribe(
+			video => this.pbay.route().editVideo(video.header.id),
+			error => this.pbay.error().videoCreation(error),
 		);
 	}
 }
