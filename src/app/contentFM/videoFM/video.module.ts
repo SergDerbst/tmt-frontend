@@ -1,10 +1,4 @@
 import {NgModule} from "@angular/core";
-import {TranscriptComponent} from "../transcriptFM/transcript.component";
-import {ControlPanel} from "../transcriptFM/controlPanel/control.panel";
-import {TimestampControl} from "../transcriptFM/controlPanel/timestamp/timestamp.control";
-import {Controls} from "../transcriptFM/controlPanel/controls/controls";
-import {TextPanel} from "../transcriptFM/textPanel/text.panel";
-import {CommentPanel} from "../transcriptFM/commentPanel/comment.panel";
 import {VideoCreateComponent} from "./create/video.create.component";
 import {VideoEditComponent} from "./edit/video.edit.component";
 import {VideoHeaderComponent} from "./edit/header/video.header.component";
@@ -27,7 +21,6 @@ import {TranscriptModule} from "../transcriptFM/transcript.module";
 import {StoreModule} from "@ngrx/store";
 import {videoReducer} from "./_store/video.reducer";
 import {VideoJunctionBox} from "./video.junction.box";
-import {KeysJunctionFactory} from "../../_utils/keyboard/keys.junction";
 
 @NgModule({
 	declarations: [

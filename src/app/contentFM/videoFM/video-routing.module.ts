@@ -7,8 +7,8 @@ import {VideoViewComponent} from "./view/video.view.component";
 
 const routes: Routes = [
 	{ path: 'video/create', component: VideoCreateComponent, canActivate: [AuthRouteGuard] },
-	{ path: 'video/:id/edit', component: VideoEditComponent, canActivate: [AuthRouteGuard] },
-	{ path: 'video/:id', component: VideoViewComponent },
+	{ path: 'video/:videoId/edit', component: VideoEditComponent, canActivate: [AuthRouteGuard] },
+	{ path: 'video/:videoId', component: VideoViewComponent },
 ]
 
 @NgModule({

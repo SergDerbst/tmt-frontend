@@ -5,6 +5,8 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {FormConfig, FormControlConfig, FormGroupConfig} from "../../../_utils/form/config/form.config";
 import {FormControlValidationService} from "../../../_utils/form/validation/form.control.validation.service";
 import {VideoJunctionBox} from "../video.junction.box";
+import {ActivationEnd, Router} from "@angular/router";
+import {filter, map} from "rxjs/operators";
 
 const updateOnBlur = { updateOn: 'blur' };
 
@@ -13,7 +15,7 @@ const updateOnBlur = { updateOn: 'blur' };
 	templateUrl: './video.edit.component.html',
 	styleUrls: ['./video.edit.component.scss']
 })
-export class VideoEditComponent implements OnInit {
+export class VideoEditComponent {
 	video: VideoData;
 	videoFormConfig: FormConfig;
 	groups: {
@@ -24,18 +26,20 @@ export class VideoEditComponent implements OnInit {
 	
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
-	            private junctionBox: VideoJunctionBox,
+	            private jBox: VideoJunctionBox,
 	            private validation: FormControlValidationService) {
-	}
-	
-	ngOnInit(): void {
 		this.loadData();
 	}
 	
 	private loadData() {
-		this.junctionBox.route().params$().subscribe(params => {
-			this.junctionBox.data().loadVideo$(params['id']);
-			this.junctionBox.store().video$().subscribe((video: VideoData) => {
+		this.jBox.route().videoId$().subscribe(videoId => {
+			this.jBox.data().loadVideo$(videoId).subscribe(
+				(video: VideoData) => {
+					this.jBox.store().putVideo(video);
+				},
+				(error) => this.jBox.error().videoLoading(error)
+			);
+			this.jBox.store().video$().subscribe((video: VideoData) => {
 				this.video = video;
 				this.prepareForm();
 				this.activateController(this.video, 'header', 'title');
@@ -49,11 +53,14 @@ export class VideoEditComponent implements OnInit {
 		control.setValue(video[groupName][controlName]);
 		control.valueChanges.subscribe(value => {
 			this.video[groupName][controlName] = value;
-			this.junctionBox.logic().showHintVideoSaving();
-			this.junctionBox.data().updateVideo$(this.video).subscribe((video) => {
-				this.junctionBox.store(); //TODO put video
-				this.junctionBox.logic().flashHintVideoSaved();
-			});
+			this.jBox.logic().showHintVideoSaving();
+			this.jBox.data().updateVideo$(this.video).subscribe(
+				(video) => {
+					this.jBox.store().putVideo(video);
+					this.jBox.logic().flashHintVideoSaved();
+				},
+				(error) => this.jBox.error().videoUpdating(error)
+			);
 		});
 	}
 	

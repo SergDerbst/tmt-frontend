@@ -2,10 +2,9 @@ import {Injectable} from "@angular/core";
 import {TranscriptPlayer} from "./transcript.player";
 import {BehaviorSubject} from "rxjs";
 import {Snippet, Transcript} from "./transcript.data";
+import {VideoDomain} from "../videoFM/video.data";
+import {YoutubePlayer} from "../videoFM/edit/player/youtube/youtube.player";
 
-/**
- * Respresents the current status of a transcription during editing or playback.
- */
 export enum TranscriptStatus {
 	WaitingForPlayer, //player not ready yet, no transcription possible
 	ReadyForTranscription, //player is ready, transcription can be started
@@ -17,27 +16,30 @@ export enum TranscriptStatus {
 
 @Injectable()
 export class TranscriptService {
-	player: TranscriptPlayer;
+	private readonly players: { [key: string]: TranscriptPlayer };
+	private domain: VideoDomain;
+	private transcriptPlayer: TranscriptPlayer;
 	status: TranscriptStatus;
 	statusChanged: BehaviorSubject<TranscriptStatus>;
 	transcript: Transcript;
 	
-	constructor() {
+	constructor(private readonly youtubePlayer: YoutubePlayer) {
 		this.status = TranscriptStatus.WaitingForPlayer;
 		this.statusChanged = new BehaviorSubject<TranscriptStatus>(TranscriptStatus.WaitingForPlayer);
+		this.players = { [VideoDomain.Youtube]: youtubePlayer	};
 	}
 	
 	beginSnippet() {
-		let snippet = new Snippet(this.player.currentTime());
+		let snippet = new Snippet(this.player().currentTime());
 		this.transcript.beginSnippet(snippet);
 	}
 	
 	endSnippet() {
-		this.transcript.endSnippet(this.player.currentTime());
+		this.transcript.endSnippet(this.player().currentTime());
 	}
 	
 	listenToTime() {
-		this.player.listenToTime().subscribe(time => {
+		this.player().listenToTime().subscribe(time => {
 			switch (this.status) {
 				case TranscriptStatus.ReadyForSnippet:
 					this.transcript.currentSnippet().start = time;
@@ -50,15 +52,19 @@ export class TranscriptService {
 	}
 	
 	setPlayer(transcriptPlayer: TranscriptPlayer) {
-		this.player = transcriptPlayer;
+		this.transcriptPlayer = transcriptPlayer;
 	}
 	
-	setTranscript(transcript: Transcript) {
-		this.transcript = transcript;
+	startPlayback() {
+		this.transcriptPlayer.startPlayback();
 	}
 	
 	updateStatus(status: TranscriptStatus) {
 		this.status = status;
 		this.statusChanged.next(this.status);
+	}
+	
+	private player(): TranscriptPlayer {
+		return this.players[this.domain];
 	}
 }

@@ -41,7 +41,7 @@ export class YoutubePlayerComponent implements OnInit {
 	}
 	
 	onPlayerReady(event) {
-		this.transcriptService.player.setPlayer(event.target);
+		this.transcriptService.setPlayer(event.target);
 		this.transcriptService.updateStatus(TranscriptStatus.ReadyForTranscription);
 	}
 	

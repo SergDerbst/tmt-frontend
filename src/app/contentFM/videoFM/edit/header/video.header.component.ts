@@ -24,12 +24,12 @@ export class VideoHeaderComponent implements OnInit {
 	faUser = faUser;
 	
 	constructor(public translate: TranslateService,
-	            private junctionBox: VideoJunctionBox,
+	            private jBox: VideoJunctionBox,
 	            private appConfigService: AppConfigService) {
 	}
 	
 	ngOnInit(): void {
-		this.junctionBox.store().video$().subscribe((video) => {
+		this.jBox.store().video$().subscribe((video) => {
 			this.video = video;
 		});
 		this.edit = { title: false };
@@ -42,6 +42,6 @@ export class VideoHeaderComponent implements OnInit {
 	}
 	
 	keyEvent(event: KeyboardEvent) {
-		this.junctionBox.keys().enter(event.keyCode, this.edit.title = !this.edit.title);
+		this.jBox.keys().enter(event.keyCode, this.edit.title = !this.edit.title);
 	}
 }

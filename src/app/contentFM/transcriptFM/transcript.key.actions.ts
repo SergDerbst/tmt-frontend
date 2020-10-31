@@ -27,7 +27,7 @@ export class TranscriptKeyActions {
 			},
 			action: () => {
 				if (this.transcriptService.status === TranscriptStatus.ReadyForTranscription) {
-					this.transcriptService.player.startPlayback();
+					this.transcriptService.startPlayback();
 				}
 			}
 		};
