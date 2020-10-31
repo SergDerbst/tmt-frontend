@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {TranslateService} from "@ngx-translate/core";
 import {ContentFilterState} from "../../_store/content.state";
-import {ContentJunctionBox} from "../../content.junction.box";
+import {ContentPatchbay} from "../../content.patchbay";
 import {ContentType} from "../../../_utils/data/enums";
 
 @Component({
@@ -18,7 +18,7 @@ export class ContentFilterComponent implements OnInit {
 	faPlus = faPlus;
 	
 	constructor(public translate: TranslateService,
-	            private junctionBox: ContentJunctionBox) {}
+	            private junctionBox: ContentPatchbay) {}
 	
 	ngOnInit(): void {
 		this.junctionBox.store().filterState$().subscribe(filterState => {

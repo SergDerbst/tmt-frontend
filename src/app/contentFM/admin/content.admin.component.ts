@@ -4,7 +4,7 @@ import {faVideo} from "@fortawesome/free-solid-svg-icons/faVideo";
 import {faPodcast} from "@fortawesome/free-solid-svg-icons/faPodcast";
 import {TranslateService} from "@ngx-translate/core";
 import {ContentAdminState} from "../_store/content.state";
-import {ContentJunctionBox} from "../content.junction.box";
+import {ContentPatchbay} from "../content.patchbay";
 
 @Component({
   selector: 'tmt-content-admin',
@@ -18,7 +18,7 @@ export class ContentAdminComponent implements OnInit {
   faPodcast = faPodcast;
     
   constructor(public translate: TranslateService,
-              private jBox: ContentJunctionBox) {}
+              private jBox: ContentPatchbay) {}
 
   ngOnInit(): void {
     this.jBox.store().adminState$().subscribe((adminState) => {

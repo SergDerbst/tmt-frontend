@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {NavigationEnd} from "@angular/router";
-import {AppJunctionBox} from "../../../app.junction.box";
+import {AppPatchbay} from "../../../app.patchbay";
 import {Observable} from "rxjs";
 
 @Component({
@@ -13,7 +13,7 @@ export class HeaderHintComponent implements OnInit {
 	hintKey: Observable<string>;
 	
 	constructor(public translate: TranslateService,
-	            private jBox: AppJunctionBox) {
+	            private jBox: AppPatchbay) {
 	}
 	
 	ngOnInit(): void {

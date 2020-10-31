@@ -26,7 +26,7 @@ import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {environment} from "../environments/environment.prod";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {CommonModule} from "@angular/common";
-import {AppJunctionBox} from "./app.junction.box";
+import {AppPatchbay} from "./app.patchbay";
 
 
 export function httpTranslateLoader(http: HttpClient) {
@@ -90,7 +90,7 @@ export function tokenGetter() {
       useClass: AuthHttpInterceptor,
       multi: true
     },
-    AppJunctionBox
+    AppPatchbay
   ],
   bootstrap: [
     AppComponent

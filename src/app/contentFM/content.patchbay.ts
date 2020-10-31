@@ -1,12 +1,12 @@
 import {
-	AuthJunction,
-	DataJunction,
-	ErrorJunction,
-	JunctionBox,
-	LogicJunction,
-	RouteJunction,
-	StoreJunction
-} from "../_junction/junction";
+	AuthSocket,
+	DataSocket,
+	ErrorSocket,
+	Patchbay,
+	LogicSocket,
+	RouteSocket,
+	StoreSocket
+} from "../_patchbay/patchbay";
 import {Injectable} from "@angular/core";
 import {select, Store} from "@ngrx/store";
 import {selectContentAdminState, selectContentFilterState} from "./_store/content.selector";
@@ -16,14 +16,14 @@ import {ContentAdminState, ContentFilterState} from "./_store/content.state";
 import {Router} from "@angular/router";
 import {ContentType} from "../_utils/data/enums";
 
-export interface ContentAuthJunction extends AuthJunction {}
-export interface ContentDataJunction extends DataJunction {}
-export interface ContentErrorJunction extends ErrorJunction {}
-export interface ContentLogicJunction extends LogicJunction {}
-export interface ContentRouteJunction extends RouteJunction {
+export interface ContentAuthJunction extends AuthSocket {}
+export interface ContentDataJunction extends DataSocket {}
+export interface ContentErrorJunction extends ErrorSocket {}
+export interface ContentLogicJunction extends LogicSocket {}
+export interface ContentRouteJunction extends RouteSocket {
 	createContent: (contentType: ContentType) => Observable<boolean>;
 }
-export interface ContentStoreJunction extends StoreJunction {
+export interface ContentStoreJunction extends StoreSocket {
 	adminState$: () => Observable<ContentAdminState>,
 	filterState$: () => Observable<ContentFilterState>,
 	setContentType: (index: number) => Observable<void>,
@@ -31,7 +31,7 @@ export interface ContentStoreJunction extends StoreJunction {
 }
 
 @Injectable()
-export class ContentJunctionBox extends JunctionBox<
+export class ContentPatchbay extends Patchbay<
 	ContentAuthJunction,
 	ContentDataJunction,
 	ContentErrorJunction,

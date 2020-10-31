@@ -1,12 +1,12 @@
 import {
-	AuthJunction,
-	DataJunction,
-	ErrorJunction,
-	JunctionBox,
-	LogicJunction,
-	RouteJunction,
-	StoreJunction
-} from "./_junction/junction";
+	AuthSocket,
+	DataSocket,
+	ErrorSocket,
+	Patchbay,
+	LogicSocket,
+	RouteSocket,
+	StoreSocket
+} from "./_patchbay/patchbay";
 import {Injectable} from "@angular/core";
 import {select, Store} from "@ngrx/store";
 import {Event, Router} from "@angular/router";
@@ -15,23 +15,23 @@ import {AuthService} from "./authFM/auth.service";
 import {UpdateHintFromUrlAction} from "./main/header/_store/header.actions";
 import {selectGlobalHintMessageKey} from "./main/header/_store/header.selectors";
 
-export interface AppAuthJunction extends AuthJunction {
+export interface AppAuthJunction extends AuthSocket {
 	userName$: () => Observable<string>;
 	isAuthenticated$: () => Observable<boolean>;
 }
-export interface AppDataJunction extends DataJunction {}
-export interface AppErrorJunction extends ErrorJunction {}
-export interface AppLogicJunction extends LogicJunction {}
-export interface AppRouteJunction extends RouteJunction {
+export interface AppDataJunction extends DataSocket {}
+export interface AppErrorJunction extends ErrorSocket {}
+export interface AppLogicJunction extends LogicSocket {}
+export interface AppRouteJunction extends RouteSocket {
 	events$: () => Observable<Event>;
 }
-export interface AppStoreJunction extends StoreJunction {
+export interface AppStoreJunction extends StoreSocket {
 	hintKey$: () => Observable<string>,
 	updateHintFromUrl: () => Observable<void>,
 }
 
 @Injectable()
-export class AppJunctionBox extends JunctionBox<
+export class AppPatchbay extends Patchbay<
 	AppAuthJunction,
 	AppDataJunction,
 	AppErrorJunction,

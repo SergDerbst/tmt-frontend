@@ -20,7 +20,7 @@ import {VideoRoutingModule} from "./video-routing.module";
 import {TranscriptModule} from "../transcriptFM/transcript.module";
 import {StoreModule} from "@ngrx/store";
 import {videoReducer} from "./_store/video.reducer";
-import {VideoJunctionBox} from "./video.junction.box";
+import {VideoPatchbay} from "./video.patchbay";
 
 @NgModule({
 	declarations: [
@@ -53,7 +53,7 @@ import {VideoJunctionBox} from "./video.junction.box";
 	providers: [
 		VideoDataService,
 		YoutubePlayer,
-		VideoJunctionBox
+		VideoPatchbay
 	]
 })
 export class VideoModule {}

@@ -6,7 +6,7 @@ import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {VideoData} from "../../video.data";
 import {DateFormatMap} from "../../../../_utils/data/date.and.time";
 import {AppConfigService} from "../../../../app.config.service";
-import {VideoJunctionBox} from "../../video.junction.box";
+import {VideoPatchbay} from "../../video.patchbay";
 
 @Component({
 	selector: 'tmt-video-header',
@@ -24,7 +24,7 @@ export class VideoHeaderComponent implements OnInit {
 	faUser = faUser;
 	
 	constructor(public translate: TranslateService,
-	            private jBox: VideoJunctionBox,
+	            private jBox: VideoPatchbay,
 	            private appConfigService: AppConfigService) {
 	}
 	

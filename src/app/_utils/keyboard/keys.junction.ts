@@ -1,14 +1,14 @@
-import {Junction, JunctionFactory} from "../../_junction/junction";
+import {Socket, SocketFactory} from "../../_patchbay/patchbay";
 import {Keys} from "./keys";
 import {Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class KeysJunctionFactory implements JunctionFactory {
+export class KeysJunctionFactory implements SocketFactory {
 	
 	constructor(private readonly keys: Keys) {}
 	
-	create = (): Junction => {
+	create = (): Socket => {
 		return {
 			enter: (keyCode: number, handler: () => Observable<any>) => {
 				if (this.keys.isEnter(keyCode)) {

@@ -3,7 +3,7 @@ import {faSignInAlt, faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {TranslateService} from "@ngx-translate/core";
-import {AppJunctionBox} from "../../app.junction.box";
+import {AppPatchbay} from "../../app.patchbay";
 
 @Component({
   selector: 'app-header',
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   faUserCircle = faUserCircle;
   
   constructor(public translate: TranslateService,
-              private junctionBox: AppJunctionBox) {}
+              private junctionBox: AppPatchbay) {}
 
   ngOnInit() {
     this.junctionBox.auth().userName$().subscribe((username) => this.username = username);

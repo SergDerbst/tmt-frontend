@@ -2,7 +2,7 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {VideoData, VideoDomain} from "../../video.data";
 import {FormGroupConfig} from "../../../../_utils/form/config/form.config";
 import {TranslateService} from "@ngx-translate/core";
-import {VideoJunctionBox} from "../../video.junction.box";
+import {VideoPatchbay} from "../../video.patchbay";
 
 @Component({
 	selector: 'tmt-video-player',
@@ -19,7 +19,7 @@ export class VideoPlayerComponent implements OnInit {
 	video: VideoData;
 	
 	constructor(public translate: TranslateService,
-	            private jBox: VideoJunctionBox) {}
+	            private jBox: VideoPatchbay) {}
 	
 	ngOnInit(): void {
 		this.jBox.store().video$().subscribe((video) => {

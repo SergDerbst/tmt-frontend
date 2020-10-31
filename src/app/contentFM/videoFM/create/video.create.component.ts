@@ -4,7 +4,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {ValidationRegexMap} from "../../../_utils/form/validation/validation.regex.map";
 import {VideoState} from "../_store/video.state";
-import {VideoJunctionBox} from "../video.junction.box";
+import {VideoPatchbay} from "../video.patchbay";
 
 @Component({
 	selector: 'tmt-video-create',
@@ -19,7 +19,7 @@ export class VideoCreateComponent implements OnInit, AfterViewInit {
 	
 	constructor(public translate: TranslateService,
 	            private fb: FormBuilder,
-	            private junctionBox: VideoJunctionBox) {}
+	            private junctionBox: VideoPatchbay) {}
 	
 	ngAfterViewInit(): void {
 		this.focusElement.nativeElement.focus();

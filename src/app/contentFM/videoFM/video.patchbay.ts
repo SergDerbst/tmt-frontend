@@ -1,12 +1,12 @@
 import {
-	AuthJunction,
-	DataJunction, ErrorJunction,
-	Junction,
-	JunctionBox,
-	JunctionProvider, LogicJunction,
-	RouteJunction,
-	StoreJunction
-} from "../../_junction/junction";
+	AuthSocket,
+	DataSocket, ErrorSocket,
+	Socket,
+	Patchbay,
+	SocketProvider, LogicSocket,
+	RouteSocket,
+	StoreSocket
+} from "../../_patchbay/patchbay";
 import {Router, Event, ActivationEnd} from "@angular/router";
 import {select, Store} from "@ngrx/store";
 import {Injectable} from "@angular/core";
@@ -24,31 +24,31 @@ import {globalHintFlashingTime} from "../../main/header/_store/header.state";
 import {TranscriptService} from "../transcriptFM/transcript.service";
 import {TranscriptPlayer} from "../transcriptFM/transcript.player";
 
-export interface VideoAuthJunction extends AuthJunction {}
-export interface VideoDataJunction extends DataJunction {
+export interface VideoAuthJunction extends AuthSocket {}
+export interface VideoDataJunction extends DataSocket {
 	createVideo$: (videoCreateData: VideoCreateData) => Observable<VideoData>;
 	loadVideo$: (videoId: number) => Observable<VideoData>;
 	updateVideo$: (video: VideoData) => Observable<VideoData>;
 }
 
-export interface VideoErrorJunction extends ErrorJunction {
+export interface VideoErrorJunction extends ErrorSocket {
 	videoCreation: (error: HttpErrorResponse) => Observable<HttpErrorResponse>;
 	videoLoading: (error: HttpErrorResponse) => Observable<HttpErrorResponse>;
 	videoUpdating: (error: HttpErrorResponse) => Observable<HttpErrorResponse>;
 }
 
-export interface VideoLogicJunction extends LogicJunction {
+export interface VideoLogicJunction extends LogicSocket {
 	setPlayer: (transcriptPlayer: TranscriptPlayer) => Observable<void>,
 	showHintVideoSaving: () => Observable<void>,
 	flashHintVideoSaved: (milliseconds?: number) => Observable<any>,
 }
 
-export interface VideoRouteJunction extends RouteJunction {
+export interface VideoRouteJunction extends RouteSocket {
 	editVideo: (videoId: number) => Observable<boolean>;
 	videoId$: () => Observable<number>;
 }
 
-export interface VideoStoreJunction extends StoreJunction {
+export interface VideoStoreJunction extends StoreSocket {
 	prepareVideoForPlayer: (config: { domain: VideoDomain, videoId: string }) => Observable<void>;
 	putVideo: (video: VideoData) => Observable<void>;
 	video$: () => Observable<VideoData>,
@@ -56,7 +56,7 @@ export interface VideoStoreJunction extends StoreJunction {
 }
 
 @Injectable()
-export class VideoJunctionBox extends JunctionBox<
+export class VideoPatchbay extends Patchbay<
 	VideoAuthJunction,
 	VideoDataJunction,
 	VideoErrorJunction,
@@ -69,7 +69,7 @@ export class VideoJunctionBox extends JunctionBox<
 	            private readonly transcriptService: TranscriptService,
 	            private readonly videoDataService: VideoDataService) {
 		super();
-		this.addJunction('keys', this.keysFactory.create());
+		this.addSocket('keys', this.keysFactory.create());
 		this.data({
 			createVideo$: (videoCreateData: VideoCreateData) => this.videoDataService.createVideo(videoCreateData),
 			loadVideo$: (videoId: number) => this.videoDataService.loadVideo(videoId),
@@ -123,7 +123,7 @@ export class VideoJunctionBox extends JunctionBox<
 		)
 	}
 	
-	keys: JunctionProvider<any> = (): Junction => {
-		return this.junctions['keys'];
+	keys: SocketProvider<any> = (): Socket => {
+		return this.sockets['keys'];
 	}
 }
