@@ -19,5 +19,8 @@
   </div>
 </div>
 <div class="tmt-row">
-  <tmt-content-filter [contentType]="adminState.selectedType"></tmt-content-filter>
+  <tmt-content-filter [contentType]="adminState.selectedType"
+                      [filterState$]="filterState$"
+                      (contentCreate)="createContent($event)"
+                      (contentFilterSelect)="selectContentFilter($event)"></tmt-content-filter>
 </div>

@@ -1,6 +1,9 @@
 <div class="tmt-content-container">
   <tmt-content-admin
     [adminState$]="adminState$"
+    [filterState$]="filterState$"
+    (contentCreate)="createContent($event)"
+    (contentFilterSelect)="selectContentFilter($event)"
     (contentTypeSelected)="selectContentType($event)"
   ></tmt-content-admin>
 </div>

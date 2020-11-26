@@ -3,8 +3,9 @@ import {faNewspaper} from "@fortawesome/free-solid-svg-icons/faNewspaper";
 import {faVideo} from "@fortawesome/free-solid-svg-icons/faVideo";
 import {faPodcast} from "@fortawesome/free-solid-svg-icons/faPodcast";
 import {TranslateService} from "@ngx-translate/core";
-import {ContentAdminState} from "../_store/content.state";
+import {ContentAdminState, ContentFilterState} from "../_store/content.state";
 import {Observable} from "rxjs";
+import {ContentType} from "../../_utils/data/enums";
 
 @Component({
   selector: 'tmt-content-admin',
@@ -13,6 +14,9 @@ import {Observable} from "rxjs";
 })
 export class ContentAdminComponent implements OnInit {
   @Input() adminState$: Observable<ContentAdminState>;
+  @Input() filterState$: Observable<ContentFilterState>;
+  @Output() contentCreate = new EventEmitter();
+  @Output() contentFilterSelect = new EventEmitter();
   @Output() contentTypeSelected = new EventEmitter();
   adminState: ContentAdminState;
   faNewspaper = faNewspaper;
@@ -26,7 +30,15 @@ export class ContentAdminComponent implements OnInit {
       this.adminState = adminState;
     });
   }
+  
+  createContent(contentType: ContentType) {
+    this.contentCreate.emit(contentType);
+  }
 
+  selectContentFilter(index: number) {
+    this.contentFilterSelect.emit(index);
+  }
+  
   selectContentType(index: number) {
     this.contentTypeSelected.emit(index);
   }

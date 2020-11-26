@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {TranslateService} from "@ngx-translate/core";
 import {ContentFilterState} from "../../_store/content.state";
 import {ContentPatchbay} from "../../content.patchbay";
 import {ContentType} from "../../../_utils/data/enums";
+import {Observable} from "rxjs";
 
 @Component({
 	selector: 'tmt-content-filter',
@@ -12,25 +13,27 @@ import {ContentType} from "../../../_utils/data/enums";
 	styles: [':host { display: block; width: 100% }']
 })
 export class ContentFilterComponent implements OnInit {
+	@Input() filterState$: Observable<ContentFilterState>;
 	@Input() contentType: ContentType;
+	@Output() contentCreate = new EventEmitter();
+	@Output() contentFilterSelect = new EventEmitter();
 	filterState: ContentFilterState
-	selectedContentType: string;
 	faPlus = faPlus;
 	
 	constructor(public translate: TranslateService,
 	            private pbay: ContentPatchbay) {}
 	
 	ngOnInit(): void {
-		this.pbay.store().filterState$().subscribe(filterState => {
+		this.filterState$.subscribe((filterState: ContentFilterState) => {
 			this.filterState = filterState;
 		});
 	}
 	
 	createContent() {
-		this.pbay.route().createContent(this.contentType);
+		this.contentCreate.emit(this.contentType);
 	}
 	
-	selectFilter(index: number) {
-		this.pbay.store().setFilter(index);
+	selectContentFilter(index: number) {
+		this.contentFilterSelect.emit(index);
 	}
 }
