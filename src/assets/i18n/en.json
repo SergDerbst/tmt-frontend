@@ -2,7 +2,7 @@
   "app.header.hint.none": "",
   "app.header.hint.auth.login": "Welcome!",
   "app.header.hint.auth.register": "Welcome!",
-  "app.header.hint.content": "Your Content",
+  "app.header.hint.content.admin": "Your Content",
   "app.header.hint.content.article.create": "Create Article",
   "app.header.hint.content.article.edit": "Edit Article",
   "app.header.hint.content.article.view": "&nbsp;",

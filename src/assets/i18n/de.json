@@ -1,5 +1,9 @@
 {
-  "app.location.hint.content": "Dein Content",
+  "app.header.hint.none": "",
+  "app.header.hint.auth.login": "Willkommen!",
+  "app.header.hint.auth.register": "Willkommen!",
+
+  "app.location.hint.content.admin": "Dein Content",
   "app.location.hint.content.article.create": "Artikel erstellen",
   "app.location.hint.content.article.edit": "Artikel bearbeiten",
   "app.location.hint.content.article.view": "&nbsp;",
