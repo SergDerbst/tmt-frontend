@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {faNewspaper} from "@fortawesome/free-solid-svg-icons/faNewspaper";
 import {faVideo} from "@fortawesome/free-solid-svg-icons/faVideo";
 import {faPodcast} from "@fortawesome/free-solid-svg-icons/faPodcast";
 import {TranslateService} from "@ngx-translate/core";
 import {ContentAdminState} from "../_store/content.state";
-import {ContentPatchbay} from "../content.patchbay";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'tmt-content-admin',
@@ -12,21 +12,22 @@ import {ContentPatchbay} from "../content.patchbay";
   styleUrls: ['./content.admin.component.scss']
 })
 export class ContentAdminComponent implements OnInit {
+  @Input() adminState$: Observable<ContentAdminState>;
+  @Output() contentTypeSelected = new EventEmitter();
   adminState: ContentAdminState;
   faNewspaper = faNewspaper;
   faVideo = faVideo;
   faPodcast = faPodcast;
     
-  constructor(public translate: TranslateService,
-              private jBox: ContentPatchbay) {}
-
+  constructor(public translate: TranslateService) {}
+  
   ngOnInit(): void {
-    this.jBox.store().adminState$().subscribe((adminState) => {
+    this.adminState$.subscribe((adminState: ContentAdminState) => {
       this.adminState = adminState;
     });
   }
-  
-  selectType(index: number) {
-    this.jBox.store().setContentType(index);
+
+  selectContentType(index: number) {
+    this.contentTypeSelected.emit(index);
   }
 }

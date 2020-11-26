@@ -1,21 +1,13 @@
-import {
-	AuthSocket,
-	DataSocket, ErrorSocket,
-	Socket,
-	Patchbay,
-	SocketProvider, LogicSocket,
-	RouteSocket,
-	StoreSocket
-} from "../../_patchbay/patchbay";
-import {Router, Event, ActivationEnd} from "@angular/router";
+import {Patchbay, Socket, SocketProvider} from "../../_patchbay/patchbay";
+import {ActivationEnd, Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
 import {Injectable} from "@angular/core";
-import {defer, Observable, of} from "rxjs";
+import {defer, of} from "rxjs";
 import {VideoCreateData, VideoData, VideoDomain} from "./video.data";
 import {selectVideoState, videoState} from "./_store/video.selectors";
 import {filter, map} from "rxjs/operators";
 import {VideoState} from "./_store/video.state";
-import {KeysJunctionFactory} from "../../_utils/keyboard/keys.junction";
+import {KeysSocketFactory} from "../../_utils/keyboard/keys.socket";
 import {VideoDataService} from "./_services/video.data.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {VideoPrepareForPlayerAction, VideoPutAction} from "./_store/video.actions";
@@ -40,7 +32,8 @@ export class VideoPatchbay extends Patchbay<
 	VideoLogicSocket,
 	VideoRouteSocket,
 	VideoStoreSocket> {
-	constructor(private readonly keysFactory: KeysJunctionFactory,
+	
+	constructor(private readonly keysFactory: KeysSocketFactory,
 							private readonly redux: Store,
 	            private readonly router: Router,
 	            private readonly transcriptService: TranscriptService,

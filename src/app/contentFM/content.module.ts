@@ -18,9 +18,11 @@ import {StoreModule} from "@ngrx/store";
 import {contentReducer} from "./_store/content.reducer";
 import {ContentAdminComponent} from "./admin/content.admin.component";
 import {ContentPatchbay} from "./content.patchbay";
+import {ContentContainer} from "./content.container";
 
 @NgModule({
 	declarations: [
+		ContentContainer,
 		ContentAdminComponent,
 		ContentFilterComponent,
 		Searchbox,

@@ -18,19 +18,19 @@ export class ContentFilterComponent implements OnInit {
 	faPlus = faPlus;
 	
 	constructor(public translate: TranslateService,
-	            private junctionBox: ContentPatchbay) {}
+	            private pbay: ContentPatchbay) {}
 	
 	ngOnInit(): void {
-		this.junctionBox.store().filterState$().subscribe(filterState => {
+		this.pbay.store().filterState$().subscribe(filterState => {
 			this.filterState = filterState;
 		});
 	}
 	
 	createContent() {
-		this.junctionBox.route().createContent(this.contentType);
+		this.pbay.route().createContent(this.contentType);
 	}
 	
 	selectFilter(index: number) {
-		this.junctionBox.store().setFilter(index);
+		this.pbay.store().setFilter(index);
 	}
 }

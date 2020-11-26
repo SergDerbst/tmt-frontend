@@ -16,7 +16,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {FormControlValidationService} from "./form/validation/form.control.validation.service";
 import {EditButton} from "./ui/buttons/edit.button";
 import {DocumentKeyEventService} from "./keyboard/document.key.event.service";
-import {KeysJunctionFactory} from "./keyboard/keys.junction";
+import {KeysSocketFactory} from "./keyboard/keys.socket";
 import {Keys} from "./keyboard/keys";
 
 @NgModule({
@@ -56,7 +56,7 @@ import {Keys} from "./keyboard/keys";
     FormControlValidationService,
     DocumentKeyEventService,
     Keys,
-    KeysJunctionFactory
+    KeysSocketFactory
   ]
 })
 export class UtilsModule {}

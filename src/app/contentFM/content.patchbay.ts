@@ -26,14 +26,16 @@ export class ContentPatchbay extends Patchbay<
 	constructor(private readonly redux: Store,
 	            private readonly router: Router) {
 		super();
-		
 		this.routeSocket();
 		this.storeSocket();
 	}
 	
 	private routeSocket() {
 		this.route({
-			createContent: (contentType: ContentType) => defer(() => this.router.navigateByUrl('/content/' + contentType + '/create')),
+			createContent: (contentType: ContentType) => {
+				this.router.navigateByUrl('/content/' + contentType + '/create');
+				return of(true);
+			},
 		});
 	}
 	
