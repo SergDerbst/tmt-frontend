@@ -1,9 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {TranslateService} from "@ngx-translate/core";
-import {ContentFilterState} from "../../_store/content.state";
-import {ContentPatchbay} from "../../content.patchbay";
-import {ContentType} from "../../../_utils/data/enums";
+import {ContentFilterState} from "../../_store/admin.state";
+import {ContentType} from "../../../../_utils/data/enums";
 import {Observable} from "rxjs";
 
 @Component({
@@ -20,8 +19,7 @@ export class ContentFilterComponent implements OnInit {
 	filterState: ContentFilterState
 	faPlus = faPlus;
 	
-	constructor(public translate: TranslateService,
-	            private pbay: ContentPatchbay) {}
+	constructor(public translate: TranslateService) {}
 	
 	ngOnInit(): void {
 		this.filterState$.subscribe((filterState: ContentFilterState) => {

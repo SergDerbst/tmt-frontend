@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
-import {ContentFilterState} from "../../../_store/content.state";
+import {ContentFilterState} from "../../../_store/admin.state";
 
 @Component({
 	selector: 'tmt-searchbox',

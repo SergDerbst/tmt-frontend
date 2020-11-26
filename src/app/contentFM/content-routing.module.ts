@@ -1,11 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import {AuthRouteGuard} from "../authFM/auth.route.guard";
-import {ContentContainer} from "./content.container";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: ContentContainer, canActivate: [AuthRouteGuard] },
+  { path: 'admin', loadChildren: () => import('./adminFM/admin.module').then(m => m.AdminModule) },
   { path: 'audio', loadChildren: () => import('./audioFM/audio.module').then(m => m.AudioModule) },
   { path: 'article', loadChildren: () => import('./articleFM/article.module').then(m => m.ArticleModule) },
   { path: 'video', loadChildren: () => import('./videoFM/video.module').then(m => m.VideoModule) },

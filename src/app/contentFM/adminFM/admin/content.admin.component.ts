@@ -3,9 +3,9 @@ import {faNewspaper} from "@fortawesome/free-solid-svg-icons/faNewspaper";
 import {faVideo} from "@fortawesome/free-solid-svg-icons/faVideo";
 import {faPodcast} from "@fortawesome/free-solid-svg-icons/faPodcast";
 import {TranslateService} from "@ngx-translate/core";
-import {ContentAdminState, ContentFilterState} from "../_store/content.state";
+import {ContentTypeState, ContentFilterState} from "../_store/admin.state";
 import {Observable} from "rxjs";
-import {ContentType} from "../../_utils/data/enums";
+import {ContentType} from "../../../_utils/data/enums";
 
 @Component({
   selector: 'tmt-content-admin',
@@ -13,12 +13,12 @@ import {ContentType} from "../../_utils/data/enums";
   styleUrls: ['./content.admin.component.scss']
 })
 export class ContentAdminComponent implements OnInit {
-  @Input() adminState$: Observable<ContentAdminState>;
-  @Input() filterState$: Observable<ContentFilterState>;
+  @Input() contentTypeState$: Observable<ContentTypeState>;
+  @Input() contentFilterState$: Observable<ContentFilterState>;
   @Output() contentCreate = new EventEmitter();
   @Output() contentFilterSelect = new EventEmitter();
   @Output() contentTypeSelected = new EventEmitter();
-  adminState: ContentAdminState;
+  contentTypeState: ContentTypeState;
   faNewspaper = faNewspaper;
   faVideo = faVideo;
   faPodcast = faPodcast;
@@ -26,8 +26,8 @@ export class ContentAdminComponent implements OnInit {
   constructor(public translate: TranslateService) {}
   
   ngOnInit(): void {
-    this.adminState$.subscribe((adminState: ContentAdminState) => {
-      this.adminState = adminState;
+    this.contentTypeState$.subscribe((contentTypeState: ContentTypeState) => {
+      this.contentTypeState = contentTypeState;
     });
   }
   

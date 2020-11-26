@@ -1,5 +1,5 @@
-import {VideoState} from "../videoFM/_store/video.state";
-import {ContentFilter, ContentType} from "../../_utils/data/enums";
+import {VideoState} from "../../videoFM/_store/video.state";
+import {ContentFilter, ContentType} from "../../../_utils/data/enums";
 
 /**
  * Content Filter State
@@ -34,19 +34,19 @@ export const initialContentAdminState = {
 	contentTypes: contentTypes,
 	selectedType: contentTypes[0],
 };
-export interface ContentAdminState {
+export interface ContentTypeState {
 	contentTypes: ContentType[];
 	selectedType: ContentType;
 }
 
 /**
- *  Content State.
+ *  Admin State.
  */
-export interface ContentState {
-	adminState: ContentAdminState;
-	filterState: ContentFilterState;
+export interface AdminState {
+	contentTypeState: ContentTypeState;
+	contentFilterState: ContentFilterState;
 }
-export const initialContentState = {
-	adminState: initialContentAdminState,
-	filterState: initialFilterState,
+export const initialAdminState = {
+	contentTypeState: initialContentAdminState,
+	contentFilterState: initialFilterState,
 };

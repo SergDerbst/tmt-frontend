@@ -5,7 +5,6 @@ import {RouterReducerState} from "@ngrx/router-store";
 import {AuthState} from "../../authFM/_store/auth.state";
 import {HeaderState} from "../../main/header/_store/header.state";
 import {FooterState} from "../../main/footer/_store/footer.state";
-import {ContentState} from "../../contentFM/_store/content.state";
 
 export interface AppState {
 	readonly routerState?: RouterReducerState;

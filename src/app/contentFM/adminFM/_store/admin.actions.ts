@@ -1,6 +1,6 @@
 import {Action} from "@ngrx/store";
 
-export type ContentActions = ContentSelectContentTypeAction;
+export type AdminActions = ContentSelectContentTypeAction;
 
 export enum ContentActionTypes {
 	SelectContentType = '[Content] Select Type',
