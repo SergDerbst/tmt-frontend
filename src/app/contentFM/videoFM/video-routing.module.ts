@@ -4,11 +4,13 @@ import {VideoCreateComponent} from "./create/video.create.component";
 import {AuthRouteGuard} from "../../authFM/auth.route.guard";
 import {VideoEditComponent} from "./edit/video.edit.component";
 import {VideoViewComponent} from "./view/video.view.component";
+import {VideoContainer} from "./video.container";
 
 const routes: Routes = [
-	{ path: 'video/create', component: VideoCreateComponent, canActivate: [AuthRouteGuard] },
-	{ path: 'video/:videoId/edit', component: VideoEditComponent, canActivate: [AuthRouteGuard] },
-	{ path: 'video/:videoId', component: VideoViewComponent },
+	{ path: '', component: VideoContainer, canActivate: [AuthRouteGuard] },
+	{ path: 'create', component: VideoCreateComponent, canActivate: [AuthRouteGuard] },
+	{ path: ':videoId/edit', component: VideoEditComponent, canActivate: [AuthRouteGuard] },
+	{ path: ':videoId', component: VideoViewComponent },
 ]
 
 @NgModule({

@@ -1,4 +1,4 @@
-import {Patchbay, Socket, SocketProvider} from "../../_patchbay/patchbay";
+import {Patchbay, Socket, SocketProvider} from "patchbay";
 import {ActivationEnd, Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
 import {Injectable} from "@angular/core";
@@ -48,11 +48,11 @@ export class VideoPatchbay extends Patchbay<
 	}
 	
 	keys: SocketProvider<any> = (): Socket => {
-		return this.sockets['keys'];
+		return super.sockets['keys'];
 	}
 	
 	private dataSocket() {
-		this.data({
+		super.data({
 			createVideo$: (videoCreateData: VideoCreateData) => this.videoDataService.createVideo(videoCreateData),
 			loadVideo$: (videoId: number) => this.videoDataService.loadVideo(videoId),
 			updateVideo$: (video: VideoData) => this.videoDataService.updateVideo(video),
@@ -60,11 +60,11 @@ export class VideoPatchbay extends Patchbay<
 	}
 	
 	private keysSocket() {
-		this.addSocket('keys', this.keysFactory.create());
+		super.addSocket('keys', this.keysFactory.create());
 	}
 	
 	private logicSocket() {
-		this.logic({
+		super.logic({
 			setPlayer: (transcriptPlayer: TranscriptPlayer) => of(this.transcriptService.setPlayer(transcriptPlayer)),
 			showHintVideoSaving: () => of(this.redux.dispatch(new ReplaceHintAction({messageKey: 'content.transcript.edit.saving'}))),
 			flashHintVideoSaved: (milliseconds?: number) => {
@@ -77,7 +77,7 @@ export class VideoPatchbay extends Patchbay<
 	}
 	
 	private errorSocket() {
-		this.error({
+		super.error({
 			videoCreation: (error: HttpErrorResponse) => of(error), //TODO global or other error handling
 			videoLoading: (error: HttpErrorResponse) => of(error),
 			videoUpdating: (error: HttpErrorResponse) => of(error)
@@ -85,7 +85,7 @@ export class VideoPatchbay extends Patchbay<
 	}
 	
 	private routeSocket() {
-		this.route({
+		super.route({
 			editVideo: (videoId: number) => defer(() => this.router.navigateByUrl('content/video/' + videoId + '/edit')),
 			videoId$: () => this.router.events
 				.pipe(
@@ -98,7 +98,7 @@ export class VideoPatchbay extends Patchbay<
 	}
 	
 	private storeSocket() {
-		this.store({
+		super.store({
 				prepareVideoForPlayer: (config: { domain: VideoDomain, videoId: string }) => of(this.redux.dispatch(new VideoPrepareForPlayerAction({
 					domain: config.domain,
 					videoId: config.videoId

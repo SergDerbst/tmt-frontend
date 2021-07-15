@@ -1,12 +1,10 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {VideoData} from "../video.data";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {FormConfig, FormControlConfig, FormGroupConfig} from "../../../_utils/form/config/form.config";
 import {FormControlValidationService} from "../../../_utils/form/validation/form.control.validation.service";
 import {VideoPatchbay} from "../video.patchbay";
-import {ActivationEnd, Router} from "@angular/router";
-import {filter, map} from "rxjs/operators";
 
 const updateOnBlur = { updateOn: 'blur' };
 

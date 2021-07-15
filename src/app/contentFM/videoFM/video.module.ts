@@ -21,9 +21,11 @@ import {TranscriptModule} from "../transcriptFM/transcript.module";
 import {StoreModule} from "@ngrx/store";
 import {videoReducer} from "./_store/video.reducer";
 import {VideoPatchbay} from "./video.patchbay";
+import {VideoContainer} from "./video.container";
 
 @NgModule({
 	declarations: [
+		VideoContainer,
 		VideoCreateComponent,
 		VideoEditComponent,
 			VideoHeaderComponent,

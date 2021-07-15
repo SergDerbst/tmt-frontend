@@ -1,12 +1,3 @@
-import {
-	AuthSocket,
-	DataSocket,
-	ErrorSocket,
-	Patchbay,
-	LogicSocket,
-	RouteSocket,
-	StoreSocket
-} from "./_patchbay/patchbay";
 import {Injectable} from "@angular/core";
 import {select, Store} from "@ngrx/store";
 import {Event, Router} from "@angular/router";
@@ -14,6 +5,7 @@ import {Observable, of} from "rxjs";
 import {AuthService} from "./authFM/auth.service";
 import {UpdateHintFromUrlAction} from "./main/header/_store/header.actions";
 import {selectGlobalHintMessageKey} from "./main/header/_store/header.selectors";
+import {AuthSocket, DataSocket, ErrorSocket, LogicSocket, Patchbay, RouteSocket, StoreSocket} from "patchbay/dist";
 
 export interface AppAuthJunction extends AuthSocket {
 	userName$: () => Observable<string>;
